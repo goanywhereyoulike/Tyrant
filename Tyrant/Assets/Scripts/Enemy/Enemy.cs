@@ -15,6 +15,7 @@ public class Enemy : MonoBehaviour
 
     BehavioursChange behaviours = new BehavioursChange();
     Seeking seek = new Seeking();
+    Arrive arrive = new Arrive();
     public EnemyState EnemyState { get => enemyState; set => enemyState = value; }
 
 
@@ -23,8 +24,9 @@ public class Enemy : MonoBehaviour
     {
         behaviours.setEnemy(this);
         behaviours.AddBehaviour(seek);
-       
-}
+        seek.Pause();
+        behaviours.AddBehaviour(arrive);   
+    }
 
     // Update is called once per frame
     void Update()

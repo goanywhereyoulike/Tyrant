@@ -13,8 +13,16 @@ public class InputManager : MonoBehaviour
     private Dictionary<string, KeyCode> keyCodeDict = null;
     public Dictionary<string, KeyCode> KeyCodeDict { get => keyCodeDict; set => keyCodeDict = value; }
 
-
     private Dictionary<string, float> holdingTimeDict = null;
+
+    [SerializeField]
+    private List<AxesLibrary> axesLibrary = null;
+
+    private Dictionary<string, AxesLibrary> axesDict = null;
+    private Dictionary<string, float> axesPositiveButtonValues = null;
+    private Dictionary<string, float> axesNegativeButtonValues = null;
+
+    private float epsilon = 0.0001f;
 
     private void Awake()
     {
@@ -35,6 +43,18 @@ public class InputManager : MonoBehaviour
         foreach (var keyLib in keyCodeLibrary)
         {
             KeyCodeDict.Add(keyLib.name, keyLib.keyCode);
+        }
+
+        axesDict = new Dictionary<string, AxesLibrary>();
+
+        axesPositiveButtonValues = new Dictionary<string, float>();
+        axesNegativeButtonValues = new Dictionary<string, float>();
+
+        foreach (var axes in axesLibrary)
+        {
+            axesDict.Add(axes.name, axes);
+            axesPositiveButtonValues.Add(axes.name, 0f);
+            axesNegativeButtonValues.Add(axes.name, 0f);
         }
     }
 
@@ -113,5 +133,72 @@ public class InputManager : MonoBehaviour
         }
 
         return false;
+    }
+
+    public float GetAxis(string axisName)
+    {
+        if (axesDict.ContainsKey(axisName))
+        {
+            axesPositiveButtonValues[axisName] -= axesDict[axisName].gravity * Time.deltaTime;
+            if (Input.GetKey(axesDict[axisName].positiveButton))
+            {
+                axesPositiveButtonValues[axisName] += axesDict[axisName].step * Time.deltaTime;
+            }
+
+            if (axesPositiveButtonValues[axisName] <= epsilon)
+            {
+                axesPositiveButtonValues[axisName] = 0f;
+            }
+
+            axesPositiveButtonValues[axisName] = Mathf.Clamp(axesPositiveButtonValues[axisName], 0.0f, 1.0f);
+
+            axesNegativeButtonValues[axisName] -= axesDict[axisName].gravity * Time.deltaTime;
+            if (Input.GetKey(axesDict[axisName].negativeButton))
+            {
+                axesNegativeButtonValues[axisName] += axesDict[axisName].step * Time.deltaTime;
+            }
+
+            if (axesNegativeButtonValues[axisName] <= epsilon)
+            {
+                axesNegativeButtonValues[axisName] = 0f;
+            }
+
+            axesNegativeButtonValues[axisName] = Mathf.Clamp(axesNegativeButtonValues[axisName], 0.0f, 1.0f);
+
+            float finalValue = axesPositiveButtonValues[axisName] - axesNegativeButtonValues[axisName];
+
+            return finalValue;
+        }
+        else
+        {
+            Debug.LogError($"InputManager: Cannot find '{axisName}' axis keys...");
+        }
+
+        return 0f;
+    }
+
+    public float GetAxisRaw(string axisName)
+    {
+        if (axesDict.ContainsKey(axisName))
+        {
+            float value = 0f;
+            if (Input.GetKey(axesDict[axisName].positiveButton))
+            {
+                value += 1f;
+            }
+
+            if (Input.GetKey(axesDict[axisName].negativeButton))
+            {
+                value -= 1f;
+            }
+
+            return value;
+        }
+        else
+        {
+            Debug.LogError($"InputManager: Cannot find '{axisName}' axis keys...");
+        }
+
+        return 0f;
     }
 }

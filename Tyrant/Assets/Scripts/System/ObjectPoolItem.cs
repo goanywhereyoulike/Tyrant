@@ -5,8 +5,9 @@ using UnityEngine;
 // Reference: https://www.raywenderlich.com/847-object-pooling-in-unity
 
 [System.Serializable]
-public class ObjectPoolItem
+public struct ObjectPoolItem
 {
+    public string tagName;
     public GameObject objectToPool;
     public int amountToPool;
     public bool shouldExpand;

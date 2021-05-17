@@ -11,7 +11,7 @@ public class ObjectPoolManager : MonoBehaviour
 
     [SerializeField]
     private List<ObjectPoolItem> objectPoolItems = null;
-    private List<GameObject> pooledObjects = null;
+    private Dictionary<string, List<GameObject>> pooledObjects = null;
 
     private void Awake()
     {
@@ -26,64 +26,75 @@ public class ObjectPoolManager : MonoBehaviour
             Destroy(gameObject);
         }
 
-        pooledObjects = new List<GameObject>();
+        pooledObjects = new Dictionary<string, List<GameObject>>();
     }
 
     public void InstantiateAll()
     {
         foreach (var item in objectPoolItems)
         {
+            List<GameObject> gameObjects = new List<GameObject>();
             for (int i = 0; i < item.amountToPool; i++)
             {
                 GameObject obj = (GameObject)Instantiate(item.objectToPool);
                 obj.SetActive(false);
-                pooledObjects.Add(obj);
+                gameObjects.Add(obj);
             }
+            pooledObjects[item.tagName] = gameObjects;
         }
     }
 
-    public void InstantiateObjects(string objectName)
+    public void InstantiateObjects(string tagName)
     {
+        bool done = false;
         foreach (var item in objectPoolItems)
         {
-            if (item.objectToPool.name.Equals(objectName))
+            if (item.tagName.Equals(tagName))
             {
+                List<GameObject> gameObjects = new List<GameObject>();
                 for (int i = 0; i < item.amountToPool; i++)
                 {
                     GameObject obj = (GameObject)Instantiate(item.objectToPool);
                     obj.SetActive(false);
-                    pooledObjects.Add(obj);
+                    gameObjects.Add(obj);
                 }
+                pooledObjects[item.tagName] = gameObjects;
+                return;
             }
+        }
+
+        if (!done)
+        {
+            Debug.LogError($"ObjectPoolManager: Cannot instantiate objects because of cannot find {tagName} tagname...");
         }
     }
 
-    public GameObject GetPooledObject(string objectName)
+    public GameObject GetPooledObject(string tagName)
     {
-        string cloneName = objectName + "(Clone)";
-
-        if (GameObject.Find(cloneName))
+        if (!pooledObjects.ContainsKey(tagName))
         {
-            Debug.LogWarning($"ObjectPoolManager: There is no object called {objectName}...");
+            Debug.LogError($"ObjectPoolManager: There is no object called {tagName}...");
             return null;
         }
 
         foreach (var obj in pooledObjects)
-            if (!obj.activeInHierarchy && obj.name.Equals(cloneName))
-                return obj;
+            if (obj.Key.Equals(tagName))
+                foreach (var item in obj.Value)
+                    if (!item.activeInHierarchy)
+                        return item;
 
         foreach (var item in objectPoolItems)
         {
-            if (item.objectToPool.name.Equals(objectName) && item.shouldExpand)
+            if (item.tagName.Equals(tagName) && item.shouldExpand)
             {
                 GameObject newObj = (GameObject)Instantiate(item.objectToPool);
                 newObj.SetActive(false);
-                pooledObjects.Add(newObj);
+                pooledObjects[tagName].Add(newObj);
                 return newObj;
             }
         }
 
-        Debug.LogWarning($"ObjectPoolManager: All {objectName} objects are used...");
+        Debug.LogError($"ObjectPoolManager: All {tagName} objects are used...");
         return null;
     }
 }

@@ -6,7 +6,7 @@ public class ObjectPoolTest : MonoBehaviour
 {
     private void Start()
     {
-        ObjectPoolManager.Instance.InstantiateObjects("Bullet");
+        ObjectPoolManager.Instance.InstantiateObjects("bullet");
     }
 
     GameObject gameObject2B;
@@ -15,7 +15,7 @@ public class ObjectPoolTest : MonoBehaviour
     {
         if (InputManager.Instance.GetKeyDown("Shoot"))
         {
-            gameObject2B = ObjectPoolManager.Instance.GetPooledObject("Bullet");
+            gameObject2B = ObjectPoolManager.Instance.GetPooledObject("bullet");
             gameObject2B.SetActive(true);
         }
     }

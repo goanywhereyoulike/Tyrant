@@ -15,5 +15,15 @@ public class InputTest : MonoBehaviour
         {
             Debug.Log("GoDown");
         }
+
+        if (InputManager.Instance.GetKeyDown("GoLeft"))
+        {
+            Debug.Log("GoLeft");
+        }
+
+        if (InputManager.Instance.GetKeyUp("GoRight"))
+        {
+            Debug.Log("GoRight");
+        }
     }
 }

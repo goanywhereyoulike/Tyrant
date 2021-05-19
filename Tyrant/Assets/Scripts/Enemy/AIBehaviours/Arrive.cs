@@ -2,8 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public class Arrive : AiBehaviours
 {
+    [SerializeField]
+    private bool isOn;
+    public bool IsOn { get => isOn; set => isOn = value; }
+
+    override public void update()
+    {
+        IsActive = IsOn;
+    }
     override public Vector3 behaviour(Enemy enemy)
     {
         Vector3 ToTarget = enemy.target.position - enemy.transform.position;

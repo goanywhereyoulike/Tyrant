@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class Enemy : MonoBehaviour
 {
     [SerializeField]
@@ -12,25 +13,23 @@ public class Enemy : MonoBehaviour
     private float distance = 0f;
     private float attatckdistance = 5f;
 
-
-    BehavioursChange behaviours = new BehavioursChange();
-    Seeking seek = new Seeking();
-    Arrive arrive = new Arrive();
+    StaticMachine behaviours = new StaticMachine();
+   
     public EnemyState EnemyState { get => enemyState; set => enemyState = value; }
 
 
     // Start is called before the first frame update
     void Start()
     {
+        behaviours = gameObject.GetComponent<StaticMachine>();
         behaviours.setEnemy(this);
-        behaviours.AddBehaviour(seek);
-        seek.Pause();
-        behaviours.AddBehaviour(arrive);   
+        behaviours.AllBehaviour();
     }
 
     // Update is called once per frame
     void Update()
     {
+        behaviours.Update();
         distance = Vector3.Distance(transform.position, target.position);
         if (distance < attatckdistance)
         {

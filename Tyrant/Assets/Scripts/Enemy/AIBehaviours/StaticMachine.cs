@@ -2,26 +2,33 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BehavioursChange 
+[System.Serializable]
+public class StaticMachine : MonoBehaviour
 {
     List<AiBehaviours> behaviours = new List<AiBehaviours>();
-    
+
     Enemy mEnemy;
+
     public void setEnemy(Enemy enemy)
     {
         mEnemy = enemy; 
     }
-
-    //public void ChangeBehaviour(AiBehaviours behaviour)
-    //{
-    //    mBehaviour = behaviour;
-    //}
-
-    public void AddBehaviour(AiBehaviours behaviour)
+    public void AllBehaviour()
     {
-        behaviours.Add(behaviour);
+        foreach(var behav in gameObject.GetComponents<AiBehaviours>())
+        {
+            behaviours.Add(behav);
+        }
+       
     }
-    
+
+    public void Update()
+    {
+        for (int i = 0; i < behaviours.Count; i++)
+        {
+            behaviours[i].update();
+        }
+    }
     public Vector3 ForceCalculate()
     {
         Vector3 totalForce = Vector3.zero;
@@ -32,7 +39,6 @@ public class BehavioursChange
                 totalForce += behaviours[i].behaviour(mEnemy);
             }
         }
-
         return totalForce;
     }
 }

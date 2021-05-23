@@ -8,10 +8,13 @@ public class Enemy : MonoBehaviour
     [SerializeField]
     EnemyState enemyState = new EnemyState();
 
-    public Transform target;
-   
+    //public Transform target;
+
+    private List<Transform> targets = new List<Transform>();
+    public Transform mTarget;
     private float distance = 0f;
-    private float attatckdistance = 5f;
+    private float lastDistance = 0f;
+    bool findTarget = false;
 
     StaticMachine behaviours = new StaticMachine();
    
@@ -27,43 +30,54 @@ public class Enemy : MonoBehaviour
 
 
 // Start is called before the first frame update
-void Start()
+    void Awake()
     {
         behaviours = gameObject.GetComponent<StaticMachine>();
         behaviours.setEnemy(this);
         behaviours.AllBehaviour();
         anim = GetComponent<Animator>();
+
     }
 
     // Update is called once per frame
     void Update()
     {
+        detectObject();
         behaviours.Update();
-        distance = Vector3.Distance(transform.position, target.position);
-        if (Vector3.Distance(transform.position, target.position) > enemyState.StopDistance)
-        {
-            enemyState.force = behaviours.ForceCalculate();
-            enemyState.acceleration = enemyState.force / enemyState.Mass;
-            enemyState.velocity += enemyState.acceleration;
 
-            //animation
-            anim.SetBool("isRunning", true);
+        if(findTarget==false)
+        {
+            FindClosetObject();
         }
         else
         {
-            enemyState. velocity = Vector3.zero;
-/*
-            if (Time.time >= enemyState.TimeBetweenAttacks)
+            if (Vector3.Distance(transform.position, mTarget.position) > enemyState.StopDistance)
             {
+                enemyState.force = behaviours.ForceCalculate();
+                enemyState.acceleration = enemyState.force / enemyState.Mass;
+                enemyState.velocity += enemyState.acceleration;
 
-                enemyState.TimeBetweenAttacks = Time.time + enemyState.TimeBetweenAttacks;
+                //animation
+                anim.SetBool("isRunning", true);
             }
-*/
-            //animation
-            anim.SetBool("isRunning", false);
-        }
-         transform.position += enemyState.velocity;
+            else
+            {
+                enemyState.velocity = Vector3.zero;
+                /*
+                            if (Time.time >= enemyState.TimeBetweenAttacks)
+                            {
 
+                                enemyState.TimeBetweenAttacks = Time.time + enemyState.TimeBetweenAttacks;
+                            }
+                */
+                //animation
+                anim.SetBool("isRunning", false);
+            }
+            transform.position += enemyState.velocity;
+        }
+       
+       
+       
 
     }
     /*------------------攻击位移------------------------
@@ -91,7 +105,45 @@ void Start()
     void Animation()
     {
         anim.SetBool("isRunning", true);
-    
     }
 
+    void detectObject()
+    {
+        if (GameObject.FindGameObjectsWithTag("Player") != null || GameObject.FindGameObjectsWithTag("Tower") != null)
+        {
+            foreach (GameObject target in GameObject.FindGameObjectsWithTag("Player"))
+            {
+                targets.Add(target.GetComponent<Transform>());
+            }
+
+            foreach (GameObject target in GameObject.FindGameObjectsWithTag("Tower"))
+            {
+                targets.Add(target.GetComponent<Transform>());
+            }
+        }
+    }
+    
+    void FindClosetObject()
+    {
+        for (int i = 0; i < targets.Count; ++i)
+        {
+            distance = Vector3.Distance(transform.position, targets[i].position);
+            if (lastDistance == 0)
+            {
+                lastDistance = distance;
+            }
+            else if (distance < lastDistance)
+            {
+                lastDistance = distance;
+                mTarget = targets[i];
+                findTarget = true;
+            }
+            else
+            {
+                mTarget = targets[0];
+                findTarget = true;
+            }
+        }
+
+    }
 }

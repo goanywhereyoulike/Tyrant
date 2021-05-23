@@ -3,22 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class EnemyState 
+public class EnemyState
 {
     [SerializeField]
-    private float enemyHealth = 0f;    // default value
+    private float enemyHealth;    // default value
     [SerializeField]
-    private float enemyDamage = 0f;    // default value
+    private float enemyDamage;    // default value
     [SerializeField]
-    private float enemyMoveSpeed = 0f;      // default value
+    private float enemyMoveSpeed;      // default value
     [SerializeField]
     private float mass = 1f;
     [SerializeField]
-    private float timeBetweenAttacks =0f;
+    private float timeBetweenAttacks;
     [SerializeField]
-    private float stopDistance = 0f;
+    private float stopDistance;
     [SerializeField]
-    private float attackSpeed = 0f;
+    private float attackSpeed;
 
     public Vector3 velocity { get; set; }
     public Vector3 acceleration { get; set; }

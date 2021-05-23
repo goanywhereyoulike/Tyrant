@@ -15,8 +15,8 @@ public class Arrive : AiBehaviours
     }
     override public Vector3 behaviour(Enemy enemy)
     {
-        Vector3 ToTarget = enemy.target.position - enemy.transform.position;
-        double dist = Vector3.Distance(enemy.transform.position, enemy.target.position);
+        Vector3 ToTarget = enemy.mTarget.position - enemy.transform.position;
+        double dist = Vector3.Distance(enemy.transform.position, enemy.mTarget.position);
 
         if (dist > 0)
         {

@@ -75,12 +75,8 @@ public class Enemy : MonoBehaviour
             }
             transform.position += enemyState.velocity;
         }
-       
-       
-       
-
     }
-    /*------------------攻击位移------------------------
+    /*------------------attxk animation------------------------
     IEnumerator Attack()
     {
         //player.GetComponent<Player>().TakeDamage(damage);
@@ -135,15 +131,28 @@ public class Enemy : MonoBehaviour
             else if (distance < lastDistance)
             {
                 lastDistance = distance;
-                mTarget = targets[i];
-                findTarget = true;
+                if (distance <= enemyState.DetectRange)
+                {
+                    mTarget = targets[i];
+                    findTarget = true;
+                }
             }
             else
             {
-                mTarget = targets[0];
-                findTarget = true;
+                if (distance <= enemyState.DetectRange)
+                {
+                    mTarget = targets[0];
+                    findTarget = true;
+                }
             }
         }
-
     }
+    void OnDrawGizmosSelected()
+    {
+        // Draw a yellow sphere at the transform's position
+        Gizmos.color = new Color(1, 1, 0, 0.75F);
+        Gizmos.DrawWireSphere(transform.position, enemyState.DetectRange);
+       // Gizmos.DrawSphere(transform.position, enemyState.DetectRange);
+    }
+
 }

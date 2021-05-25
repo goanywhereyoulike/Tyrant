@@ -19,6 +19,8 @@ public class EnemyState
     private float stopDistance;
     [SerializeField]
     private float attackSpeed;
+    [SerializeField]
+    private float detectRange;
 
     public Vector3 velocity { get; set; }
     public Vector3 acceleration { get; set; }
@@ -31,4 +33,6 @@ public class EnemyState
     public float TimeBetweenAttacks { get => timeBetweenAttacks; set =>timeBetweenAttacks= value; }
     public float StopDistance { get => stopDistance; }
     public float AttackSpeed { get => attackSpeed; }
+
+    public float DetectRange { get => detectRange; }
 }

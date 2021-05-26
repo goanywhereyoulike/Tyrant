@@ -134,6 +134,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: normal enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 86108912329556047, guid: 96eef6fb1157b485d86e8003cc10e7f1, type: 3}
+      propertyPath: isOn
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 86108912329556080, guid: 96eef6fb1157b485d86e8003cc10e7f1, type: 3}
+      propertyPath: isOn
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 86108912329556081, guid: 96eef6fb1157b485d86e8003cc10e7f1, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -182,6 +190,10 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 1695117767}
+    - target: {fileID: 86108912329556082, guid: 96eef6fb1157b485d86e8003cc10e7f1, type: 3}
+      propertyPath: enemyState.attackSpeed
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 96eef6fb1157b485d86e8003cc10e7f1, type: 3}
 --- !u!1 &1695117765
@@ -260,7 +272,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1695117765}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.71, y: -2.21, z: 0}
+  m_LocalPosition: {x: -0.86, y: 0.98, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}

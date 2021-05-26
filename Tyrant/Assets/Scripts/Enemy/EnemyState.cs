@@ -20,6 +20,7 @@ public class EnemyState
     [SerializeField]
     private float attackSpeed = 0f;
 
+
     public Vector3 velocity { get; set; }
     public Vector3 acceleration { get; set; }
     public Vector3 force { get; set; }
@@ -28,7 +29,8 @@ public class EnemyState
     public float EnemyDamage { get => enemyDamage; }
     public float EnemyMoveSpeed { get => enemyMoveSpeed; }
     public float Mass { get => mass; }
-    public float TimeBetweenAttacks { get => timeBetweenAttacks; set =>timeBetweenAttacks= value; }
+    public float TimeBetweenAttacks { get => timeBetweenAttacks; }
     public float StopDistance { get => stopDistance; }
     public float AttackSpeed { get => attackSpeed; }
+
 }

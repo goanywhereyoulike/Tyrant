@@ -6,13 +6,13 @@ using UnityEngine;
 public class EnemyState
 {
     [SerializeField]
-    private float enemyHealth;    // default value
+    private float maxHealth;    // default value
     [SerializeField]
-    private float enemyDamage;    // default value
+    private float maxDamage;    // default value
     [SerializeField]
-    private float enemyMoveSpeed;      // default value
+    private float maxMoveSpeed;      // default value
     [SerializeField]
-    private float mass = 1f;
+    private float mass;
     [SerializeField]
     private float timeBetweenAttacks;
     [SerializeField]
@@ -26,11 +26,11 @@ public class EnemyState
     public Vector3 acceleration { get; set; }
     public Vector3 force { get; set; }
 
-    public float EnemyHealth { get => enemyHealth; }
-    public float EnemyDamage { get => enemyDamage; }
-    public float EnemyMoveSpeed { get => enemyMoveSpeed; }
+    public float MaxHealth { get => maxHealth; }
+    public float MaxDamage { get => maxDamage; }
+    public float MaxMoveSpeed { get => maxMoveSpeed; }
     public float Mass { get => mass; }
-    public float TimeBetweenAttacks { get => timeBetweenAttacks; set =>timeBetweenAttacks= value; }
+    public float TimeBetweenAttacks { get => timeBetweenAttacks;}
     public float StopDistance { get => stopDistance; }
     public float AttackSpeed { get => attackSpeed; }
 

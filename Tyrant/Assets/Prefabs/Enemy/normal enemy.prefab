@@ -7,9 +7,41 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -7486528624512249650, guid: 8b9f0df936cf54392b9c2877c62446d7, type: 3}
+      propertyPath: m_Constraints
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1300328857231449900, guid: 8b9f0df936cf54392b9c2877c62446d7, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4179336317843623624, guid: 8b9f0df936cf54392b9c2877c62446d7, type: 3}
+      propertyPath: mTarget
+      value: 
+      objectReference: {fileID: 6323398187857754916, guid: fbb5c858275204042a5efdb123fd3b36, type: 3}
+    - target: {fileID: 4179336317843623624, guid: 8b9f0df936cf54392b9c2877c62446d7, type: 3}
+      propertyPath: enemyState.maxDamage
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4179336317843623624, guid: 8b9f0df936cf54392b9c2877c62446d7, type: 3}
+      propertyPath: enemyState.maxHealth
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 4179336317843623624, guid: 8b9f0df936cf54392b9c2877c62446d7, type: 3}
       propertyPath: enemyState.attackSpeed
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4179336317843623624, guid: 8b9f0df936cf54392b9c2877c62446d7, type: 3}
+      propertyPath: enemyState.detectRange
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4179336317843623624, guid: 8b9f0df936cf54392b9c2877c62446d7, type: 3}
+      propertyPath: enemyState.enemyHealth
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4179336317843623624, guid: 8b9f0df936cf54392b9c2877c62446d7, type: 3}
+      propertyPath: enemyState.maxMoveSpeed
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4179336317843623624, guid: 8b9f0df936cf54392b9c2877c62446d7, type: 3}
       propertyPath: enemyState.stopDistance
@@ -67,9 +99,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4179336317843623669, guid: 8b9f0df936cf54392b9c2877c62446d7, type: 3}
+      propertyPath: isOn
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4179336317843623671, guid: 8b9f0df936cf54392b9c2877c62446d7, type: 3}
       propertyPath: m_Name
       value: normal enemy
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -7486528624512249650, guid: 8b9f0df936cf54392b9c2877c62446d7, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 8b9f0df936cf54392b9c2877c62446d7, type: 3}

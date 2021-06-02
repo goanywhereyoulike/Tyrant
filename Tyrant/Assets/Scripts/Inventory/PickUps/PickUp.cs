@@ -7,16 +7,16 @@ public class PickUp : MonoBehaviour
     private PickUpInfo pickUpInfo = null;
     public PickUpInfo PickUpInfo { get => pickUpInfo; private set => pickUpInfo = value; }
 
-    protected virtual void Collide(Collision collision) { }
-    protected virtual void trigger(Collider other) { }
+    protected virtual void Collide2D(Collision2D collision) { }
+    protected virtual void Trigger2D(Collider2D collision) { }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        Collide(collision);
+        Collide2D(collision);
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        trigger(other);
+        Trigger2D(collision);
     }
 }

@@ -24,6 +24,8 @@ public class InputManager : MonoBehaviour
 
     private float epsilon = 0.0001f;
 
+    public Vector3 MouseWorldPosition { get => Camera.main.ScreenToWorldPoint(Input.mousePosition); }
+
     private void Awake()
     {
         //Singleton pattern

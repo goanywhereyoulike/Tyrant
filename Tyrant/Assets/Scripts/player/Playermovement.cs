@@ -2,27 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class playermovement : MonoBehaviour
+[RequireComponent(typeof(Rigidbody))]
+public class Playermovement : MonoBehaviour
 {
-    private Inventory inventory;
-    public float moveSpeed = 5f;
-
-    public Rigidbody2D rb;
-
+    [SerializeField]
+    private float moveSpeed = 5f;
+    private Rigidbody2D rb;
     Vector2 movement;
-   
-    private void Awake()
+    private void Start()
     {
-        inventory = new Inventory();
-        
+        rb = GetComponent<Rigidbody2D>();
     }
-    void Update()
-    {
+   private void Update()
+   {
         movement.x= Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
-    }
+   }
 
-    void FixedUpdate()
+    private void FixedUpdate()
     {
         rb.MovePosition(rb.position + movement * moveSpeed*Time.fixedDeltaTime);
     }

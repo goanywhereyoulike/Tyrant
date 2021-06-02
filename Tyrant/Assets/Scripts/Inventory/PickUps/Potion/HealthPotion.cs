@@ -11,6 +11,8 @@ public class HealthPotion : PickUp
     
     protected override void Trigger2D(Collider2D collision)
     {
+        if (collision != null)
+        { }
         base.Trigger2D(collision);
         if (collision.gameObject.tag == "Player")
         {

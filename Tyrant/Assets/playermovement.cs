@@ -4,12 +4,18 @@ using UnityEngine;
 
 public class playermovement : MonoBehaviour
 {
+    private Inventory inventory;
     public float moveSpeed = 5f;
 
     public Rigidbody2D rb;
 
     Vector2 movement;
-
+   
+    private void Awake()
+    {
+        inventory = new Inventory();
+        
+    }
     void Update()
     {
         movement.x= Input.GetAxisRaw("Horizontal");

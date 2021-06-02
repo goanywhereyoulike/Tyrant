@@ -3,24 +3,25 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class TowerBullet : MonoBehaviour
-{
-    // Start is called before the first frame update
-    public Vector3 spawnposition;
-    public GameObject BulletPreb;
-    private Vector3 targetposition;
-    public static void Create(Vector3 spawnposition,Vector3 targetposition)
+{      
+    public GameObject hitEffect;
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        //Instantiate(BulletPreb, spawnposition, Quaternion.identity);
-    
-    }
-    void Start()
-    {
-        
-    }
+        string tag = collision.gameObject.tag;
+        if (tag == "Player" || tag == "Wall" || tag == "Tower")
+        {
+            GameObject effect = Instantiate(hitEffect, transform.position, Quaternion.identity);
+            Destroy(effect, 0.3f);
+            gameObject.SetActive(false);
+            //Destroy(gameObject);
+        }
 
-    // Update is called once per frame
-    void Update()
+    }
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        
+        GameObject effect = Instantiate(hitEffect, transform.position, Quaternion.identity);
+        Destroy(effect, 0.3f);
+        gameObject.SetActive(false);
+        //Destroy(gameObject);
     }
 }

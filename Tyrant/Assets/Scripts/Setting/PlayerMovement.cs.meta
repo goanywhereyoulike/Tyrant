@@ -1,9 +1,5 @@
 fileFormatVersion: 2
-<<<<<<< HEAD:Tyrant/Assets/Scripts/Setting/PlayerMovement.cs.meta
 guid: fd7c3a82cc07bd546a23c366207bb594
-=======
-guid: 1c04d8793db44254b93482f50cdbc404
->>>>>>> origin/PochunChen:Tyrant/Assets/Scripts/Enemy/AIBehaviours/Arrive.cs.meta
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2

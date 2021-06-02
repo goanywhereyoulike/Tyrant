@@ -27,7 +27,7 @@ public class Enemy : MonoBehaviour, IDamageable
     bool findTarget = false;
     bool isDead = false;
 
-    StaticMachine behaviours = new StaticMachine();
+    StaticMachine behaviours = null;
 
     public EnemyState EnemyState { get => enemyState; set => enemyState = value; }
     public float MoveSpeed { get => moveSpeed;}

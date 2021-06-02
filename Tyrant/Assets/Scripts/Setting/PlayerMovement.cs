@@ -6,6 +6,8 @@ public class PlayerMovement : MonoBehaviour
 {
     // Start is called before the first frame update
 
+    public GameObject BulletPrefab;
+
     // Update is called once per frame
     void Update()
     {

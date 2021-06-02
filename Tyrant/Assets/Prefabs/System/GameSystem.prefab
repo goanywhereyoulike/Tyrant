@@ -43,7 +43,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54bb3a67e15b9f9438f21472b6c12a9b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectPoolItems: []
+  objectPoolItems:
+  - tagName: TowerBullet
+    objectToPool: {fileID: 6184636059906868256, guid: f7ff6dcf1deb55b43be766a0f2d27798, type: 3}
+    amountToPool: 10
+    shouldExpand: 0
 --- !u!1 &9200414588048013029
 GameObject:
   m_ObjectHideFlags: 0

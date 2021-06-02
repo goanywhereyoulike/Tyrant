@@ -1,6 +1,6 @@
 using System.Collections.Generic;
-
-public class Inventory
+using UnityEngine;
+public class Inventory : MonoBehaviour
 {
     private Dictionary<PickUp, int> inventoryDict = new Dictionary<PickUp, int>();
     public Dictionary<PickUp, int> InventoryDict

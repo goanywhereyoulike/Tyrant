@@ -546,7 +546,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 50
-  damge: 1
+  damge: 10
 --- !u!1 &1912764188
 GameObject:
   m_ObjectHideFlags: 0
@@ -687,7 +687,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6323398187857754922, guid: fbb5c858275204042a5efdb123fd3b36, type: 3}
       propertyPath: damge
-      value: 1
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 6323398187857754923, guid: fbb5c858275204042a5efdb123fd3b36, type: 3}
       propertyPath: m_IsTrigger

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class BluePrint : MonoBehaviour
 {
+
     public bool IsAbleToSet;
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -21,5 +22,4 @@ public class BluePrint : MonoBehaviour
             IsAbleToSet = true;
         }
     }
-
 }

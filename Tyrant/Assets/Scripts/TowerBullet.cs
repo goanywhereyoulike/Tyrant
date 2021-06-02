@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class TowerBullet : MonoBehaviour
-{
+{      
     public GameObject hitEffect;
     private void OnTriggerEnter2D(Collider2D collision)
     {

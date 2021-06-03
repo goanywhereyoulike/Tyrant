@@ -18,7 +18,6 @@ public class Player : MonoBehaviour , IDamageable
         health = maxHealth;
         healthBar.maxValue = maxHealth;
         healthBar.value = health;
-
     }
 
     // Update is called once per frame

@@ -26,9 +26,6 @@ public class PlayerShoot : MonoBehaviour
                 Fire();
             }
         }
-
-
-
     }
 
     void Fire()

@@ -14,34 +14,34 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector2 position = transform.position;
+        Vector2 mPosition = transform.position;
         if (InputManager.Instance.GetKey("GoRight"))
         {
 
             MoveAnimator.SetTrigger("MoveRight");
-            position.x += 0.01f;
-            transform.position = position;
+            mPosition.x += 0.01f;
+            transform.position = mPosition;
         
         }
         if (InputManager.Instance.GetKey("GoLeft"))
         {
             MoveAnimator.SetTrigger("MoveLeft");
-            position.x -= 0.01f;
-            transform.position = position;
+            mPosition.x -= 0.01f;
+            transform.position = mPosition;
 
         }
         if (InputManager.Instance.GetKey("GoUp"))
         {
             MoveAnimator.SetTrigger("MoveUp");
-            position.y += 0.01f;
-            transform.position = position;
+            mPosition.y += 0.01f;
+            transform.position = mPosition;
 
         }
         if (InputManager.Instance.GetKey("GoDown"))
         {
             MoveAnimator.SetTrigger("MoveDown");
-            position.y -= 0.01f;
-            transform.position = position;
+            mPosition.y -= 0.01f;
+            transform.position = mPosition;
 
         }
     }

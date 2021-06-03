@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 4179336317843623670}
   - component: {fileID: 4179336317843623624}
   - component: {fileID: 4179336317843623625}
-  - component: {fileID: 4179336317843623626}
-  - component: {fileID: 4179336317843623669}
+  - component: {fileID: 2401058416219422100}
+  - component: {fileID: 7686432013634846987}
   - component: {fileID: 1300328857231449900}
   - component: {fileID: 4136874122364066178}
   m_Layer: 0
@@ -77,7 +77,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 0965ff12432e34fb9b62893c1d2b5b2b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -142,7 +142,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73a125ca5a3bdd94ca2fa60e911a62cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &4179336317843623626
+--- !u!114 &2401058416219422100
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -151,11 +151,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 4179336317843623671}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1c04d8793db44254b93482f50cdbc404, type: 3}
+  m_Script: {fileID: 11500000, guid: 81892af33df679642b9d38efdc831dbd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isOn: 0
---- !u!114 &4179336317843623669
+  isOn: 1
+--- !u!114 &7686432013634846987
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -164,7 +164,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4179336317843623671}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e2f939df5228fa440aafd9dc5d1ba6b5, type: 3}
+  m_Script: {fileID: 11500000, guid: 4d58ad71862ce2c4585ad0b47f0b1b90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   isOn: 0

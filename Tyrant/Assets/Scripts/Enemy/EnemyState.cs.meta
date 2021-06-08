@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Tyrant/Assets/Scripts/Enemy/EnemyState.cs.meta
 guid: be17f7495d6ae394e9393186b8917044
+=======
+guid: 997c8e145989e4242a696311335d9274
+>>>>>>> Zhimingchen:Tyrant/Assets/Scripts/Inventory/PickUps/Weapon/Weapon.cs.meta
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2

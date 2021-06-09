@@ -22,31 +22,18 @@ public class TowerShoot : MonoBehaviour
     float angle;
     void Start()
     {
-<<<<<<< HEAD
-        player = FindObjectOfType<PlayerMovement>();
         tower = GetComponent<Tower>();
-        TargetPos = player.transform;
-=======
-        tower = GetComponent<Tower>();
->>>>>>> Develop
     }
 
     // Update is called once per frame
     void Update()
     {
         UpdateTarget();
-<<<<<<< HEAD
 
-        if (currentTarget)
-        {
-            WaitFire += Time.deltaTime;
-
-=======
         WaitFire += Time.deltaTime;
         if (currentTarget)
         {
           
->>>>>>> Develop
             float Distance = (currentTarget.transform.position - transform.position).sqrMagnitude;
             if (Distance < DistanceToShoot * DistanceToShoot)
             {
@@ -85,11 +72,7 @@ public class TowerShoot : MonoBehaviour
 
         if (target != null)
         {
-<<<<<<< HEAD
-            float Distance = (TargetPos.position - transform.position).sqrMagnitude;
-=======
             float Distance = (target.transform.position - transform.position).sqrMagnitude;
->>>>>>> Develop
             if (Distance < DistanceToShoot * DistanceToShoot)
             {
                 currentTarget = target;

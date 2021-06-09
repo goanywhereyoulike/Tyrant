@@ -69,13 +69,9 @@ public class Tower : MonoBehaviour, IDamageable
 
     public void TakeDamage(float damage)
     {
-<<<<<<< HEAD
         Health -= damage;
         Healthbar.value = Health;
-=======
-        Health -= 10.0f;
-        Healthbar.value = Health;
         Debug.Log("Tower"+health);
->>>>>>> Develop
+
     }
 }

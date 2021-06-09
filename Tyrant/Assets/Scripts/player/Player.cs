@@ -46,7 +46,6 @@ public class Player : MonoBehaviour , IDamageable
         health -= damage;
         if (health < 0)
         {
-<<<<<<< HEAD
             health = 0;
         }
     }
@@ -60,21 +59,8 @@ public class Player : MonoBehaviour , IDamageable
         }
     
     }
-=======
->>>>>>> Develop
 
-            health = 0;
-        }
-    }
-    public void HealthRecover(float recover)
-    {
-        health += recover;
-        if (health > maxHealth)
-        {
-            health = maxHealth;
-        }
-
-    }
+       
     //private void OnCollisionEnter2D(Collision2D collision)
     //{
     //    if (collision.gameObject.CompareTag("Enemy"))

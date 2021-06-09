@@ -125,7 +125,8 @@ GameObject:
   - component: {fileID: 811237652479071941}
   - component: {fileID: 811237652479071946}
   - component: {fileID: 811237652479071940}
-  - component: {fileID: 811237652479071943}
+  - component: {fileID: 454895505576587411}
+  - component: {fileID: 1299632398496825858}
   m_Layer: 6
   m_Name: Tower
   m_TagString: TowerBlockArea
@@ -258,11 +259,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7c909743a547c343894858d9a4314d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DestroyedTower: {fileID: 0}
-  health: 0
-  Healthbar: {fileID: 0}
+  DestroyedTower: {fileID: 5777696799881548026, guid: 72bed82f7d1faef4582f13d9bc8a8a19, type: 3}
+  health: 100
+  Healthbar: {fileID: 7481132745950543585}
   animator: {fileID: 811237652479071941}
---- !u!114 &811237652479071943
+--- !u!114 &454895505576587411
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -271,15 +272,35 @@ MonoBehaviour:
   m_GameObject: {fileID: 811237652479071945}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fcdcf90c29f91d74680deffbc7e28e9c, type: 3}
+  m_Script: {fileID: 11500000, guid: 81d4d30aa72c61b458197b166bfe8b83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   ShootPoint: {fileID: 811237652403871290}
   BulletPrefab: {fileID: 6184636059906868256, guid: f7ff6dcf1deb55b43be766a0f2d27798, type: 3}
-  TargetPos: {fileID: 5799698125438868520, guid: 824f0955c6c05624aaaf5b42caf6d973, type: 3}
-  DistanceToShoot: 100
-  BulletForce: 15
+  TargetPos: {fileID: 0}
+  DistanceToShoot: 10
+  BulletForce: 20
   FireRate: 0.1
+  animator: {fileID: 811237652479071941}
+--- !u!114 &1299632398496825858
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 811237652479071945}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81d4d30aa72c61b458197b166bfe8b83, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShootPoint: {fileID: 811237652403871290}
+  BulletPrefab: {fileID: 6184636059906868256, guid: f7ff6dcf1deb55b43be766a0f2d27798, type: 3}
+  TargetPos: {fileID: 0}
+  DistanceToShoot: 10
+  BulletForce: 20
+  FireRate: 10
+  animator: {fileID: 0}
 --- !u!1 &5027751679773073373
 GameObject:
   m_ObjectHideFlags: 0

@@ -104,4 +104,8 @@ MonoBehaviour:
     keyCode: 27
   - name: Shoot
     keyCode: 323
+  - name: Fire
+    keyCode: 323
+  - name: healthpotion
+    keyCode: 104
   axesLibrary: []

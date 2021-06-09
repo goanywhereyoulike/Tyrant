@@ -104,6 +104,13 @@ MonoBehaviour:
     keyCode: 27
   - name: Fire
     keyCode: 323
+<<<<<<< HEAD
   - name: healthpotion
     keyCode: 324
+=======
+  - name: Fire
+    keyCode: 323
+  - name: healthpotion
+    keyCode: 104
+>>>>>>> Develop
   axesLibrary: []

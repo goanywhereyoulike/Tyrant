@@ -69,6 +69,7 @@ PrefabInstance:
       propertyPath: targetpos
       value: 
       objectReference: {fileID: 0}
+<<<<<<< HEAD
     - target: {fileID: 811237652479071943, guid: 5c50e9e3262e4ab42a22effdc29478ab, type: 3}
       propertyPath: FireRate
       value: 0.2
@@ -77,6 +78,8 @@ PrefabInstance:
       propertyPath: TargetPos
       value: 
       objectReference: {fileID: 0}
+=======
+>>>>>>> Develop
     - target: {fileID: 811237652479071944, guid: 5c50e9e3262e4ab42a22effdc29478ab, type: 3}
       propertyPath: m_RootOrder
       value: 0

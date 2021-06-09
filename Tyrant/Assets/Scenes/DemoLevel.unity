@@ -3801,11 +3801,6 @@ MonoBehaviour:
   m_InstancedGameObject: {fileID: 0}
   m_Flags: 3
   m_ColliderType: 1
---- !u!1 &1732347309 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5532131876578090905, guid: 3a17412052b809846812b5e01de94c05, type: 3}
-  m_PrefabInstance: {fileID: 5532131878243195444}
-  m_PrefabAsset: {fileID: 0}
 --- !u!213 &1733813545
 Sprite:
   m_ObjectHideFlags: 0
@@ -14002,10 +13997,6 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 998943288}
-    - target: {fileID: 5532131877928631608, guid: 3a17412052b809846812b5e01de94c05, type: 3}
-      propertyPath: PlayerRecoverEffectPrefab
-      value: 
-      objectReference: {fileID: 1732347309}
     - target: {fileID: 5532131877928631613, guid: 3a17412052b809846812b5e01de94c05, type: 3}
       propertyPath: m_Name
       value: Base

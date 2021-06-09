@@ -585,7 +585,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f9c3f0b50bc56340bde995e87169b6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerRecoverEffectPrefab: {fileID: 1344500445004606438, guid: 3c5707c70c780a148b4eeb5bafa1127e, type: 3}
+  PlayerRecoverEffectPrefab: {fileID: 5849892017727661263, guid: 3c5707c70c780a148b4eeb5bafa1127e, type: 3}
   RecoverRange: 1.7
   health: 100
   Healthbar: {fileID: 5532131876425468347}

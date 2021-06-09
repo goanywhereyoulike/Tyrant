@@ -4,7 +4,9 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Enemy
+  - TowerBlockArea
+  - Wall
+  - Tower
   layers:
   - Default
   - TransparentFX

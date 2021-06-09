@@ -1,9 +1,5 @@
 fileFormatVersion: 2
-<<<<<<< HEAD:Tyrant/Assets/Scripts/Tower.cs.meta
 guid: a7c909743a547c343894858d9a4314d0
-=======
-guid: e2f939df5228fa440aafd9dc5d1ba6b5
->>>>>>> origin/PochunChen:Tyrant/Assets/Scripts/Enemy/AIBehaviours/Seeking.cs.meta
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2

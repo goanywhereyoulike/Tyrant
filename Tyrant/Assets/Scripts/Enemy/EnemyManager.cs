@@ -12,7 +12,7 @@ public class EnemyManager : MonoBehaviour
     public GameObject[] enemies;
     Enemy enemy;
   
-    GameObject gameObject;
+    GameObject enemyObject;
     // public Transform[] spawnPoints;
     private void Awake()
     {
@@ -24,7 +24,7 @@ public class EnemyManager : MonoBehaviour
         }
         else if(_instance !=this)
         {
-            Destroy(this.gameObject);
+            Destroy(this.enemyObject);
         }
     }
 
@@ -38,9 +38,9 @@ public class EnemyManager : MonoBehaviour
     }
     void EnemySpawn()
     {
-        gameObject = ObjectPoolManager.Instance.GetPooledObject("normalenemy");
-        gameObject.SetActive(true);
-        gameObject.transform.position = new Vector3(0, 0, 0);
+        enemyObject = ObjectPoolManager.Instance.GetPooledObject("normalenemy");
+        enemyObject.SetActive(true);
+        enemyObject.transform.position = new Vector3(0, 0, 0);
         //Instantiate(enemies[0], new Vector2(0f, 0f), Quaternion.identity);
         //Instantiate(Enemy, new Vector2(0f, 0f), Quaternion.identity);
     }

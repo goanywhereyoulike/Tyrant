@@ -10,12 +10,14 @@ public class PlayerMovement : MonoBehaviour
     {
         MoveAnimator = GetComponent<Animator>();
     }
+  
     // Update is called once per frame
     void Update()
     {
         Vector2 position = transform.position;
         if (InputManager.Instance.GetKey("GoRight"))
         {
+
             MoveAnimator.SetTrigger("MoveRight");
             position.x += 0.01f;
             transform.position = position;
@@ -24,7 +26,6 @@ public class PlayerMovement : MonoBehaviour
         if (InputManager.Instance.GetKey("GoLeft"))
         {
             MoveAnimator.SetTrigger("MoveLeft");
-
             position.x -= 0.01f;
             transform.position = position;
 
@@ -32,7 +33,6 @@ public class PlayerMovement : MonoBehaviour
         if (InputManager.Instance.GetKey("GoUp"))
         {
             MoveAnimator.SetTrigger("MoveUp");
-
             position.y += 0.01f;
             transform.position = position;
 
@@ -40,7 +40,6 @@ public class PlayerMovement : MonoBehaviour
         if (InputManager.Instance.GetKey("GoDown"))
         {
             MoveAnimator.SetTrigger("MoveDown");
-
             position.y -= 0.01f;
             transform.position = position;
 

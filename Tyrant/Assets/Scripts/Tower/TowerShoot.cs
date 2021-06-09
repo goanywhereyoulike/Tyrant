@@ -32,17 +32,21 @@ public class TowerShoot : MonoBehaviour
     {
         UpdateTarget();
 
-        WaitFire += Time.deltaTime;
-
-        float Distance = (currentTarget.transform.position - transform.position).sqrMagnitude;
-        if (Distance < DistanceToShoot * DistanceToShoot)
+        if (currentTarget)
         {
-            if (WaitFire > FireRate) //Fires gun everytime timer exceeds firerate
+            WaitFire += Time.deltaTime;
+
+            float Distance = (currentTarget.transform.position - transform.position).sqrMagnitude;
+            if (Distance < DistanceToShoot * DistanceToShoot)
             {
-                WaitFire = 0.0f;
-                Fire();
+                if (WaitFire > FireRate) //Fires gun everytime timer exceeds firerate
+                {
+                    WaitFire = 0.0f;
+                    Fire();
+                }
             }
         }
+
 
     }
 

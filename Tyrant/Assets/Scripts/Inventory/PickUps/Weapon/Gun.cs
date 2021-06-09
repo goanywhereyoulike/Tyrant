@@ -2,22 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Weapon : PickUp
+public class Gun : PickUp
 {
     public Transform firePosition;
     GameObject bullet;
+    private Player player;
     private void Start()
     {
+        player = FindObjectOfType<Player>();
         ObjectPoolManager.Instance.InstantiateObjects("bullet");
     }
-   
-    protected override void Trigger2D(Collider2D other)
+    private void Update()
     {
-
-        if (other.gameObject.tag == "Player")
+        if (InputManager.Instance.GetKeyDown("pick") && CanBePicked)
         {
-            Inventory inventory = other.gameObject.GetComponent<Player>().mInventory;
-            inventory.AddPickUp(this);
+            player.mInventory.AddPickUp(this);
             gameObject.SetActive(false);
         }
     }

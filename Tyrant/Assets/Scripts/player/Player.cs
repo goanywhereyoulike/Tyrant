@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 public class Player : MonoBehaviour , IDamageable
 {
+    [SerializeField]
     private float health;
     [SerializeField]
     private float maxHealth;
@@ -18,7 +19,6 @@ public class Player : MonoBehaviour , IDamageable
         health = maxHealth;
         healthBar.maxValue = maxHealth;
         healthBar.value = health;
-
     }
 
     // Update is called once per frame
@@ -48,14 +48,27 @@ public class Player : MonoBehaviour , IDamageable
     public void TakeDamage(float damage)
     {
         health -= damage;
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Enemy"))
+        if (health < 0)
         {
-            TakeDamage(5.0f);
-            Debug.Log(health);
+
+            health = 0;
         }
     }
+    public void HealthRecover(float recover)
+    {
+        health += recover;
+        if (health > maxHealth)
+        {
+            health = maxHealth;
+        }
+
+    }
+    //private void OnCollisionEnter2D(Collision2D collision)
+    //{
+    //    if (collision.gameObject.CompareTag("Enemy"))
+    //    {
+    //        TakeDamage(5.0f);
+    //        Debug.Log(health);
+    //    }
+    //}
 }

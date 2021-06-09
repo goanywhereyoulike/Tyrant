@@ -66,23 +66,7 @@ PrefabInstance:
     m_TransformParent: {fileID: 127691141845400666}
     m_Modifications:
     - target: {fileID: 811237652479071940, guid: 5c50e9e3262e4ab42a22effdc29478ab, type: 3}
-      propertyPath: Healthbar
-      value: 
-      objectReference: {fileID: 7878463339341565912}
-    - target: {fileID: 811237652479071940, guid: 5c50e9e3262e4ab42a22effdc29478ab, type: 3}
       propertyPath: targetpos
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 811237652479071940, guid: 5c50e9e3262e4ab42a22effdc29478ab, type: 3}
-      propertyPath: DestroyedTower
-      value: 
-      objectReference: {fileID: 5777696799881548026, guid: 72bed82f7d1faef4582f13d9bc8a8a19, type: 3}
-    - target: {fileID: 811237652479071943, guid: 5c50e9e3262e4ab42a22effdc29478ab, type: 3}
-      propertyPath: FireRate
-      value: 0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 811237652479071943, guid: 5c50e9e3262e4ab42a22effdc29478ab, type: 3}
-      propertyPath: TargetPos
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 811237652479071944, guid: 5c50e9e3262e4ab42a22effdc29478ab, type: 3}
@@ -156,14 +140,3 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 811237652479071944, guid: 5c50e9e3262e4ab42a22effdc29478ab, type: 3}
   m_PrefabInstance: {fileID: 758784185040695609}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &7878463339341565912 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7481132745950543585, guid: 5c50e9e3262e4ab42a22effdc29478ab, type: 3}
-  m_PrefabInstance: {fileID: 758784185040695609}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

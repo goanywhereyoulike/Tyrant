@@ -6,7 +6,9 @@ public class bullet : MonoBehaviour
 {
     public float speed = 4.0f;
     public int damage = 50;
-    public Vector3 direction;
+    Vector3 direction= Vector3.zero;
+
+    public Vector3 Direction { get { return direction; } set { direction = value; } }
 
     private void Update()
     {

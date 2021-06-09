@@ -14,7 +14,7 @@ public class EnemyManager : MonoBehaviour
   
     GameObject enemyObject;
     // public Transform[] spawnPoints;
-    private void Awake()
+    private void Start()
     {
         enemy = GetComponent<Enemy>();
         ObjectPoolManager.Instance.InstantiateObjects("normalenemy");

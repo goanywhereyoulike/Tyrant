@@ -21,7 +21,7 @@ public class Enemy : MonoBehaviour, IDamageable
     private float stopDistance;
     private float lastDistance;
     private float detectRange;
-    
+
     private float attacktime;
     private float distance;
     bool findTarget = false;
@@ -30,16 +30,19 @@ public class Enemy : MonoBehaviour, IDamageable
     StaticMachine behaviours = null;
 
     public EnemyState EnemyState { get => enemyState; set => enemyState = value; }
-    public float MoveSpeed { get => moveSpeed;}
-    public bool IsDead { get => isDead;
+    public float MoveSpeed { get => moveSpeed; }
+    public bool IsDead
+    {
+        get => isDead;
         set
-        { 
-            if(isDead)
+        {
+            if (isDead)
             {
                 gameObject.SetActive(false);
                 ReUse();
             }
-                isDead = value; }
+            isDead = value;
+        }
     }
     /// <summary>
 
@@ -68,7 +71,7 @@ public class Enemy : MonoBehaviour, IDamageable
         detectObject();
         behaviours.Update();
 
-        if(mTarget == null)
+        if (mTarget == null)
         {
             findTarget = false;
         }
@@ -201,7 +204,7 @@ public class Enemy : MonoBehaviour, IDamageable
         if (Health <= 0.0f)
         {
             IsDead = true;
-            
+
         }
     }
 
@@ -212,7 +215,7 @@ public class Enemy : MonoBehaviour, IDamageable
         Gizmos.DrawWireSphere(transform.position, enemyState.DetectRange);
         // Gizmos.DrawSphere(transform.position, enemyState.DetectRange);
     }
- 
+
     void OnTriggerEnter2D(Collider2D collider)
     {
         if (collider.gameObject.name == mTarget.name)
@@ -220,7 +223,12 @@ public class Enemy : MonoBehaviour, IDamageable
             if (collider.gameObject.tag == "Player" || collider.gameObject.tag == "Tower")
             {
                 IDamageable Targets = collider.gameObject.GetComponent<IDamageable>();
+                if (Targets == null)
+                {
+                    Targets = collider.gameObject.GetComponentInChildren<IDamageable>();
+                }
                 Targets.TakeDamage(Damage);
+
             }
         }
         Debug.Log("attack");

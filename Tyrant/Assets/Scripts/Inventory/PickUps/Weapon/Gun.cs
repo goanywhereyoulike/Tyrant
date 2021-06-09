@@ -28,7 +28,7 @@ public class Gun : PickUp
         {
             bullet.SetActive(true);
             bullet.transform.position = firePosition.position;
-            bullet.GetComponent<bullet>().direction = playerHeading;
+            bullet.GetComponent<bullet>().Direction = playerHeading;
         }
 
         //Instantiate(bullet, firePosition.position, firePosition.rotation);

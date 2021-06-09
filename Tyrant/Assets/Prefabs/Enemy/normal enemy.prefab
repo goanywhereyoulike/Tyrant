@@ -22,7 +22,7 @@ PrefabInstance:
     - target: {fileID: 4179336317843623624, guid: 8b9f0df936cf54392b9c2877c62446d7, type: 3}
       propertyPath: mTarget
       value: 
-      objectReference: {fileID: 6323398187857754916, guid: fbb5c858275204042a5efdb123fd3b36, type: 3}
+      objectReference: {fileID: 5532131877928631615, guid: 3a17412052b809846812b5e01de94c05, type: 3}
     - target: {fileID: 4179336317843623624, guid: 8b9f0df936cf54392b9c2877c62446d7, type: 3}
       propertyPath: enemyState.maxDamage
       value: 25
@@ -58,6 +58,10 @@ PrefabInstance:
     - target: {fileID: 4179336317843623624, guid: 8b9f0df936cf54392b9c2877c62446d7, type: 3}
       propertyPath: enemyState.timeBetweenAttacks
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4179336317843623626, guid: 8b9f0df936cf54392b9c2877c62446d7, type: 3}
+      propertyPath: isOn
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4179336317843623627, guid: 8b9f0df936cf54392b9c2877c62446d7, type: 3}
       propertyPath: m_RootOrder
@@ -109,14 +113,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4179336317843623669, guid: 8b9f0df936cf54392b9c2877c62446d7, type: 3}
       propertyPath: isOn
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4179336317843623671, guid: 8b9f0df936cf54392b9c2877c62446d7, type: 3}
       propertyPath: m_Name
       value: normal enemy
       objectReference: {fileID: 0}
     m_RemovedComponents:
-    - {fileID: -7486528624512249650, guid: 8b9f0df936cf54392b9c2877c62446d7, type: 3}
-    - {fileID: 4179336317843623626, guid: 8b9f0df936cf54392b9c2877c62446d7, type: 3}
-    - {fileID: 4179336317843623669, guid: 8b9f0df936cf54392b9c2877c62446d7, type: 3}
+    - {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: 8b9f0df936cf54392b9c2877c62446d7, type: 3}

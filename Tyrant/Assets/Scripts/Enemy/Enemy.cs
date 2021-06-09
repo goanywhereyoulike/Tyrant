@@ -12,6 +12,7 @@ public class Enemy : MonoBehaviour, IDamageable
     private List<GameObject> targets = new List<GameObject>();
     public Transform mTarget;
 
+    [SerializeField]
     private float Health;
     private float Damage;
     private float moveSpeed;

@@ -102,6 +102,8 @@ MonoBehaviour:
     keyCode: 32
   - name: Esc
     keyCode: 27
-  - name: Shoot
+  - name: Fire
     keyCode: 323
+  - name: healthpotion
+    keyCode: 324
   axesLibrary: []

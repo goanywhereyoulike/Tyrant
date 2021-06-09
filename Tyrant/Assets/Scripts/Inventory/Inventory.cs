@@ -44,7 +44,16 @@ public class Inventory : MonoBehaviour
         }
         return false;
     }
-
+    public void DropPickUp(Vector3 dropPosition, PickUp pickUp)
+    {
+        GameObject dropPickUp = ObjectPoolManager.Instance.GetPooledObject(pickUp.PickUpInfo.PickUpName);
+        if (dropPickUp)
+        {
+            dropPickUp.transform.position = dropPosition;
+            dropPickUp.SetActive(true);
+            DeletePickUp(pickUp);
+        }
+    }
     public PickUp GetPickUp(string pickUpName)
     {
         foreach (var pickUp in InventoryDict)

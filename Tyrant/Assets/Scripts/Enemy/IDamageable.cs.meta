@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+<<<<<<< HEAD:Tyrant/Assets/Scripts/Enemy/IDamageable.cs.meta
+guid: 140cd5a08d14ebd4a9b37bbd16decdd6
+=======
+guid: f315b9d97d25ba14299bc166abf91e36
+>>>>>>> Zhimingchen:Tyrant/Assets/Scripts/Inventory/PickUps/Potion/HealthPotion.cs.meta
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

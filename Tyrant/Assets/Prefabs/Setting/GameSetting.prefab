@@ -87,5 +87,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86f4f12433fc0de488feebf274842311, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  keyCodeLibrary: []
+  keyCodeLibrary:
+  - name: GoRight
+    keyCode: 100
+  - name: GoLeft
+    keyCode: 97
+  - name: GoUp
+    keyCode: 119
+  - name: GoDown
+    keyCode: 115
+  - name: PreBuildTower
+    keyCode: 101
+  - name: BuildTower
+    keyCode: 32
+  - name: Esc
+    keyCode: 27
+  - name: Shoot
+    keyCode: 323
+  - name: Fire
+    keyCode: 323
+  - name: healthpotion
+    keyCode: 104
   axesLibrary: []

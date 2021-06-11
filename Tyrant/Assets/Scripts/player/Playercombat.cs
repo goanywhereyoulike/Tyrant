@@ -11,21 +11,31 @@ public class Playercombat : MonoBehaviour
     public Inventory mInventory { get; set; }
     float timeBtwAttack = 0f;
     public LayerMask enemyLayers;
-
+    public GameObject WeaponPosition;
+    private PlayerMovement playerMovement;
+    private void Awake()
+    {
+        playerMovement = gameObject.GetComponent<PlayerMovement>();
+    }
     void Update()
     {
-        if(Time.time>= timeBtwAttack)
-        { 
-             if (InputManager.Instance.GetKeyDown("Melee"))
-             {
+        if (Time.time >= timeBtwAttack)
+        {
+            if (InputManager.Instance.GetKeyDown("Melee"))
+            {
                 meleeAttack();
                 timeBtwAttack = Time.time + 1f / meleeSpeed;
-             }
+            }
         }
         if (Input.GetKeyDown(KeyCode.F))
         {
             Inventory inventory = gameObject.GetComponent<Inventory>();
             gun = inventory.GetPickUp("Weapon") as Gun;
+
+            gun.transform.position = WeaponPosition.transform.position;
+            gun.transform.parent = WeaponPosition.transform;
+            gun.gameObject.SetActive(true);
+
 
         }
 
@@ -33,17 +43,40 @@ public class Playercombat : MonoBehaviour
         //{
         //    mInventory.DropPickUp(transform.position, mInventory.GetPickUp("gun"));
         //}
-
+        Vector2 playerHeading;
+        playerHeading = (InputManager.Instance.MouseWorldPosition - gameObject.transform.position).normalized;
+        float weaponAngle = Mathf.Atan2(playerHeading.y, playerHeading.x) * Mathf.Rad2Deg;
+        gun.transform.eulerAngles = new Vector3(0.0f, 0.0f, weaponAngle);
         if (InputManager.Instance.GetKeyDown("Fire"))
         {
             if (gun)
             {
-                Vector2 playerHeading;
-                playerHeading = (InputManager.Instance.MouseWorldPosition - gameObject.transform.position).normalized;
+               
                 gun.Fire(playerHeading);
             }
         }
-       
+        /*if (gun != null)
+        {
+            switch (playerMovement.playerFacing)
+            {
+                case PlayerMovement.PlayerFacing.Up:
+                    gun.transform.Rotate(Vector3.forward * 90);
+                    break;
+                case PlayerMovement.PlayerFacing.Down:
+                    gun.transform.Rotate(Vector3.forward * -90);
+                    break;
+                case PlayerMovement.PlayerFacing.Left:
+                    gun.transform.Rotate(Vector3.forward * -90);
+                    break;
+                case PlayerMovement.PlayerFacing.Right:
+                    gun.transform.Rotate(Vector3.forward * 90);
+                    break;
+                default:
+                    gun.transform.Rotate(Vector3.forward * 90);
+                    break;
+            }
+        }*/
+
     }
     void meleeAttack()
     {

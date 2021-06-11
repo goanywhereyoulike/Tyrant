@@ -200,6 +200,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: player
       objectReference: {fileID: 0}
+    - target: {fileID: 3600421551849468585, guid: fb12fb49c7aa1524dbc206fe3718f636, type: 3}
+      propertyPath: WeaponPosition
+      value: 
+      objectReference: {fileID: 1321530760}
     - target: {fileID: 3600421551849468590, guid: fb12fb49c7aa1524dbc206fe3718f636, type: 3}
       propertyPath: m_RootOrder
       value: 9
@@ -261,6 +265,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8970115794092013844, guid: 407db907a6f665641a2115627ca06494, type: 3}
+      propertyPath: m_SortingLayer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8970115794092013844, guid: 407db907a6f665641a2115627ca06494, type: 3}
+      propertyPath: m_SortingOrder
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8970115794092013844, guid: 407db907a6f665641a2115627ca06494, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8970115794092013845, guid: 407db907a6f665641a2115627ca06494, type: 3}
       propertyPath: m_RootOrder
       value: 11
@@ -308,6 +324,10 @@ PrefabInstance:
     - target: {fileID: 8970115794092013849, guid: 407db907a6f665641a2115627ca06494, type: 3}
       propertyPath: m_Name
       value: Weapon
+      objectReference: {fileID: 0}
+    - target: {fileID: 8970115794092013849, guid: 407db907a6f665641a2115627ca06494, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 8970115794092013850, guid: 407db907a6f665641a2115627ca06494, type: 3}
       propertyPath: firePosition
@@ -383,6 +403,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: normal enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 86108912329556045, guid: 96eef6fb1157b485d86e8003cc10e7f1, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 86108912329556081, guid: 96eef6fb1157b485d86e8003cc10e7f1, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -427,6 +451,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 86108912329556082, guid: 96eef6fb1157b485d86e8003cc10e7f1, type: 3}
+      propertyPath: mTarget
+      value: 
+      objectReference: {fileID: 1009353435}
     - target: {fileID: 86108912329556082, guid: 96eef6fb1157b485d86e8003cc10e7f1, type: 3}
       propertyPath: enemyState.maxHealth
       value: 300
@@ -543,6 +571,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 118796097186425555, guid: b1195edbd4ca6884daa3dbf46bfe5dba, type: 3}
+      propertyPath: keyCodeLibrary.Array.size
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 118796097186425555, guid: b1195edbd4ca6884daa3dbf46bfe5dba, type: 3}
+      propertyPath: keyCodeLibrary.Array.data[10].name
+      value: pick
+      objectReference: {fileID: 0}
+    - target: {fileID: 118796097186425555, guid: b1195edbd4ca6884daa3dbf46bfe5dba, type: 3}
+      propertyPath: keyCodeLibrary.Array.data[10].keyCode
+      value: 99
+      objectReference: {fileID: 0}
     - target: {fileID: 8437825402643822864, guid: b1195edbd4ca6884daa3dbf46bfe5dba, type: 3}
       propertyPath: m_RootOrder
       value: 7
@@ -593,6 +633,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b1195edbd4ca6884daa3dbf46bfe5dba, type: 3}
+--- !u!1 &1321530760 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3095453963895073046, guid: fb12fb49c7aa1524dbc206fe3718f636, type: 3}
+  m_PrefabInstance: {fileID: 686579908}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1478235243
 PrefabInstance:
   m_ObjectHideFlags: 0

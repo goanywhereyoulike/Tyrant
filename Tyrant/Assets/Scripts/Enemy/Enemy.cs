@@ -84,7 +84,7 @@ public class Enemy : MonoBehaviour, IDamageable
             mTarget = mMainTarget;
             findTarget = true;
         }
-       
+       //test
 
         //check enemy findtarget
         if (findTarget == false)

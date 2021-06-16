@@ -113,7 +113,7 @@ GameObject:
   - component: {fileID: 7266535905772159022}
   - component: {fileID: 8105834643123089885}
   m_Layer: 7
-  m_Name: player 1
+  m_Name: player
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -267,6 +267,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd7c3a82cc07bd546a23c366207bb594, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerFacing: 0
 --- !u!114 &7266535905772159020
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -299,6 +300,7 @@ MonoBehaviour:
   BulletPrefab: {fileID: 6278507673851774296, guid: b27d769ddf1070a4d92b6bec923b29b2, type: 3}
   meleeRange: 0.74
   meleeSpeed: 0.5
+  WeaponPosition: {fileID: 0}
 --- !u!114 &8105834643123089885
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -738,7 +740,7 @@ GameObject:
   - component: {fileID: 7266535907176977664}
   m_Layer: 7
   m_Name: meleePoint
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

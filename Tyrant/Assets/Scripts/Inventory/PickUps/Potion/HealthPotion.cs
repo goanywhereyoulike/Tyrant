@@ -6,18 +6,18 @@ public class HealthPotion : PickUp
 {
     [SerializeField]
     private int addHealth;
-
+    private Player player;
     public int AddHealth { get => addHealth; set => addHealth = value; }
-    
-    protected override void Trigger2D(Collider2D collision)
+    private void Start()
     {
-        if (collision != null)
-        { }
-        base.Trigger2D(collision);
-        if (collision.gameObject.tag == "Player")
+        player = FindObjectOfType<Player>();
+        ObjectPoolManager.Instance.InstantiateObjects("health potion");
+    }
+    private void Update()
+    {
+        if (InputManager.Instance.GetKeyDown("pick") && CanBePicked)
         {
-            Inventory inventory = collision.gameObject.GetComponent<Player>().mInventory;
-            inventory.AddPickUp(this);
+            player.mInventory.AddPickUp(this);
             gameObject.SetActive(false);
         }
     }

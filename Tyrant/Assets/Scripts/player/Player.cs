@@ -50,10 +50,10 @@ public class Player : MonoBehaviour , IDamageable
         health -= damage;
         if (health < 0)
         {
-
             health = 0;
         }
     }
+
     public void HealthRecover(float recover)
     {
         health += recover;
@@ -61,8 +61,10 @@ public class Player : MonoBehaviour , IDamageable
         {
             health = maxHealth;
         }
-
+    
     }
+
+       
     //private void OnCollisionEnter2D(Collision2D collision)
     //{
     //    if (collision.gameObject.CompareTag("Enemy"))

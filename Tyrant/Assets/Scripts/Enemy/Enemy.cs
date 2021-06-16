@@ -13,7 +13,6 @@ public class Enemy : MonoBehaviour, IDamageable
     public Transform mTarget;
     Transform mMainTarget;
 
-    [SerializeField]
     private float Health;
     private float Damage;
     private float moveSpeed;

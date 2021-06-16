@@ -45,7 +45,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4179336317843623624, guid: 8b9f0df936cf54392b9c2877c62446d7, type: 3}
       propertyPath: enemyState.maxMoveSpeed
-      value: 2.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4179336317843623624, guid: 8b9f0df936cf54392b9c2877c62446d7, type: 3}
       propertyPath: enemyState.stopDistance

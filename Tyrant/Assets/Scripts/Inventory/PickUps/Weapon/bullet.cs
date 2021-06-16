@@ -6,16 +6,16 @@ public class bullet : MonoBehaviour
 {
     public float speed = 10.0f;
     public int damage = 50;
-    public float range = 1.0f;
+    public float range = 5.0f;
     Vector3 direction = Vector3.zero;
     public Vector3 startPosition { get; set; }
  
     public Vector3 Direction { get { return direction; } set { direction = value; } }
 
-    private void Start()
-    {
-        range = 1.0f;
-    }
+    //private void Start()
+    //{
+    //    range = 1.0f;
+    //}
     private void Update()
     {
         transform.position += direction * speed * Time.deltaTime;

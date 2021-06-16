@@ -108,4 +108,10 @@ MonoBehaviour:
     keyCode: 323
   - name: healthpotion
     keyCode: 104
+  - name: Melee
+    keyCode: 324
+  - name: pick
+    keyCode: 99
+  - name: drop
+    keyCode: 118
   axesLibrary: []

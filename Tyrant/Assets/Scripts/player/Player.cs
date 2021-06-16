@@ -11,7 +11,7 @@ public class Player : MonoBehaviour , IDamageable
     [SerializeField]
     private Slider healthBar;
     public Inventory mInventory { get; set; }
-    public Weapon mWeapon { get; set; }
+    public Gun mGun { get; set; }
 
     void Awake()
     {
@@ -32,14 +32,18 @@ public class Player : MonoBehaviour , IDamageable
                 health += healthPotion.AddHealth;
                 mInventory.DeletePickUp(healthPotion);
             }
-
         }
         Debug.Log(health);
         healthBar.value = health;
         Vector3 mousePosition = Input.mousePosition;
         mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
         mousePosition.z = 0;
+        if (InputManager.Instance.GetKeyDown("drop"))
+        {
+            mInventory.DropPickUp(transform.position, mInventory.GetPickUp("health potion"));
+        }
     }
+
 
     public void TakeDamage(float damage)
     {

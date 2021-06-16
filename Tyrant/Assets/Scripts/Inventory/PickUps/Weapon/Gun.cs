@@ -2,16 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HealthPotion : PickUp
+public class Gun : PickUp
 {
-    [SerializeField]
-    private int addHealth;
+  
     private Player player;
-    public int AddHealth { get => addHealth; set => addHealth = value; }
     private void Start()
     {
         player = FindObjectOfType<Player>();
-        ObjectPoolManager.Instance.InstantiateObjects("health potion");
+        ObjectPoolManager.Instance.InstantiateObjects("bullet");
     }
     private void Update()
     {
@@ -21,4 +19,5 @@ public class HealthPotion : PickUp
             gameObject.SetActive(false);
         }
     }
+    
 }

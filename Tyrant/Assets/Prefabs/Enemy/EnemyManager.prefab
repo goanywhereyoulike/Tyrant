@@ -44,5 +44,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wavenumber: 5
-  enemies:
-  - {fileID: 86108912329556045, guid: 96eef6fb1157b485d86e8003cc10e7f1, type: 3}
+  noSpawn: 2
+  tilemap: {fileID: 0}

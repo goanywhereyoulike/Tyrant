@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Gun : PickUp
 {
-  
+    public Transform firePosition;
+    GameObject bullet;
     private Player player;
     private void Start()
     {
@@ -18,6 +19,19 @@ public class Gun : PickUp
             player.mInventory.AddPickUp(this);
             gameObject.SetActive(false);
         }
+    }
+    public void Fire(Vector2 playerHeading)
+    {
+        
+        bullet = ObjectPoolManager.Instance.GetPooledObject("bullet");
+        if(bullet)
+        {
+            bullet.SetActive(true);
+            bullet.transform.position = firePosition.position;
+            bullet.GetComponent<bullet>().Direction = playerHeading;
+        }
+
+        //Instantiate(bullet, firePosition.position, firePosition.rotation);
     }
     
 }

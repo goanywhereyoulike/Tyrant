@@ -56,10 +56,6 @@ MonoBehaviour:
     objectToPool: {fileID: 6278507673851774296, guid: b27d769ddf1070a4d92b6bec923b29b2, type: 3}
     amountToPool: 20
     shouldExpand: 0
-  - tagName: health potion
-    objectToPool: {fileID: 4369142151728487491, guid: 9b83bc96c9677eb4bbc459fc7c7bca93, type: 3}
-    amountToPool: 10
-    shouldExpand: 0
 --- !u!1 &3980476720704669719
 GameObject:
   m_ObjectHideFlags: 0

@@ -34,8 +34,8 @@ public class Playercombat : MonoBehaviour
             Inventory inventory = gameObject.GetComponent<Inventory>();
             gun = inventory.GetPickUp("Weapon") as Gun;
 
-            gun.transform.position = WeaponPosition.transform.position;
-            gun.transform.parent = WeaponPosition.transform;
+            gun.transform.position = transform.position;
+            gun.transform.parent = transform;
             gun.gameObject.SetActive(true);
             firePosition = gun.FirePosition;
 
@@ -62,7 +62,10 @@ public class Playercombat : MonoBehaviour
         Vector2 aimDirection = (InputManager.Instance.MouseWorldPosition - gameObject.transform.position).normalized;
 
         float weaponAngle = Mathf.Atan2(aimDirection.y, aimDirection.x) * Mathf.Rad2Deg;
-        gun.transform.eulerAngles = new Vector3(0.0f, 0.0f, weaponAngle);
+        if (gun)
+        {
+            gun.transform.eulerAngles = new Vector3(0.0f, 0.0f, weaponAngle);
+        }
 
     }
 

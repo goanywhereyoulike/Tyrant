@@ -7,8 +7,8 @@ TagManager:
   - TowerBlockArea
   - Wall
   - Tower
-  - Weapon
-  - potion
+  - Enemy
+  - Base
   layers:
   - Default
   - TransparentFX
@@ -19,7 +19,7 @@ TagManager:
   - Tower
   - Player
   - Enemy
-  - Weapon
+  - 
   - 
   - 
   - 

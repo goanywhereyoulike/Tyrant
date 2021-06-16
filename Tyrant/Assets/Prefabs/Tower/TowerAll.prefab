@@ -45,7 +45,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.10337514}
+  m_Offset: {x: 0, y: 0.16144809}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -56,7 +56,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 0.7932497}
+  m_Size: {x: 1, y: 0.6771037}
   m_EdgeRadius: 0
 --- !u!1001 &758784185040695609
 PrefabInstance:
@@ -65,20 +65,8 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 127691141845400666}
     m_Modifications:
-    - target: {fileID: 454895505576587411, guid: 5c50e9e3262e4ab42a22effdc29478ab, type: 3}
-      propertyPath: FireRate
-      value: 0.3
-      objectReference: {fileID: 0}
     - target: {fileID: 811237652479071940, guid: 5c50e9e3262e4ab42a22effdc29478ab, type: 3}
       propertyPath: targetpos
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 811237652479071943, guid: 5c50e9e3262e4ab42a22effdc29478ab, type: 3}
-      propertyPath: FireRate
-      value: 0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 811237652479071943, guid: 5c50e9e3262e4ab42a22effdc29478ab, type: 3}
-      propertyPath: TargetPos
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 811237652479071944, guid: 5c50e9e3262e4ab42a22effdc29478ab, type: 3}
@@ -133,18 +121,6 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 811237652479071946, guid: 5c50e9e3262e4ab42a22effdc29478ab, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 044ae2b90ece18048bd59f7b24758dec, type: 3}
-    - target: {fileID: 811237652479071946, guid: 5c50e9e3262e4ab42a22effdc29478ab, type: 3}
-      propertyPath: m_WasSpriteAssigned
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1299632398496825858, guid: 5c50e9e3262e4ab42a22effdc29478ab, type: 3}
-      propertyPath: FireRate
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 2836384747107902959, guid: 5c50e9e3262e4ab42a22effdc29478ab, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -153,16 +129,11 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 0}
-    - target: {fileID: 4240967021224595869, guid: 5c50e9e3262e4ab42a22effdc29478ab, type: 3}
-      propertyPath: m_SortingOrder
-      value: 10
-      objectReference: {fileID: 0}
     - target: {fileID: 5610678595695224287, guid: 5c50e9e3262e4ab42a22effdc29478ab, type: 3}
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 1299632398496825858, guid: 5c50e9e3262e4ab42a22effdc29478ab, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5c50e9e3262e4ab42a22effdc29478ab, type: 3}
 --- !u!4 &127691142856124401 stripped
 Transform:

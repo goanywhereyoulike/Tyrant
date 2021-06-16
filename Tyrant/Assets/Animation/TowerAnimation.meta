@@ -1,13 +1,5 @@
 fileFormatVersion: 2
-<<<<<<< HEAD
 guid: 3bf95e85f146df04faf72e9effcde9c6
-=======
-<<<<<<<< HEAD:Tyrant/Assets/Texture.meta
-guid: 1ae97affcb36a8a4897601c190cd701e
-========
-guid: 3bf95e85f146df04faf72e9effcde9c6
->>>>>>>> Develop:Tyrant/Assets/Animation/TowerAnimation.meta
->>>>>>> Develop
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

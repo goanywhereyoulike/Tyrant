@@ -22,20 +22,4 @@ public class BluePrint : MonoBehaviour
             IsAbleToSet = true;
         }
     }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.tag == "TowerBlockArea")
-        {
-            IsAbleToSet = false;
-        }
-    }
-    private void OnCollisionExit2D(Collision2D collision)
-    {
-        if (collision.gameObject.tag == "TowerBlockArea")
-        {
-            IsAbleToSet = true;
-        }
-    }
-
 }

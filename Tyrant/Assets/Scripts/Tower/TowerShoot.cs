@@ -29,7 +29,6 @@ public class TowerShoot : MonoBehaviour
     void Update()
     {
         UpdateTarget();
-
         WaitFire += Time.deltaTime;
         if (currentTarget)
         {

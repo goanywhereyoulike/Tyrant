@@ -15,8 +15,8 @@ public class Playercombat : MonoBehaviour
     public Inventory mInventory { get; set; }
     float timeBtwAttack = 0f;
     LayerMask enemyLayers;
+    public GameObject WeaponPosition;
 
-  
     void Update()
     {
        
@@ -34,13 +34,18 @@ public class Playercombat : MonoBehaviour
             Inventory inventory = gameObject.GetComponent<Inventory>();
             gun = inventory.GetPickUp("Weapon") as Gun;
 
+            gun.transform.position = WeaponPosition.transform.position;
+            gun.transform.parent = WeaponPosition.transform;
+            gun.gameObject.SetActive(true);
+            firePosition = gun.FirePosition;
+
         }
 
         //if (InputManager.Instance.GetKeyDown("drop"))
         //{
         //    mInventory.DropPickUp(transform.position, mInventory.GetPickUp("gun"));
         //}
-       
+
         if (InputManager.Instance.GetKeyDown("Fire"))
         {
             
@@ -51,8 +56,13 @@ public class Playercombat : MonoBehaviour
                 Vector2 selfPosition = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y);
                 playerHeading = (mousePosition-selfPosition).normalized;
                 Fire(playerHeading);
+
             }
         }
+        Vector2 aimDirection = (InputManager.Instance.MouseWorldPosition - gameObject.transform.position).normalized;
+
+        float weaponAngle = Mathf.Atan2(aimDirection.y, aimDirection.x) * Mathf.Rad2Deg;
+        gun.transform.eulerAngles = new Vector3(0.0f, 0.0f, weaponAngle);
 
     }
 

@@ -6,6 +6,10 @@ public class Gun : PickUp
 {
   
     private Player player;
+    [SerializeField]
+    private Transform firePosition;
+    public Transform FirePosition { get { return firePosition; } }
+
     private void Start()
     {
         player = FindObjectOfType<Player>();
@@ -17,6 +21,7 @@ public class Gun : PickUp
         {
             player.mInventory.AddPickUp(this);
             gameObject.SetActive(false);
+            CanBePicked = false;
         }
     }
     

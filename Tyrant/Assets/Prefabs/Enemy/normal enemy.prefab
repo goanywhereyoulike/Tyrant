@@ -20,6 +20,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 6323398187857754916, guid: fbb5c858275204042a5efdb123fd3b36, type: 3}
     - target: {fileID: 4179336317843623624, guid: 8b9f0df936cf54392b9c2877c62446d7, type: 3}
+      propertyPath: enemyState.maxDamage
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 4179336317843623624, guid: 8b9f0df936cf54392b9c2877c62446d7, type: 3}
       propertyPath: enemyState.maxHealth
       value: 50
       objectReference: {fileID: 0}
@@ -97,7 +101,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4179336317843623668, guid: 8b9f0df936cf54392b9c2877c62446d7, type: 3}
       propertyPath: m_SortingOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4179336317843623669, guid: 8b9f0df936cf54392b9c2877c62446d7, type: 3}
       propertyPath: isOn

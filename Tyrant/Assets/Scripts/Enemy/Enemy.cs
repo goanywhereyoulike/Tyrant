@@ -229,7 +229,6 @@ public class Enemy : MonoBehaviour, IDamageable
                     Targets = collider.gameObject.GetComponentInChildren<IDamageable>();
                 }
                 Targets.TakeDamage(Damage);
-
             }
         }
         Debug.Log("attack");

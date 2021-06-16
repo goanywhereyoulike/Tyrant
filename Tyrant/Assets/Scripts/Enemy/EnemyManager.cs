@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class EnemyManager : MonoBehaviour
 {
@@ -9,14 +10,20 @@ public class EnemyManager : MonoBehaviour
 
   //  List<Enemy> enemies = new List<Enemy>();
     public int wavenumber=5;
-    public GameObject[] enemies;
+    public int noSpawn;
+    public Tilemap tilemap;
+    List<GameObject> enemies = new List<GameObject>();
     Enemy enemy;
-  
+    Vector2 spawnPosition;
+    Vector2 insideMax;
+    Vector2 insideMin;
+    int spawnX;
+    int spawnY;
+    int spawnCount;
     GameObject enemyObject;
     // public Transform[] spawnPoints;
     private void Start()
     {
-        enemy = GetComponent<Enemy>();
         ObjectPoolManager.Instance.InstantiateObjects("normalenemy");
         if (_instance == null)
         {
@@ -30,18 +37,66 @@ public class EnemyManager : MonoBehaviour
 
     void Update()
     {
-       if (Input.GetKeyDown(KeyCode.Space))
+        insideMax = new Vector2(tilemap.cellBounds.xMax, tilemap.cellBounds.yMax) / noSpawn;
+        insideMin = new Vector2(tilemap.cellBounds.xMin, tilemap.cellBounds.yMin) / noSpawn;
+
+
+        if(noSpawn<2)
         {
-            EnemySpawn();
-            print("spawn");
+            Debug.Log("can't spawn");
+            return;
+        }
+
+        for(int i =0;i< enemies.Count;++i)
+        {
+            if(enemies[i].activeInHierarchy ==false)
+            {
+                enemies.RemoveAt(i);
+                spawnCount--;
+            }
+        }
+
+        if (spawnCount == 0)
+        {
+            while (spawnCount != wavenumber)
+            {
+                spawnX = Random.Range(tilemap.cellBounds.xMin, tilemap.cellBounds.xMax);
+                spawnY = Random.Range(tilemap.cellBounds.yMin, tilemap.cellBounds.yMax);
+                spawnPosition = new Vector2(spawnX, spawnY);
+                if (CheckPosition(spawnPosition))
+                {
+                    EnemySpawn(spawnPosition);
+                    print("spawn");
+                }
+            }
         }
     }
-    void EnemySpawn()
+    void EnemySpawn(Vector2 position)
     {
         enemyObject = ObjectPoolManager.Instance.GetPooledObject("normalenemy");
         enemyObject.SetActive(true);
-        enemyObject.transform.position = new Vector3(0, 0, 0);
-        //Instantiate(enemies[0], new Vector2(0f, 0f), Quaternion.identity);
-        //Instantiate(Enemy, new Vector2(0f, 0f), Quaternion.identity);
+        enemyObject.transform.position = position;
+        enemies.Add(enemyObject);
+        spawnCount++;
+    }
+
+    bool CheckPosition(Vector2 position)
+    {
+        for (int i = (int)insideMin.x; i <= (int)insideMax.x; ++i)
+        {
+            for (int j = (int)insideMin.y; j <= (int)insideMax.y; ++j)
+            {
+                if (position == new Vector2(i, j))
+                {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawLine(insideMin, insideMax);
     }
 }

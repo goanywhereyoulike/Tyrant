@@ -11,6 +11,7 @@ public class Enemy : MonoBehaviour, IDamageable
     //public Transform target;
     private List<GameObject> targets = new List<GameObject>();
     public Transform mTarget;
+    Transform mMainTarget;
 
     [SerializeField]
     private float Health;
@@ -25,6 +26,7 @@ public class Enemy : MonoBehaviour, IDamageable
 
     private float attacktime;
     private float distance;
+    private float mainTargetDistance;
     bool findTarget = false;
     bool isDead = false;
 
@@ -58,6 +60,7 @@ public class Enemy : MonoBehaviour, IDamageable
         behaviours.setEnemy(this);
         behaviours.AllBehaviour();
         anim = GetComponent<Animator>();
+        mMainTarget = mTarget;
         detectObject();
     }
 
@@ -65,21 +68,33 @@ public class Enemy : MonoBehaviour, IDamageable
     void Update()
     {
         if (targets != null)
-        {
             targets.Clear();
-        }
 
+        IsEnemyDead();
         detectObject();
         behaviours.Update();
 
+        // check mtarget is null or check deafult target is enemy,but not in range
         if (mTarget == null)
-        {
             findTarget = false;
-        }
 
+        //check is base ib the range, then attack base first
+        mainTargetDistance = Vector3.Distance(transform.position, mMainTarget.position);
+        if (IsTargetInRange(mainTargetDistance))
+        {
+            mTarget = mMainTarget;
+            findTarget = true;
+        }
+       
+
+        //check enemy findtarget
         if (findTarget == false)
         {
+            mTarget = mMainTarget;
             FindClosetObject();
+            enemyState.force = behaviours.ForceCalculate();
+            enemyState.acceleration = enemyState.force / enemyState.Mass;
+            enemyState.velocity += enemyState.acceleration;
         }
         else
         {
@@ -105,19 +120,18 @@ public class Enemy : MonoBehaviour, IDamageable
                         StartCoroutine("Attack");
                         attacktime = Time.time + enemyState.TimeBetweenAttacks;
                     }
-
                     //animation
                     anim.SetBool("isRunning", false);
                 }
+                
             }
             else
             {
                 findTarget = false;
             }
-
-            transform.position += enemyState.velocity;
-
         }
+
+        transform.position += enemyState.velocity;
     }
     //------------------attck animation------------------------
     IEnumerator Attack()
@@ -143,16 +157,17 @@ public class Enemy : MonoBehaviour, IDamageable
 
     void detectObject()
     {
-        if (GameObject.FindGameObjectsWithTag("Player") != null || GameObject.FindGameObjectsWithTag("Tower") != null)
+        foreach (GameObject target in GameObject.FindGameObjectsWithTag("Player"))
         {
-            foreach (GameObject target in GameObject.FindGameObjectsWithTag("Player"))
-            {
-                targets.Add(target);
-            }
-            foreach (GameObject target in GameObject.FindGameObjectsWithTag("Tower"))
-            {
-                targets.Add(target);
-            }
+            targets.Add(target);
+        }
+        foreach (GameObject target in GameObject.FindGameObjectsWithTag("Tower"))
+        {
+            targets.Add(target);
+        }
+        foreach (GameObject target in GameObject.FindGameObjectsWithTag("Base"))
+        {
+            targets.Add(target);
         }
     }
 
@@ -166,8 +181,8 @@ public class Enemy : MonoBehaviour, IDamageable
             {
                 lastDistance = distance;
             }
-
-            if (distance < lastDistance)
+            //find close target
+            if (distance <= lastDistance)
             {
                 lastDistance = distance;
                 if (IsTargetInRange(lastDistance))
@@ -176,14 +191,7 @@ public class Enemy : MonoBehaviour, IDamageable
                     findTarget = true;
                 }
             }
-            else
-            {
-                if (IsTargetInRange(lastDistance))
-                {
-                    mTarget = targets[0].transform;
-                    findTarget = true;
-                }
-            }
+           
         }
     }
 
@@ -202,26 +210,13 @@ public class Enemy : MonoBehaviour, IDamageable
     public void TakeDamage(float damage)
     {
         Health -= damage;
-        if (Health <= 0.0f)
-        {
-            IsDead = true;
-
-        }
-    }
-
-    void OnDrawGizmosSelected()
-    {
-        // Draw a yellow sphere at the transform's position
-        Gizmos.color = new Color(1, 1, 0, 0.75F);
-        Gizmos.DrawWireSphere(transform.position, enemyState.DetectRange);
-        // Gizmos.DrawSphere(transform.position, enemyState.DetectRange);
     }
 
     void OnTriggerEnter2D(Collider2D collider)
     {
         if (collider.gameObject.name == mTarget.name)
         {
-            if (collider.gameObject.tag == "Player" || collider.gameObject.tag == "Tower")
+            if (collider.gameObject.tag == "Player" || collider.gameObject.tag == "Tower" || collider.gameObject.tag == "Base")
             {
                 IDamageable Targets = collider.gameObject.GetComponent<IDamageable>();
                 if (Targets == null)
@@ -245,4 +240,22 @@ public class Enemy : MonoBehaviour, IDamageable
         stopDistance = enemyState.StopDistance;
         detectRange = enemyState.DetectRange;
     }
+
+    void IsEnemyDead()
+    {
+        if (Health <= 0.0f)
+        {
+            IsDead = true;
+        }
+    }
+
+    void OnDrawGizmosSelected()
+    {
+        // Draw a yellow sphere at the transform's position
+        Gizmos.color = new Color(1, 1, 0, 0.75F);
+        Gizmos.DrawWireSphere(transform.position, enemyState.DetectRange);
+        // Gizmos.DrawSphere(transform.position, enemyState.DetectRange);
+    }
+
+
 }

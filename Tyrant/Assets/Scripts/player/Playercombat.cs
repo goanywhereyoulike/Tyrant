@@ -51,31 +51,10 @@ public class Playercombat : MonoBehaviour
         {
             if (gun)
             {
-               
                 gun.Fire(playerHeading);
             }
         }
-        /*if (gun != null)
-        {
-            switch (playerMovement.playerFacing)
-            {
-                case PlayerMovement.PlayerFacing.Up:
-                    gun.transform.Rotate(Vector3.forward * 90);
-                    break;
-                case PlayerMovement.PlayerFacing.Down:
-                    gun.transform.Rotate(Vector3.forward * -90);
-                    break;
-                case PlayerMovement.PlayerFacing.Left:
-                    gun.transform.Rotate(Vector3.forward * -90);
-                    break;
-                case PlayerMovement.PlayerFacing.Right:
-                    gun.transform.Rotate(Vector3.forward * 90);
-                    break;
-                default:
-                    gun.transform.Rotate(Vector3.forward * 90);
-                    break;
-            }
-        }*/
+      
 
     }
     void meleeAttack()

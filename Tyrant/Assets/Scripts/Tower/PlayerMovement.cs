@@ -22,6 +22,7 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        playerFacing = PlayerFacing.Down;
         Vector2 mPosition = transform.position;
         if (InputManager.Instance.GetKey("GoRight"))
         {

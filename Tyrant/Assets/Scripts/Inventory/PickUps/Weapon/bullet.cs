@@ -16,10 +16,16 @@ public class bullet : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        IDamageable targetHit = collision as IDamageable;
+        if (targetHit != null)
+        {
+            targetHit.TakeDamage(damage);
+        }
         if (collision.gameObject.tag != "Player")
         {
             gameObject.SetActive(false);
         }
+        
 
     }
 }

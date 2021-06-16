@@ -38,7 +38,7 @@ SpriteRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 811237652019742487}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -71,15 +71,15 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 5579039bdd3861443a1c279236531a8c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1.64, y: 1.79}
+  m_Size: {x: 0.33, y: 0.36}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &811237652403871291
@@ -125,7 +125,8 @@ GameObject:
   - component: {fileID: 811237652479071941}
   - component: {fileID: 811237652479071946}
   - component: {fileID: 811237652479071940}
-  - component: {fileID: 6245428424805267817}
+  - component: {fileID: 454895505576587411}
+  - component: {fileID: 1299632398496825858}
   m_Layer: 6
   m_Name: Tower
   m_TagString: TowerBlockArea
@@ -234,8 +235,8 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 20
-  m_Sprite: {fileID: 21300000, guid: 044ae2b90ece18048bd59f7b24758dec, type: 3}
+  m_SortingOrder: 2
+  m_Sprite: {fileID: 21300000, guid: f8cb5147afefac949816cdef0e2d2e21, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -262,7 +263,7 @@ MonoBehaviour:
   health: 100
   Healthbar: {fileID: 7481132745950543585}
   animator: {fileID: 811237652479071941}
---- !u!114 &6245428424805267817
+--- !u!114 &454895505576587411
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -279,8 +280,27 @@ MonoBehaviour:
   TargetPos: {fileID: 0}
   DistanceToShoot: 10
   BulletForce: 20
-  FireRate: 0.3
+  FireRate: 0.1
   animator: {fileID: 811237652479071941}
+--- !u!114 &1299632398496825858
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 811237652479071945}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81d4d30aa72c61b458197b166bfe8b83, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShootPoint: {fileID: 811237652403871290}
+  BulletPrefab: {fileID: 6184636059906868256, guid: f7ff6dcf1deb55b43be766a0f2d27798, type: 3}
+  TargetPos: {fileID: 0}
+  DistanceToShoot: 10
+  BulletForce: 20
+  FireRate: 10
+  animator: {fileID: 0}
 --- !u!1 &5027751679773073373
 GameObject:
   m_ObjectHideFlags: 0

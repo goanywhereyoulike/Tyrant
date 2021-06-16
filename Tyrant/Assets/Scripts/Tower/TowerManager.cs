@@ -10,7 +10,8 @@ public class TowerManager : MonoBehaviour
     public GameObject PreTowerprefab;
     public Vector3 offset;
     bool IsAbleToSet = true;
-
+    GameObject preTower;
+    bool IsPreTowerExist = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,12 +22,13 @@ public class TowerManager : MonoBehaviour
 
     void SetTower(Vector2 target, bool IsAbleToSet)
     {
-        //bool IsPreTowerExist = false;
-        if (InputManager.Instance.GetKeyDown("PreBuildTower"))
+        
+        if (InputManager.Instance.GetKeyDown("PreBuildTower") && !IsPreTowerExist)
         {
 
-            GameObject preTower = Instantiate(PreTowerprefab, target, Quaternion.identity);
+            preTower = Instantiate(PreTowerprefab, target, Quaternion.identity);
             preTower.transform.parent = player.transform;
+            IsPreTowerExist = true;
         }
         if (InputManager.Instance.GetKeyDown("Esc"))
         {
@@ -35,7 +37,7 @@ public class TowerManager : MonoBehaviour
             {
                 Destroy(blue.gameObject);
             }
-
+            IsPreTowerExist = false;
 
         }
 
@@ -53,7 +55,7 @@ public class TowerManager : MonoBehaviour
             {
                 Instantiate(Towerprefab, target, Quaternion.identity);
                 Destroy(bluePrint.gameObject);
-
+                IsPreTowerExist = false;
             }
         }
         else if (bluePrint && !bluePrint.IsAbleToSet)
@@ -73,7 +75,11 @@ public class TowerManager : MonoBehaviour
         Vector2 PlayerPos = player.transform.position + offset;
         SetTower(PlayerPos, IsAbleToSet);
 
-
+        if (preTower)
+        {
+            preTower.transform.position = PlayerPos;
+        }
+      
 
     }
 }

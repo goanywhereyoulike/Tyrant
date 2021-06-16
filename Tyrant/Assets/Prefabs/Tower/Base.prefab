@@ -586,6 +586,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerRecoverEffectPrefab: {fileID: 1344500445004606438, guid: 3c5707c70c780a148b4eeb5bafa1127e, type: 3}
+  DestroyedBase: {fileID: 7661704932094104742, guid: b7af77f2589638548b3251058d102330, type: 3}
   RecoverRange: 1.7
   health: 100
   Healthbar: {fileID: 5532131876425468347}
@@ -600,7 +601,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.0031147897, y: 0.0020765439}

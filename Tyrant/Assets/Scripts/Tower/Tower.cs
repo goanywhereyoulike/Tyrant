@@ -71,7 +71,7 @@ public class Tower : MonoBehaviour, IDamageable
     {
         Health -= damage;
         Healthbar.value = Health;
-        Debug.Log("Tower"+health);
+        //Debug.Log("Tower"+health);
 
     }
 }

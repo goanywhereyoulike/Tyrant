@@ -2,25 +2,43 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody))]
-public class Playermovement : MonoBehaviour
+public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField]
-    private float moveSpeed = 5f;
-    private Rigidbody2D rb;
-    Vector2 movement;
+    public float MoveSpeed { get; set; }
+
+    public System.Action isMovingChanged = null;
+    public bool IsMoving
+    {
+        get => isMoving;
+        set
+        {
+            isMoving = value;
+            isMovingChanged?.Invoke();
+        }
+    }
+
+    private bool isMoving = false;
+
+    private PlayerAnimation playerAnimation;
+
     private void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
+        playerAnimation = GetComponent<PlayerAnimation>();
+        isMovingChanged += () => playerAnimation.IsMoving = IsMoving;
     }
-   private void Update()
-   {
-        movement.x= Input.GetAxisRaw("Horizontal");
-        movement.y = Input.GetAxisRaw("Vertical");
-   }
 
-    private void FixedUpdate()
+    void Update()
     {
-        rb.MovePosition(rb.position + movement * moveSpeed*Time.fixedDeltaTime);
+        Vector3 moving = new Vector3(InputManager.Instance.GetAxisRaw("Horizontal"), InputManager.Instance.GetAxisRaw("Vertical"), 0.0f) * MoveSpeed * Time.deltaTime;
+
+        if (moving == Vector3.zero)
+        {
+            IsMoving = false;
+        }
+        else
+        {
+            IsMoving = true;
+            transform.position += moving;
+        }
     }
 }

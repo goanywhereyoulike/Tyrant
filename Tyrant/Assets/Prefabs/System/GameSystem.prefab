@@ -60,6 +60,14 @@ MonoBehaviour:
     objectToPool: {fileID: 4369142151728487491, guid: 9b83bc96c9677eb4bbc459fc7c7bca93, type: 3}
     amountToPool: 10
     shouldExpand: 0
+  - tagName: ConnonBullet
+    objectToPool: {fileID: 6682998411512925883, guid: b9e174c0e1671dc4397cd67ee72802aa, type: 3}
+    amountToPool: 10
+    shouldExpand: 0
+  - tagName: ConnonBulletEffect
+    objectToPool: {fileID: 8066012905534961614, guid: d2fd0f8a41f9f7e40bea9e35ad21ab2c, type: 3}
+    amountToPool: 10
+    shouldExpand: 1
 --- !u!1 &3980476720704669719
 GameObject:
   m_ObjectHideFlags: 0

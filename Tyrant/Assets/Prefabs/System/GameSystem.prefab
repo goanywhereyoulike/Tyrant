@@ -60,6 +60,14 @@ MonoBehaviour:
     objectToPool: {fileID: 4369142151728487491, guid: 9b83bc96c9677eb4bbc459fc7c7bca93, type: 3}
     amountToPool: 10
     shouldExpand: 0
+  - tagName: CannonTowerBullet
+    objectToPool: {fileID: 2381738358933340234, guid: badb5b903c80bbb4cbe0ec5ae88b0d3f, type: 3}
+    amountToPool: 10
+    shouldExpand: 0
+  - tagName: ChainTowerBullet
+    objectToPool: {fileID: 6251904807959551005, guid: 0d0e4d67fc628e648821dea768c628f1, type: 3}
+    amountToPool: 1
+    shouldExpand: 0
 --- !u!1 &3980476720704669719
 GameObject:
   m_ObjectHideFlags: 0

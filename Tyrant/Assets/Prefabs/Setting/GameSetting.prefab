@@ -97,9 +97,13 @@ MonoBehaviour:
   - name: GoDown
     keyCode: 115
   - name: PreBuildTower
-    keyCode: 101
+    keyCode: 49
+  - name: PreBuildCannonTower
+    keyCode: 50
   - name: BuildTower
     keyCode: 32
+  - name: dropTower
+    keyCode: 113
   - name: Esc
     keyCode: 27
   - name: Shoot
@@ -114,4 +118,8 @@ MonoBehaviour:
     keyCode: 99
   - name: drop
     keyCode: 118
+  - name: DestroyTower
+    keyCode: 324
+  - name: PreBuildChainTower
+    keyCode: 51
   axesLibrary: []

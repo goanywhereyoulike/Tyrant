@@ -11,11 +11,16 @@ public class TowerShoot : MonoBehaviour
     private Vector2 ShootOffset;
     public GameObject BulletPrefab;
     public Transform TargetPos;
+
+
+
+    private bool IsChainTower;
+
     public float DistanceToShoot;
     public float BulletForce = 20.0f;
-    [SerializeField]
-    float FireRate;
+    public float FireRate;
     float WaitFire = 0.0f;
+    public int BulletNumber;
 
     public Animator animator;
     private Vector3 direction;
@@ -23,6 +28,7 @@ public class TowerShoot : MonoBehaviour
     void Start()
     {
         tower = GetComponent<Tower>();
+        IsChainTower = false;
     }
 
     // Update is called once per frame
@@ -50,15 +56,43 @@ public class TowerShoot : MonoBehaviour
     void Fire()
     {
         Vector3 Direction = (currentTarget.transform.position - ShootPoint.position).normalized;
-        GameObject bullet = ObjectPoolManager.Instance.GetPooledObject("TowerBullet");
+        GameObject bullet= ObjectPoolManager.Instance.GetPooledObject("TowerBullet");
+        if (gameObject.GetComponent<TowerDisplay>().tower.type == "CannonTower")
+        {
+            bullet = ObjectPoolManager.Instance.GetPooledObject("CannonTowerBullet");
+        }
+
+        if (gameObject.GetComponent<TowerDisplay>().tower.type == "ChainTower")
+        {
+            bullet = ObjectPoolManager.Instance.GetPooledObject("ChainTowerBullet");
+            IsChainTower = true;
+        }
         if (bullet)
         {
-            bullet.transform.position = ShootPoint.position + Direction;
-            bullet.SetActive(true);
-            //GameObject bullet = Instantiate(BulletPrefab, ShootPoint.position + Direction, ShootPoint.rotation);
-            Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
+            if (IsChainTower)
+            {
+                bullet.transform.position = tower.transform.position;
+                bullet.SetActive(true);
+                ChainTowerBullet Chainbullet = bullet.GetComponentInChildren<ChainTowerBullet>();
+                Rigidbody2D crb = Chainbullet.gameObject.GetComponent<Rigidbody2D>();
+                Vector3 cDirection = (transform.position - Chainbullet.transform.position).normalized;
+                Vector3 NewDirection = cDirection;
+                NewDirection.x = 1.0f;
+                NewDirection.y = -cDirection.x / cDirection.y;
+                crb.velocity = NewDirection.normalized * BulletForce;
 
-            rb.AddForce(Direction * BulletForce, ForceMode2D.Impulse);
+            }
+            else 
+            {
+                bullet.transform.position = ShootPoint.position + Direction;
+                bullet.SetActive(true);
+                //GameObject bullet = Instantiate(BulletPrefab, ShootPoint.position + Direction, ShootPoint.rotation);
+                Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
+
+                rb.AddForce(Direction * BulletForce, ForceMode2D.Impulse);
+
+            }
+
         }
 
 

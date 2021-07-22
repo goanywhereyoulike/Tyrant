@@ -28,7 +28,7 @@ public class WeaponWheelController : MonoBehaviour
         switch(weaponID)//select nothing
         {
             case 0:
-                selectItem.sprite = noImage;
+                selectItem.sprite = null ;
                 break;
             case 1:
                 Debug.Log("gun1"); //switch weapon here

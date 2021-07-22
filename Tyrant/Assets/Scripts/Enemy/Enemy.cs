@@ -7,15 +7,10 @@ public class Enemy : MonoBehaviour, IDamageable
 {
     [SerializeField]
     EnemyState enemyState = new EnemyState();
-    NodePath nodePath;
-    //public Transform target;
-    private List<NodePath.Node> closedList = new List<NodePath.Node>();
-    private List<NodePath.Node> mPath = new List<NodePath.Node>();
-    private List<GameObject> targets = new List<GameObject>();
-    private List<Vector3> nextNodes = new List<Vector3>();
 
+    //public Transform target;
+    private List<GameObject> targets = new List<GameObject>();
     public Transform mTarget;
-    public Vector3 nextNode;
     Transform mMainTarget;
 
     private float Health;
@@ -33,11 +28,8 @@ public class Enemy : MonoBehaviour, IDamageable
     private float mainTargetDistance;
     bool findTarget = false;
     bool isDead = false;
-    bool findPath = false;
-    bool isGetBlock = false;
 
     StaticMachine behaviours = null;
-    Pathfinding path = null;
 
     public EnemyState EnemyState { get => enemyState; set => enemyState = value; }
     public float MoveSpeed { get => moveSpeed; }
@@ -60,12 +52,10 @@ public class Enemy : MonoBehaviour, IDamageable
     /// </summary>
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         ReUse();
         behaviours = gameObject.GetComponent<StaticMachine>();
-        path = gameObject.GetComponent<Pathfinding>();
-        nodePath = new NodePath();
         behaviours.setEnemy(this);
         behaviours.AllBehaviour();
         anim = GetComponent<Animator>();
@@ -76,13 +66,6 @@ public class Enemy : MonoBehaviour, IDamageable
     // Update is called once per frame
     void Update()
     {
-        //if (!isGetBlock)
-        //{
-        //    var tilemap = GameObjectsLocator.Instance.Get<Block>();
-        //    nodePath.init(tilemap[0].tilemap.cellBounds.size.x, tilemap[0].tilemap.cellBounds.size.y);
-        //    isGetBlock = true;
-        //}
-
         if (targets != null)
             targets.Clear();
 
@@ -94,7 +77,7 @@ public class Enemy : MonoBehaviour, IDamageable
         if (mTarget == null)
             findTarget = false;
 
-        //check is base in the range, then attack base first
+        //check is base ib the range, then attack base first
         mainTargetDistance = Vector3.Distance(transform.position, mMainTarget.position);
         if (IsTargetInRange(mainTargetDistance))
         {
@@ -108,15 +91,12 @@ public class Enemy : MonoBehaviour, IDamageable
         {
             mTarget = mMainTarget;
             FindClosetObject();
-           // GetPath();
-           // CheckPath();
             enemyState.force = behaviours.ForceCalculate();
             enemyState.acceleration = enemyState.force / enemyState.Mass;
             enemyState.velocity += enemyState.acceleration;
         }
         else
         {
-           // GetPath();
             distance = Vector3.Distance(transform.position, mTarget.position);
             if (IsTargetInRange(distance))
             {
@@ -146,7 +126,6 @@ public class Enemy : MonoBehaviour, IDamageable
             }
             else
             {
-                mPath.Clear();
                 findTarget = false;
             }
         }
@@ -270,59 +249,6 @@ public class Enemy : MonoBehaviour, IDamageable
         }
     }
 
-    void GetPath()
-    {
-       if(path.Search((Vector2)transform.position, (Vector2)mTarget.position))
-        {
-            findPath = true;
-            closedList = path.CloseList;
-        }
-
-        if (findPath)
-        {
-            mPath.Clear();
-
-            // Beginning from the end node, trace back to it's parent one at a time
-            var node = nodePath.GetNode((int)mTarget.position.x, (int)mTarget.position.y);
-            while (node != null)
-            {
-                mPath.Add(node);
-                node = node.parent;
-            }
-
-            // Once we recorded all the position from end to start, we need to reverse
-            // them to get the correct order
-            mPath.Reverse();
-        }
-
-        foreach (var node in mPath)
-        {
-            Vector3 position = new Vector3(node.r, node.c, 0);
-            nextNodes.Add(position);
-        }
-
-        for (int i = 0; i + 1 < mPath.Count; ++i)
-        {
-            var from = new Vector3(mPath[i].r,mPath[i].c);
-            var to = new Vector3(mPath[i+1].r, mPath[i+1].c);
-            Gizmos.DrawLine(from, to);
-        }
-    }
-
-    void CheckPath()
-    {
-        for (int i =0; i < nextNodes.Count; ++i)
-        {
-            if (transform.position == nextNodes[i])
-            {
-                if (i + 1 != nextNodes.Count)
-                {
-                    nextNode = nextNodes[i + 1];
-                }
-            }
-        } 
-
-    }
     void OnDrawGizmosSelected()
     {
         // Draw a yellow sphere at the transform's position

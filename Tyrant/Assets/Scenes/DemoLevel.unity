@@ -4896,7 +4896,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1bebad5d58d6524c8c2fbc644631c77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wavenumber: 5
   noSpawn: 2
   tilemap: {fileID: 857514769}
 --- !u!213 &1953020638
@@ -14002,7 +14001,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4926735983584658527, guid: 1016a20212b882845842201ad948974b, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1016a20212b882845842201ad948974b, type: 3}

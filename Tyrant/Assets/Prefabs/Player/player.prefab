@@ -1095,7 +1095,7 @@ GameObject:
   - component: {fileID: 8298693449418659272}
   - component: {fileID: 4966918331871143739}
   - component: {fileID: 8387509124762517312}
-  - component: {fileID: 2034062455685341755}
+  - component: {fileID: 8755876167477533121}
   m_Layer: 7
   m_Name: player
   m_TagString: Player
@@ -1229,7 +1229,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponController: {fileID: 5644215001291323903}
---- !u!114 &2034062455685341755
+--- !u!114 &8755876167477533121
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

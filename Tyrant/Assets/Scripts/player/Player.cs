@@ -13,12 +13,16 @@ public class Player : MonoBehaviour , IDamageable
     public Inventory mInventory { get; set; }
     public Gun mGun { get; set; }
 
+    public int coin;
+
     void Awake()
     {
         mInventory = GetComponent<Inventory>();
         health = maxHealth;
         healthBar.maxValue = maxHealth;
         healthBar.value = health;
+
+        StartCoroutine(Coin());
     }
 
     // Update is called once per frame
@@ -42,8 +46,21 @@ public class Player : MonoBehaviour , IDamageable
         {
             mInventory.DropPickUp(transform.position, mInventory.GetPickUp("health potion"));
         }
+
     }
 
+
+    IEnumerator Coin()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(1.0f);
+            coin+=5;
+        }
+    }
+
+
+   
 
     public void TakeDamage(float damage)
     {

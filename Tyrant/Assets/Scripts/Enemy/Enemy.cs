@@ -229,6 +229,24 @@ public class Enemy : MonoBehaviour, IDamageable
         Debug.Log("attack");
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.name == mTarget.name)
+        {
+            if (collision.gameObject.tag == "Player" || collision.gameObject.tag == "Tower" || collision.gameObject.tag == "Base")
+            {
+                IDamageable Targets = collision.gameObject.GetComponent<IDamageable>();
+                if (Targets == null)
+                {
+                    Targets = collision.gameObject.GetComponentInChildren<IDamageable>();
+                }
+                Targets.TakeDamage(Damage);
+
+            }
+        }
+        Debug.Log("attack");
+
+    }
     void ReUse()
     {
         Health = enemyState.MaxHealth;

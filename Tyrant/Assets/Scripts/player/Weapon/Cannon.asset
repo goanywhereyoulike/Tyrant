@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Cannon
   m_EditorClassIdentifier: 
   damage: 10
-  shootingRange: 50
+  shootingRange: 5
   reloadTime: 5
   shootingDelayTime: 0.5
   bulletShootingSpeed: 20

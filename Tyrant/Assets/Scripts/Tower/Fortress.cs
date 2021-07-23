@@ -8,9 +8,10 @@ public class Fortress : MonoBehaviour, IDamageable
     // Start is called before the first frame update
 
     public GameObject PlayerRecoverEffectPrefab;
+    public GameObject DestroyedBase;
 
     [SerializeField]
-    float RecoverRange = 0.6f;
+    float RecoverRange = 1.8f;
 
     [SerializeField]
     private float health;
@@ -22,7 +23,6 @@ public class Fortress : MonoBehaviour, IDamageable
             if (health <= 0)
             {
                 GameOver();
-
             }
         }
         get
@@ -44,8 +44,9 @@ public class Fortress : MonoBehaviour, IDamageable
     {
         player = FindObjectOfType<Player>();
         health = 100;
-        Healthbar.maxValue = health;
-        Healthbar.value = health;
+        Healthbar.maxValue = Health;
+        Healthbar.value = Health;
+        RecoverRange = 1.8f;
 
     }
 
@@ -54,9 +55,6 @@ public class Fortress : MonoBehaviour, IDamageable
     {
 
         float distance = (player.transform.position - transform.position).magnitude;
-        
-
-
         if (distance < RecoverRange * RecoverRange)
         {
             WaitFire += Time.deltaTime;
@@ -69,18 +67,16 @@ public class Fortress : MonoBehaviour, IDamageable
                 WaitFire = 0.0f;
             }
         }
-
     }
-
     void GameOver()
     {
-
-
+        Destroy(gameObject);
+        Instantiate(DestroyedBase, transform.position, transform.rotation);
     }
-
     public void TakeDamage(float damage)
     {
         Health -= damage;
         Healthbar.value = Health;
     }
+
 }

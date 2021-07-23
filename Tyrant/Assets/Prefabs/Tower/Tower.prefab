@@ -277,7 +277,7 @@ MonoBehaviour:
   ShootPoint: {fileID: 811237652403871290}
   BulletPrefab: {fileID: 6184636059906868256, guid: f7ff6dcf1deb55b43be766a0f2d27798, type: 3}
   TargetPos: {fileID: 0}
-  DistanceToShoot: 10
+  DistanceToShoot: 5
   BulletForce: 20
   FireRate: 0.3
   animator: {fileID: 811237652479071941}

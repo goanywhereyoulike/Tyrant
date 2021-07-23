@@ -2973,7 +2973,8 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Untagged
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2034062455685341755, guid: 35d875323c2117a41949536fc30f03ba, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 35d875323c2117a41949536fc30f03ba, type: 3}
 --- !u!114 &1178133050
 MonoBehaviour:
@@ -5041,7 +5042,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1bebad5d58d6524c8c2fbc644631c77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wavenumber: 5
   noSpawn: 2
   tilemap: {fileID: 857514769}
 --- !u!213 &1953020638

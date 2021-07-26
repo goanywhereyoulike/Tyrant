@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Pathfinding : MonoBehaviour
+public class Pathfinding 
 {
     private List<NodePath.Node> openList;
     private List<NodePath.Node> closeList;
     NodePath nodePath;
     bool found = false;
-
+    bool less = false;
     public List<NodePath.Node> OpenList { get => openList; }
     public List<NodePath.Node> CloseList { get => closeList; }
 
@@ -41,33 +41,38 @@ public class Pathfinding : MonoBehaviour
         return false;
     }
 
+
+
     public bool Search(Vector2 startposition, Vector2 endposition)
     {
+        found = false;
         openList = new List<NodePath.Node>();
         closeList = new List<NodePath.Node>();
-
+        nodePath = new NodePath();
         nodePath = GameObjectsLocator.Instance.Get<NodePath>()[0];
+        closeList.Clear();
 
         nodePath.ResetPath();
 
-        var node = nodePath.GetNode((int)startposition.x, (int)startposition.y);
+        var node = nodePath.FindNode((int)startposition.x, (int)startposition.y);
+        openList.Add(node);
         node.opened = true;
 
-        var end = nodePath.GetNode((int)endposition.x, (int)endposition.y);
+        var end = nodePath.FindNode((int)endposition.x, (int)endposition.y);
 
         while (!found && OpenList.Count != 0)
         {
             var current = OpenList[0];
             OpenList.RemoveAt(0);
 
-            if (current == end)
+            if (current.c == end.c && current.r == end.r)
             {
                 found = true;
             }
             else
             {
                 //eight direction
-                for (int i = 0; i < 8; i++)
+                for (int i = 0; i < current.neighbors.Count; i++)
                 {
                     if (current.neighbors[i] != null)
                     {
@@ -92,13 +97,18 @@ public class Pathfinding : MonoBehaviour
                                         current.neighbors[i].parent = current;
                                         current.neighbors[i].g = G;
                                         OpenList.Insert(op, current.neighbors[i]);
+                                        less = true;
                                         break;
                                     }
                                 }
-                                current.neighbors[i].opened = true;
-                                current.neighbors[i].parent = current;
-                                current.neighbors[i].g = G;
-                                OpenList.Add(current.neighbors[i]);
+                                if (less == false)
+                                {
+                                    current.neighbors[i].opened = true;
+                                    current.neighbors[i].parent = current;
+                                    current.neighbors[i].g = G;
+                                    OpenList.Add(current.neighbors[i]);
+                                }
+                                less = false;
                             }
                             else
                             {
@@ -108,12 +118,12 @@ public class Pathfinding : MonoBehaviour
                                 OpenList.Add(current.neighbors[i]);
                             }
                         }
-                        else if (!current.neighbors[i].closed)
+                        if (!current.neighbors[i].closed)
                         {
                             if (F < current.neighbors[i].g + current.neighbors[i].h)
                             {
-                                current.neighbors[i].parent = current;
                                 current.neighbors[i].g = G;
+                                current.neighbors[i].parent = current;
                                 for (int op = 0; op < OpenList.Count; op++)
                                 {
                                     if (OpenList[op] == current.neighbors[i])

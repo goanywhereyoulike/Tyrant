@@ -22,7 +22,7 @@ PrefabInstance:
     - target: {fileID: 4179336317843623624, guid: 8b9f0df936cf54392b9c2877c62446d7, type: 3}
       propertyPath: mTarget
       value: 
-      objectReference: {fileID: 5532131877928631615, guid: 3a17412052b809846812b5e01de94c05, type: 3}
+      objectReference: {fileID: 6647707871837707791, guid: 4a69fdb522e96b74fb5462a98d469469, type: 3}
     - target: {fileID: 4179336317843623624, guid: 8b9f0df936cf54392b9c2877c62446d7, type: 3}
       propertyPath: enemyState.maxDamage
       value: 25
@@ -45,7 +45,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4179336317843623624, guid: 8b9f0df936cf54392b9c2877c62446d7, type: 3}
       propertyPath: enemyState.maxMoveSpeed
-      value: 2.5
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4179336317843623624, guid: 8b9f0df936cf54392b9c2877c62446d7, type: 3}
       propertyPath: enemyState.stopDistance
@@ -61,7 +61,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4179336317843623626, guid: 8b9f0df936cf54392b9c2877c62446d7, type: 3}
       propertyPath: isOn
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4179336317843623627, guid: 8b9f0df936cf54392b9c2877c62446d7, type: 3}
       propertyPath: m_RootOrder
@@ -113,7 +113,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4179336317843623669, guid: 8b9f0df936cf54392b9c2877c62446d7, type: 3}
       propertyPath: isOn
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4179336317843623671, guid: 8b9f0df936cf54392b9c2877c62446d7, type: 3}
       propertyPath: m_Name

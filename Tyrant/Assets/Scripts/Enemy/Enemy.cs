@@ -31,11 +31,12 @@ public class Enemy : MonoBehaviour, IDamageable
     private float attacktime;
     private float distance;
     private float mainTargetDistance;
+    private int pathcount =0;
     bool findTarget = false;
     bool isDead = false;
     bool findPath = false;
     bool isGetBlock = false;
-
+    bool search = false;
     StaticMachine behaviours = null;
     Pathfinding path = null;
 
@@ -64,7 +65,7 @@ public class Enemy : MonoBehaviour, IDamageable
     {
         ReUse();
         behaviours = gameObject.GetComponent<StaticMachine>();
-        path = gameObject.AddComponent<Pathfinding>();
+        path = new Pathfinding();
         nodePath = new NodePath();
         behaviours.setEnemy(this);
         behaviours.AllBehaviour();
@@ -76,12 +77,12 @@ public class Enemy : MonoBehaviour, IDamageable
     // Update is called once per frame
     void Update()
     {
-    //    if (!isGetBlock)
-    //    {
-    //        var tilemap = GameObjectsLocator.Instance.Get<Block>();
-    //        nodePath.init(tilemap[0].tilemap.cellBounds.size.x, tilemap[0].tilemap.cellBounds.size.y);
-    //        isGetBlock = true;
-    //    }
+        if (!isGetBlock)
+        {
+            var tilemap = GameObjectsLocator.Instance.Get<Block>();
+            nodePath.init(tilemap[0].tilemap.cellBounds.size.x, tilemap[0].tilemap.cellBounds.size.y);
+            isGetBlock = true;
+        }
 
         if (targets != null)
             targets.Clear();
@@ -101,38 +102,78 @@ public class Enemy : MonoBehaviour, IDamageable
             mTarget = mMainTarget;
             findTarget = true;
         }
-       
+
 
         //check enemy findtarget
         if (findTarget == false)
         {
             mTarget = mMainTarget;
             FindClosetObject();
-           // GetPath();
-            //CheckPath();
-            enemyState.force = behaviours.ForceCalculate();
-            enemyState.acceleration = enemyState.force / enemyState.Mass;
-            enemyState.velocity += enemyState.acceleration;
+            if (search == false)
+            {
+                GetPath();
+            }
+
+            if (findPath)
+            {
+                if (pathcount < mPath.Count)
+                {
+                    Vector2 position = new Vector2(mPath[pathcount].r, mPath[pathcount].c);
+                    float speed = MoveSpeed * Time.deltaTime;
+                    transform.position = Vector2.MoveTowards(transform.position, position, speed);
+                    if ((Vector2)transform.position == position)
+                    {
+                        pathcount++;
+                    }
+                }
+            }
+            //if (findPath)
+            //{
+            //    Vector2 position = new Vector2(mPath[pathcount].r, mPath[pathcount].c);
+            //    if ((Vector2)transform.position == position)
+            //    {
+            //        float speed = MoveSpeed * Time.deltaTime;
+            //        transform.position = Vector2.MoveTowards(transform.position, position, speed);
+            //        pathcount++;
+            //    }
+            //    //enemyState.force = behaviours.ForceCalculate();
+            //    //enemyState.acceleration = enemyState.force / enemyState.Mass;
+            //    //enemyState.velocity += enemyState.acceleration;
+            //}
         }
         else
         {
-           // GetPath();
+            if (search == true)
+            {
+                GetPath();
+            }
+            //CheckPath();
+            ///CheckPath(mPath[pathcount].r, mPath[pathcount].c, MoveSpeed);
             distance = Vector3.Distance(transform.position, mTarget.position);
             if (IsTargetInRange(distance))
             {
                 if (distance > stopDistance)
                 {
-                    enemyState.force = behaviours.ForceCalculate();
-                    enemyState.acceleration = enemyState.force / enemyState.Mass;
-                    enemyState.velocity += enemyState.acceleration;
-
+                    //enemyState.force = behaviours.ForceCalculate();
+                    //enemyState.acceleration = enemyState.force / enemyState.Mass;
+                    //enemyState.velocity += enemyState.acceleration;
+                    if (pathcount < mPath.Count)
+                    {
+                        Vector2 position = new Vector2(mPath[pathcount].r, mPath[pathcount].c);
+                        float speed = MoveSpeed * Time.deltaTime;
+                        transform.position = Vector2.MoveTowards(transform.position, position, speed);
+                        if ((Vector2)transform.position == position)
+                        {
+                            pathcount++;
+                        }
+                    }
                     //animation
                     anim.SetBool("isRunning", true);
 
                 }
                 else
                 {
-                    enemyState.velocity = Vector3.zero;
+                   // enemyState.velocity = Vector3.zero;
 
                     if (Time.time >= attacktime)
                     {
@@ -142,22 +183,24 @@ public class Enemy : MonoBehaviour, IDamageable
                     //animation
                     anim.SetBool("isRunning", false);
                 }
-                
+                search = false;
             }
             else
             {
-                //mPath.Clear();
                 findTarget = false;
             }
         }
-
-        transform.position += enemyState.velocity;
+       // transform.position += enemyState.velocity;
+        for (int i = 0; i + 1 < mPath.Count; ++i)
+        {
+            var from = new Vector3(mPath[i].r, mPath[i].c);
+            var to = new Vector3(mPath[i + 1].r, mPath[i + 1].c);
+            Debug.DrawLine(from, to, Color.green);
+        }
     }
     //------------------attck animation------------------------
     IEnumerator Attack()
     {
-        //player.GetComponent<Player>().TakeDamage(damage);
-
         Vector2 originalPosition = transform.position;
 
         Vector2 targetPosition = mTarget.position;
@@ -211,7 +254,7 @@ public class Enemy : MonoBehaviour, IDamageable
                     findTarget = true;
                 }
             }
-           
+
         }
     }
 
@@ -272,52 +315,45 @@ public class Enemy : MonoBehaviour, IDamageable
 
     void GetPath()
     {
-       if(path.Search((Vector2)transform.position, (Vector2)mTarget.position))
+        if (path.Search((Vector2)transform.position, (Vector2)mTarget.position))
         {
             findPath = true;
+            search = true;
+            closedList.Clear();
             closedList = path.CloseList;
+            pathcount = 0;
         }
 
         if (findPath)
         {
             mPath.Clear();
-
+            nextNodes.Clear();
             // Beginning from the end node, trace back to it's parent one at a time
-            var node = nodePath.GetNode((int)mTarget.position.x, (int)mTarget.position.y);
-            while (node != null)
+            for (int i =0; i< closedList.Count;i++)
             {
-                mPath.Add(node);
-                node = node.parent;
+                if(closedList[i].r == (int)mTarget.position.x && closedList[i].c == (int)mTarget.position.y)
+                {
+                    NodePath.Node path = closedList[i];
+                    while (path != null)
+                    {
+                        mPath.Add(path);
+                        path = path.parent;
+                    }
+                    break;
+                }
             }
-
             // Once we recorded all the position from end to start, we need to reverse
             // them to get the correct order
             mPath.Reverse();
         }
-
+        
         foreach (var node in mPath)
         {
             Vector3 position = new Vector3(node.r, node.c, 0);
             nextNodes.Add(position);
         }
-
-  
     }
 
-    void CheckPath()
-    {
-        for (int i =0; i < nextNodes.Count; ++i)
-        {
-            if (transform.position == nextNodes[i])
-            {
-                if (i + 1 != nextNodes.Count)
-                {
-                    nextNode = nextNodes[i + 1];
-                }
-            }
-        } 
-
-    }
     void OnDrawGizmosSelected()
     {
         // Draw a yellow sphere at the transform's position
@@ -325,15 +361,4 @@ public class Enemy : MonoBehaviour, IDamageable
         Gizmos.DrawWireSphere(transform.position, enemyState.DetectRange);
         // Gizmos.DrawSphere(transform.position, enemyState.DetectRange);
     }
-
-    private void OnDrawGizmos()
-    {
-        for (int i = 0; i + 1 < mPath.Count; ++i)
-        {
-            var from = new Vector3(mPath[i].r, mPath[i].c);
-            var to = new Vector3(mPath[i + 1].r, mPath[i + 1].c);
-            Gizmos.DrawLine(from, to);
-        }
-    }
-
 }

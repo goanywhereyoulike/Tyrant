@@ -35,7 +35,7 @@ public class WeaponWheelButton : MonoBehaviour
     public void DeSelect()
     {
         selected = false;
-        WeaponWheelController.weaponID = 0;
+        WeaponWheelController.weaponID = id;
     }
     public void HoverEnter()
     {

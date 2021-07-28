@@ -20,7 +20,7 @@ public class Inventory : MonoBehaviour
 
     public int maxPickUpAmount = 0;
     public int maxInventoryAmount = 0;
-    private bool isFull = false;
+    public bool isFull = false;
 
     public bool AddPickUp(PickUp pickUp)
     {

@@ -161,6 +161,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: e5c4dcd8e2ff27b43b1d8638def4c920, type: 2}
   - {fileID: 11400000, guid: b98cf827f1f74b045a6fe86a23c139a9, type: 2}
   Coinnumber: {fileID: 7645187406703499282}
+  Tower1Price: {fileID: 6595899175323000821}
+  Tower2Price: {fileID: 5932189627997089876}
+  Tower3Price: {fileID: 6859062227149231214}
   PreTowerSprite: {fileID: 807064745021879944}
   PreCannonTowerSprite: {fileID: 6459476814530280923}
   PreChainTowerSprite: {fileID: 60144860771152229}

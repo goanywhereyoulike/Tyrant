@@ -66,7 +66,7 @@ MonoBehaviour:
     shouldExpand: 0
   - tagName: ChainTowerBullet
     objectToPool: {fileID: 6251904807959551005, guid: 0d0e4d67fc628e648821dea768c628f1, type: 3}
-    amountToPool: 1
+    amountToPool: 10
     shouldExpand: 0
 --- !u!1 &3980476720704669719
 GameObject:

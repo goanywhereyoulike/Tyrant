@@ -5,12 +5,22 @@ using UnityEngine.UI;
 
 public class TowerManager : MonoBehaviour
 {
+
     PlayerMovement player;
     SpriteRenderer TowerSprite;
     public List<TowerTemplate> Towers = new List<TowerTemplate>();
 
     [SerializeField]
     private Text Coinnumber;
+
+    [SerializeField]
+    private Text Tower1Price;
+
+    [SerializeField]
+    private Text Tower2Price;
+
+    [SerializeField]
+    private Text Tower3Price;
 
     [SerializeField]
     Image PreTowerSprite;
@@ -50,6 +60,9 @@ public class TowerManager : MonoBehaviour
             IsAbleToSet.Add(false);
         }
 
+        Tower1Price.text = Towers[0].price.ToString();
+        Tower2Price.text = Towers[1].price.ToString();
+        Tower3Price.text = Towers[2].price.ToString();
     }
 
     void DestroyTower()

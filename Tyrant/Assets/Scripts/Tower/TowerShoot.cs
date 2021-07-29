@@ -1,9 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TowerShoot : MonoBehaviour
 {
+    [SerializeField]
+    Slider ColdDown;
+
+    bool IsCoolDown = false;
+   
     private GameObject currentTarget = null;
     Tower tower;
     PlayerMovement player;
@@ -12,6 +18,9 @@ public class TowerShoot : MonoBehaviour
     public GameObject BulletPrefab;
     public Transform TargetPos;
 
+    public float BulletLimit = 10;
+    private float Bulletnum;
+    public float CoolDownSpeed;
 
 
     private bool IsChainTower;
@@ -20,7 +29,6 @@ public class TowerShoot : MonoBehaviour
     public float BulletForce = 20.0f;
     public float FireRate;
     float WaitFire = 0.0f;
-    public int BulletNumber;
 
     public Animator animator;
     private Vector3 direction;
@@ -29,23 +37,59 @@ public class TowerShoot : MonoBehaviour
     {
         tower = GetComponent<Tower>();
         IsChainTower = false;
+        IsCoolDown = false;
+        Bulletnum = 0.0f;
+        ColdDown.maxValue = BulletLimit;
+        ColdDown.value = float.IsNaN(Bulletnum) ? 0f : Bulletnum;
+        ColdDown.fillRect.transform.GetComponent<Image>().color = Color.yellow;
     }
+    public void UpdateSlider()
+    {
 
+        ColdDown.value += 0f;
+
+
+    }
     // Update is called once per frame
     void Update()
     {
+        ColdDown.maxValue = BulletLimit;
         UpdateTarget();
         WaitFire += Time.deltaTime;
+        if (IsCoolDown)
+        {
+            ColdDown.fillRect.transform.GetComponent<Image>().color = Color.red;
+
+            Bulletnum -= CoolDownSpeed * Time.deltaTime;
+            ColdDown.value = Bulletnum;
+
+            if (Bulletnum <= 0)
+            {
+                Bulletnum = 0;
+                ColdDown.value = Bulletnum;
+                ColdDown.fillRect.transform.GetComponent<Image>().color = Color.yellow;
+                IsCoolDown = false;
+            }
+
+
+        }
         if (currentTarget)
         {
-          
+
             float Distance = (currentTarget.transform.position - transform.position).sqrMagnitude;
             if (Distance < DistanceToShoot * DistanceToShoot)
             {
-                if (WaitFire > FireRate) //Fires gun everytime timer exceeds firerate
+                if (WaitFire > FireRate && !IsCoolDown) //Fires gun everytime timer exceeds firerate
                 {
                     WaitFire = 0.0f;
+                    Bulletnum++;
+                    ColdDown.value = Bulletnum;
+                    if (Bulletnum >= BulletLimit)
+                    {
+                        IsCoolDown = true;
+                    }
                     Fire();
+
                 }
             }
         }
@@ -53,10 +97,18 @@ public class TowerShoot : MonoBehaviour
 
     }
 
+    void BulletColdDown()
+    {
+        Bulletnum--;
+        ColdDown.value = Bulletnum;
+    }
+
+
+
     void Fire()
     {
         Vector3 Direction = (currentTarget.transform.position - ShootPoint.position).normalized;
-        GameObject bullet= ObjectPoolManager.Instance.GetPooledObject("TowerBullet");
+        GameObject bullet = ObjectPoolManager.Instance.GetPooledObject("TowerBullet");
         if (gameObject.GetComponent<TowerDisplay>().tower.type == "CannonTower")
         {
             bullet = ObjectPoolManager.Instance.GetPooledObject("CannonTowerBullet");
@@ -82,7 +134,7 @@ public class TowerShoot : MonoBehaviour
                 crb.velocity = NewDirection.normalized * BulletForce;
 
             }
-            else 
+            else
             {
                 bullet.transform.position = ShootPoint.position + Direction;
                 bullet.SetActive(true);

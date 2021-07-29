@@ -7,9 +7,12 @@ public class TowerDisplay : MonoBehaviour
 {
     // Start is called before the first frame update
     public TowerTemplate tower;
+
     void Start()
     {
         gameObject.GetComponent<Tower>().Health = tower.health;
+        gameObject.GetComponent<TowerShoot>().BulletLimit = tower.BulletLimit;
+        gameObject.GetComponent<TowerShoot>().CoolDownSpeed = tower.CoolDownSpeed;
         gameObject.GetComponent<TowerShoot>().DistanceToShoot = tower.distanceToShoot;
         gameObject.GetComponent<TowerShoot>().FireRate = tower.fireRate;
         gameObject.GetComponent<TowerShoot>().BulletForce = tower.bulletForce;
@@ -21,7 +24,8 @@ public class TowerDisplay : MonoBehaviour
         {
             gameObject.GetComponent<CannonTowerBullet>().bulletDamage = tower.bulletDamage;
         }
-       
-    }
+
+
+}
 
 }

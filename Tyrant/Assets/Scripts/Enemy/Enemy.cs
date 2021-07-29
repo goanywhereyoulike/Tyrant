@@ -67,6 +67,8 @@ public class Enemy : MonoBehaviour, IDamageable ,GameObjectsLocator.IGameObjectR
         mMainTarget = mTarget;
         detectObject();
         RegisterToLocator();
+        var mainTarget = GameObjectsLocator.Instance.Get<target>();
+        mMainTarget = mainTarget[0].transform;
     }
 
     protected virtual void Update()
@@ -90,13 +92,15 @@ public class Enemy : MonoBehaviour, IDamageable ,GameObjectsLocator.IGameObjectR
             findTarget = false;
 
         //check is base in the range, then attack base first
-        mainTargetDistance = Vector3.Distance(transform.position, mMainTarget.position);
-        if (IsTargetInRange(mainTargetDistance))
+        if (mMainTarget != null)
         {
-            mTarget = mMainTarget;
-            findTarget = true;
+            mainTargetDistance = Vector3.Distance(transform.position, mMainTarget.position);
+            if (IsTargetInRange(mainTargetDistance))
+            {
+                mTarget = mMainTarget;
+                findTarget = true;
+            }
         }
-
 
         //check enemy findtarget
         if (findTarget == false)

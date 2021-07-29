@@ -14,14 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyState:
     maxHealth: 50
-    maxDamage: 0
+    maxDamage: 5
     maxMoveSpeed: 3
     mass: 0
     timeBetweenAttacks: 3
     stopDistance: 7
     attackSpeed: 1
     detectRange: 5
-  mTarget: {fileID: 8727390661197903367, guid: 4a69fdb522e96b74fb5462a98d469469, type: 3}
+  mTarget: {fileID: 0}
 --- !u!1001 &1365172150062200330
 PrefabInstance:
   m_ObjectHideFlags: 0

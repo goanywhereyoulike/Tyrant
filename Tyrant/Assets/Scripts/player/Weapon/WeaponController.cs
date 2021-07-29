@@ -29,6 +29,13 @@ public class WeaponController : MonoBehaviour
 
     public Weapon CurrentWeapon { get; private set; }
 
+    public void ChangeWeapon(int weaponIndex)
+    {
+        CurrentWeapon.gameObject.SetActive(false);
+        CurrentWeapon = weaponObjects[weaponIndex].weaponObject;
+        CurrentWeapon.gameObject.SetActive(true);
+    }
+
     void Awake()
     {
         CurrentWeapon = weaponObjects[0].weaponObject;

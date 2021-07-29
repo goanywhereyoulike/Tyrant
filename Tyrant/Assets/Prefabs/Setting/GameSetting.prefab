@@ -114,6 +114,8 @@ MonoBehaviour:
     keyCode: 99
   - name: drop
     keyCode: 118
+  - name: WeaponWheelToggle
+    keyCode: 9
   axesLibrary:
   - name: Vertical
     positiveButton: 119

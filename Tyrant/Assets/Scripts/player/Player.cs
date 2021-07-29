@@ -31,6 +31,8 @@ public class Player : MonoBehaviour , IDamageable
     [SerializeField]
     private PlayerUI playerUI = null;
 
+    public int coin;
+
     void Start()
     {
         playerMovement = GetComponent<PlayerMovement>();

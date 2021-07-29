@@ -122,4 +122,16 @@ MonoBehaviour:
     keyCode: 324
   - name: PreBuildChainTower
     keyCode: 51
-  axesLibrary: []
+  - name: WeaponWheelToggle
+    keyCode: 9
+  axesLibrary:
+  - name: Horizontal
+    positiveButton: 100
+    negativeButton: 97
+    step: 0.01
+    gravity: 0.001
+  - name: Vertical
+    positiveButton: 119
+    negativeButton: 115
+    step: 0.01
+    gravity: 0.001

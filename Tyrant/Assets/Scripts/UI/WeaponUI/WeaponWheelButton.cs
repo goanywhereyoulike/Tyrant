@@ -4,6 +4,8 @@ using TMPro;
 
 public class WeaponWheelButton : MonoBehaviour
 {
+    [SerializeField]
+    private WeaponWheelController weaponWheelController = null;
     public int id;
     private Animator animator;
     public string itemName;
@@ -24,14 +26,14 @@ public class WeaponWheelButton : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(selected&& WeaponWheelController.weaponID != 0)
+        if(selected&& weaponWheelController.WeaponID != 0)
         {
             color.a = 1f;
             selectItem.color = color;
             selectItem.sprite = icon;
             itemText.text = itemName;
         }
-        if ( WeaponWheelController.weaponID ==0)
+        if (weaponWheelController.WeaponID ==0)
         {
             color.a = 0f;
             selectItem.color=  color;
@@ -42,13 +44,13 @@ public class WeaponWheelButton : MonoBehaviour
     {
         selected = true;
         Debug.Log("Select  " + selected);
-        WeaponWheelController.weaponID = id;
+        weaponWheelController.WeaponID = id;
     }
     public void DeSelect()
     {
         selected = false;
         Debug.Log("DeSelect  "+selected);
-        WeaponWheelController.weaponID = 0;
+        //weaponWheelController.WeaponID = 0;
     }
     public void HoverEnter()
     {

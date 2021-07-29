@@ -111,6 +111,14 @@ MonoBehaviour:
     objectToPool: {fileID: 8066012905534961614, guid: d2fd0f8a41f9f7e40bea9e35ad21ab2c, type: 3}
     amountToPool: 10
     shouldExpand: 1
+  - tagName: FlamethrowerBullet
+    objectToPool: {fileID: 6682998411512925883, guid: a231fc6116478c345a0df40430bef151, type: 3}
+    amountToPool: 10
+    shouldExpand: 1
+  - tagName: LaserBullet
+    objectToPool: {fileID: 6682998411512925883, guid: 298269f69cbf0b1488459310d9943cba, type: 3}
+    amountToPool: 10
+    shouldExpand: 1
 --- !u!1 &3980476720704669719
 GameObject:
   m_ObjectHideFlags: 0

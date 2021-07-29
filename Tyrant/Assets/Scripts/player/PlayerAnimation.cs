@@ -82,8 +82,41 @@ public class PlayerAnimation : MonoBehaviour
 
         if (IsMoving)
         {
-            animator.SetFloat("xMouth", difference.x);
-            animator.SetFloat("yMouth", difference.y);
+            switch(CurrentFacing)
+            {
+                case PlayerFacing.Left:
+                    animator.SetFloat("xMouth", -1f);
+                    animator.SetFloat("yMouth", 0f);
+                    break;
+                case PlayerFacing.Right:
+                    animator.SetFloat("xMouth", 1f);
+                    animator.SetFloat("yMouth", 0f);
+                    break;
+                case PlayerFacing.Up:
+                    animator.SetFloat("xMouth", 0f);
+                    animator.SetFloat("yMouth", 1f);
+                    break;
+                case PlayerFacing.Down:
+                    animator.SetFloat("xMouth", 0f);
+                    animator.SetFloat("yMouth", -1f);
+                    break;
+                case PlayerFacing.DiagDownLeft:
+                    animator.SetFloat("xMouth", -1f);
+                    animator.SetFloat("yMouth", -1f);
+                    break;
+                case PlayerFacing.DiagDownRight:
+                    animator.SetFloat("xMouth", 1f);
+                    animator.SetFloat("yMouth", -1f);
+                    break;
+                case PlayerFacing.DiagUpLeft:
+                    animator.SetFloat("xMouth", -1f);
+                    animator.SetFloat("yMouth", 1f);
+                    break;
+                case PlayerFacing.DiagUpRight:
+                    animator.SetFloat("xMouth", 1f);
+                    animator.SetFloat("yMouth", 1f);
+                    break;
+            }
         }
         else
         {

@@ -6,10 +6,8 @@ public abstract class Bullet : MonoBehaviour
 {
     public float Damage { get; set; }
     public float BulletShootingSpeed { get; set; }
-    public float MovingRange { get; set; }
     public Vector3 Direction { get; set; }
     public Vector3 StartPosition { get; set; }
-
     protected virtual void BulletMoving()
     {
 

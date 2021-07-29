@@ -15,7 +15,7 @@ public class Seeking : AiBehaviours
     }
     override public Vector3 behaviour(Enemy enemy) 
     {
-        Vector3 ToTarget = enemy.nextNode - enemy.transform.position;
+        Vector3 ToTarget = enemy.mTarget.position - enemy.transform.position;
         ToTarget.Normalize();
         Vector3 desiredVelocity = ToTarget * enemy.MoveSpeed * Time.deltaTime;
         Vector3 velocity = enemy.EnemyState.velocity;

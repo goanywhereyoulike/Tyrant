@@ -19,8 +19,6 @@ public class Playercombat : MonoBehaviour
 
     void Update()
     {
-       
-
         if(Time.time>= timeBtwAttack)
         { 
              if (InputManager.Instance.GetKeyDown("Melee"))

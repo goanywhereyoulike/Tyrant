@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class Tower : MonoBehaviour, IDamageable
 {
     // Start is called before the first frame update
-
+   
     public GameObject DestroyedTower;
 
     [SerializeField]
@@ -73,4 +73,15 @@ public class Tower : MonoBehaviour, IDamageable
         Healthbar.value = Health;
         Debug.Log("Tower"+health);
     }
+
+    private void OnMouseEnter()
+    {
+        gameObject.GetComponent<SpriteRenderer>().color = Color.gray;
+    }
+
+    private void OnMouseExit()
+    {
+        gameObject.GetComponent<SpriteRenderer>().color = Color.white;
+    }
+
 }

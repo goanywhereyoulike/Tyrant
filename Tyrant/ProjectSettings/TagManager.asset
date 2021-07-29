@@ -9,6 +9,8 @@ TagManager:
   - Tower
   - Enemy
   - Base
+  - Weapon
+  - Chain
   layers:
   - Default
   - TransparentFX
@@ -19,8 +21,8 @@ TagManager:
   - Tower
   - Player
   - Enemy
-  - 
-  - 
+  - MiniMap
+  - Draggable
   - 
   - 
   - 

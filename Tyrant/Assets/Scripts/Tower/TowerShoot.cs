@@ -1,9 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TowerShoot : MonoBehaviour
 {
+    [SerializeField]
+    Slider ColdDown;
+
+    bool IsCoolDown = false;
+   
     private GameObject currentTarget = null;
     Tower tower;
     PlayerMovement player;
@@ -11,10 +17,17 @@ public class TowerShoot : MonoBehaviour
     private Vector2 ShootOffset;
     public GameObject BulletPrefab;
     public Transform TargetPos;
+
+    public float BulletLimit = 10;
+    private float Bulletnum;
+    public float CoolDownSpeed;
+
+
+    private bool IsChainTower;
+
     public float DistanceToShoot;
     public float BulletForce = 20.0f;
-    [SerializeField]
-    float FireRate;
+    public float FireRate;
     float WaitFire = 0.0f;
 
     public Animator animator;
@@ -23,23 +36,60 @@ public class TowerShoot : MonoBehaviour
     void Start()
     {
         tower = GetComponent<Tower>();
+        IsChainTower = false;
+        IsCoolDown = false;
+        Bulletnum = 0.0f;
+        ColdDown.maxValue = BulletLimit;
+        ColdDown.value = float.IsNaN(Bulletnum) ? 0f : Bulletnum;
+        ColdDown.fillRect.transform.GetComponent<Image>().color = Color.yellow;
     }
+    public void UpdateSlider()
+    {
 
+        ColdDown.value += 0f;
+
+
+    }
     // Update is called once per frame
     void Update()
     {
+        ColdDown.maxValue = BulletLimit;
         UpdateTarget();
         WaitFire += Time.deltaTime;
+        if (IsCoolDown)
+        {
+            ColdDown.fillRect.transform.GetComponent<Image>().color = Color.red;
+
+            Bulletnum -= CoolDownSpeed * Time.deltaTime;
+            ColdDown.value = Bulletnum;
+
+            if (Bulletnum <= 0)
+            {
+                Bulletnum = 0;
+                ColdDown.value = Bulletnum;
+                ColdDown.fillRect.transform.GetComponent<Image>().color = Color.yellow;
+                IsCoolDown = false;
+            }
+
+
+        }
         if (currentTarget)
         {
-          
+
             float Distance = (currentTarget.transform.position - transform.position).sqrMagnitude;
             if (Distance < DistanceToShoot * DistanceToShoot)
             {
-                if (WaitFire > FireRate) //Fires gun everytime timer exceeds firerate
+                if (WaitFire > FireRate && !IsCoolDown) //Fires gun everytime timer exceeds firerate
                 {
                     WaitFire = 0.0f;
+                    Bulletnum++;
+                    ColdDown.value = Bulletnum;
+                    if (Bulletnum >= BulletLimit)
+                    {
+                        IsCoolDown = true;
+                    }
                     Fire();
+
                 }
             }
         }
@@ -47,18 +97,54 @@ public class TowerShoot : MonoBehaviour
 
     }
 
+    void BulletColdDown()
+    {
+        Bulletnum--;
+        ColdDown.value = Bulletnum;
+    }
+
+
+
     void Fire()
     {
         Vector3 Direction = (currentTarget.transform.position - ShootPoint.position).normalized;
         GameObject bullet = ObjectPoolManager.Instance.GetPooledObject("TowerBullet");
+        if (gameObject.GetComponent<TowerDisplay>().tower.type == "CannonTower")
+        {
+            bullet = ObjectPoolManager.Instance.GetPooledObject("CannonTowerBullet");
+        }
+
+        if (gameObject.GetComponent<TowerDisplay>().tower.type == "ChainTower")
+        {
+            bullet = ObjectPoolManager.Instance.GetPooledObject("ChainTowerBullet");
+            IsChainTower = true;
+        }
         if (bullet)
         {
-            bullet.transform.position = ShootPoint.position + Direction;
-            bullet.SetActive(true);
-            //GameObject bullet = Instantiate(BulletPrefab, ShootPoint.position + Direction, ShootPoint.rotation);
-            Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
+            if (IsChainTower)
+            {
+                bullet.transform.position = tower.transform.position;
+                bullet.SetActive(true);
+                ChainTowerBullet Chainbullet = bullet.GetComponentInChildren<ChainTowerBullet>();
+                Rigidbody2D crb = Chainbullet.gameObject.GetComponent<Rigidbody2D>();
+                Vector3 cDirection = (transform.position - Chainbullet.transform.position).normalized;
+                Vector3 NewDirection = cDirection;
+                NewDirection.x = 1.0f;
+                NewDirection.y = -cDirection.x / cDirection.y;
+                crb.velocity = NewDirection.normalized * BulletForce;
 
-            rb.AddForce(Direction * BulletForce, ForceMode2D.Impulse);
+            }
+            else
+            {
+                bullet.transform.position = ShootPoint.position + Direction;
+                bullet.SetActive(true);
+                //GameObject bullet = Instantiate(BulletPrefab, ShootPoint.position + Direction, ShootPoint.rotation);
+                Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
+
+                rb.AddForce(Direction * BulletForce, ForceMode2D.Impulse);
+
+            }
+
         }
 
 

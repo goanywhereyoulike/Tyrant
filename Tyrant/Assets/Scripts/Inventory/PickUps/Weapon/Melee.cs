@@ -9,7 +9,7 @@ public class Melee : PickUp
 
         if (other.gameObject.tag == "Player")
         {
-            Inventory inventory = other.gameObject.GetComponent<Player>().mInventory;
+            Inventory inventory = other.gameObject.GetComponent<Player>().MyInventory;
             inventory.AddPickUp(this);
             gameObject.SetActive(false);
         }

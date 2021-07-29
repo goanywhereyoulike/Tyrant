@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Gun : PickUp
 {
-  
     private Player player;
     [SerializeField]
     private Transform firePosition;
@@ -19,10 +18,9 @@ public class Gun : PickUp
     {
         if (InputManager.Instance.GetKeyDown("pick") && CanBePicked)
         {
-            player.mInventory.AddPickUp(this);
+            player.MyInventory.AddPickUp(this);
             gameObject.SetActive(false);
             CanBePicked = false;
         }
     }
-    
 }

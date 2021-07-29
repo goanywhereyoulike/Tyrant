@@ -1,24 +1,48 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+
+[RequireComponent(typeof(PlayerMovement))]
 public class Player : MonoBehaviour , IDamageable
 {
     [SerializeField]
-    private float health;
-    [SerializeField]
-    private float maxHealth;
-    [SerializeField]
-    private Slider healthBar;
-    public Inventory mInventory { get; set; }
-    public Gun mGun { get; set; }
+    private PlayerStates playerStates;
 
-    void Awake()
+    [SerializeField]
+    private Inventory myInventory = null;
+    public Inventory MyInventory { get => myInventory; set => myInventory = value; }
+
+    public Action healthChanged = null;
+
+    private float health;
+    public float Health
     {
-        mInventory = GetComponent<Inventory>();
-        health = maxHealth;
-        healthBar.maxValue = maxHealth;
-        healthBar.value = health;
+        get => health;
+        private set
+        {
+            health = value;
+            healthChanged?.Invoke();
+        }
+    }
+
+    private PlayerMovement playerMovement = null;
+
+    [SerializeField]
+    private PlayerUI playerUI = null;
+
+    void Start()
+    {
+        playerMovement = GetComponent<PlayerMovement>();
+        playerStates.MoveSpeedChanged += () => playerMovement.MoveSpeed = playerStates.MoveSpeed;
+        playerStates.MoveSpeedChanged?.Invoke();
+
+        healthChanged += () => playerUI.HealthChanged(Health);
+        healthChanged.Invoke();
+        playerStates.MaxHealthChanged += () => playerUI.MaxHealthChanged(playerStates.MaxHealth);
+        playerStates.MaxHealthChanged.Invoke();
+
+        Health = playerStates.MaxHealth;
     }
 
     // Update is called once per frame
@@ -26,40 +50,37 @@ public class Player : MonoBehaviour , IDamageable
     {
         if (InputManager.Instance.GetKeyDown("healthpotion"))
         {
-            HealthPotion healthPotion = mInventory.GetPickUp("health potion") as HealthPotion;
+            HealthPotion healthPotion = MyInventory.GetPickUp("health potion") as HealthPotion;
             if (healthPotion)
             {
-                health += healthPotion.AddHealth;
-                mInventory.DeletePickUp(healthPotion);
+                Health += healthPotion.AddHealth;
+                MyInventory.DeletePickUp(healthPotion);
             }
         }
-        Debug.Log(health);
-        healthBar.value = health;
+
         Vector3 mousePosition = Input.mousePosition;
         mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
         mousePosition.z = 0;
         if (InputManager.Instance.GetKeyDown("drop"))
         {
-            mInventory.DropPickUp(transform.position, mInventory.GetPickUp("health potion"));
+            MyInventory.DropPickUp(transform.position, MyInventory.GetPickUp("health potion"));
         }
     }
 
-
     public void TakeDamage(float damage)
     {
-        health -= damage;
-        if (health < 0)
+        Health -= damage;
+        if (Health < 0)
         {
-
-            health = 0;
+            Health = 0;
         }
     }
     public void HealthRecover(float recover)
     {
-        health += recover;
-        if (health > maxHealth)
+        Health += recover;
+        if (Health > playerStates.MaxHealth)
         {
-            health = maxHealth;
+            Health = playerStates.MaxHealth;
         }
 
     }

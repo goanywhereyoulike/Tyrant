@@ -157,4 +157,12 @@ public class TowerShoot : MonoBehaviour
 
 
     }
+
+    void OnDrawGizmosSelected()
+    {
+        // Draw a yellow sphere at the transform's position
+        Gizmos.color = new Color(0, 1, 1, 1);
+        Gizmos.DrawWireSphere(transform.position, DistanceToShoot);
+        // Gizmos.DrawSphere(transform.position, enemyState.DetectRange);
+    }
 }

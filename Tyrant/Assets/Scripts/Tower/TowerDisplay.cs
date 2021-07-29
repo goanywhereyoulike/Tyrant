@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class TowerDisplay : MonoBehaviour
 {
-    // Start is called before the first frame update
+    // Start is called before the first frame update 
     public TowerTemplate tower;
 
     void Start()

@@ -43,6 +43,7 @@ public class Player : MonoBehaviour , IDamageable
         healthChanged.Invoke();
         playerStates.MaxHealthChanged += () => playerUI.MaxHealthChanged(playerStates.MaxHealth);
         playerStates.MaxHealthChanged.Invoke();
+        StartCoroutine(Coin());
 
         Health = playerStates.MaxHealth;
     }
@@ -69,6 +70,14 @@ public class Player : MonoBehaviour , IDamageable
         }
     }
 
+    IEnumerator Coin()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(1.0f);
+            coin += 5;
+        }
+    }
     public void TakeDamage(float damage)
     {
         Health -= damage;

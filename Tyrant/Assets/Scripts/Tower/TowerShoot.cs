@@ -108,17 +108,28 @@ public class TowerShoot : MonoBehaviour
     void Fire()
     {
         Vector3 Direction = (currentTarget.transform.position - ShootPoint.position).normalized;
+        TowerDisplay towerInfo = gameObject.GetComponent<TowerDisplay>();
         GameObject bullet = ObjectPoolManager.Instance.GetPooledObject("TowerBullet");
-        if (gameObject.GetComponent<TowerDisplay>().tower.type == "CannonTower")
+        if (towerInfo)
         {
-            bullet = ObjectPoolManager.Instance.GetPooledObject("CannonTowerBullet");
+            if (towerInfo.tower.type == "Basic")
+            {
+                bullet.GetComponent<TowerBullet>().bulletDamage = towerInfo.tower.bulletDamage;
+            }
+            if (towerInfo.tower.type == "CannonTower")
+            {
+                bullet = ObjectPoolManager.Instance.GetPooledObject("CannonTowerBullet");
+                bullet.GetComponent<CannonTowerBullet>().bulletDamage = towerInfo.tower.bulletDamage;
+            }
+
+            if (towerInfo.tower.type == "ChainTower")
+            {
+                bullet = ObjectPoolManager.Instance.GetPooledObject("ChainTowerBullet");
+                bullet.GetComponent<ChainTowerBullet>().bulletDamage = towerInfo.tower.bulletDamage;
+                IsChainTower = true;
+            }
         }
 
-        if (gameObject.GetComponent<TowerDisplay>().tower.type == "ChainTower")
-        {
-            bullet = ObjectPoolManager.Instance.GetPooledObject("ChainTowerBullet");
-            IsChainTower = true;
-        }
         if (bullet)
         {
             if (IsChainTower)

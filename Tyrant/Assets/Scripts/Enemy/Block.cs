@@ -7,9 +7,10 @@ using UnityEngine.Tilemaps;
 public class Block : MonoBehaviour, GameObjectsLocator.IGameObjectRegister
 {
     public Tilemap tilemap;
-    Vector3 worldPosition;
+    Vector2 wPosition;
 
-    public List<Vector3> WorldPosition;
+    public List<Vector2> worldPosition;
+    public List<Vector2> gridPosition;
     public List<Vector2> blockObject;
 
     private void Awake()
@@ -17,23 +18,27 @@ public class Block : MonoBehaviour, GameObjectsLocator.IGameObjectRegister
         BoundsInt bounds = tilemap.cellBounds;
         TileBase[] tiles = tilemap.GetTilesBlock(bounds);
 
-        for (int x = 0; x < bounds.size.x; x++)
+        for (int y = 0; y < bounds.size.y; y++)
         {
-            worldPosition.x = bounds.xMin + x;
-            
-            for (int y = 0; y < bounds.size.y; y++)
+            wPosition.y = bounds.yMin + y;
+            for (int x = 0; x < bounds.size.x; x++)
             {
-                worldPosition.y = bounds.yMin + y;
-                WorldPosition.Add(worldPosition);
+                wPosition.x = bounds.xMin + x;
+                worldPosition.Add(wPosition);
+               // Debug.Log("boundx:" + wPosition.x + " bounds:" + wPosition.y);
+                gridPosition.Add(new Vector2(x,y));
                 // x + y * bounds.size.x to know the tile position in array
                 TileBase tile = tiles[x + y * bounds.size.x];
                 if (tile != null)
                 {
-                    blockObject.Add(new Vector2(worldPosition.x, worldPosition.y));
-                    Debug.Log("x:" + worldPosition.x + " y:" + worldPosition.y + " tile:" + tile.name);
+                    blockObject.Add(new Vector2(wPosition.x, wPosition.y));
+                    blockObject.Add(new Vector2(wPosition.x+1, wPosition.y));
+                    blockObject.Add(new Vector2(wPosition.x+1, wPosition.y+1));
+                    blockObject.Add(new Vector2(wPosition.x, wPosition.y+1));
+                   // Debug.Log("x:" + wPosition.x + " y:" + wPosition.y + " tile:" + tile.name);
                 }
             }
-            Debug.Log("boundx:" + bounds.xMin + " bounds:" + bounds.yMin);
+            Debug.Log("boundx:" + bounds.size.x + " bounds:" + bounds.size.y);
         }
         RegisterToLocator();
     }

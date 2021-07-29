@@ -38,6 +38,8 @@ public class SpawnArea : MonoBehaviour, GameObjectsLocator.IGameObjectRegister
 
         spMin.x = transform.position.x - spWidth;
         spMin.y = transform.position.y - spHeight;
+
+        Debug.DrawLine(spMin, spMax, Color.green);
     }
 
     private void OnDrawGizmos()

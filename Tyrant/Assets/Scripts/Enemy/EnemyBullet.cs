@@ -30,12 +30,12 @@ public class EnemyBullet : MonoBehaviour
         a = shootPosition.x - transform.position.x;
         b = shootPosition.y - transform.position.y;
         distance = Mathf.Sqrt((a * a) + (b * b));
-        if (distance > range)
+        if ((Vector2)transform.position == Position)
         {
             gameObject.SetActive(false);
         }
         speed = bulletSpeed * Time.deltaTime;
-        transform.position += Direction * speed;
+        transform.position = Vector2.MoveTowards(transform.position, Position, speed);
     }
 
     void OnTriggerEnter2D(Collider2D collider)

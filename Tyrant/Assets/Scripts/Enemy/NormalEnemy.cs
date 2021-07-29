@@ -49,10 +49,9 @@ public class NormalEnemy : Enemy
                     Targets = collider.gameObject.GetComponentInChildren<IDamageable>();
                 }
                 Targets.TakeDamage(damage);
-
+                Debug.Log("attack");
             }
         }
-        Debug.Log("attack");
     }
     void OnDrawGizmosSelected()
     {

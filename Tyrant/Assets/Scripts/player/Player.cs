@@ -35,6 +35,7 @@ public class Player : MonoBehaviour , IDamageable
 
     void Start()
     {
+        StartCoroutine(Coin());
         playerMovement = GetComponent<PlayerMovement>();
         playerStates.MoveSpeedChanged += () => playerMovement.MoveSpeed = playerStates.MoveSpeed;
         playerStates.MoveSpeedChanged?.Invoke();
@@ -69,6 +70,14 @@ public class Player : MonoBehaviour , IDamageable
         }
     }
 
+    IEnumerator Coin()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(1.0f);
+            coin += 5;
+        }
+    }
     public void TakeDamage(float damage)
     {
         Health -= damage;

@@ -59,6 +59,19 @@ public class InputManager : MonoBehaviour
             axesNegativeButtonValues.Add(axes.name, 0f);
         }
     }
+    public bool SetKey(string keyName, KeyCode keyCode)
+    {
+        if(keyCodeDict.ContainsKey(keyName))
+        {
+            keyCodeDict[keyName] = keyCode;
+            return true;
+        }
+        else
+        {
+            Debug.LogError($"InputManager: Cannot find '{keyName}' key...");
+        }
+        return false;
+    }
 
     public bool GetKey(string keyName)
     {

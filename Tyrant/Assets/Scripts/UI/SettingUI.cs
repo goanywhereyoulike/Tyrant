@@ -16,7 +16,7 @@ public class SettingUI : MonoBehaviour
     {
         for(int i=0;i<InputManager.Instance.KeyCodeDict.Count;++i)
         {
-           KeyBindUI key=Instantiate(keyBindUIPrefab);
+            KeyBindUI key=Instantiate(keyBindUIPrefab);
             key.keycode.GetComponentInChildren<Text>().text = InputManager.Instance.KeyCodeDict.ElementAt(i).Value.ToString();
             key.keyName.text = InputManager.Instance.KeyCodeDict.ElementAt(i).Key.ToString();
             key.transform.SetParent(content.transform);

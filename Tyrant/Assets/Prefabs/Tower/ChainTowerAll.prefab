@@ -948,7 +948,7 @@ MonoBehaviour:
   TargetPos: {fileID: 0}
   BulletLimit: 0
   CoolDownSpeed: 0
-  DistanceToShoot: 10
+  DistanceToShoot: 0
   BulletForce: 20
   FireRate: 0.1
   animator: {fileID: 5927489026001596291}

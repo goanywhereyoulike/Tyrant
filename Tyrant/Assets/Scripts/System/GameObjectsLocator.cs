@@ -85,13 +85,13 @@ public class GameObjectsLocator : MonoBehaviour
     //use for test
     void Update()
     {
-        if (Input.GetKey(KeyCode.Space))
-        {
-            var test = GameObjectsLocator.Instance.Get<SpawnArea>();
-            foreach (var item in test)
-            {
-                Debug.Log(item.name);
-            }
-        }
+        //if (Input.GetKey(KeyCode.Space))
+        //{
+        //    var test = GameObjectsLocator.Instance.Get<SpawnArea>();
+        //    foreach (var item in test)
+        //    {
+        //        Debug.Log(item.name);
+        //    }
+        //}
     }
 }

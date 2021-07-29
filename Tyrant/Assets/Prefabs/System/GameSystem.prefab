@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9124491019645460796}
-  - component: {fileID: 7637264949553362596}
+  - component: {fileID: 5936875037216750401}
   m_Layer: 0
   m_Name: GameObjectLocator
   m_TagString: Untagged
@@ -31,7 +31,7 @@ Transform:
   m_Father: {fileID: 3980476720704669718}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7637264949553362596
+--- !u!114 &5936875037216750401
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

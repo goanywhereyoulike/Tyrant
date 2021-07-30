@@ -17,7 +17,7 @@ public class HealthPotion : PickUp
     {
         if (InputManager.Instance.GetKeyDown("pick") && CanBePicked)
         {
-            player.mInventory.AddPickUp(this);
+            player.MyInventory.AddPickUp(this);
             gameObject.SetActive(false);
         }
     }

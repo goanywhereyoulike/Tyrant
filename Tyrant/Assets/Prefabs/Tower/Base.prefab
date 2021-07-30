@@ -502,7 +502,7 @@ GameObject:
   - component: {fileID: 5532131877928631609}
   m_Layer: 0
   m_Name: Base
-  m_TagString: Tower
+  m_TagString: Base
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -586,6 +586,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerRecoverEffectPrefab: {fileID: 5849892017727661263, guid: 3c5707c70c780a148b4eeb5bafa1127e, type: 3}
+  DestroyedBase: {fileID: 7661704932094104742, guid: b7af77f2589638548b3251058d102330, type: 3}
   RecoverRange: 1.7
   health: 100
   Healthbar: {fileID: 5532131876425468347}
@@ -603,7 +604,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.0031147897, y: 0.0020765439}
+  m_Offset: {x: 0.0031148344, y: 0.046859063}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -614,7 +615,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.4, y: 0.4}
+  m_Size: {x: 0.2710264, y: 0.21012191}
   m_EdgeRadius: 0
 --- !u!1 &5532131878250549472
 GameObject:

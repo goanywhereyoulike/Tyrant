@@ -67,7 +67,6 @@ public class Playercombat : MonoBehaviour
 
     }
 
-
     public void Fire(Vector2 playerHeading)
     {
         
@@ -76,8 +75,8 @@ public class Playercombat : MonoBehaviour
         {
             Playerbullet.SetActive(true);
             Playerbullet.transform.position = firePosition.position;
-            Playerbullet.GetComponent<bullet>().Direction = playerHeading;
-            Playerbullet.GetComponent<bullet>().startPosition = firePosition.position;
+            Playerbullet.GetComponent<bullet1>().Direction = playerHeading;
+            Playerbullet.GetComponent<bullet1>().startPosition = firePosition.position;
         }
 
         //Instantiate(bullet, firePosition.position, firePosition.rotation);

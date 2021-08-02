@@ -33,6 +33,7 @@ public class SpawnManager : MonoBehaviour
     private void Start()
     {
         ObjectPoolManager.Instance.InstantiateObjects("normalenemy");
+        ObjectPoolManager.Instance.InstantiateObjects("rangeEnemy");
         spawns = new List<SpawnArea>();
         enemies = new List<GameObject>();
         //StartCoroutine(Spawn());

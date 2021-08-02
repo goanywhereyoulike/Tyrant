@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class TowerBullet : MonoBehaviour
 {
-    [SerializeField]
-    float bulletDamage = 5.0f;
+
+    public float bulletDamage = 5.0f;
     public GameObject hitEffect;
     private void OnTriggerEnter2D(Collider2D collision)
     {

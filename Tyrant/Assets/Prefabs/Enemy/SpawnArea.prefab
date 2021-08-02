@@ -46,5 +46,5 @@ MonoBehaviour:
   spWidth: 2
   spHeight: 2
   spawnNumber: 2
-  spMax: {x: 0, y: 0}
-  spMin: {x: 0, y: 0}
+  roomNumber: 0
+  enemyType: normalEnemy

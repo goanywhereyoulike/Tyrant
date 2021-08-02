@@ -97,9 +97,13 @@ MonoBehaviour:
   - name: GoDown
     keyCode: 115
   - name: PreBuildTower
-    keyCode: 101
+    keyCode: 49
+  - name: PreBuildCannonTower
+    keyCode: 50
   - name: BuildTower
     keyCode: 32
+  - name: dropTower
+    keyCode: 113
   - name: Esc
     keyCode: 27
   - name: Shoot
@@ -114,16 +118,20 @@ MonoBehaviour:
     keyCode: 99
   - name: drop
     keyCode: 118
+  - name: DestroyTower
+    keyCode: 324
+  - name: PreBuildChainTower
+    keyCode: 51
   - name: WeaponWheelToggle
     keyCode: 9
   axesLibrary:
-  - name: Vertical
-    positiveButton: 119
-    negativeButton: 115
-    step: 0.01
-    gravity: 0.001
   - name: Horizontal
     positiveButton: 100
     negativeButton: 97
+    step: 0.01
+    gravity: 0.001
+  - name: Vertical
+    positiveButton: 119
+    negativeButton: 115
     step: 0.01
     gravity: 0.001

@@ -11,10 +11,8 @@ GameObject:
   - component: {fileID: 4179336317843623627}
   - component: {fileID: 4179336317843623668}
   - component: {fileID: 4179336317843623670}
-  - component: {fileID: 4179336317843623624}
   - component: {fileID: 1300328857231449900}
   - component: {fileID: 4136874122364066178}
-  - component: {fileID: 4179336317843623625}
   - component: {fileID: 4179336317843623626}
   - component: {fileID: 4179336317843623669}
   m_Layer: 0
@@ -108,28 +106,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &4179336317843623624
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4179336317843623671}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dfc51740b1e5c7c41811090b86d58090, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemyState:
-    maxHealth: 0
-    maxDamage: 0
-    maxMoveSpeed: 0
-    mass: 1
-    timeBetweenAttacks: 0
-    stopDistance: 0
-    attackSpeed: 0
-    detectRange: 0
-  mTarget: {fileID: 0}
 --- !u!61 &1300328857231449900
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -177,18 +153,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &4179336317843623625
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4179336317843623671}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 73a125ca5a3bdd94ca2fa60e911a62cf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &4179336317843623626
 MonoBehaviour:
   m_ObjectHideFlags: 0

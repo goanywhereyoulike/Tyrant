@@ -12,11 +12,9 @@ public class SpawnArea : MonoBehaviour, GameObjectsLocator.IGameObjectRegister
     public string enemyType;
     private Vector2 spMax;
     private Vector2 spMin;
-    private bool isTurnOff;
     public Vector2 SpMax { get => spMax; }
     public Vector2 SpMin { get => spMin; }
     public string EnemyType { get => enemyType; }
-    public bool IsTurnOff { get => isTurnOff; set => isTurnOff = value; }
 
     private void Start()
     {
@@ -24,13 +22,6 @@ public class SpawnArea : MonoBehaviour, GameObjectsLocator.IGameObjectRegister
         RegisterToLocator();
     }
 
-    void Update()
-    {
-        if (IsTurnOff)
-        {
-            UnRegisterToLocator();
-        }
-    }
     void Area()
     {
         spMax.x = transform.position.x + spWidth;
@@ -56,15 +47,6 @@ public class SpawnArea : MonoBehaviour, GameObjectsLocator.IGameObjectRegister
     {
         GameObjectsLocator.Instance.Unregister<SpawnArea>(this);
         gameObject.SetActive(false);
-    }
-
-    public void Turnoff(bool off)
-    { 
-        if(off)
-        {
-            IsTurnOff = true;
-        }
-        IsTurnOff = false;
     }
 }
 

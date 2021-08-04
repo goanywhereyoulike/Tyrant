@@ -28,11 +28,13 @@ public class PLayerTest : MonoBehaviour,IDamageable,GameObjectsLocator.IGameObje
     {
         RegisterToLocator();
         StartCoroutine(deactive());
+       
     }
 
     IEnumerator deactive()
     {
         yield return new WaitForSeconds(time);
+        var enemy = GameObjectsLocator.Instance.Get<Enemy>();
         UnRegisterToLocator();
     }
     // Update is called once per frame

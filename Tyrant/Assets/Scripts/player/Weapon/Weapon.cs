@@ -55,8 +55,13 @@ public abstract class Weapon : MonoBehaviour
         }
     }
 
-    private void OnDrawGizmosSelected()
+    public virtual void UnFire()
     {
-        Gizmos.DrawWireSphere(transform.position, weaponStates.ShootingRange);
+
+    }
+
+    public virtual void HoldingFire(float holdingTime)
+    {
+
     }
 }

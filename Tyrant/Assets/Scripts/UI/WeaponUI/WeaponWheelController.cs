@@ -3,11 +3,23 @@ using UnityEngine.UI;
 
 public class WeaponWheelController : MonoBehaviour
 {
+    [SerializeField]
+    private WeaponController weaponController = null;
     public Animator animator;
     private bool weaponWheelSelect = false;
     public Image selectItem;
     public Sprite noImage;
-    public static int weaponID;
+    private int weaponID;
+
+    public int WeaponID
+    {
+        get => weaponID;
+        set
+        {
+            weaponID = value;
+            weaponController.ChangeWeapon(weaponID - 1);
+        }
+    }
 
     void Update()
     {
@@ -25,7 +37,7 @@ public class WeaponWheelController : MonoBehaviour
             animator.SetBool("OpenWeaponWheel", false);
         }
 
-        switch(weaponID)//select nothing
+        switch(WeaponID)//select nothing
         {
             case 0:
                 selectItem.sprite = null ;

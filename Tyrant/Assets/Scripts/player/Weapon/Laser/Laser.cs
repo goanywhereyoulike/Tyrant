@@ -12,13 +12,14 @@ public class Laser : Weapon
     private bool charged = false;
     private bool charging = true;
 
-    protected override void Start()
+    protected override void Awake()
     {
-        base.Start();
+        base.Awake();
 
         laserStates = weaponStates as LaserStates;
 
         ObjectPoolManager.Instance.InstantiateObjects("LaserBullet");
+        ObjectPoolManager.Instance.InstantiateObjects("LaserBulletEffect");
     }
 
     public override void UnFire()
@@ -53,7 +54,7 @@ public class Laser : Weapon
     {
         base.HoldingFire(holdingTime);
 
-        if (holdingTime >= 2.0f)
+        if (holdingTime >= laserStates.HoldingTime)
         {
             charged = true;
         }

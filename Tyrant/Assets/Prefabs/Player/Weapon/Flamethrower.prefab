@@ -1087,6 +1087,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4349924956583396481, guid: 2c504f05e27eb394d83a78522657cc20, type: 3}
+      propertyPath: CollisionModule.collidesWith.m_Bits
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 4349924956583396481, guid: 2c504f05e27eb394d83a78522657cc20, type: 3}
+      propertyPath: CollisionModule.m_EnergyLossOnCollision.scalar
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5132907097017445488, guid: 2c504f05e27eb394d83a78522657cc20, type: 3}
       propertyPath: m_RenderAlignment
       value: 2

@@ -25,13 +25,13 @@ public class LaserBullet : Bullet
         }
     }
 
-    protected override void OnhitEffect()
+    protected override void OnhitEffect(Vector3 objectPosition)
     {
         base.OnhitEffect();
-        var effectObject = ObjectPoolManager.Instance.GetPooledObject("ConnonBulletEffect");
+        var effectObject = ObjectPoolManager.Instance.GetPooledObject("LaserBulletEffect");
         if (effectObject)
         {
-            effectObject.transform.position = transform.position;
+            effectObject.transform.position = objectPosition;
             effectObject.SetActive(true);
         }
     }
@@ -55,7 +55,7 @@ public class LaserBullet : Bullet
             //Debug.Log(damage);
             IDamageable Enemy = collision.gameObject.GetComponent<IDamageable>();
             OnHit(Enemy);
-            OnhitEffect();
+            OnhitEffect(collision.gameObject.transform.position);
         }
     }
 }

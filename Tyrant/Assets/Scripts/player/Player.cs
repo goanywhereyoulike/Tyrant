@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(PlayerMovement))]
-public class Player : MonoBehaviour , IDamageable
+public class Player : MonoBehaviour , IDamageable, GameObjectsLocator.IGameObjectRegister
 {
     [SerializeField]
     private PlayerStates playerStates;
@@ -46,6 +46,8 @@ public class Player : MonoBehaviour , IDamageable
         StartCoroutine(Coin());
 
         Health = playerStates.MaxHealth;
+
+        RegisterToLocator();
     }
 
     // Update is called once per frame
@@ -94,6 +96,16 @@ public class Player : MonoBehaviour , IDamageable
             Health = playerStates.MaxHealth;
         }
 
+    }
+
+    public void RegisterToLocator()
+    {
+        GameObjectsLocator.Instance.Register<Player>(this);
+    }
+
+    public void UnRegisterToLocator()
+    {
+        GameObjectsLocator.Instance.Unregister<Player>(this);
     }
     //private void OnCollisionEnter2D(Collision2D collision)
     //{

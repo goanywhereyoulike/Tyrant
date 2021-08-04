@@ -43,6 +43,5 @@ public class WeaponController : MonoBehaviour
 
     void Update()
     {
-        
     }
 }

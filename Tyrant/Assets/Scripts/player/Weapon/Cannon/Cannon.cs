@@ -5,9 +5,9 @@ using UnityEngine;
 public class Cannon : Weapon
 {
     private ConnonStates connonStates = null;
-    protected override void Start()
+    protected override void Awake()
     {
-        base.Start();
+        base.Awake();
 
         ObjectPoolManager.Instance.InstantiateObjects("ConnonBullet");
         ObjectPoolManager.Instance.InstantiateObjects("ConnonBulletEffect");

@@ -170,6 +170,10 @@ MonoBehaviour:
     objectToPool: {fileID: 6251904807959551005, guid: 0d0e4d67fc628e648821dea768c628f1, type: 3}
     amountToPool: 10
     shouldExpand: 1
+  - tagName: LaserBulletEffect
+    objectToPool: {fileID: 8066012905534961614, guid: dd29a8c7034ae444aaa7f411b2a59e3f, type: 3}
+    amountToPool: 10
+    shouldExpand: 1
 --- !u!1 &3980476720704669719
 GameObject:
   m_ObjectHideFlags: 0

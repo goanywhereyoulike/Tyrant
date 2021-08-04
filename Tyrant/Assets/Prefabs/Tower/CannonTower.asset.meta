@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Tyrant/Assets/Scripts/player/Weapon/Cannon/Connon.asset.meta
+guid: 6a6993094d51d564e829ba77253d06f2
+=======
 guid: e5c4dcd8e2ff27b43b1d8638def4c920
+>>>>>>> Develop:Tyrant/Assets/Prefabs/Tower/CannonTower.asset.meta
 NativeFormatImporter:
   externalObjects: {}
   mainObjectFileID: 11400000

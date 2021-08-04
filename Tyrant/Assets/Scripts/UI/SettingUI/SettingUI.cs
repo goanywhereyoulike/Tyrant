@@ -10,6 +10,8 @@ public class SettingUI : MonoBehaviour
     private KeyBindUI keyBindUIPrefab;
     [SerializeField]
     private GameObject content;
+    [SerializeField]
+    private GameObject mainMenu;
 
     // Start is called before the first frame update
     void Start()
@@ -24,6 +26,11 @@ public class SettingUI : MonoBehaviour
         
     }
 
+    public void OnReturnClicked()
+    {
+        mainMenu.SetActive(true);
+        gameObject.SetActive(false);
+    }
     // Update is called once per frame
     void Update()
     {

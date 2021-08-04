@@ -127,6 +127,10 @@ MonoBehaviour:
     objectToPool: {fileID: 6251904807959551005, guid: 0d0e4d67fc628e648821dea768c628f1, type: 3}
     amountToPool: 10
     shouldExpand: 0
+  - tagName: rangeEnemy
+    objectToPool: {fileID: 3102396210380798205, guid: f81c1438ee8b73a49aea7e1ec2a0644a, type: 3}
+    amountToPool: 10
+    shouldExpand: 0
 --- !u!1 &3980476720704669719
 GameObject:
   m_ObjectHideFlags: 0

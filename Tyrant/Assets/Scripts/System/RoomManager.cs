@@ -4,16 +4,22 @@ using UnityEngine;
 
 public class RoomManager : MonoBehaviour
 {
-    public System.Action RoomChanger = null;
+    public System.Action<int> RoomChanged = null;
 
     private int roomId;
 
     private static RoomManager instance = null;
     public static RoomManager Instance { get => instance; }
-    public int RoomId { get => roomId; set => roomId = value; }
+    public int RoomId { 
+        get => roomId;
+        set { 
+            roomId = value;
+            RoomChanged?.Invoke(roomId);
+        }
+    }
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         //Singleton pattern
         if (instance == null)
@@ -27,9 +33,4 @@ public class RoomManager : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

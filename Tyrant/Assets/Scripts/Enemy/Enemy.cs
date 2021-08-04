@@ -21,6 +21,7 @@ public class Enemy : MonoBehaviour, IDamageable ,GameObjectsLocator.IGameObjectR
     protected float Health;
     protected float damage;
     protected float moveSpeed;
+    protected float oMoveSpeed;
     protected float mass;
     protected float waitAttacks;
     protected float attackSpeed;
@@ -30,6 +31,8 @@ public class Enemy : MonoBehaviour, IDamageable ,GameObjectsLocator.IGameObjectR
     protected float attacktime;
     protected float distance;
     protected float mainTargetDistance;
+    public float slowDownTime;
+    protected float delayTime;
     protected int pathcount;
 
     protected bool isGetBlock = false;
@@ -37,6 +40,8 @@ public class Enemy : MonoBehaviour, IDamageable ,GameObjectsLocator.IGameObjectR
     protected bool findPath = false;
     protected bool findTarget = false;
     protected bool search = false;
+    protected bool isSpawn = false;
+   // public bool isSlow = false;
 
     Pathfinding path = null;
 
@@ -51,6 +56,7 @@ public class Enemy : MonoBehaviour, IDamageable ,GameObjectsLocator.IGameObjectR
             if (isDead)
             {
                 gameObject.SetActive(false);
+                isSpawn = false;
                 UnRegisterToLocator();
                 ReUse();
             }
@@ -66,19 +72,31 @@ public class Enemy : MonoBehaviour, IDamageable ,GameObjectsLocator.IGameObjectR
         anim = GetComponent<Animator>();
         mMainTarget = mTarget;
         detectObject();
-        RegisterToLocator();
         var mainTarget = GameObjectsLocator.Instance.Get<target>();
         mMainTarget = mainTarget[0].transform;
+        oMoveSpeed = moveSpeed;
+        delayTime = slowDownTime;
     }
 
     protected virtual void Update()
     {
+        if(!isSpawn)
+        {
+            RegisterToLocator();
+            isSpawn = true;
+        }
+
         if (!isGetBlock)
         {
             var tilemap = GameObjectsLocator.Instance.Get<Block>();
             nodePath.init(tilemap[0].tilemap.cellBounds.size.x, tilemap[0].tilemap.cellBounds.size.y);
             isGetBlock = true;
         }
+
+        //if(isSlow)
+        //{
+        //    SlowDown(1.5f);
+        //}
 
         if (targets != null)
             targets.Clear();
@@ -195,6 +213,22 @@ public class Enemy : MonoBehaviour, IDamageable ,GameObjectsLocator.IGameObjectR
             yield return null;
         }
     }
+
+    //protected void SlowDown(float speed)
+    //{
+    //    if (isSlow)
+    //    {
+    //        moveSpeed = speed;
+    //    }
+
+    //    if (delayTime <= 0.0f)
+    //    {
+    //        moveSpeed = oMoveSpeed;
+    //        isSlow = false;
+    //        delayTime = slowDownTime;
+    //    }
+    //    delayTime -= Time.deltaTime;
+    //}
 
     protected void detectObject()
     {

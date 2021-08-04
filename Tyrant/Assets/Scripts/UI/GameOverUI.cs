@@ -5,9 +5,13 @@ using UnityEngine.SceneManagement;
 
 public class GameOverUI : MonoBehaviour
 {
-    public void onButtonClicked()
+    public void onReturnClicked()
     {
-        SceneManager.LoadScene("MainMenu");
+        SceneManager.LoadScene("MenuUI");
+    }
+    public void onQuitClicked()
+    {
+        Application.Quit();
     }
     // Start is called before the first frame update
     void Start()

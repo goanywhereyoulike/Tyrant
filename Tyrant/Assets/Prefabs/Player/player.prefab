@@ -450,6 +450,7 @@ MonoBehaviour:
     maxPickUpAmount: 0
     maxInventoryAmount: 0
   playerUI: {fileID: 5892948272906082853}
+  coin: 0
 --- !u!114 &4966918331871143739
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -543,8 +544,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchoredPosition: {x: 0.01, y: 1.07}
+  m_SizeDelta: {x: 2.7056, y: 0.9704}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &7266535905807648792
 Canvas:
@@ -633,7 +634,7 @@ RectTransform:
   m_GameObject: {fileID: 7266535906195219739}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.020212354, y: 0.01020045, z: 0.060167}
   m_Children:
   - {fileID: 7266535906527142366}
   - {fileID: 7266535907272706033}
@@ -642,7 +643,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 41}
+  m_AnchoredPosition: {x: 0, y: -0.0000009536743}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &7266535906195219741

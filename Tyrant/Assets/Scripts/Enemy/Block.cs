@@ -13,7 +13,7 @@ public class Block : MonoBehaviour, GameObjectsLocator.IGameObjectRegister
     public List<Vector2> gridPosition;
     public List<Vector2> blockObject;
 
-    private void Awake()
+    private void Start()
     {
         BoundsInt bounds = tilemap.cellBounds;
         TileBase[] tiles = tilemap.GetTilesBlock(bounds);

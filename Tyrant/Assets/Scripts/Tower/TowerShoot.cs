@@ -9,7 +9,7 @@ public class TowerShoot : MonoBehaviour
     Slider ColdDown;
 
     bool IsCoolDown = false;
-   
+
     private GameObject currentTarget = null;
     Tower tower;
     PlayerMovement player;
@@ -51,6 +51,7 @@ public class TowerShoot : MonoBehaviour
 
     }
     // Update is called once per frame
+
     void Update()
     {
         ColdDown.maxValue = BulletLimit;
@@ -108,17 +109,28 @@ public class TowerShoot : MonoBehaviour
     void Fire()
     {
         Vector3 Direction = (currentTarget.transform.position - ShootPoint.position).normalized;
+        TowerDisplay towerInfo = gameObject.GetComponent<TowerDisplay>();
         GameObject bullet = ObjectPoolManager.Instance.GetPooledObject("TowerBullet");
-        if (gameObject.GetComponent<TowerDisplay>().tower.type == "CannonTower")
+        if (towerInfo)
         {
-            bullet = ObjectPoolManager.Instance.GetPooledObject("CannonTowerBullet");
+            if (towerInfo.tower.type == "Basic")
+            {
+                bullet.GetComponent<TowerBullet>().bulletDamage = towerInfo.tower.bulletDamage;
+            }
+            if (towerInfo.tower.type == "CannonTower")
+            {
+                bullet = ObjectPoolManager.Instance.GetPooledObject("CannonTowerBullet");
+                bullet.GetComponent<CannonTowerBullet>().bulletDamage = towerInfo.tower.bulletDamage;
+            }
+
+            if (towerInfo.tower.type == "ChainTower")
+            {
+                bullet = ObjectPoolManager.Instance.GetPooledObject("ChainTowerBullet");
+                bullet.GetComponentInChildren<ChainTowerBullet>().bulletDamage = towerInfo.tower.bulletDamage;
+                IsChainTower = true;
+            }
         }
 
-        if (gameObject.GetComponent<TowerDisplay>().tower.type == "ChainTower")
-        {
-            bullet = ObjectPoolManager.Instance.GetPooledObject("ChainTowerBullet");
-            IsChainTower = true;
-        }
         if (bullet)
         {
             if (IsChainTower)
@@ -152,7 +164,7 @@ public class TowerShoot : MonoBehaviour
 
     void UpdateTarget()
     {
-        Enemy[] enemies = FindObjectsOfType<Enemy>();
+        List<Enemy> enemies = GameObjectsLocator.Instance.Get<Enemy>();
         GameObject target = GetClosestTarget(enemies);
 
         if (target != null)
@@ -170,10 +182,10 @@ public class TowerShoot : MonoBehaviour
         }
     }
 
-    GameObject GetClosestTarget(Enemy[] enemies)
+    GameObject GetClosestTarget(List<Enemy> enemies)
     {
         GameObject retEnemy = null;
-        for (int i = 0; i < enemies.Length; ++i)
+        for (int i = 0; i < enemies.Count; ++i)
         {
             if (!enemies[i].IsDead)
             {

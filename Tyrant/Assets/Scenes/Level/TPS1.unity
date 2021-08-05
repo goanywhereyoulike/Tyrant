@@ -9634,10 +9634,6 @@ PrefabInstance:
       propertyPath: objectPoolItems.Array.data[8].shouldExpand
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3980476719206707401, guid: 3afd5aaeef770eb448a16210ee2c0f67, type: 3}
-      propertyPath: objectPoolItems.Array.data[9].shouldExpand
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3980476720704669718, guid: 3afd5aaeef770eb448a16210ee2c0f67, type: 3}
       propertyPath: m_RootOrder
       value: 1

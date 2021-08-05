@@ -5,9 +5,9 @@ using UnityEngine;
 public class Cannon : Weapon
 {
     private ConnonStates connonStates = null;
-    protected override void OnEnable()
+    protected override void Start()
     {
-        base.OnEnable();
+        base.Start();
         if (weaponInit)
         {
             return;

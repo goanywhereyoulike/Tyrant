@@ -19,7 +19,7 @@ public abstract class Weapon : MonoBehaviour
 
     protected bool weaponInit = false;
 
-    protected virtual void OnEnable()
+    protected virtual void Start()
     {
         if (weaponInit)
         {

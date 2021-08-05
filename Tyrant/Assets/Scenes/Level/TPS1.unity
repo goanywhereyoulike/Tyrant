@@ -268,6 +268,10 @@ PrefabInstance:
       value: LaserBulletEffect
       objectReference: {fileID: 0}
     - target: {fileID: 3980476719206707401, guid: 3afd5aaeef770eb448a16210ee2c0f67, type: 3}
+      propertyPath: objectPoolItems.Array.data[1].amountToPool
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 3980476719206707401, guid: 3afd5aaeef770eb448a16210ee2c0f67, type: 3}
       propertyPath: objectPoolItems.Array.data[2].amountToPool
       value: 100
       objectReference: {fileID: 0}
@@ -33528,6 +33532,10 @@ PrefabInstance:
     - target: {fileID: 7130684735778634844, guid: fb083abcc3b7b2844b31026d194bd151, type: 3}
       propertyPath: waveNumber
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7130684735778634844, guid: fb083abcc3b7b2844b31026d194bd151, type: 3}
+      propertyPath: waveDelayTurnOn
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7130684735778634845, guid: fb083abcc3b7b2844b31026d194bd151, type: 3}
       propertyPath: m_RootOrder

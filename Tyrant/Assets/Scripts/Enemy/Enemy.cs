@@ -41,7 +41,9 @@ public class Enemy : MonoBehaviour, IDamageable ,GameObjectsLocator.IGameObjectR
     protected bool findTarget = false;
     protected bool search = false;
     protected bool isSpawn = false;
-   // public bool isSlow = false;
+    // public bool isSlow = false;
+
+    private List<Vector2> debug;
 
     Pathfinding path = null;
 
@@ -88,9 +90,12 @@ public class Enemy : MonoBehaviour, IDamageable ,GameObjectsLocator.IGameObjectR
 
         if (!isGetBlock)
         {
-            var tilemap = GameObjectsLocator.Instance.Get<Block>();
-            nodePath.init(tilemap[0].tilemap.cellBounds.size.x, tilemap[0].tilemap.cellBounds.size.y);
-            isGetBlock = true;
+            if (GameObjectsLocator.Instance.Get<Block>() != null)
+            {
+                var tilemap = GameObjectsLocator.Instance.Get<Block>();
+                nodePath.init(tilemap[0].tilemap.cellBounds.size.x, tilemap[0].tilemap.cellBounds.size.y);
+                isGetBlock = true;
+            }
         }
 
         //if(isSlow)
@@ -156,7 +161,7 @@ public class Enemy : MonoBehaviour, IDamageable ,GameObjectsLocator.IGameObjectR
                     //enemyState.velocity += enemyState.acceleration;
                     if (pathcount < mPath.Count)
                     {
-                        Vector2 position = new Vector2(mPath[pathcount].r, mPath[pathcount].c);
+                        Vector2 position = new Vector2(mPath[pathcount].r + 2, mPath[pathcount].c - 2);
                         float speed = MoveSpeed * Time.deltaTime;
                         transform.position = Vector2.MoveTowards(transform.position, position, speed);
                         if ((Vector2)transform.position == position)
@@ -318,20 +323,16 @@ public class Enemy : MonoBehaviour, IDamageable ,GameObjectsLocator.IGameObjectR
         {
             mPath.Clear();
             nextNodes.Clear();
-            // Beginning from the end node, trace back to it's parent one at a time
-            for (int i = 0; i < closedList.Count; i++)
+
+   
+            // Beginning from the end node, trace back to it's parent one at a timec
+            NodePath.Node path = closedList[closedList.Count - 1];
+            while (path != null)
             {
-                if (closedList[i].r == (int)mTarget.position.x && closedList[i].c == (int)mTarget.position.y)
-                {
-                    NodePath.Node path = closedList[i];
-                    while (path != null)
-                    {
-                        mPath.Add(path);
-                        path = path.parent;
-                    }
-                    break;
-                }
+                 mPath.Add(path);
+                 path = path.parent;
             }
+            
             // Once we recorded all the position from end to start, we need to reverse
             // them to get the correct order
             mPath.Reverse();

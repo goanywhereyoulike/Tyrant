@@ -75,13 +75,13 @@ public class SpawnManager : MonoBehaviour
     {
         currentWave = 0;
         roomNumber = changeId;
-        foreach (var spawn in spawns)
-        {
-            if (spawn.roomNumber < changeId)
-            {
-                spawn.UnRegisterToLocator();
-            }
-        }
+        //foreach (var spawn in spawns)
+        //{
+        //    if (spawn.roomNumber < changeId)
+        //    {
+        //        spawn.UnRegisterToLocator();
+        //    }
+        //}
     }
 
     void GetSpawnArea()

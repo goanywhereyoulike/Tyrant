@@ -9,11 +9,13 @@ public class Pathfinding
     NodePath nodePath;
     bool found = false;
     bool less = false;
+
+    NodePath.Node lastend;
     public List<NodePath.Node> OpenList { get => openList; }
     public List<NodePath.Node> CloseList { get => closeList; }
 
     //heuristic
-    float GetHCost(int fromX, int fromY, int toX, int toY)
+    float GetHCost(float fromX, float fromY, float toX, float toY)
     {
         float dx = Mathf.Abs(fromX - toX);
         float dy = Mathf.Abs(fromY - toY);
@@ -25,14 +27,14 @@ public class Pathfinding
         return 1;
     }
 
-    bool isBlock(int row, int column)
+    bool isBlock(float row, float column)
     {
         var blocks = GameObjectsLocator.Instance.Get<Block>();
         foreach (var objects in blocks)
         {
             foreach (var block in objects.blockObject)
             {
-                if (row == block.x && column == block.y)
+                if (row == block.x && column == block.y )
                 {
                     return true;
                 }
@@ -57,8 +59,17 @@ public class Pathfinding
         var node = nodePath.FindNode((int)startposition.x, (int)startposition.y);
         openList.Add(node);
         node.opened = true;
+      
+        var end = nodePath.FindNode(Mathf.FloorToInt(endposition.x), Mathf.FloorToInt(endposition.y));
 
-        var end = nodePath.FindNode((int)endposition.x, (int)endposition.y);
+        if(isBlock(end.r,end.c))
+        {
+            end = lastend;
+        }
+        else
+        {
+            lastend = end;
+        }
 
         while (!found && OpenList.Count != 0)
         {

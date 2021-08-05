@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(PlayerMovement))]
 public class Player : MonoBehaviour , IDamageable, GameObjectsLocator.IGameObjectRegister
@@ -86,6 +87,7 @@ public class Player : MonoBehaviour , IDamageable, GameObjectsLocator.IGameObjec
         if (Health < 0)
         {
             Health = 0;
+            SceneManager.LoadScene("GameOverScene");
         }
     }
     public void HealthRecover(float recover)

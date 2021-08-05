@@ -45,6 +45,7 @@ public class WeaponWheelButton : MonoBehaviour
         selected = true;
         Debug.Log("Select  " + selected);
         weaponWheelController.WeaponID = id;
+        weaponWheelController.WeaponWheelSelect = false;
     }
     public void DeSelect()
     {

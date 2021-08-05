@@ -7,10 +7,10 @@ public class WeaponWheelController : MonoBehaviour
     private WeaponController weaponController = null;
     public Animator animator;
     private bool weaponWheelSelect = false;
+    public bool WeaponWheelSelect { get=>weaponWheelSelect; set { weaponWheelSelect = value; } }
     public Image selectItem;
     public Sprite noImage;
     private int weaponID;
-
     public int WeaponID
     {
         get => weaponID;
@@ -30,27 +30,15 @@ public class WeaponWheelController : MonoBehaviour
         }
         if (weaponWheelSelect)
         {
-            animator.SetBool("OpenWeaponWheel", true);
+            WheelController(true);
         }
         else
         {
-            animator.SetBool("OpenWeaponWheel", false);
+            WheelController(false);
         }
-
-        //switch(WeaponID)//select nothing
-        //{
-        //    case 0:
-        //        selectItem.sprite = null ;
-        //        break;
-        //    case 1:
-        //        Debug.Log("gun1"); //switch weapon here
-        //        break;
-        //    case 2:
-        //        Debug.Log("gun2");
-        //        break;
-        //    case 3:
-        //        Debug.Log("gun3");
-        //        break;
-        //}
+    }
+    public void WheelController(bool setwheel)
+    {
+        animator.SetBool("OpenWeaponWheel", setwheel);
     }
 }

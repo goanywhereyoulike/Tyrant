@@ -13,7 +13,7 @@ public class Block : MonoBehaviour, GameObjectsLocator.IGameObjectRegister
     public List<Vector2> gridPosition;
     public List<Vector2> blockObject;
 
-    private void Awake()
+    private void Start()
     {
         BoundsInt bounds = tilemap.cellBounds;
         TileBase[] tiles = tilemap.GetTilesBlock(bounds);
@@ -25,20 +25,22 @@ public class Block : MonoBehaviour, GameObjectsLocator.IGameObjectRegister
             {
                 wPosition.x = bounds.xMin + x;
                 worldPosition.Add(wPosition);
-               // Debug.Log("boundx:" + wPosition.x + " bounds:" + wPosition.y);
+                //worldPosition.Add(new Vector2(wPosition.x + 0.5f, wPosition.y));
+                //worldPosition.Add(new Vector2(wPosition.x, wPosition.y + 0.5f));
+                //worldPosition.Add(new Vector2(wPosition.x + 0.5f, wPosition.y + 0.5f));
+
+                // Debug.Log("boundx:" + wPosition.x + " bounds:" + wPosition.y);
                 gridPosition.Add(new Vector2(x,y));
                 // x + y * bounds.size.x to know the tile position in array
                 TileBase tile = tiles[x + y * bounds.size.x];
                 if (tile != null)
                 {
+                    //blockObject.Add(new Vector2(wPosition.x, wPosition.y));
                     blockObject.Add(new Vector2(wPosition.x, wPosition.y));
-                    blockObject.Add(new Vector2(wPosition.x+1, wPosition.y));
-                    blockObject.Add(new Vector2(wPosition.x+1, wPosition.y+1));
-                    blockObject.Add(new Vector2(wPosition.x, wPosition.y+1));
-                   // Debug.Log("x:" + wPosition.x + " y:" + wPosition.y + " tile:" + tile.name);
+                    Debug.Log("x:" + wPosition.x + " y:" + wPosition.y + " tile:" + tile.name);
                 }
             }
-            Debug.Log("boundx:" + bounds.size.x + " bounds:" + bounds.size.y);
+           // Debug.Log("boundx:" + bounds.size.x + " bounds:" + bounds.size.y);
         }
         RegisterToLocator();
     }

@@ -8,8 +8,8 @@ public class NodePath : GameObjectsLocator.IGameObjectRegister
 	{
 		public List<Node> neighbors = new List<Node>();
 		public Node parent;
-		public int c = 0;
-		public int r = 0;
+		public float c = 0;
+		public float r = 0;
 	
 		public float g = 0.0f;
 		public float h = 0.0f;

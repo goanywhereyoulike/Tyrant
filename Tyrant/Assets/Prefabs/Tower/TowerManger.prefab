@@ -158,7 +158,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Towers:
   - {fileID: 11400000, guid: c1e9d70b0a7a7e24da738d0a8bac8e44, type: 2}
-  - {fileID: 11400000, guid: e5c4dcd8e2ff27b43b1d8638def4c920, type: 2}
+  - {fileID: 11400000, guid: 6a6993094d51d564e829ba77253d06f2, type: 2}
   - {fileID: 11400000, guid: b98cf827f1f74b045a6fe86a23c139a9, type: 2}
   Coinnumber: {fileID: 7645187406703499282}
   Tower1Price: {fileID: 6595899175323000821}

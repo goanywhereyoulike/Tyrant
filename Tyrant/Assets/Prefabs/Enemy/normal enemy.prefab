@@ -23,7 +23,6 @@ MonoBehaviour:
     detectRange: 4
   mTarget: {fileID: 8727390661197903367, guid: 4a69fdb522e96b74fb5462a98d469469, type: 3}
   slowDownTime: 2
-  isSlow: 1
 --- !u!1001 &4093235111289638586
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -37,7 +36,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1300328857231449900, guid: 8b9f0df936cf54392b9c2877c62446d7, type: 3}
       propertyPath: m_IsTrigger
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4136874122364066178, guid: 8b9f0df936cf54392b9c2877c62446d7, type: 3}
       propertyPath: m_Simulated

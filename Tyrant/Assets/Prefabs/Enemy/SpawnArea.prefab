@@ -43,8 +43,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4183dd508eef714c9dea8f0853d215c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spWidth: 2
-  spHeight: 2
+  spWidth: 1
+  spHeight: 1
   spawnNumber: 2
   roomNumber: 0
-  enemyType: normalEnemy
+  enemyType: normalenemy

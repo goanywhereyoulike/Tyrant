@@ -12,14 +12,19 @@ public class Laser : Weapon
     private bool charged = false;
     private bool charging = true;
 
-    protected override void Awake()
+    protected override void OnEnable()
     {
-        base.Awake();
+        base.OnEnable();
+        if (weaponInit)
+        {
+            return;
+        }
 
         laserStates = weaponStates as LaserStates;
 
         ObjectPoolManager.Instance.InstantiateObjects("LaserBullet");
         ObjectPoolManager.Instance.InstantiateObjects("LaserBulletEffect");
+        weaponInit = true;
     }
 
     public override void UnFire()

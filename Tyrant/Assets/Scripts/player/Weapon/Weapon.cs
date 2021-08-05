@@ -17,8 +17,14 @@ public abstract class Weapon : MonoBehaviour
 
     protected bool canFire = false;
 
-    protected virtual void Awake()
+    protected bool weaponInit = false;
+
+    protected virtual void OnEnable()
     {
+        if (weaponInit)
+        {
+            return;
+        }
         startShootingPointDict = new Dictionary<PlayerFacing, GameObject>();
 
         foreach (var item in startShootingPoints)

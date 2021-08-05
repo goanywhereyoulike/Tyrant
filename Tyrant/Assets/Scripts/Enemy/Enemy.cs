@@ -72,7 +72,7 @@ public class Enemy : MonoBehaviour, IDamageable ,GameObjectsLocator.IGameObjectR
         anim = GetComponent<Animator>();
         mMainTarget = mTarget;
         detectObject();
-        var mainTarget = GameObjectsLocator.Instance.Get<target>();
+        var mainTarget = GameObjectsLocator.Instance.Get<Player>();
         mMainTarget = mainTarget[0].transform;
         oMoveSpeed = moveSpeed;
         delayTime = slowDownTime;

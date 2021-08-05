@@ -138,6 +138,10 @@ MonoBehaviour:
     objectToPool: {fileID: 86108912329556045, guid: 96eef6fb1157b485d86e8003cc10e7f1, type: 3}
     amountToPool: 5
     shouldExpand: 0
+  - tagName: rangeEnemy
+    objectToPool: {fileID: 3102396210380798205, guid: f81c1438ee8b73a49aea7e1ec2a0644a, type: 3}
+    amountToPool: 100
+    shouldExpand: 1
   - tagName: bullet
     objectToPool: {fileID: 6278507673851774296, guid: b27d769ddf1070a4d92b6bec923b29b2, type: 3}
     amountToPool: 20

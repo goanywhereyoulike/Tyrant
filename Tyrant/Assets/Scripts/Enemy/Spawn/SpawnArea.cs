@@ -33,6 +33,11 @@ public class SpawnArea : MonoBehaviour, GameObjectsLocator.IGameObjectRegister
         Debug.DrawLine(spMin, spMax, Color.green);
     }
 
+    private void Update()
+    {
+        Area();
+    }
+
     private void OnDrawGizmos()
     {
         Gizmos.DrawLine(SpMin, SpMax);

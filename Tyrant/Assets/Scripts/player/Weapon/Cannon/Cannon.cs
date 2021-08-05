@@ -5,14 +5,19 @@ using UnityEngine;
 public class Cannon : Weapon
 {
     private ConnonStates connonStates = null;
-    protected override void Awake()
+    protected override void OnEnable()
     {
-        base.Awake();
+        base.OnEnable();
+        if (weaponInit)
+        {
+            return;
+        }
 
         ObjectPoolManager.Instance.InstantiateObjects("ConnonBullet");
         ObjectPoolManager.Instance.InstantiateObjects("ConnonBulletEffect");
 
         connonStates = weaponStates as ConnonStates;
+        weaponInit = true;
     }
 
     public override void Fire()

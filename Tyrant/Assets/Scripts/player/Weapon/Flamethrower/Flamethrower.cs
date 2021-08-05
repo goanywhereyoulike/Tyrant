@@ -7,9 +7,9 @@ public class Flamethrower : Weapon
     private FlamethrowerStates flamethrower = null;
     [SerializeField]
     private ParticleSystem flameParticle = null;
-    protected override void OnEnable()
+    protected override void Start()
     {
-        base.OnEnable();
+        base.Start();
         if (weaponInit)
         {
             return;

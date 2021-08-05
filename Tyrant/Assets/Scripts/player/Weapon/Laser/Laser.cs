@@ -12,9 +12,9 @@ public class Laser : Weapon
     private bool charged = false;
     private bool charging = true;
 
-    protected override void OnEnable()
+    protected override void Start()
     {
-        base.OnEnable();
+        base.Start();
         if (weaponInit)
         {
             return;

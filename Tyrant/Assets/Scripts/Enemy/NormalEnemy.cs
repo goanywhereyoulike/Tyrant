@@ -36,23 +36,38 @@ public class NormalEnemy : Enemy
             yield return null;
         }
     }
-
-    void OnTriggerEnter2D(Collider2D collider)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collider.gameObject.name == mTarget.name)
+        if (collision.gameObject.name == mTarget.name)
         {
-            if (collider.gameObject.tag == "Player" || collider.gameObject.tag == "Tower" || collider.gameObject.tag == "Base")
+            if (collision.gameObject.tag == "Player" || collision.gameObject.tag == "Tower" || collision.gameObject.tag == "Base")
             {
-                IDamageable Targets = collider.gameObject.GetComponent<IDamageable>();
+                IDamageable Targets = collision.gameObject.GetComponent<IDamageable>();
                 if (Targets == null)
                 {
-                    Targets = collider.gameObject.GetComponentInChildren<IDamageable>();
+                    Targets = collision.gameObject.GetComponentInChildren<IDamageable>();
                 }
                 Targets.TakeDamage(damage);
                 Debug.Log("attack");
             }
         }
     }
+    //void OnTriggerEnter2D(Collider2D collider)
+    //{
+    //    if (collider.gameObject.name == mTarget.name)
+    //    {
+    //        if (collider.gameObject.tag == "Player" || collider.gameObject.tag == "Tower" || collider.gameObject.tag == "Base")
+    //        {
+    //            IDamageable Targets = collider.gameObject.GetComponent<IDamageable>();
+    //            if (Targets == null)
+    //            {
+    //                Targets = collider.gameObject.GetComponentInChildren<IDamageable>();
+    //            }
+    //            Targets.TakeDamage(damage);
+    //            Debug.Log("attack");
+    //        }
+    //    }
+    //}
     void OnDrawGizmosSelected()
     {
         // Draw a yellow sphere at the transform's position

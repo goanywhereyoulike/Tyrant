@@ -161,7 +161,7 @@ public class Enemy : MonoBehaviour, IDamageable ,GameObjectsLocator.IGameObjectR
                     //enemyState.velocity += enemyState.acceleration;
                     if (pathcount < mPath.Count)
                     {
-                        Vector2 position = new Vector2(mPath[pathcount].r + 2, mPath[pathcount].c - 2);
+                        Vector2 position = new Vector2(mPath[pathcount].r, mPath[pathcount].c);
                         float speed = MoveSpeed * Time.deltaTime;
                         transform.position = Vector2.MoveTowards(transform.position, position, speed);
                         if ((Vector2)transform.position == position)

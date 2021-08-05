@@ -56,7 +56,7 @@ public class Pathfinding
 
         nodePath.ResetPath();
 
-        var node = nodePath.FindNode((int)startposition.x, (int)startposition.y);
+        var node = nodePath.FindNode(Mathf.FloorToInt(startposition.x), Mathf.FloorToInt(startposition.y));
         openList.Add(node);
         node.opened = true;
       

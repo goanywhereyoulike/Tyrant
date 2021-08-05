@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class target : MonoBehaviour, IDamageable
+public class target : MonoBehaviour, IDamageable, GameObjectsLocator.IGameObjectRegister
 {
     public float health = 50.0f;
     public float damge = 10.0f;
@@ -23,6 +23,16 @@ public class target : MonoBehaviour, IDamageable
             Targets.TakeDamage(damge);
         }
 
+    }
+
+    public void RegisterToLocator()
+    {
+        GameObjectsLocator.Instance.Register<target>(this);
+    }
+
+    public void UnRegisterToLocator()
+    {
+        GameObjectsLocator.Instance.Unregister<target>(this);
     }
 
 }

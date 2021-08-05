@@ -125,7 +125,7 @@ public class TowerShoot : MonoBehaviour
             if (towerInfo.tower.type == "ChainTower")
             {
                 bullet = ObjectPoolManager.Instance.GetPooledObject("ChainTowerBullet");
-                bullet.GetComponent<ChainTowerBullet>().bulletDamage = towerInfo.tower.bulletDamage;
+                bullet.GetComponentInChildren<ChainTowerBullet>().bulletDamage = towerInfo.tower.bulletDamage;
                 IsChainTower = true;
             }
         }

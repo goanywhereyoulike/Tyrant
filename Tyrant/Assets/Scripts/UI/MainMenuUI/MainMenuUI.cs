@@ -20,7 +20,7 @@ public class MainMenuUI : MonoBehaviour
 
     public void onCLickStart()
     {
-        SceneManager.LoadScene("DemoLevel");
+        SceneManager.LoadScene("TPS1");
     }
     public void onClickSetting()
     {

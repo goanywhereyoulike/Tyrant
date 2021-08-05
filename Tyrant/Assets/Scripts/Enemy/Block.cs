@@ -37,7 +37,7 @@ public class Block : MonoBehaviour, GameObjectsLocator.IGameObjectRegister
                 {
                     //blockObject.Add(new Vector2(wPosition.x, wPosition.y));
                     blockObject.Add(new Vector2(wPosition.x, wPosition.y));
-                    Debug.Log("x:" + wPosition.x + " y:" + wPosition.y + " tile:" + tile.name);
+                    //Debug.Log("x:" + wPosition.x + " y:" + wPosition.y + " tile:" + tile.name);
                 }
             }
            // Debug.Log("boundx:" + bounds.size.x + " bounds:" + bounds.size.y);

@@ -33535,7 +33535,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7130684735778634844, guid: fb083abcc3b7b2844b31026d194bd151, type: 3}
       propertyPath: waveDelayTurnOn
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7130684735778634845, guid: fb083abcc3b7b2844b31026d194bd151, type: 3}
       propertyPath: m_RootOrder

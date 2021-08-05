@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &170502556355076841
+--- !u!1 &6790985345719129143
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,43 +8,42 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 170502556355076823}
-  - component: {fileID: 170502556355076822}
+  - component: {fileID: 6790985345719129145}
+  - component: {fileID: 6790985345719129142}
   m_Layer: 0
-  m_Name: SpawnArea
+  m_Name: tilemapReader
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &170502556355076823
+--- !u!4 &6790985345719129145
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 170502556355076841}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 14.59, y: 10.41, z: -12.295538}
+  m_GameObject: {fileID: 6790985345719129143}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -12.02, y: -2.0599995, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &170502556355076822
+--- !u!114 &6790985345719129142
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 170502556355076841}
+  m_GameObject: {fileID: 6790985345719129143}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c4183dd508eef714c9dea8f0853d215c, type: 3}
+  m_Script: {fileID: 11500000, guid: 8fb3b8c10587ede4cafedf4cbf565f69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spWidth: 1
-  spHeight: 1
-  spawnNumber: 2
-  roomNumber: 0
-  enemyType: normalenemy
+  tilemap: {fileID: 0}
+  worldPosition: []
+  gridPosition: []
+  blockObject: []

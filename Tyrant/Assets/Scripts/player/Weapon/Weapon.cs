@@ -17,8 +17,14 @@ public abstract class Weapon : MonoBehaviour
 
     protected bool canFire = false;
 
-    protected virtual void Start()
+    protected bool weaponInit = false;
+
+    protected virtual void OnEnable()
     {
+        if (weaponInit)
+        {
+            return;
+        }
         startShootingPointDict = new Dictionary<PlayerFacing, GameObject>();
 
         foreach (var item in startShootingPoints)
@@ -30,6 +36,7 @@ public abstract class Weapon : MonoBehaviour
     public virtual void Fire()
     {
         canFire = false;
+
         if (weaponStates.IsLocked)
         {
             Debug.LogWarning($"Current weapon {weaponStates.name} is locked.");

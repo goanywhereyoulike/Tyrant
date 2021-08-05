@@ -18,6 +18,11 @@ public abstract class Bullet : MonoBehaviour
 
     }
 
+    protected virtual void OnhitEffect(Vector3 objectPosition)
+    {
+
+    }
+
     protected virtual void OnHit(IDamageable Enemy)
     {
 

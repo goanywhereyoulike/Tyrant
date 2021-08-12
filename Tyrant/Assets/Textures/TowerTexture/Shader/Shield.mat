@@ -27,6 +27,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -40,9 +44,9 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - Vector1_3239a648748e4b94a9220d94265048e5: 2.45
-    - Vector1_52432cb276724f5eb7f070d41653b07a: 0
-    - Vector1_bb882ecb08244c889ac1b31a81ba3bd8: 0.05
+    - Vector1_3239a648748e4b94a9220d94265048e5: 1.64
+    - Vector1_52432cb276724f5eb7f070d41653b07a: 0.01
+    - Vector1_bb882ecb08244c889ac1b31a81ba3bd8: 0.25
     - Vector1_f32950b2a50a4a2ea8d18cc915da85d2: 0
     m_Colors:
     - Color_9f771327998e4f2cb452141b997093f4: {r: 7.5563507, g: 7.405434, b: 0.4747446, a: 0}

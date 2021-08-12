@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 // Reference by https://medium.com/medialesson/simple-service-locator-for-your-unity-project-40e317aad307
+[DefaultExecutionOrder(-1)]
 public class GameObjectsLocator : MonoBehaviour
 {
     public interface IGameObjectRegister

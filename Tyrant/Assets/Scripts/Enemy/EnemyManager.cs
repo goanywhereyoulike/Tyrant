@@ -27,9 +27,4 @@ public class EnemyManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
-
-    private void Update()
-    {
-        
-    }
 }

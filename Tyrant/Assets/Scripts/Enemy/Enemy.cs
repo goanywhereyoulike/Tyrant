@@ -293,6 +293,7 @@ public class Enemy : MonoBehaviour, IDamageable ,GameObjectsLocator.IGameObjectR
     }
     protected void ReUse()
     {
+        isDead = false;
         Health = enemyState.MaxHealth;
         damage = enemyState.MaxDamage;
         moveSpeed = enemyState.MaxMoveSpeed;

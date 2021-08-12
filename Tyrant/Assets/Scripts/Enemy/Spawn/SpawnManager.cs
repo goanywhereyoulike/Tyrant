@@ -91,6 +91,7 @@ public class SpawnManager : MonoBehaviour
     private void RoomChange(int changeId)
     {
         roomNumber = changeId;
+        checkcount = 0;
         if (roomNumber != lastroom)
         {
             lastroom = roomNumber;
@@ -136,6 +137,7 @@ public class SpawnManager : MonoBehaviour
                 break;
             }
         }
+
     }
 
     void SpawnWave(int count)

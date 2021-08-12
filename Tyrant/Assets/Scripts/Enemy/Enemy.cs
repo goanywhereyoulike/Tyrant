@@ -60,7 +60,6 @@ public class Enemy : MonoBehaviour, IDamageable ,GameObjectsLocator.IGameObjectR
                 gameObject.SetActive(false);
                 isSpawn = false;
                 UnRegisterToLocator();
-                ReUse();
             }
             isDead = value;
         }
@@ -84,6 +83,7 @@ public class Enemy : MonoBehaviour, IDamageable ,GameObjectsLocator.IGameObjectR
     {
         if(!isSpawn)
         {
+            ReUse();
             RegisterToLocator();
             isSpawn = true;
         }

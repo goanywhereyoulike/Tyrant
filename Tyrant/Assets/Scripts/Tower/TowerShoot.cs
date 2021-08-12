@@ -164,11 +164,20 @@ public class TowerShoot : MonoBehaviour
 
     void UpdateTarget()
     {
+        // GameObject[] enemyobjs = GameObject.FindGameObjectsWithTag("Enemy");
+
+
+        if (GameObjectsLocator.Instance.Get<Enemy>() == null)
+        {
+            return;
+        }
         List<Enemy> enemies = GameObjectsLocator.Instance.Get<Enemy>();
         GameObject target = GetClosestTarget(enemies);
-
+        //foreach (GameObject target in enemyobjs)
+        //{
         if (target != null)
         {
+            //Enemy enemy = target.GetComponent<Enemy>();
             float Distance = (target.transform.position - transform.position).sqrMagnitude;
             if (Distance < DistanceToShoot * DistanceToShoot)
             {
@@ -180,6 +189,7 @@ public class TowerShoot : MonoBehaviour
         {
             currentTarget = null;
         }
+        //}
     }
 
     GameObject GetClosestTarget(List<Enemy> enemies)
@@ -201,7 +211,25 @@ public class TowerShoot : MonoBehaviour
         }
         return retEnemy;
     }
-
+    GameObject GetClosestTarget(Enemy[] enemies)
+    {
+        GameObject retEnemy = null;
+        for (int i = 0; i < enemies.Length; ++i)
+        {
+            if (!enemies[i].IsDead)
+            {
+                if (retEnemy == null)
+                {
+                    retEnemy = enemies[i].gameObject;
+                }
+                else if ((enemies[i].transform.position - transform.position).sqrMagnitude < (retEnemy.transform.position - transform.position).sqrMagnitude)
+                {
+                    retEnemy = enemies[i].gameObject;
+                }
+            }
+        }
+        return retEnemy;
+    }
     public void TowerToTarget(Transform targetpos)
     {
 

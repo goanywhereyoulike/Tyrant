@@ -5,30 +5,60 @@ using UnityEngine.Tilemaps;
 
 public class SpawnArea : MonoBehaviour, GameObjectsLocator.IGameObjectRegister
 {
+    [SerializeField]
+    private float waveDelay;
+    [SerializeField]
+    private int waveNumber;
+    [SerializeField]
+    private string enemyType;
+    private int spawnCount;
+    private int currentWave;
+    private float delayTime;
+    private bool spawnClear;
+
     public int spWidth;
     public int spHeight;
     public int spawnNumber;
     public int roomNumber;
-    public string enemyType;
+
+    private Wave wave;
+    List<GameObject> enemies;
+
+    Collider2D mCollider;
     private Vector2 spMax;
     private Vector2 spMin;
     public Vector2 SpMax { get => spMax; }
     public Vector2 SpMin { get => spMin; }
     public string EnemyType { get => enemyType; }
+    public int WaveNumber { get => waveNumber; }
+    public float WaveDelay { get => waveDelay; }
+    public int CurrentWave { get => currentWave; set => currentWave = value; }
+    public int SpawnCount { get => spawnCount; set => spawnCount = value; }
+    public List<GameObject> Enemies { get => enemies; set => enemies = value; }
+    public float DelayTime { get => delayTime; set => delayTime = value; }
+    public bool SpawnClear { get => spawnClear; set => spawnClear = value; }
+    public Wave Wave { get => wave;}
 
-    private void Start()
+
+    //  public string[] enemyType = { "normalenemy", "rangeEnemy" };
+    //
+    // public List<string> waveSpawn;
+
+    private void Awake()
     {
+        //waveSpawn = new List<string>(waveNumber);
+        mCollider = GetComponent<Collider2D>();
         Area();
+        Enemies = new List<GameObject>();
+        
         RegisterToLocator();
     }
 
     void Area()
     {
-        spMax.x = transform.position.x + spWidth;
-        spMax.y = transform.position.y + spHeight;
-
-        spMin.x = transform.position.x - spWidth;
-        spMin.y = transform.position.y - spHeight;
+        
+        spMax = mCollider.bounds.max;
+        spMin = mCollider.bounds.min;
 
         Debug.DrawLine(spMin, spMax, Color.green);
     }

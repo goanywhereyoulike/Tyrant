@@ -6,17 +6,25 @@ public class RangeEnemy : Enemy
 {
     // Start is called before the first frame update
     GameObject bObject;
-
-     protected override void Start()
+    [SerializeField]
+    private EnemyUI healthBar = null;
+    protected override void Start()
     {
         pathcount = 0;
         ObjectPoolManager.Instance.InstantiateObjects("enemyBullet");
         base.Start();
+        healthBar.MaxHealthChanged(EnemyState.MaxHealth);
+        healthBar.HealthChanged(EnemyState.MaxHealth);
     }
 
     // Update is called once per frame
     protected override void Update()
     {
+        if (isDead)
+        {
+            healthBar.HealthChanged(EnemyState.MaxHealth);
+        }
+
         if (!isGetBlock)
         {
             var tilemap = GameObjectsLocator.Instance.Get<Block>();
@@ -127,6 +135,12 @@ public class RangeEnemy : Enemy
             var to = new Vector3(mPath[i + 1].r, mPath[i + 1].c);
             Debug.DrawLine(from, to, Color.green);
         }
+    }
+
+    public override void TakeDamage(float damage)
+    {
+        Health -= damage;
+        healthBar.HealthChanged(Health);
     }
 
     void OnDrawGizmosSelected()

@@ -9,6 +9,7 @@ public class SpawnManager : MonoBehaviour
 
     private static SpawnManager _instance;
     public static SpawnManager Instance { get => _instance; }
+    public bool RoomClear { get => roomClear; set => roomClear = value; }
 
     GameObject enemyObject;
 
@@ -89,9 +90,10 @@ public class SpawnManager : MonoBehaviour
     }
 
     private void RoomChange(int changeId)
-    {
+   {
         roomNumber = changeId;
         checkcount = 0;
+        roomClear = false;
         if (roomNumber != lastroom)
         {
             lastroom = roomNumber;
@@ -133,7 +135,7 @@ public class SpawnManager : MonoBehaviour
             {
                 roomSpawns.Clear();
                 isRoomCheck = false;
-                roomClear = true;
+                RoomClear = true;
                 break;
             }
         }

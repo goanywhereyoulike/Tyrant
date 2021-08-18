@@ -3,74 +3,71 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class TowerManager : MonoBehaviour
+public class TrapManager : MonoBehaviour
 {
-
     PlayerMovement player;
-    SpriteRenderer TowerSprite;
-    public List<TowerTemplate> Towers = new List<TowerTemplate>();
+    SpriteRenderer TrapSprite;
+    public List<TrapTemplate> Traps = new List<TrapTemplate>();
 
     [SerializeField]
-    private Image TowerPanel;
-
-    //[SerializeField]
-    //private Image TrapPanel;
+    private Image TrapPanel;
 
     //[SerializeField]
     //private Text Coinnumber;
 
     [SerializeField]
-    private Text Tower1Price;
+    private Text Trap1Price;
 
     [SerializeField]
-    private Text Tower2Price;
+    private Text Trap2Price;
 
     [SerializeField]
-    private Text Tower3Price;
+    private Text Trap3Price;
 
     [SerializeField]
-    Image PreTowerSprite;
+    Image PreClipSprite;
 
     [SerializeField]
-    Image PreCannonTowerSprite;
+    Image PreBombSprite;
 
     [SerializeField]
     Image PreChainTowerSprite;
 
-    public GameObject Towerprefab;
-    public GameObject CannonTowerprefab;
+    public GameObject Clipprefab;
+    public GameObject Bombprefab;
     public GameObject ChainTowerprefab;
 
-    public GameObject PreTowerprefab;
-    public GameObject PreCannonTowerprefab;
+    public GameObject PreClipprefab;
+    public GameObject PreBombprefab;
     public GameObject PreChainTowerprefab;
 
-    private GameObject PreTower;
+    private GameObject PreTrap;
 
     public Vector3 offset;
 
 
-    private int TowerNumber = 0;
+    private int TrapNumber = 0;
     List<bool> IsAbleToSet = new List<bool>(3);
-    GameObject preTower;
-    bool IsPreTowerExist = false;
+    GameObject preTrap;
+    bool IsPreTrapExist = false;
     // Start is called before the first frame update
     void Start()
     {
-        TowerPanel.gameObject.SetActive(true);
-
-        ObjectPoolManager.Instance.InstantiateObjects("TowerBullet");
-        ObjectPoolManager.Instance.InstantiateObjects("CannonTowerBullet");
-        ObjectPoolManager.Instance.InstantiateObjects("ChainTowerBullet");
+        //TrapPanel.gameObject.SetActive(true);
         player = FindObjectOfType<PlayerMovement>();
         for (int i = 0; i < 3; i++)
         {
             IsAbleToSet.Add(false);
         }
 
-        Tower1Price.text = Towers[0].price.ToString();
-        Tower2Price.text = Towers[1].price.ToString();
-        Tower3Price.text = Towers[2].price.ToString();
+        Trap1Price.text = Traps[0].price.ToString();
+        Trap2Price.text = Traps[1].price.ToString();
+        Trap3Price.text = Traps[2].price.ToString();
+
+        //GetComponentInChildren<CanvasGroup>().alpha = 0;
+        //GetComponentInChildren<CanvasGroup>().interactable = false;
+        //GetComponentInChildren<CanvasGroup>().blocksRaycasts = false;
+
     }
 
     void DestroyTower()
@@ -82,7 +79,7 @@ public class TowerManager : MonoBehaviour
         {
             if (InputManager.Instance.GetKeyDown("DestroyTower"))
             {
-                if (hit.collider.gameObject.tag == "Tower")
+                if (hit.collider.gameObject.tag == "Trap")
                 {
                     Destroy(hit.collider.gameObject.transform.parent.gameObject);
 
@@ -91,38 +88,38 @@ public class TowerManager : MonoBehaviour
 
 
         }
-       
+
     }
 
     void CheckCoin()
     {
 
-        if (player.GetComponent<Player>().coin < Towers[0].price)
+        if (player.GetComponent<Player>().coin < Traps[0].price)
         {
-            PreTowerSprite.color = Color.red;
+            PreClipSprite.color = Color.red;
             IsAbleToSet[0] = false;
         }
-        if (player.GetComponent<Player>().coin < Towers[1].price)
+        if (player.GetComponent<Player>().coin < Traps[1].price)
         {
-            PreCannonTowerSprite.color = Color.red;
+            PreBombSprite.color = Color.red;
             IsAbleToSet[1] = false;
         }
-        if (player.GetComponent<Player>().coin < Towers[2].price)
+        if (player.GetComponent<Player>().coin < Traps[2].price)
         {
             PreChainTowerSprite.color = Color.red;
             IsAbleToSet[2] = false;
         }
-        if (player.GetComponent<Player>().coin >= Towers[0].price)
+        if (player.GetComponent<Player>().coin >= Traps[0].price)
         {
-            PreTowerSprite.color = Color.green;
+            PreClipSprite.color = Color.green;
             IsAbleToSet[0] = true;
         }
-        if (player.GetComponent<Player>().coin >= Towers[1].price)
+        if (player.GetComponent<Player>().coin >= Traps[1].price)
         {
-            PreCannonTowerSprite.color = Color.green;
+            PreBombSprite.color = Color.green;
             IsAbleToSet[1] = true;
         }
-        if (player.GetComponent<Player>().coin >= Towers[2].price)
+        if (player.GetComponent<Player>().coin >= Traps[2].price)
         {
             PreChainTowerSprite.color = Color.green;
             IsAbleToSet[2] = true;
@@ -136,84 +133,84 @@ public class TowerManager : MonoBehaviour
     void SetTower(Vector2 target)
     {
 
-        if (InputManager.Instance.GetKeyDown("PreBuildTower") && !IsPreTowerExist && IsAbleToSet[0])
+        if (InputManager.Instance.GetKeyDown("PreBuildTower") && !IsPreTrapExist && IsAbleToSet[0])
         {
 
-            PreTower = Instantiate(PreTowerprefab, target, Quaternion.identity);
-            PreTower.transform.parent = player.transform;
-            IsPreTowerExist = true;
-            TowerNumber = 1;
+            PreTrap = Instantiate(PreClipprefab, target, Quaternion.identity);
+            PreTrap.transform.parent = player.transform;
+            IsPreTrapExist = true;
+            TrapNumber = 1;
 
         }
 
-        if (InputManager.Instance.GetKeyDown("PreBuildCannonTower") && !IsPreTowerExist && IsAbleToSet[1])
+        if (InputManager.Instance.GetKeyDown("PreBuildCannonTower") && !IsPreTrapExist && IsAbleToSet[1])
         {
 
-            PreTower = Instantiate(PreCannonTowerprefab, target, Quaternion.identity);
-            PreTower.transform.parent = player.transform;
-            IsPreTowerExist = true;
-            TowerNumber = 2;
+            PreTrap = Instantiate(PreBombprefab, target, Quaternion.identity);
+            PreTrap.transform.parent = player.transform;
+            IsPreTrapExist = true;
+            TrapNumber = 2;
 
         }
 
-        if (InputManager.Instance.GetKeyDown("PreBuildChainTower") && !IsPreTowerExist && IsAbleToSet[2])
+        if (InputManager.Instance.GetKeyDown("PreBuildChainTower") && !IsPreTrapExist && IsAbleToSet[2])
         {
 
-            PreTower = Instantiate(PreChainTowerprefab, target, Quaternion.identity);
-            PreTower.transform.parent = player.transform;
-            IsPreTowerExist = true;
-            TowerNumber = 3;
+            PreTrap = Instantiate(PreChainTowerprefab, target, Quaternion.identity);
+            PreTrap.transform.parent = player.transform;
+            IsPreTrapExist = true;
+            TrapNumber = 3;
 
         }
 
-        if (InputManager.Instance.GetKeyDown("dropTower") && IsPreTowerExist)
+        if (InputManager.Instance.GetKeyDown("dropTower") && IsPreTrapExist)
         {
             BluePrint blue = player.GetComponentInChildren<BluePrint>();
             if (blue)
             {
                 Destroy(blue.gameObject);
             }
-            IsPreTowerExist = false;
+            IsPreTrapExist = false;
 
         }
 
-        if (PreTower)
+        if (PreTrap)
         {
-            BluePrint bluePrint = PreTower.GetComponent<BluePrint>();
+            BluePrint bluePrint = PreTrap.GetComponent<BluePrint>();
             if (bluePrint)
             {
-                TowerSprite = bluePrint.gameObject.GetComponent<SpriteRenderer>();
+                TrapSprite = bluePrint.gameObject.GetComponent<SpriteRenderer>();
             }
 
 
             if (bluePrint && bluePrint.IsAbleToSet)
             {
-                TowerSprite.color = Color.green;
+                TrapSprite.color = Color.green;
                 if (InputManager.Instance.GetKeyDown("BuildTower"))
                 {
-                    if (TowerNumber == 1)
+                    if (TrapNumber == 1)
                     {
-                        Instantiate(Towerprefab, target, Quaternion.identity);
+                        Instantiate(Clipprefab, target, Quaternion.identity);
                         player.GetComponent<Player>().coin -= 50;
                     }
-                    if (TowerNumber == 2)
+                    if (TrapNumber == 2)
                     {
-                        Instantiate(CannonTowerprefab, target, Quaternion.identity);
+                        Instantiate(Bombprefab, target, Quaternion.identity);
                         player.GetComponent<Player>().coin -= 100;
                     }
-                    if (TowerNumber == 3)
+                    if (TrapNumber == 3)
                     {
                         Instantiate(ChainTowerprefab, target, Quaternion.identity);
                         player.GetComponent<Player>().coin -= 150;
                     }
 
                     Destroy(bluePrint.gameObject);
-                    IsPreTowerExist = false;
+                    IsPreTrapExist = false;
                 }
             }
             else if (bluePrint && !bluePrint.IsAbleToSet)
             {
-                TowerSprite.color = Color.red;
+                TrapSprite.color = Color.red;
 
             }
         }
@@ -238,24 +235,22 @@ public class TowerManager : MonoBehaviour
     //        }
     //    }
 
-
-
     //}
 
     // Update is called once per frame
     void Update()
     {
 
-        //ChangePanel();
+       // ChangePanel();
         //Coinnumber.text = player.GetComponent<Player>().coin.ToString();
 
         CheckCoin();
         Vector2 PlayerPos = player.transform.position + offset;
         SetTower(PlayerPos);
 
-        if (PreTower)
+        if (PreTrap)
         {
-            PreTower.transform.position = PlayerPos;
+            PreTrap.transform.position = PlayerPos;
         }
         DestroyTower();
     }

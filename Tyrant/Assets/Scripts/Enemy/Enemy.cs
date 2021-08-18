@@ -49,7 +49,7 @@ public class Enemy : MonoBehaviour, IDamageable ,GameObjectsLocator.IGameObjectR
 
     protected Animator anim;
     public EnemyState EnemyState { get => enemyState; /*set => enemyState = value;*/ }
-    public float MoveSpeed { get => moveSpeed; }
+    public float MoveSpeed { get => moveSpeed; set => moveSpeed = value; }
     public bool IsDead
     {
         get => isDead;

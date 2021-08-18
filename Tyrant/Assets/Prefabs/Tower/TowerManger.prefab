@@ -160,7 +160,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c1e9d70b0a7a7e24da738d0a8bac8e44, type: 2}
   - {fileID: 11400000, guid: 6a6993094d51d564e829ba77253d06f2, type: 2}
   - {fileID: 11400000, guid: b98cf827f1f74b045a6fe86a23c139a9, type: 2}
-  Coinnumber: {fileID: 7645187406703499282}
+  TowerPanel: {fileID: 5555223572794265363}
   Tower1Price: {fileID: 6595899175323000821}
   Tower2Price: {fileID: 5932189627997089876}
   Tower3Price: {fileID: 6859062227149231214}
@@ -339,8 +339,9 @@ GameObject:
   - component: {fileID: 1779527192567218826}
   - component: {fileID: 2949652541385199145}
   - component: {fileID: 5555223572794265363}
+  - component: {fileID: 4860608379262767151}
   m_Layer: 5
-  m_Name: Panel
+  m_Name: TowerPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -366,7 +367,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -497.9863, y: -342.7876}
+  m_SizeDelta: {x: 1046.2, y: 522.5}
   m_Pivot: {x: 0, y: 0}
 --- !u!222 &2949652541385199145
 CanvasRenderer:
@@ -389,7 +390,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -406,6 +407,18 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!225 &4860608379262767151
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2288470576605897317}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &2404963831105216392
 GameObject:
   m_ObjectHideFlags: 0

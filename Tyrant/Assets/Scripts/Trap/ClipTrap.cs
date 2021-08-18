@@ -64,6 +64,7 @@ public class ClipTrap : MonoBehaviour
         yield return new WaitForSeconds(0.1f);
 
         enemy.MoveSpeed = 0.0f;
+    
         enemy.transform.position = transform.position;
 
         enemy.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;

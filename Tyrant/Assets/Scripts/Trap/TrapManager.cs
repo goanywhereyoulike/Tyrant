@@ -31,15 +31,15 @@ public class TrapManager : MonoBehaviour
     Image PreBombSprite;
 
     [SerializeField]
-    Image PreChainTowerSprite;
+    Image PreBlackHoleSprite;
 
     public GameObject Clipprefab;
     public GameObject Bombprefab;
-    public GameObject ChainTowerprefab;
+    public GameObject BlackHoleprefab;
 
     public GameObject PreClipprefab;
     public GameObject PreBombprefab;
-    public GameObject PreChainTowerprefab;
+    public GameObject PreBlackHoleprefab;
 
     private GameObject PreTrap;
 
@@ -106,7 +106,7 @@ public class TrapManager : MonoBehaviour
         }
         if (player.GetComponent<Player>().coin < Traps[2].price)
         {
-            PreChainTowerSprite.color = Color.red;
+            PreBlackHoleSprite.color = Color.red;
             IsAbleToSet[2] = false;
         }
         if (player.GetComponent<Player>().coin >= Traps[0].price)
@@ -121,7 +121,7 @@ public class TrapManager : MonoBehaviour
         }
         if (player.GetComponent<Player>().coin >= Traps[2].price)
         {
-            PreChainTowerSprite.color = Color.green;
+            PreBlackHoleSprite.color = Color.green;
             IsAbleToSet[2] = true;
         }
 
@@ -156,7 +156,7 @@ public class TrapManager : MonoBehaviour
         if (InputManager.Instance.GetKeyDown("PreBuildChainTower") && !IsPreTrapExist && IsAbleToSet[2])
         {
 
-            PreTrap = Instantiate(PreChainTowerprefab, target, Quaternion.identity);
+            PreTrap = Instantiate(PreBlackHoleprefab, target, Quaternion.identity);
             PreTrap.transform.parent = player.transform;
             IsPreTrapExist = true;
             TrapNumber = 3;
@@ -200,7 +200,7 @@ public class TrapManager : MonoBehaviour
                     }
                     if (TrapNumber == 3)
                     {
-                        Instantiate(ChainTowerprefab, target, Quaternion.identity);
+                        Instantiate(BlackHoleprefab, target, Quaternion.identity);
                         player.GetComponent<Player>().coin -= 150;
                     }
 

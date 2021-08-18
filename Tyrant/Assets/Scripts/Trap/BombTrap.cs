@@ -104,4 +104,12 @@ public class BombTrap : MonoBehaviour
 
     }
 
+    void OnDrawGizmosSelected()
+    {
+        // Draw a yellow sphere at the transform's position
+        Gizmos.color = new Color(0, 1, 1, 1);
+        Gizmos.DrawWireSphere(transform.position, radius);
+        // Gizmos.DrawSphere(transform.position, enemyState.DetectRange);
+    }
+
 }

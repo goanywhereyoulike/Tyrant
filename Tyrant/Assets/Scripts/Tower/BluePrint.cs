@@ -10,14 +10,14 @@ public class BluePrint : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
 
-        if (collision.gameObject.tag == "TowerBlockArea" || collision.gameObject.tag == "Tower")
+        if (collision.gameObject.tag == "TowerBlockArea" || collision.gameObject.tag == "Tower" || collision.gameObject.tag == "Trap")
         {
             IsAbleToSet = false;
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "TowerBlockArea" || collision.gameObject.tag == "Tower")
+        if (collision.gameObject.tag == "TowerBlockArea" || collision.gameObject.tag == "Tower" || collision.gameObject.tag == "Trap")
         {
             IsAbleToSet = true;
         }
@@ -25,14 +25,14 @@ public class BluePrint : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "TowerBlockArea" || collision.gameObject.tag == "Tower")
+        if (collision.gameObject.tag == "TowerBlockArea" || collision.gameObject.tag == "Tower" || collision.gameObject.tag == "Trap")
         {
             IsAbleToSet = false;
         }
     }
     private void OnCollisionExit2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "TowerBlockArea" || collision.gameObject.tag == "Tower")
+        if (collision.gameObject.tag == "TowerBlockArea" || collision.gameObject.tag == "Tower" || collision.gameObject.tag == "Trap")
         {
             IsAbleToSet = true;
         }

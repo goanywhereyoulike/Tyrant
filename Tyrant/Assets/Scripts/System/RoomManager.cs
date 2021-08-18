@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class RoomManager : MonoBehaviour
 {
+    public List<GameObject> Doors;
+
     public System.Action<int> RoomChanged = null;
 
     private int roomId;
@@ -30,6 +32,17 @@ public class RoomManager : MonoBehaviour
         else if (instance != this)
         {
             Destroy(gameObject);
+        }
+    }
+
+    private void Update()
+    {
+        for(int i = 0; i < Doors.Count; ++i)
+        {
+            if(i == RoomId && SpawnManager.Instance.RoomClear)
+            {
+                Doors[i].SetActive(false);
+            }
         }
     }
 

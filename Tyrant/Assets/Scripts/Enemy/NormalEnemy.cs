@@ -4,14 +4,20 @@ using UnityEngine;
 public class NormalEnemy : Enemy
 {
     [SerializeField]
-    private EnemyUI healthBar = null;
+    private EnemyUI enemyUi = null;
+
+    [SerializeField]
+    private Animator burningAnimator;
+
     // Start is called before the first frame update
     protected override void Start()
     {
         pathcount = 0;
         base.Start();
-        healthBar.MaxHealthChanged(EnemyState.MaxHealth);
-        healthBar.HealthChanged(EnemyState.MaxHealth);
+        enemyUi.MaxHealthChanged(EnemyState.MaxHealth);
+        enemyUi.HealthChanged(EnemyState.MaxHealth);
+        enemyUi.MaxArmorChanged(EnemyState.MaxArmor);
+        enemyUi.ArmorChanged(EnemyState.MaxArmor);
     }
 
     // Update is called once per frame
@@ -19,7 +25,7 @@ public class NormalEnemy : Enemy
     {
         if(isDead)
         {
-            healthBar.HealthChanged(EnemyState.MaxHealth);
+            enemyUi.HealthChanged(EnemyState.MaxHealth);
         }
 
         base.Update();
@@ -28,7 +34,15 @@ public class NormalEnemy : Enemy
     public override void TakeDamage(float damage)
     {
         Health -= damage;
-        healthBar.HealthChanged(Health);
+        enemyUi.HealthChanged(Health);
+    }
+
+    public override void BurnArmor(float buringDamge)
+    {
+        armor -= buringDamge;
+        enemyUi.ArmorChanged(armor);
+        burningAnimator.gameObject.SetActive(true);
+        burningAnimator.SetBool("Burning", true);
     }
 
     //------------------attck animation------------------------

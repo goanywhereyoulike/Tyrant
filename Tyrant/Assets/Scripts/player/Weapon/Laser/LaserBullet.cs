@@ -56,6 +56,8 @@ public class LaserBullet : Bullet
             IDamageable Enemy = collision.gameObject.GetComponent<IDamageable>();
             OnHit(Enemy);
             OnhitEffect(collision.gameObject.transform.position);
+            var enemyClass = collision.gameObject.GetComponent<Enemy>();
+            enemyClass.SlowDown(2, 0);
         }
     }
 }

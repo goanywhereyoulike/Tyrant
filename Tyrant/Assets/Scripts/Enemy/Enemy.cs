@@ -9,6 +9,8 @@ public class Enemy : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDam
     [SerializeField]
     EnemyState enemyState = new EnemyState();
 
+    protected SpriteRenderer spriteRenderer;
+
     protected NodePath nodePath;
     //public Transform target;
     //pathfinding
@@ -33,9 +35,9 @@ public class Enemy : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDam
     protected float attacktime;
     protected float distance;
     protected float mainTargetDistance;
-    public float slowDownTime;
     protected float delayTime;
     protected int pathcount;
+    protected float armor;
 
     protected bool isGetBlock = false;
     protected bool isDead = false;
@@ -43,7 +45,6 @@ public class Enemy : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDam
     protected bool findTarget = false;
     protected bool search = false;
     protected bool isSpawn = false;
-    // public bool isSlow = false;
 
     private List<Vector2> debug;
 
@@ -62,9 +63,22 @@ public class Enemy : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDam
             {
                 gameObject.SetActive(false);
                 isSpawn = false;
+                IsSlow = false;
                 UnRegisterToLocator();
             }
             isDead = value;
+        }
+    }
+
+
+    private bool isSlow = false;
+    protected bool IsSlow
+    {
+        get => isSlow;
+        set
+        {
+            isSlow = value;
+            spriteRenderer.material.color = isSlow ? new Color(1.0f, 118.0f, 255.0f) : Color.white; 
         }
     }
 
@@ -77,9 +91,9 @@ public class Enemy : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDam
         mMainTarget = mTarget;
         detectObject();
         mainTarget = GameObjectsLocator.Instance.Get<Player>();
-        
+        spriteRenderer = GetComponent<SpriteRenderer>();
+
         oMoveSpeed = moveSpeed;
-        delayTime = slowDownTime;
     }
 
     protected virtual void Update()
@@ -225,21 +239,20 @@ public class Enemy : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDam
         }
     }
 
-    //protected void SlowDown(float speed)
-    //{
-    //    if (isSlow)
-    //    {
-    //        moveSpeed = speed;
-    //    }
+    public void SlowDown(float slowTime, float newSpeed)
+    {
+        IsSlow = true;
+        float oldSpeed = moveSpeed;
+        moveSpeed = newSpeed;
+        StartCoroutine(SpeedBack(slowTime, oldSpeed));
+    }
 
-    //    if (delayTime <= 0.0f)
-    //    {
-    //        moveSpeed = oMoveSpeed;
-    //        isSlow = false;
-    //        delayTime = slowDownTime;
-    //    }
-    //    delayTime -= Time.deltaTime;
-    //}
+    IEnumerator SpeedBack(float slowTime, float oldSpeed)
+    {
+        yield return new WaitForSeconds(slowTime);
+        IsSlow = false;
+        moveSpeed = oldSpeed;
+    }
 
     protected void detectObject()
     {
@@ -304,6 +317,7 @@ public class Enemy : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDam
         attackSpeed = enemyState.AttackSpeed;
         stopDistance = enemyState.StopDistance;
         detectRange = enemyState.DetectRange;
+        armor = enemyState.MaxArmor;
     }
     protected void IsEnemyDead()
     {
@@ -316,6 +330,11 @@ public class Enemy : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDam
     public virtual void TakeDamage(float damage)
     {
         Health -= damage;
+    }
+
+    public virtual void BurnArmor(float buringDamge)
+    {
+        armor -= buringDamge;
     }
 
     protected void GetPath()

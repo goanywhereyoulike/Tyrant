@@ -832,6 +832,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2001994934}
     m_Modifications:
+    - target: {fileID: 118796097186425555, guid: b1195edbd4ca6884daa3dbf46bfe5dba, type: 3}
+      propertyPath: keyCodeLibrary.Array.size
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 118796097186425555, guid: b1195edbd4ca6884daa3dbf46bfe5dba, type: 3}
+      propertyPath: keyCodeLibrary.Array.data[18].name
+      value: CameraZoomIn
+      objectReference: {fileID: 0}
+    - target: {fileID: 118796097186425555, guid: b1195edbd4ca6884daa3dbf46bfe5dba, type: 3}
+      propertyPath: keyCodeLibrary.Array.data[19].name
+      value: CameraZoomOut
+      objectReference: {fileID: 0}
+    - target: {fileID: 118796097186425555, guid: b1195edbd4ca6884daa3dbf46bfe5dba, type: 3}
+      propertyPath: keyCodeLibrary.Array.data[18].keyCode
+      value: 280
+      objectReference: {fileID: 0}
+    - target: {fileID: 118796097186425555, guid: b1195edbd4ca6884daa3dbf46bfe5dba, type: 3}
+      propertyPath: keyCodeLibrary.Array.data[19].keyCode
+      value: 281
+      objectReference: {fileID: 0}
     - target: {fileID: 8437825402643822864, guid: b1195edbd4ca6884daa3dbf46bfe5dba, type: 3}
       propertyPath: m_RootOrder
       value: 1

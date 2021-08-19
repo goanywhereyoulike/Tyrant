@@ -119,27 +119,27 @@ public class NodePath : GameObjectsLocator.IGameObjectRegister
 					{
 						row = x + 1;
 					}
-					if (d == 4)
-					{
-						column = y + 1;
-						row = x - 1;
-					}
-					if (d == 5)
-					{
-						column = y + 1;
-						row = x + 1;
-					}
-					if (d == 6)
-					{
-						column = y - 1;
-						row = x - 1;
-					}
-					if (d == 7)
-					{
-						column = y - 1;
-						row = x + 1;
-					}
-					if (mNodes[x + y * mRow].neighbors.Count < 8)
+					//if (d == 4)
+					//{
+					//	column = y + 1;
+					//	row = x - 1;
+					//}
+					//if (d == 5)
+					//{
+					//	column = y + 1;
+					//	row = x + 1;
+					//}
+					//if (d == 6)
+					//{
+					//	column = y - 1;
+					//	row = x - 1;
+					//}
+					//if (d == 7)
+					//{
+					//	column = y - 1;
+					//	row = x + 1;
+					//}
+					if (mNodes[x + y * mRow].neighbors.Count < 4)
 					{
 						mNodes[x + y * mRow].neighbors.Add(GetNode(row, column));
 					}

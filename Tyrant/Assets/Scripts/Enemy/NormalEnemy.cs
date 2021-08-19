@@ -1,22 +1,36 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class NormalEnemy : Enemy
 {
+    [SerializeField]
+    private EnemyUI healthBar = null;
     // Start is called before the first frame update
     protected override void Start()
     {
         pathcount = 0;
         base.Start();
-       
+        healthBar.MaxHealthChanged(EnemyState.MaxHealth);
+        healthBar.HealthChanged(EnemyState.MaxHealth);
     }
 
     // Update is called once per frame
     protected override void Update()
     {
+        if(isDead)
+        {
+            healthBar.HealthChanged(EnemyState.MaxHealth);
+        }
+
         base.Update();
     }
+
+    public override void TakeDamage(float damage)
+    {
+        Health -= damage;
+        healthBar.HealthChanged(Health);
+    }
+
     //------------------attck animation------------------------
     IEnumerator Attack()
     {
@@ -38,17 +52,20 @@ public class NormalEnemy : Enemy
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.name == mTarget.name)
+        if (mTarget != null)
         {
-            if (collision.gameObject.tag == "Player" || collision.gameObject.tag == "Tower" || collision.gameObject.tag == "Base")
+            if (collision.gameObject.name == mTarget.name)
             {
-                IDamageable Targets = collision.gameObject.GetComponent<IDamageable>();
-                if (Targets == null)
+                if (collision.gameObject.tag == "Player" || collision.gameObject.tag == "Tower" || collision.gameObject.tag == "Base")
                 {
-                    Targets = collision.gameObject.GetComponentInChildren<IDamageable>();
+                    IDamageable Targets = collision.gameObject.GetComponent<IDamageable>();
+                    if (Targets == null)
+                    {
+                        Targets = collision.gameObject.GetComponentInChildren<IDamageable>();
+                    }
+                    Targets.TakeDamage(damage);
+                    Debug.Log("attack");
                 }
-                Targets.TakeDamage(damage);
-                Debug.Log("attack");
             }
         }
     }

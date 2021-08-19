@@ -11,7 +11,18 @@ public class TowerManager : MonoBehaviour
     public List<TowerTemplate> Towers = new List<TowerTemplate>();
 
     [SerializeField]
-    private Text Coinnumber;
+    private int TowerNumberLimit = 5;
+
+    [SerializeField]
+    private Image TowerPanel;
+
+    //[SerializeField]
+    //private Image TrapPanel;
+
+    //[SerializeField]
+    //private Text Coinnumber;
+    [SerializeField]
+    private Text TowerNumberText;
 
     [SerializeField]
     private Text Tower1Price;
@@ -44,13 +55,19 @@ public class TowerManager : MonoBehaviour
     public Vector3 offset;
 
 
+    private int TowerIndex = 0;
     private int TowerNumber = 0;
+    private bool IsReachTowerNumberLimit = false;
+
+
     List<bool> IsAbleToSet = new List<bool>(3);
     GameObject preTower;
     bool IsPreTowerExist = false;
     // Start is called before the first frame update
     void Start()
     {
+        TowerPanel.gameObject.SetActive(true);
+
         ObjectPoolManager.Instance.InstantiateObjects("TowerBullet");
         ObjectPoolManager.Instance.InstantiateObjects("CannonTowerBullet");
         ObjectPoolManager.Instance.InstantiateObjects("ChainTowerBullet");
@@ -85,10 +102,35 @@ public class TowerManager : MonoBehaviour
         }
        
     }
+    public void ResetTowerNumber()
+    {
+        TowerNumber = 0;
+    
+    }
 
+    void CheckNumberLimit()
+    {
+        if (TowerNumber >= TowerNumberLimit)
+        {
+            for (int i = 0; i < IsAbleToSet.Count; ++i)
+            {
+                IsAbleToSet[i] = false;
+                
+            }
+            PreTowerSprite.color = Color.red;
+            PreCannonTowerSprite.color = Color.red;
+            PreChainTowerSprite.color = Color.red;
+            IsReachTowerNumberLimit = true;
+        }
+    
+    
+    }
     void CheckCoin()
     {
-
+        if (IsReachTowerNumberLimit)
+        {
+            return;
+        }
         if (player.GetComponent<Player>().coin < Towers[0].price)
         {
             PreTowerSprite.color = Color.red;
@@ -134,7 +176,7 @@ public class TowerManager : MonoBehaviour
             PreTower = Instantiate(PreTowerprefab, target, Quaternion.identity);
             PreTower.transform.parent = player.transform;
             IsPreTowerExist = true;
-            TowerNumber = 1;
+            TowerIndex = 1;
 
         }
 
@@ -144,7 +186,7 @@ public class TowerManager : MonoBehaviour
             PreTower = Instantiate(PreCannonTowerprefab, target, Quaternion.identity);
             PreTower.transform.parent = player.transform;
             IsPreTowerExist = true;
-            TowerNumber = 2;
+            TowerIndex = 2;
 
         }
 
@@ -154,7 +196,7 @@ public class TowerManager : MonoBehaviour
             PreTower = Instantiate(PreChainTowerprefab, target, Quaternion.identity);
             PreTower.transform.parent = player.transform;
             IsPreTowerExist = true;
-            TowerNumber = 3;
+            TowerIndex = 3;
 
         }
 
@@ -183,17 +225,17 @@ public class TowerManager : MonoBehaviour
                 TowerSprite.color = Color.green;
                 if (InputManager.Instance.GetKeyDown("BuildTower"))
                 {
-                    if (TowerNumber == 1)
+                    if (TowerIndex == 1)
                     {
                         Instantiate(Towerprefab, target, Quaternion.identity);
                         player.GetComponent<Player>().coin -= 50;
                     }
-                    if (TowerNumber == 2)
+                    if (TowerIndex == 2)
                     {
                         Instantiate(CannonTowerprefab, target, Quaternion.identity);
                         player.GetComponent<Player>().coin -= 100;
                     }
-                    if (TowerNumber == 3)
+                    if (TowerIndex == 3)
                     {
                         Instantiate(ChainTowerprefab, target, Quaternion.identity);
                         player.GetComponent<Player>().coin -= 150;
@@ -201,6 +243,7 @@ public class TowerManager : MonoBehaviour
 
                     Destroy(bluePrint.gameObject);
                     IsPreTowerExist = false;
+                    TowerNumber++;
                 }
             }
             else if (bluePrint && !bluePrint.IsAbleToSet)
@@ -213,11 +256,35 @@ public class TowerManager : MonoBehaviour
 
     }
 
+    //void ChangePanel()
+    //{
+
+    //    if (InputManager.Instance.GetKeyDown("ChangeTowerPanel"))
+    //    {
+    //        if (TowerPanel.gameObject.activeSelf == true)
+    //        {
+    //            TowerPanel.gameObject.SetActive(false);
+    //            TrapPanel.gameObject.SetActive(true);
+    //        }
+    //        else if (TrapPanel.gameObject.activeSelf == true)
+    //        {
+    //            TowerPanel.gameObject.SetActive(true);
+    //            TrapPanel.gameObject.SetActive(false);
+    //        }
+    //    }
+
+
+
+    //}
+
     // Update is called once per frame
     void Update()
     {
-        Coinnumber.text = player.GetComponent<Player>().coin.ToString();
 
+        //ChangePanel();
+        //Coinnumber.text = player.GetComponent<Player>().coin.ToString();
+        TowerNumberText.text = TowerNumber.ToString();
+        CheckNumberLimit();
         CheckCoin();
         Vector2 PlayerPos = player.transform.position + offset;
         SetTower(PlayerPos);

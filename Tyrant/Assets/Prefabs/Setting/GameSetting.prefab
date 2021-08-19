@@ -124,6 +124,12 @@ MonoBehaviour:
     keyCode: 51
   - name: WeaponWheelToggle
     keyCode: 9
+  - name: ChangeTowerPanel
+    keyCode: 306
+  - name: NextDialogue
+    keyCode: 32
+  - name: OpenDialogue
+    keyCode: 101
   axesLibrary:
   - name: Horizontal
     positiveButton: 100

@@ -10,6 +10,8 @@ public class Player : MonoBehaviour , IDamageable, GameObjectsLocator.IGameObjec
     [SerializeField]
     private PlayerStates playerStates;
 
+    [SerializeField] private DialogueUI dialogueUI;
+
     [SerializeField]
     private Inventory myInventory = null;
     public Inventory MyInventory { get => myInventory; set => myInventory = value; }
@@ -28,6 +30,9 @@ public class Player : MonoBehaviour , IDamageable, GameObjectsLocator.IGameObjec
     }
 
     private PlayerMovement playerMovement = null;
+
+    public DialogueUI DialogueUI => dialogueUI;
+    public IInteractable interactable { get; set; }
 
     [SerializeField]
     private PlayerUI playerUI = null;
@@ -70,6 +75,17 @@ public class Player : MonoBehaviour , IDamageable, GameObjectsLocator.IGameObjec
         if (InputManager.Instance.GetKeyDown("drop"))
         {
             MyInventory.DropPickUp(transform.position, MyInventory.GetPickUp("health potion"));
+        }
+        if (dialogueUI.isOpen)
+        {
+            return;
+        }
+        if (InputManager.Instance.GetKeyDown("OpenDialogue"))
+        {
+            if (interactable!=null)
+            {
+                interactable.Interact(this);
+            }
         }
     }
 

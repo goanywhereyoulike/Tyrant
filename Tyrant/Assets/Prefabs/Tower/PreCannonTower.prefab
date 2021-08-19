@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5978598576071215056}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: ShootPos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40,7 +40,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5978598576428525816}
   - component: {fileID: 5978598576428525817}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: 1_right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -125,7 +125,7 @@ GameObject:
   - component: {fileID: 5978598576909855981}
   - component: {fileID: 5978598576909855978}
   - component: {fileID: 5502075164982992317}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: PreCannonTower
   m_TagString: TowerBlockArea
   m_Icon: {fileID: 0}

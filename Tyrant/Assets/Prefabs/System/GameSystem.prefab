@@ -43,6 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20846ced7babe8b4f83c095c04711022, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Doors: []
 --- !u!1 &2022734583042603807
 GameObject:
   m_ObjectHideFlags: 0
@@ -135,7 +136,7 @@ MonoBehaviour:
     amountToPool: 10
     shouldExpand: 0
   - tagName: normalenemy
-    objectToPool: {fileID: 86108912329556045, guid: 96eef6fb1157b485d86e8003cc10e7f1, type: 3}
+    objectToPool: {fileID: 2447981995903305430, guid: 524a902843161f64daed6534c6921e11, type: 3}
     amountToPool: 5
     shouldExpand: 0
   - tagName: rangeEnemy

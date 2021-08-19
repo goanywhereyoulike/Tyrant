@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 
-public class Enemy : MonoBehaviour, IDamageable ,GameObjectsLocator.IGameObjectRegister
+public class Enemy : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDamageable
 {
     [SerializeField]
     EnemyState enemyState = new EnemyState();
+
     protected NodePath nodePath;
     //public Transform target;
     //pathfinding
@@ -45,6 +47,7 @@ public class Enemy : MonoBehaviour, IDamageable ,GameObjectsLocator.IGameObjectR
 
     private List<Vector2> debug;
 
+    List<Player> mainTarget = null;
     Pathfinding path = null;
 
     protected Animator anim;
@@ -73,15 +76,15 @@ public class Enemy : MonoBehaviour, IDamageable ,GameObjectsLocator.IGameObjectR
         anim = GetComponent<Animator>();
         mMainTarget = mTarget;
         detectObject();
-        var mainTarget = GameObjectsLocator.Instance.Get<Player>();
-        mMainTarget = mainTarget[0].transform;
+        mainTarget = GameObjectsLocator.Instance.Get<Player>();
+        
         oMoveSpeed = moveSpeed;
         delayTime = slowDownTime;
     }
 
     protected virtual void Update()
     {
-        if(!isSpawn)
+        if (!isSpawn)
         {
             ReUse();
             RegisterToLocator();
@@ -112,7 +115,10 @@ public class Enemy : MonoBehaviour, IDamageable ,GameObjectsLocator.IGameObjectR
 
         // check mtarget is null or check deafult target is enemy,but not in range
         if (mTarget == null)
+        {
             findTarget = false;
+            mMainTarget = mainTarget[0].transform;
+        }
 
         //check is base in the range, then attack base first
         if (mMainTarget != null)
@@ -287,10 +293,6 @@ public class Enemy : MonoBehaviour, IDamageable ,GameObjectsLocator.IGameObjectR
         }
     }
 
-    public void TakeDamage(float damage)
-    {
-        Health -= damage;
-    }
     protected void ReUse()
     {
         isDead = false;
@@ -310,6 +312,12 @@ public class Enemy : MonoBehaviour, IDamageable ,GameObjectsLocator.IGameObjectR
             IsDead = true;
         }
     }
+
+    public virtual void TakeDamage(float damage)
+    {
+        Health -= damage;
+    }
+
     protected void GetPath()
     {
         if (path.Search((Vector2)transform.position, (Vector2)mTarget.position))

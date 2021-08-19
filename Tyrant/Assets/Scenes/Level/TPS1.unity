@@ -838,7 +838,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 118796097186425555, guid: b1195edbd4ca6884daa3dbf46bfe5dba, type: 3}
       propertyPath: keyCodeLibrary.Array.size
-      value: 23
+      value: 24
       objectReference: {fileID: 0}
     - target: {fileID: 118796097186425555, guid: b1195edbd4ca6884daa3dbf46bfe5dba, type: 3}
       propertyPath: keyCodeLibrary.Array.data[18].name
@@ -855,6 +855,10 @@ PrefabInstance:
     - target: {fileID: 118796097186425555, guid: b1195edbd4ca6884daa3dbf46bfe5dba, type: 3}
       propertyPath: keyCodeLibrary.Array.data[22].name
       value: CameraZoomOut
+      objectReference: {fileID: 0}
+    - target: {fileID: 118796097186425555, guid: b1195edbd4ca6884daa3dbf46bfe5dba, type: 3}
+      propertyPath: keyCodeLibrary.Array.data[23].name
+      value: GamePause
       objectReference: {fileID: 0}
     - target: {fileID: 118796097186425555, guid: b1195edbd4ca6884daa3dbf46bfe5dba, type: 3}
       propertyPath: keyCodeLibrary.Array.data[18].keyCode
@@ -875,6 +879,10 @@ PrefabInstance:
     - target: {fileID: 118796097186425555, guid: b1195edbd4ca6884daa3dbf46bfe5dba, type: 3}
       propertyPath: keyCodeLibrary.Array.data[22].keyCode
       value: 281
+      objectReference: {fileID: 0}
+    - target: {fileID: 118796097186425555, guid: b1195edbd4ca6884daa3dbf46bfe5dba, type: 3}
+      propertyPath: keyCodeLibrary.Array.data[23].keyCode
+      value: 289
       objectReference: {fileID: 0}
     - target: {fileID: 8437825402643822864, guid: b1195edbd4ca6884daa3dbf46bfe5dba, type: 3}
       propertyPath: m_RootOrder

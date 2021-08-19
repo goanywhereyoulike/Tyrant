@@ -36,8 +36,10 @@ public class GameObjectsLocator : MonoBehaviour
         string key = typeof(T).Name;
         if (!gameObjects.ContainsKey(key))
         {
-            Debug.LogError($"{key} not registered with {GetType().Name}");
-            throw new System.InvalidOperationException();
+            //Debug.LogError($"{key} not registered with {GetType().Name}");
+            //throw new System.InvalidOperationException();
+
+            return null;
         }
 
         List<T> temp = new List<T>();

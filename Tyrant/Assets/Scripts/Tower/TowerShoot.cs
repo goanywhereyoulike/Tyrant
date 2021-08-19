@@ -113,21 +113,29 @@ public class TowerShoot : MonoBehaviour
         GameObject bullet = ObjectPoolManager.Instance.GetPooledObject("TowerBullet");
         if (towerInfo)
         {
-            if (towerInfo.tower.type == "Basic")
+            if (towerInfo.tower.type == "Basic" && bullet)
             {
                 bullet.GetComponent<TowerBullet>().bulletDamage = towerInfo.tower.bulletDamage;
             }
             if (towerInfo.tower.type == "CannonTower")
             {
                 bullet = ObjectPoolManager.Instance.GetPooledObject("CannonTowerBullet");
-                bullet.GetComponent<CannonTowerBullet>().bulletDamage = towerInfo.tower.bulletDamage;
+                if (bullet)
+                {
+                    bullet.GetComponent<CannonTowerBullet>().bulletDamage = towerInfo.tower.bulletDamage;
+                }
+
             }
 
             if (towerInfo.tower.type == "ChainTower")
             {
                 bullet = ObjectPoolManager.Instance.GetPooledObject("ChainTowerBullet");
-                bullet.GetComponentInChildren<ChainTowerBullet>().bulletDamage = towerInfo.tower.bulletDamage;
-                IsChainTower = true;
+                if (bullet)
+                {
+                    bullet.GetComponentInChildren<ChainTowerBullet>().bulletDamage = towerInfo.tower.bulletDamage;
+                    IsChainTower = true;
+                }
+               
             }
         }
 

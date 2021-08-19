@@ -41,6 +41,11 @@ public class TrapManager : MonoBehaviour
     public GameObject PreBombprefab;
     public GameObject PreBlackHoleprefab;
 
+    private bool IsClipUnlock      = true;
+    private bool IsBombUnlock      = true;
+    private bool IsBlckHoleUnlock  = true;
+
+
     private GameObject PreTrap;
 
     public Vector3 offset;
@@ -90,36 +95,71 @@ public class TrapManager : MonoBehaviour
         }
 
     }
+    public void UnlockClipTrap()
+    {
+        IsClipUnlock = true;
+    }
+    public void UnlockBombTrap()
+    {
+        IsBombUnlock = true;
+    }
+    public void UnlockBlackHoleTrap()
+    {
+        IsBlckHoleUnlock = true;
+    }
+
+    void CheckLock()
+    {
+        if (!IsClipUnlock)
+        {
+            PreClipSprite.color = Color.black;
+            IsAbleToSet[0] = false;
+
+        }
+        if (!IsBombUnlock)
+        {
+            PreBombSprite.color = Color.black;
+            IsAbleToSet[1] = false;
+
+        }
+        if (!IsBlckHoleUnlock)
+        {
+            PreBlackHoleSprite.color = Color.black;
+            IsAbleToSet[2] = false;
+
+        }
+
+    }
 
     void CheckCoin()
     {
 
-        if (player.GetComponent<Player>().coin < Traps[0].price)
+        if (player.GetComponent<Player>().coin < Traps[0].price && IsClipUnlock)
         {
             PreClipSprite.color = Color.red;
             IsAbleToSet[0] = false;
         }
-        if (player.GetComponent<Player>().coin < Traps[1].price)
+        if (player.GetComponent<Player>().coin < Traps[1].price && IsBombUnlock)
         {
             PreBombSprite.color = Color.red;
             IsAbleToSet[1] = false;
         }
-        if (player.GetComponent<Player>().coin < Traps[2].price)
+        if (player.GetComponent<Player>().coin < Traps[2].price && IsBlckHoleUnlock)
         {
             PreBlackHoleSprite.color = Color.red;
             IsAbleToSet[2] = false;
         }
-        if (player.GetComponent<Player>().coin >= Traps[0].price)
+        if (player.GetComponent<Player>().coin >= Traps[0].price && IsClipUnlock)
         {
             PreClipSprite.color = Color.green;
             IsAbleToSet[0] = true;
         }
-        if (player.GetComponent<Player>().coin >= Traps[1].price)
+        if (player.GetComponent<Player>().coin >= Traps[1].price && IsBombUnlock)
         {
             PreBombSprite.color = Color.green;
             IsAbleToSet[1] = true;
         }
-        if (player.GetComponent<Player>().coin >= Traps[2].price)
+        if (player.GetComponent<Player>().coin >= Traps[2].price && IsBlckHoleUnlock)
         {
             PreBlackHoleSprite.color = Color.green;
             IsAbleToSet[2] = true;
@@ -241,9 +281,9 @@ public class TrapManager : MonoBehaviour
     void Update()
     {
 
-       // ChangePanel();
+        // ChangePanel();
         //Coinnumber.text = player.GetComponent<Player>().coin.ToString();
-
+        CheckLock();
         CheckCoin();
         Vector2 PlayerPos = player.transform.position + offset;
         SetTower(PlayerPos);

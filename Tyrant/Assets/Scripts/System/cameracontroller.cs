@@ -14,6 +14,11 @@ public class cameracontroller : MonoBehaviour
     }
     void Update()
     {
+        if (InputManager.Instance.GetKeyDown("CameraZoomIn"))
+            playerViewZone -= 0.2f;
+        else if (InputManager.Instance.GetKeyDown("CameraZoomOut"))
+            playerViewZone += 0.2f;
+
         Camera.main.orthographicSize = playerViewZone;
         transform.position = new Vector3(target.transform.position.x, target.transform.position.y,transform.position.z);
     }

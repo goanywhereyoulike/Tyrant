@@ -57,7 +57,7 @@ public class FlamethrowerBullet : Bullet
     {
         if (other.tag == "Enemy")
         {
-            other.GetComponent<Enemy>().TakeDamage(10);
+            other.GetComponent<Enemy>().BurnArmor(1f);
         }
     }
 }

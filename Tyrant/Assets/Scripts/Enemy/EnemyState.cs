@@ -21,6 +21,8 @@ public class EnemyState
     private float attackSpeed;
     [SerializeField]
     private float detectRange;
+    [SerializeField]
+    private float maxArmor;
 
     public Vector3 velocity { get; set; }
     public Vector3 acceleration { get; set; }
@@ -35,4 +37,5 @@ public class EnemyState
     public float AttackSpeed { get => attackSpeed; }
 
     public float DetectRange { get => detectRange; }
+    public float MaxArmor { get => maxArmor; set => maxArmor = value; }
 }

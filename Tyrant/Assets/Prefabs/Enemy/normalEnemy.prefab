@@ -31,6 +31,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1300328857231449900, guid: 8b9f0df936cf54392b9c2877c62446d7, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4179336317843623627, guid: 8b9f0df936cf54392b9c2877c62446d7, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -79,6 +83,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: normalEnemy
       objectReference: {fileID: 0}
+    - target: {fileID: 6512361344200527805, guid: 8b9f0df936cf54392b9c2877c62446d7, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6512361344200527805, guid: 8b9f0df936cf54392b9c2877c62446d7, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8714575357797584771, guid: 8b9f0df936cf54392b9c2877c62446d7, type: 3}
       propertyPath: healthBar
       value: 
@@ -93,6 +105,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 8714575357797584771, guid: 8b9f0df936cf54392b9c2877c62446d7, type: 3}
+    - {fileID: 1300328857231449900, guid: 8b9f0df936cf54392b9c2877c62446d7, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 8b9f0df936cf54392b9c2877c62446d7, type: 3}
 --- !u!1 &2447981995903305430 stripped
 GameObject:

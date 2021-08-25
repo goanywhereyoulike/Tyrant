@@ -127,9 +127,15 @@ MonoBehaviour:
   - name: ChangeTowerPanel
     keyCode: 306
   - name: NextDialogue
-    keyCode: 32
+    keyCode: 282
   - name: OpenDialogue
-    keyCode: 101
+    keyCode: 283
+  - name: CameraZoomIn
+    keyCode: 280
+  - name: CameraZoomOut
+    keyCode: 281
+  - name: GamePause
+    keyCode: 289
   axesLibrary:
   - name: Horizontal
     positiveButton: 100

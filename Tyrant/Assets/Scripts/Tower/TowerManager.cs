@@ -14,6 +14,9 @@ public class TowerManager : MonoBehaviour
     private int TowerNumberLimit = 5;
 
     [SerializeField]
+    private Text TowerNumlimit;
+
+    [SerializeField]
     private Image TowerPanel;
 
     //[SerializeField]
@@ -62,7 +65,7 @@ public class TowerManager : MonoBehaviour
 
     List<bool> IsAbleToSet = new List<bool>(3);
     GameObject preTower;
-    bool IsPreTowerExist = false;
+    public bool IsPreTowerExist = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -80,6 +83,8 @@ public class TowerManager : MonoBehaviour
         Tower1Price.text = Towers[0].price.ToString();
         Tower2Price.text = Towers[1].price.ToString();
         Tower3Price.text = Towers[2].price.ToString();
+
+        TowerNumlimit.text = TowerNumberLimit.ToString();
     }
 
     void DestroyTower()

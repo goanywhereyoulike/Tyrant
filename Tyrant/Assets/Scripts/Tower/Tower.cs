@@ -42,7 +42,6 @@ public class Tower : MonoBehaviour, IDamageable
     {
         player = FindObjectOfType<PlayerMovement>();
         animator = GetComponent<Animator>();
-        health = 100;
         Healthbar.maxValue = health;
         Healthbar.value = health;
     }

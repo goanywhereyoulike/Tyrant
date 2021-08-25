@@ -10362,7 +10362,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4673035513490525340, guid: f0f86d057dd314f47a1c5fd8d67373cc, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4673035513490525343, guid: f0f86d057dd314f47a1c5fd8d67373cc, type: 3}
       propertyPath: m_Pivot.x
@@ -10625,6 +10625,10 @@ PrefabInstance:
     - target: {fileID: 6555741630499069375, guid: 1629b8b92cf98124fa96a6c7e08dbab3, type: 3}
       propertyPath: m_Name
       value: _DialogueTrigger
+      objectReference: {fileID: 0}
+    - target: {fileID: 6555741630499069375, guid: 1629b8b92cf98124fa96a6c7e08dbab3, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1629b8b92cf98124fa96a6c7e08dbab3, type: 3}
@@ -34505,6 +34509,10 @@ PrefabInstance:
     - target: {fileID: 8084430882564209186, guid: 37333d9a55ae82c4e82823e742f167ea, type: 3}
       propertyPath: m_Name
       value: DialogueSystem
+      objectReference: {fileID: 0}
+    - target: {fileID: 8084430882564209186, guid: 37333d9a55ae82c4e82823e742f167ea, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 37333d9a55ae82c4e82823e742f167ea, type: 3}

@@ -12,7 +12,6 @@ public class NormalEnemy : Enemy
     // Start is called before the first frame update
     protected override void Start()
     {
-        pathcount = 0;
         base.Start();
         enemyUi.MaxHealthChanged(EnemyState.MaxHealth);
         enemyUi.HealthChanged(EnemyState.MaxHealth);

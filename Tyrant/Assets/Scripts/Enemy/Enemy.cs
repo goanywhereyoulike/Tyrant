@@ -386,6 +386,7 @@ public class Enemy : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDam
             search = true;
             closedList.Clear();
             closedList = path.CloseList;
+            pathcount = 1;
         }
 
         if (findPath)

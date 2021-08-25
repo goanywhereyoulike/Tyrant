@@ -21,8 +21,8 @@ MonoBehaviour:
     stopDistance: 7
     attackSpeed: 1
     detectRange: 5
+    maxArmor: 0
   mTarget: {fileID: 0}
-  slowDownTime: 0
   healthBar: {fileID: 6909745919963387940}
 --- !u!1001 &1365172150062200330
 PrefabInstance:
@@ -37,6 +37,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1300328857231449900, guid: 8b9f0df936cf54392b9c2877c62446d7, type: 3}
       propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4136874122364066178, guid: 8b9f0df936cf54392b9c2877c62446d7, type: 3}
+      propertyPath: m_Constraints
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4136874122364066178, guid: 8b9f0df936cf54392b9c2877c62446d7, type: 3}
+      propertyPath: m_UseAutoMass
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4179336317843623627, guid: 8b9f0df936cf54392b9c2877c62446d7, type: 3}

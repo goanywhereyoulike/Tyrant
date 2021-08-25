@@ -8,9 +8,10 @@ public class SpawnArea : MonoBehaviour, GameObjectsLocator.IGameObjectRegister
     [SerializeField]
     private float waveDelay;
     [SerializeField]
-    private int waveNumber;
-    [SerializeField]
     private string enemyType;
+    [SerializeField]
+
+    private Wave wave;
     private int spawnCount;
     private int currentWave;
     private float delayTime;
@@ -18,10 +19,8 @@ public class SpawnArea : MonoBehaviour, GameObjectsLocator.IGameObjectRegister
 
     public int spWidth;
     public int spHeight;
-    public int spawnNumber;
     public int roomNumber;
 
-    private Wave wave;
     List<GameObject> enemies;
 
     Collider2D mCollider;
@@ -30,7 +29,6 @@ public class SpawnArea : MonoBehaviour, GameObjectsLocator.IGameObjectRegister
     public Vector2 SpMax { get => spMax; }
     public Vector2 SpMin { get => spMin; }
     public string EnemyType { get => enemyType; }
-    public int WaveNumber { get => waveNumber; }
     public float WaveDelay { get => waveDelay; }
     public int CurrentWave { get => currentWave; set => currentWave = value; }
     public int SpawnCount { get => spawnCount; set => spawnCount = value; }
@@ -56,21 +54,8 @@ public class SpawnArea : MonoBehaviour, GameObjectsLocator.IGameObjectRegister
 
     void Area()
     {
-        
         spMax = mCollider.bounds.max;
         spMin = mCollider.bounds.min;
-
-        Debug.DrawLine(spMin, spMax, Color.green);
-    }
-
-    private void Update()
-    {
-        Area();
-    }
-
-    private void OnDrawGizmos()
-    {
-        Gizmos.DrawLine(SpMin, SpMax);
     }
 
     public void RegisterToLocator()

@@ -10,7 +10,7 @@ public class RangeEnemy : Enemy
     private EnemyUI healthBar = null;
     protected override void Start()
     {
-        pathcount = 0;
+        Pathcount = 0;
         ObjectPoolManager.Instance.InstantiateObjects("enemyBullet");
         base.Start();
         healthBar.MaxHealthChanged(EnemyState.MaxHealth);
@@ -25,11 +25,24 @@ public class RangeEnemy : Enemy
             healthBar.HealthChanged(EnemyState.MaxHealth);
         }
 
+        if (!isSpawn)
+        {
+            ReUse();
+            RegisterToLocator();
+            isSpawn = true;
+        }
+
         if (!isGetBlock)
         {
             var tilemap = GameObjectsLocator.Instance.Get<Block>();
             nodePath.init(tilemap[0].tilemap.cellBounds.size.x, tilemap[0].tilemap.cellBounds.size.y);
             isGetBlock = true;
+        }
+
+        if (mTarget == null)
+        {
+            findTarget = false;
+            mMainTarget = mainTarget[0].transform;
         }
 
         if (targets != null)
@@ -62,16 +75,16 @@ public class RangeEnemy : Enemy
             if(mTarget !=null)
                 GetPath();
 
-            if (findPath)
+            if (FindPath)
             {
-                if (pathcount < mPath.Count)
+                if (Pathcount < mPath.Count)
                 {
-                    Vector2 position = new Vector2(mPath[pathcount].r, mPath[pathcount].c);
+                    Vector2 position = new Vector2(mPath[Pathcount].r, mPath[Pathcount].c);
                     float speed = MoveSpeed * Time.deltaTime;
                     transform.position = Vector2.MoveTowards(transform.position, position, speed);
                     if ((Vector2)transform.position == position)
                     {
-                        pathcount++;
+                        Pathcount++;
                     }
                 }
             }
@@ -89,14 +102,14 @@ public class RangeEnemy : Enemy
                     //enemyState.force = behaviours.ForceCalculate();
                     //enemyState.acceleration = enemyState.force / enemyState.Mass;
                     //enemyState.velocity += enemyState.acceleration;
-                    if (pathcount < mPath.Count)
+                    if (Pathcount < mPath.Count)
                     {
-                        Vector2 position = new Vector2(mPath[pathcount].r, mPath[pathcount].c);
+                        Vector2 position = new Vector2(mPath[Pathcount].r, mPath[Pathcount].c);
                         float speed = MoveSpeed * Time.deltaTime;
                         transform.position = Vector2.MoveTowards(transform.position, position, speed);
                         if ((Vector2)transform.position == position)
                         {
-                            pathcount++;
+                            Pathcount++;
                         }
                     }
                 }

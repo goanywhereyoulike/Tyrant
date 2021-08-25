@@ -36,19 +36,19 @@ public class Enemy : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDam
     protected float distance;
     protected float mainTargetDistance;
     protected float delayTime;
-    protected int pathcount;
+    private int pathcount;
     protected float armor;
 
     protected bool isGetBlock = false;
     protected bool isDead = false;
-    protected bool findPath = false;
+    private bool findPath = false;
     protected bool findTarget = false;
     protected bool search = false;
     protected bool isSpawn = false;
 
     private List<Vector2> debug;
 
-    List<Player> mainTarget = null;
+    protected List<Player> mainTarget = null;
     Pathfinding path = null;
 
     protected Animator anim;
@@ -81,6 +81,9 @@ public class Enemy : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDam
             spriteRenderer.material.color = isSlow ? new Color(1.0f, 118.0f, 255.0f) : Color.white; 
         }
     }
+
+    public bool FindPath { get => findPath; }
+    public int Pathcount { get => pathcount; set => pathcount = value; }
 
     protected virtual void Start()
     {
@@ -120,9 +123,6 @@ public class Enemy : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDam
         //    SlowDown(1.5f);
         //}
 
-        if (targets != null)
-            targets.Clear();
-
         IsEnemyDead();
         detectObject();
         //behaviours.Update();
@@ -150,27 +150,24 @@ public class Enemy : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDam
         {
             mTarget = mMainTarget;
             FindClosetObject();
-            if (mTarget != null)
-                GetPath();
-
-            if (findPath)
+            GetPath();
+            if (FindPath)
             {
-                if (pathcount < mPath.Count)
+                if (Pathcount < mPath.Count)
                 {
-                    Vector2 position = new Vector2(mPath[pathcount].r, mPath[pathcount].c);
+                    Vector2 position = new Vector2(mPath[Pathcount].r, mPath[Pathcount].c);
                     float speed = MoveSpeed * Time.deltaTime;
                     transform.position = Vector2.MoveTowards(transform.position, position, speed);
                     if ((Vector2)transform.position == position)
                     {
-                        pathcount++;
+                        Pathcount++;
                     }
                 }
             }
         }
         else
         {
-            if (mTarget != null)
-                GetPath();
+            GetPath();
             distance = Vector3.Distance(transform.position, mTarget.position);
             if (IsTargetInRange(distance))
             {
@@ -179,14 +176,14 @@ public class Enemy : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDam
                     //enemyState.force = behaviours.ForceCalculate();
                     //enemyState.acceleration = enemyState.force / enemyState.Mass;
                     //enemyState.velocity += enemyState.acceleration;
-                    if (pathcount < mPath.Count)
+                    if (Pathcount < mPath.Count)
                     {
-                        Vector2 position = new Vector2(mPath[pathcount].r, mPath[pathcount].c);
+                        Vector2 position = new Vector2(mPath[Pathcount].r, mPath[Pathcount].c);
                         float speed = MoveSpeed * Time.deltaTime;
                         transform.position = Vector2.MoveTowards(transform.position, position, speed);
                         if ((Vector2)transform.position == position)
                         {
-                            pathcount++;
+                            Pathcount++;
                         }
                     }
                     //animation
@@ -256,15 +253,10 @@ public class Enemy : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDam
 
     protected void detectObject()
     {
-        foreach (GameObject target in GameObject.FindGameObjectsWithTag("Player"))
-        {
-            targets.Add(target);
-        }
+        if (targets != null)
+            targets.Clear();
+
         foreach (GameObject target in GameObject.FindGameObjectsWithTag("Tower"))
-        {
-            targets.Add(target);
-        }
-        foreach (GameObject target in GameObject.FindGameObjectsWithTag("Base"))
         {
             targets.Add(target);
         }
@@ -337,8 +329,9 @@ public class Enemy : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDam
         armor -= buringDamge;
     }
 
-    protected void GetPath()
+    public void GetPath()
     {
+        Debug.Log("get path called");
         if (path.Search((Vector2)transform.position, (Vector2)mTarget.position))
         {
             findPath = true;
@@ -347,7 +340,7 @@ public class Enemy : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDam
             closedList = path.CloseList;
         }
 
-        if (findPath)
+        if (FindPath)
         {
             mPath.Clear();
             nextNodes.Clear();

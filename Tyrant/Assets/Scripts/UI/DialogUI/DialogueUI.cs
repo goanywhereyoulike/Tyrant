@@ -30,6 +30,7 @@ public class DialogueUI : MonoBehaviour
             yield return textEffect.Run(dialogue, textLabel);
             yield return new WaitUntil(() => InputManager.Instance.GetKeyDown("NextDialogue"));
         }
+        Time.timeScale = 1;
         CloseDialogueBox();
     }
     private void CloseDialogueBox()

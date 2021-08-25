@@ -230,6 +230,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 964f6bffbc3d33f489375c3df7af2367, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weaponWheelController: {fileID: 0}
   id: 2
   itemName: Gun2
   itemText: {fileID: 0}
@@ -271,38 +272,6 @@ MonoBehaviour:
         - m_Target: {fileID: 6620215181631795726}
           m_TargetAssemblyTypeName: WeaponWheelButton, Assembly-CSharp
           m_MethodName: HoverExit
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - eventID: 9
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 6620215181631795726}
-          m_TargetAssemblyTypeName: WeaponWheelButton, Assembly-CSharp
-          m_MethodName: Selected
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - eventID: 10
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 6620215181631795726}
-          m_TargetAssemblyTypeName: WeaponWheelButton, Assembly-CSharp
-          m_MethodName: DeSelect
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}

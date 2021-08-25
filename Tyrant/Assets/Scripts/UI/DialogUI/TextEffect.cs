@@ -6,7 +6,7 @@ using TMPro;
 public class TextEffect : MonoBehaviour
 {
     [SerializeField]private float textSpeed = 50f;
-
+    
     private readonly List<Punctuation> puncuations = new List<Punctuation>() //list of punctuations
     {
         new Punctuation(new HashSet<char>(){'.','!','?'},0.6f),
@@ -29,7 +29,7 @@ public class TextEffect : MonoBehaviour
         while (characterIndex<textToType.Length)
         {
             int lastCharacterIndex = characterIndex;
-            t += Time.deltaTime * textSpeed;
+            t += Time.unscaledDeltaTime * textSpeed;
             characterIndex = Mathf.FloorToInt(t);
             characterIndex = Mathf.Clamp(characterIndex, 0, textToType.Length);
 
@@ -41,14 +41,13 @@ public class TextEffect : MonoBehaviour
 
                 if (isPunctuation(textToType[i], out float waitTime)&& !isLastString&& !isPunctuation(textToType[i+1],out _))//check if the last character is a punctuation or not
                 {
-                    yield return new WaitForSeconds(waitTime); //if is punctuation, define the wait time above(line 12,13)
+                    yield return new WaitForSecondsRealtime(waitTime); //if is punctuation, define the wait time above(line 12,13)
                 }
             }
             yield return null;
         }
         textLabel.text = textToType;
     }
-
     private bool isPunctuation(char character, out float waitTime)
     {
         foreach (Punctuation punctuationCategory in puncuations)

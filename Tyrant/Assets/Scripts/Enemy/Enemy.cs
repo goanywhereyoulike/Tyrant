@@ -4,10 +4,12 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
-public class Enemy : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDamageable
+public class Enemy : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDamageable, IPushable
 {
     [SerializeField]
     EnemyState enemyState = new EnemyState();
+
+    protected Rigidbody2D rb;
 
     protected SpriteRenderer spriteRenderer;
 
@@ -92,6 +94,7 @@ public class Enemy : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDam
         detectObject();
         mainTarget = GameObjectsLocator.Instance.Get<Player>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        rb = GetComponent<Rigidbody2D>();
 
         oMoveSpeed = moveSpeed;
     }
@@ -375,5 +378,11 @@ public class Enemy : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDam
     public void UnRegisterToLocator()
     {
         GameObjectsLocator.Instance.Unregister<Enemy>(this);
+    }
+
+    public void BePushed(Vector3 force)
+    {
+        //rb.AddForce(force);
+        transform.position += force;
     }
 }

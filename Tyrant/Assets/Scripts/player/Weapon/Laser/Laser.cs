@@ -40,7 +40,8 @@ public class Laser : Weapon
             if (bulletObject)
             {
                 var bullet = bulletObject.GetComponent<LaserBullet>();
-                bullet.Damage = laserStates.Damage;
+                bullet.ForzenTime = laserStates.FrozenTime;
+                bullet.FrozenSpeed = laserStates.FrozenSpeed;
                 bullet.BulletShootingSpeed = laserStates.BulletShootingSpeed;
                 bullet.MovingRange = laserStates.ShootingRange;
                 bullet.StartPosition = startShootingPointDict[Facing].transform.position;

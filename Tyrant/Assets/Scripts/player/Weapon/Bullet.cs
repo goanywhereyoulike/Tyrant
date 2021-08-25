@@ -23,7 +23,7 @@ public abstract class Bullet : MonoBehaviour
 
     }
 
-    protected virtual void OnHit(IDamageable Enemy)
+    protected virtual void OnHit(GameObject Enemy)
     {
 
     }

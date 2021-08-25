@@ -48,11 +48,11 @@ public class Cannon : Weapon
             if (bulletObject)
             {
                 var bullet = bulletObject.GetComponent<CannonBullet>();
-                bullet.Damage = connonStates.Damage;
                 bullet.BulletShootingSpeed = connonStates.BulletShootingSpeed;
                 bullet.MovingRange = connonStates.ShootingRange;
                 bullet.StartPosition = startShootingPointDict[Facing].transform.position;
                 Vector2 different = InputManager.Instance.MouseWorldPosition - bullet.StartPosition;
+                bullet.PushForce = connonStates.PushForce;
                 bullet.Direction = different.normalized;
                 bulletObject.transform.position = bullet.StartPosition;
                 bulletObject.SetActive(true);

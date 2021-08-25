@@ -48,6 +48,9 @@ public class Enemy : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDam
     protected bool search = false;
     protected bool isSpawn = false;
 
+    protected bool firstFramePath = false;
+    protected bool canFind = false;
+
     private List<Vector2> debug;
 
     List<Player> mainTarget = null;
@@ -153,8 +156,19 @@ public class Enemy : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDam
         {
             mTarget = mMainTarget;
             FindClosetObject();
-            if (mTarget != null)
+            if (!firstFramePath && mTarget != null)
                 GetPath();
+
+            float dis = Vector3.Distance(mTarget.position, transform.position);
+            float t = 0.1f + dis * 0.1f;
+            if (firstFramePath && mTarget)
+            {
+                if (!canFind)
+                {
+                    canFind = true;
+                    StartCoroutine(DelayFindPath(t));
+                }
+            }
 
             if (findPath)
             {
@@ -172,8 +186,20 @@ public class Enemy : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDam
         }
         else
         {
-            if (mTarget != null)
+            if (!firstFramePath && mTarget != null)
                 GetPath();
+
+            float dis = Vector3.Distance(mTarget.position, transform.position);
+            float t = 0.1f + dis * 0.1f;
+            if (firstFramePath && mTarget)
+            {
+                if (!canFind)
+                {
+                    canFind = true;
+                    StartCoroutine(DelayFindPath(t));
+                }
+            }
+
             distance = Vector3.Distance(transform.position, mTarget.position);
             if (IsTargetInRange(distance))
             {
@@ -255,6 +281,17 @@ public class Enemy : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDam
         yield return new WaitForSeconds(slowTime);
         IsSlow = false;
         moveSpeed = oldSpeed;
+    }
+
+    IEnumerator DelayFindPath(float delayTime)
+    {
+        if (canFind)
+        {
+            yield return new WaitForSeconds(delayTime);
+            Debug.Log("Delay111");
+            GetPath();
+            canFind = false;
+        }
     }
 
     protected void detectObject()
@@ -342,6 +379,7 @@ public class Enemy : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDam
 
     protected void GetPath()
     {
+        firstFramePath = true;
         if (path.Search((Vector2)transform.position, (Vector2)mTarget.position))
         {
             findPath = true;

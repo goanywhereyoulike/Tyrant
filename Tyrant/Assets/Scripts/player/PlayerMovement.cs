@@ -24,6 +24,8 @@ public class PlayerMovement : MonoBehaviour
 
     private Rigidbody2D rb;
 
+    private Vector3 moveDirection;
+
     private void Start()
     {
         playerAnimation = GetComponent<PlayerAnimation>();
@@ -31,19 +33,22 @@ public class PlayerMovement : MonoBehaviour
         isMovingChanged += () => playerAnimation.IsMoving = IsMoving;
     }
 
-    void Update()
+    private void Update()
     {
-        Vector3 dir = Vector3.zero;
+        moveDirection = Vector3.zero;
         if (InputManager.Instance.GetKey("GoUp"))
-            dir.y = 1;
+            moveDirection.y = 1;
         if (InputManager.Instance.GetKey("GoDown"))
-            dir.y = -1;
+            moveDirection.y = -1;
         if (InputManager.Instance.GetKey("GoRight"))
-            dir.x = 1;
+            moveDirection.x = 1;
         if (InputManager.Instance.GetKey("GoLeft"))
-            dir.x = -1;
+            moveDirection.x = -1;
+    }
 
-        Vector3 moving = new Vector3(dir.x, dir.y) * MoveSpeed * Time.deltaTime;
+    void FixedUpdate()
+    {
+        Vector3 moving = new Vector3(moveDirection.x, moveDirection.y) * MoveSpeed * Time.deltaTime;
         Vector3 newPos = transform.position + moving;
 
         if (moving == Vector3.zero)

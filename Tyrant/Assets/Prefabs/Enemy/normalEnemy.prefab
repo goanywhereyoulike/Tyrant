@@ -20,7 +20,7 @@ MonoBehaviour:
     timeBetweenAttacks: 2
     stopDistance: 2
     attackSpeed: 1
-    detectRange: 2
+    detectRange: 3
     maxArmor: 20
   mTarget: {fileID: 0}
   enemyUi: {fileID: 6129767443431876111}
@@ -32,6 +32,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -7198696103068060942, guid: 8b9f0df936cf54392b9c2877c62446d7, type: 3}
+      propertyPath: m_Direction
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -7198696103068060942, guid: 8b9f0df936cf54392b9c2877c62446d7, type: 3}
+      propertyPath: m_UsedByEffector
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4179336317843623627, guid: 8b9f0df936cf54392b9c2877c62446d7, type: 3}
       propertyPath: m_RootOrder
       value: 0

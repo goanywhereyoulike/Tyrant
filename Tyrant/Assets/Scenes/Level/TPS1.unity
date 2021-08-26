@@ -171,7 +171,7 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: fe10d2844b3107f4eabce92b47f7a98e, type: 2}
     - target: {fileID: 170502556355076822, guid: a3e45492d60ce674d8109ffd514a452f, type: 3}
       propertyPath: waveDelay
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 170502556355076822, guid: a3e45492d60ce674d8109ffd514a452f, type: 3}
       propertyPath: roomNumber
@@ -244,7 +244,7 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: b656f7baa20d75944b7d071f391175b9, type: 2}
     - target: {fileID: 170502556355076822, guid: a3e45492d60ce674d8109ffd514a452f, type: 3}
       propertyPath: waveDelay
-      value: 10
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 170502556355076822, guid: a3e45492d60ce674d8109ffd514a452f, type: 3}
       propertyPath: roomNumber
@@ -331,7 +331,7 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: fe10d2844b3107f4eabce92b47f7a98e, type: 2}
     - target: {fileID: 170502556355076822, guid: a3e45492d60ce674d8109ffd514a452f, type: 3}
       propertyPath: waveDelay
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 170502556355076822, guid: a3e45492d60ce674d8109ffd514a452f, type: 3}
       propertyPath: roomNumber
@@ -10544,6 +10544,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6302774489476007329, guid: 468ce44dfafb546448f8cdcaef32096f, type: 3}
+      propertyPath: roomId
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 6302774489476007331, guid: 468ce44dfafb546448f8cdcaef32096f, type: 3}
       propertyPath: m_Name
       value: Room4
@@ -10869,6 +10873,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a3e45492d60ce674d8109ffd514a452f, type: 3}
+--- !u!114 &815429990 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5644215001291323903, guid: 35d875323c2117a41949536fc30f03ba, type: 3}
+  m_PrefabInstance: {fileID: 1283372655}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 361554a1c6f51b747b96d46bb37bb7cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &860159397 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5934952982272185349, guid: 5189b018b71bda0489617b6e3002fa93, type: 3}
@@ -11482,7 +11497,7 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: fe10d2844b3107f4eabce92b47f7a98e, type: 2}
     - target: {fileID: 170502556355076822, guid: a3e45492d60ce674d8109ffd514a452f, type: 3}
       propertyPath: waveDelay
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 170502556355076822, guid: a3e45492d60ce674d8109ffd514a452f, type: 3}
       propertyPath: roomNumber
@@ -12017,7 +12032,7 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: fe10d2844b3107f4eabce92b47f7a98e, type: 2}
     - target: {fileID: 170502556355076822, guid: a3e45492d60ce674d8109ffd514a452f, type: 3}
       propertyPath: waveDelay
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 170502556355076822, guid: a3e45492d60ce674d8109ffd514a452f, type: 3}
       propertyPath: roomNumber
@@ -34398,6 +34413,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1334408271414872227, guid: 5189b018b71bda0489617b6e3002fa93, type: 3}
+      propertyPath: m_Delegates.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1334408271414872227, guid: 5189b018b71bda0489617b6e3002fa93, type: 3}
+      propertyPath: m_Delegates.Array.data[2].eventID
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1334408271414872227, guid: 5189b018b71bda0489617b6e3002fa93, type: 3}
+      propertyPath: m_Delegates.Array.data[2].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: DeSelect
+      objectReference: {fileID: 0}
     - target: {fileID: 1334408271439997821, guid: 5189b018b71bda0489617b6e3002fa93, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -34486,6 +34513,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: WeaponWheelUI 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1334408271776203127, guid: 5189b018b71bda0489617b6e3002fa93, type: 3}
+      propertyPath: m_Delegates.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1334408271776203127, guid: 5189b018b71bda0489617b6e3002fa93, type: 3}
+      propertyPath: m_Delegates.Array.data[2].eventID
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1334408271776203127, guid: 5189b018b71bda0489617b6e3002fa93, type: 3}
+      propertyPath: m_Delegates.Array.data[2].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: DeSelect
+      objectReference: {fileID: 0}
+    - target: {fileID: 6423018489069567569, guid: 5189b018b71bda0489617b6e3002fa93, type: 3}
+      propertyPath: weaponController
+      value: 
+      objectReference: {fileID: 815429990}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5189b018b71bda0489617b6e3002fa93, type: 3}
 --- !u!1001 &1980642459

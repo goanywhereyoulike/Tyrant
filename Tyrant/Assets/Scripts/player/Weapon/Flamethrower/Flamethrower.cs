@@ -17,6 +17,7 @@ public class Flamethrower : Weapon
 
         flamethrower = weaponStates as FlamethrowerStates;
         flameParticle.Stop();
+        flameParticle.gameObject.GetComponent<FlamethrowerBullet>().BurnDamage = flamethrower.BurnDamage;
         weaponInit = true;
     }
 

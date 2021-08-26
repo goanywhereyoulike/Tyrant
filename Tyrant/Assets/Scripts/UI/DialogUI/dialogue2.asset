@@ -13,11 +13,5 @@ MonoBehaviour:
   m_Name: dialogue2
   m_EditorClassIdentifier: 
   dialogue:
-  - 'Hello!
-
-    I am Gay?
-
-    gay!'
-  - 'Oh i Like gay, what about you?
-
-    and you? '
+  - Hello, Player. Welcome to Tyrant. This is a simple introduction of the game.
+  - First, use W A S D to move around the map!

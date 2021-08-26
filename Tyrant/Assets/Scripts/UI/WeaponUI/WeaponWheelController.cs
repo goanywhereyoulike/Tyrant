@@ -24,7 +24,7 @@ public class WeaponWheelController : MonoBehaviour
     void Update()
     {
 
-        if (InputManager.Instance.GetKeyDown("WeaponWheelToggle"))
+        if (InputManager.Instance.GetKey("WeaponWheelToggle"))
         {
             weaponWheelSelect = !weaponWheelSelect;
         }

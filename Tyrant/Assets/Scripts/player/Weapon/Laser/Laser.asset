@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75004d2e3659534469a63f7cc7584f62, type: 3}
   m_Name: Laser
   m_EditorClassIdentifier: 
-  damage: 10
   reloadTime: 10
   shootingDelayTime: 0.5
   bulletShootingSpeed: 10
@@ -22,3 +21,5 @@ MonoBehaviour:
   chargingTime: 0.2
   shootingRange: 10
   holdingTime: 1
+  frozenTime: 2
+  frozenSpeed: 0

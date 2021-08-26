@@ -6,6 +6,8 @@ using UnityEngine;
 public class ConnonStates : WeaponStates
 {
     [SerializeField] private float shootingRange;
+    [SerializeField] private float pushForce;
     public float ShootingRange { get => shootingRange; set => shootingRange = value; }
+    public float PushForce { get => pushForce; set => pushForce = value; }
 }
 

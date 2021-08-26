@@ -53,11 +53,13 @@ public class FlamethrowerBullet : Bullet
     //    }
     //}
 
+    public float BurnDamage { get; set; }
+
     private void OnParticleCollision(GameObject other)
     {
         if (other.tag == "Enemy")
         {
-            other.GetComponent<Enemy>().BurnArmor(1f);
+            other.GetComponent<Enemy>().BurnArmor(BurnDamage);
         }
     }
 }

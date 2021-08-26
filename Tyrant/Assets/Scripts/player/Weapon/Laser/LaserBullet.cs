@@ -13,6 +13,8 @@ public class LaserBullet : Bullet
     }
 
     public float MovingRange { get; set; }
+    public float ForzenTime { get; set; }
+    public float FrozenSpeed { get; set; }
     protected override void BulletMoving()
     {
         base.BulletMoving();
@@ -36,11 +38,13 @@ public class LaserBullet : Bullet
         }
     }
 
-    protected override void OnHit(IDamageable Enemy)
+    protected override void OnHit(GameObject Enemy)
     {
         base.OnHit(Enemy);
 
-        Enemy.TakeDamage(Damage);
+        //Enemy.TakeDamage(Damage);
+        var enemyClass = Enemy.GetComponent<Enemy>();
+        enemyClass.SlowDown(ForzenTime, FrozenSpeed);
     }
 
     private void Update()
@@ -53,11 +57,8 @@ public class LaserBullet : Bullet
         if (collision.gameObject.tag == "Enemy")
         {
             //Debug.Log(damage);
-            IDamageable Enemy = collision.gameObject.GetComponent<IDamageable>();
-            OnHit(Enemy);
+            OnHit(collision.gameObject);
             OnhitEffect(collision.gameObject.transform.position);
-            var enemyClass = collision.gameObject.GetComponent<Enemy>();
-            enemyClass.SlowDown(2, 0);
         }
     }
 }

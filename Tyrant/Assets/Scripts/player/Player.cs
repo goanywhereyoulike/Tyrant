@@ -76,14 +76,11 @@ public class Player : MonoBehaviour , IDamageable, GameObjectsLocator.IGameObjec
         {
             MyInventory.DropPickUp(transform.position, MyInventory.GetPickUp("health potion"));
         }
-        if (dialogueUI.isOpen)
-        {
-            return;
-        }
         if (InputManager.Instance.GetKeyDown("OpenDialogue"))
         {
             if (interactable!=null)
             {
+                Time.timeScale = 0;
                 interactable.Interact(this);
             }
         }

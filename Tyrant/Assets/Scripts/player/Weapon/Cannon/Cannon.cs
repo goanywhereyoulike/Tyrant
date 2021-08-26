@@ -6,9 +6,10 @@ public class Cannon : Weapon
 {
     private ConnonStates connonStates = null;
 
-    [SerializeField]private int maxAmmo = 10;
+    [SerializeField]private int maxAmmo = 5;
     private int currentAmmo;
     public float reloadTime = 1f;
+    public GameObject[] ammoImages;
     protected override void Start()
     {
         base.Start();
@@ -16,7 +17,10 @@ public class Cannon : Weapon
         {
             return;
         }
-
+        for (int i = 0; i <=0; i++)
+        {
+            ammoImages[i].gameObject.SetActive(false);
+        }
         ObjectPoolManager.Instance.InstantiateObjects("ConnonBullet");
         ObjectPoolManager.Instance.InstantiateObjects("ConnonBulletEffect");
 
@@ -35,14 +39,21 @@ public class Cannon : Weapon
     }
     void Reload()
     {
-        Debug.Log("reloading");
-        currentAmmo = maxAmmo;
+        if (InputManager.Instance.GetKeyDown("Reload"))
+        {
+            for (int i = 0; i <=4; i++)
+            {
+                ammoImages[i].gameObject.SetActive(true);
+            }
+            Debug.Log("reloading");
+            currentAmmo = maxAmmo;
+        }
     }
     public override void Fire()
     {
         base.Fire();
 
-        if (canFire)
+        if (canFire && currentAmmo > 0)
         {
             var bulletObject = ObjectPoolManager.Instance.GetPooledObject("ConnonBullet");
             if (bulletObject)
@@ -57,7 +68,9 @@ public class Cannon : Weapon
                 bulletObject.transform.position = bullet.StartPosition;
                 bulletObject.SetActive(true);
             }
-            currentAmmo--;
+            currentAmmo-=1;
+            ammoImages[currentAmmo].gameObject.SetActive(false);
+            //currentAmmo--;
         }
     }
 }

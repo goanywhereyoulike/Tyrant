@@ -163,11 +163,19 @@ public class TowerShoot : MonoBehaviour
 
                 rb.AddForce(Direction * BulletForce, ForceMode2D.Impulse);
 
+                StartCoroutine(DestroyBullet(bullet));
+
             }
 
         }
 
 
+    }
+
+    IEnumerator DestroyBullet(GameObject bullet)
+    {
+        yield return new WaitForSeconds(1.0f);
+        bullet.SetActive(false);
     }
 
     void UpdateTarget()

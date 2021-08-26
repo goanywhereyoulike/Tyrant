@@ -46,9 +46,12 @@ public class Laser : Weapon
             if (bulletObject)
             {
                 var bullet = bulletObject.GetComponent<LaserBullet>();
-                bullet.Damage = LaserStates.Damage;
-                bullet.BulletShootingSpeed = LaserStates.BulletShootingSpeed;
-                bullet.MovingRange = LaserStates.ShootingRange;
+
+                bullet.ForzenTime = laserStates.FrozenTime;
+                bullet.FrozenSpeed = laserStates.FrozenSpeed;
+                bullet.BulletShootingSpeed = laserStates.BulletShootingSpeed;
+                bullet.MovingRange = laserStates.ShootingRange;
+
                 bullet.StartPosition = startShootingPointDict[Facing].transform.position;
                 Vector2 different = InputManager.Instance.MouseWorldPosition - bullet.StartPosition;
                 bullet.Direction = different.normalized;

@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b554a5d6597dfd54ebc36f979573c7d2, type: 3}
   m_Name: Flamethrower
   m_EditorClassIdentifier: 
-  damage: 10
   reloadTime: 10
   shootingDelayTime: 0.1
   bulletShootingSpeed: 10
@@ -20,3 +19,4 @@ MonoBehaviour:
   maxBulletPerClipCount: 10
   isLocked: 0
   bulletExistTime: 5
+  burnDamage: 1

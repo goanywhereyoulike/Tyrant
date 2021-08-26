@@ -5,6 +5,7 @@ using UnityEngine;
 public class CannonBullet : Bullet
 {
     public float MovingRange { get; set; }
+    public float PushForce { get; set; }
     protected override void BulletMoving()
     {
         base.BulletMoving();
@@ -28,11 +29,14 @@ public class CannonBullet : Bullet
         }
     }
 
-    protected override void OnHit(IDamageable Enemy)
+    protected override void OnHit(GameObject Enemy)
     {
         base.OnHit(Enemy);
 
-        Enemy.TakeDamage(Damage);
+        //Enemy.TakeDamage(Damage);
+        Vector3 force = Direction * PushForce;
+        IPushable hitObject = Enemy.GetComponent<IPushable>();
+        hitObject.BePushed(force);
     }
 
     private void Update()
@@ -45,8 +49,7 @@ public class CannonBullet : Bullet
         if (collision.gameObject.tag == "Enemy")
         {
             //Debug.Log(damage);
-            IDamageable Enemy = collision.gameObject.GetComponent<IDamageable>();
-            OnHit(Enemy);
+            OnHit(collision.gameObject);
             OnhitEffect();
             gameObject.SetActive(false);
         }

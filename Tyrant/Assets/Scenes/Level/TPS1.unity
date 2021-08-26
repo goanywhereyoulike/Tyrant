@@ -34394,6 +34394,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1334408271414872227, guid: 5189b018b71bda0489617b6e3002fa93, type: 3}
+      propertyPath: m_Delegates.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1334408271414872227, guid: 5189b018b71bda0489617b6e3002fa93, type: 3}
+      propertyPath: m_Delegates.Array.data[2].eventID
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1334408271414872227, guid: 5189b018b71bda0489617b6e3002fa93, type: 3}
+      propertyPath: m_Delegates.Array.data[2].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: DeSelect
+      objectReference: {fileID: 0}
     - target: {fileID: 1334408271439997821, guid: 5189b018b71bda0489617b6e3002fa93, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -34481,6 +34493,18 @@ PrefabInstance:
     - target: {fileID: 1334408271439997822, guid: 5189b018b71bda0489617b6e3002fa93, type: 3}
       propertyPath: m_Name
       value: WeaponWheelUI 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1334408271776203127, guid: 5189b018b71bda0489617b6e3002fa93, type: 3}
+      propertyPath: m_Delegates.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1334408271776203127, guid: 5189b018b71bda0489617b6e3002fa93, type: 3}
+      propertyPath: m_Delegates.Array.data[2].eventID
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1334408271776203127, guid: 5189b018b71bda0489617b6e3002fa93, type: 3}
+      propertyPath: m_Delegates.Array.data[2].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: DeSelect
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5189b018b71bda0489617b6e3002fa93, type: 3}

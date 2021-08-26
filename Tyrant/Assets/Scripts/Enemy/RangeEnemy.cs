@@ -10,7 +10,6 @@ public class RangeEnemy : Enemy
     private EnemyUI healthBar = null;
     protected override void Start()
     {
-        Pathcount = 0;
         ObjectPoolManager.Instance.InstantiateObjects("enemyBullet");
         base.Start();
         healthBar.MaxHealthChanged(EnemyState.MaxHealth);
@@ -72,27 +71,49 @@ public class RangeEnemy : Enemy
         {
             mTarget = mMainTarget;
             FindClosetObject();
-            if (mTarget != null)
+            if (!firstFramePath && mTarget != null)
                 GetPath();
 
-            if (FindPath)
+            float dis = Vector3.Distance(mTarget.position, transform.position);
+            float t = 0.1f + dis * 0.1f;
+            if (firstFramePath && mTarget)
             {
-                if (Pathcount < mPath.Count)
+                if (!canFind)
                 {
-                    Vector2 position = new Vector2(mPath[Pathcount].r, mPath[Pathcount].c);
+                    canFind = true;
+                    StartCoroutine(DelayFindPath(t));
+                }
+            }
+
+            if (findPath)
+            {
+                if (pathcount < mPath.Count)
+                {
+                    Vector2 position = new Vector2(mPath[pathcount].r, mPath[pathcount].c);
                     float speed = MoveSpeed * Time.deltaTime;
                     transform.position = Vector2.MoveTowards(transform.position, position, speed);
                     if ((Vector2)transform.position == position)
                     {
-                        Pathcount++;
+                        pathcount++;
                     }
                 }
             }
         }
         else
         {
-            if (mTarget != null)
+            if (!firstFramePath && mTarget != null)
                 GetPath();
+
+            float dis = Vector3.Distance(mTarget.position, transform.position);
+            float t = 0.1f + dis * 0.1f;
+            if (firstFramePath && mTarget)
+            {
+                if (!canFind)
+                {
+                    canFind = true;
+                    StartCoroutine(DelayFindPath(t));
+                }
+            }
 
             distance = Vector3.Distance(transform.position, mTarget.position);
             if (IsTargetInRange(distance))
@@ -102,14 +123,14 @@ public class RangeEnemy : Enemy
                     //enemyState.force = behaviours.ForceCalculate();
                     //enemyState.acceleration = enemyState.force / enemyState.Mass;
                     //enemyState.velocity += enemyState.acceleration;
-                    if (Pathcount < mPath.Count)
+                    if (pathcount < mPath.Count)
                     {
-                        Vector2 position = new Vector2(mPath[Pathcount].r, mPath[Pathcount].c);
+                        Vector2 position = new Vector2(mPath[pathcount].r, mPath[pathcount].c);
                         float speed = MoveSpeed * Time.deltaTime;
                         transform.position = Vector2.MoveTowards(transform.position, position, speed);
                         if ((Vector2)transform.position == position)
                         {
-                            Pathcount++;
+                            pathcount++;
                         }
                     }
                 }

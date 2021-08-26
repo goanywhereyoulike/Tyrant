@@ -53,7 +53,7 @@ public class Enemy : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDam
 
     private List<Vector2> debug;
 
-    List<Player> mainTarget = null;
+    protected List<Player> mainTarget = null;
     Pathfinding path = null;
 
     protected Animator anim;
@@ -283,7 +283,7 @@ public class Enemy : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDam
         moveSpeed = oldSpeed;
     }
 
-    IEnumerator DelayFindPath(float delayTime)
+     protected IEnumerator DelayFindPath(float delayTime)
     {
         if (canFind)
         {

@@ -9,7 +9,6 @@ public class PowerUps : MonoBehaviour
     [SerializeField]
     private float duration;
     public float Duration { get => duration; private set => duration = value; }
-    //protected virtual void onTrigger(Collider2D collision) { }
     protected virtual void activeEffect() { }
     protected virtual void deactiveEffect() { }
 
@@ -18,19 +17,13 @@ public class PowerUps : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             player = collision.gameObject.GetComponent<Player>();
-            //onTrigger(collision);
+            gameObject.GetComponent<SpriteRenderer>().enabled = false;
             activeEffect();
             Debug.Log("effect actived");
-            //StartCoroutine(waitForDuration());
             yield return new WaitForSeconds(duration);
             deactiveEffect();
             Debug.Log("effect deactived");
             gameObject.SetActive(false);
         }
-    }
-
-    IEnumerator waitForDuration()
-    {
-        yield return new WaitForSeconds(duration);
     }
 }

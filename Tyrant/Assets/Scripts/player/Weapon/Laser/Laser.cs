@@ -8,9 +8,13 @@ public class Laser : Weapon
     private Animator animator;
 
     private LaserStates laserStates = null;
+    public LaserStates LaserStates { get => laserStates; set => laserStates = value; }
 
     private bool charged = false;
     private bool charging = true;
+
+    private float chargeTime;
+    public float ChargeTime { get => chargeTime; set => chargeTime = value; }
 
     protected override void Start()
     {
@@ -20,11 +24,13 @@ public class Laser : Weapon
             return;
         }
 
-        laserStates = weaponStates as LaserStates;
+        LaserStates = weaponStates as LaserStates;
 
         ObjectPoolManager.Instance.InstantiateObjects("LaserBullet");
         ObjectPoolManager.Instance.InstantiateObjects("LaserBulletEffect");
         weaponInit = true;
+
+        chargeTime = LaserStates.HoldingTime;
     }
 
     public override void UnFire()
@@ -40,9 +46,9 @@ public class Laser : Weapon
             if (bulletObject)
             {
                 var bullet = bulletObject.GetComponent<LaserBullet>();
-                bullet.Damage = laserStates.Damage;
-                bullet.BulletShootingSpeed = laserStates.BulletShootingSpeed;
-                bullet.MovingRange = laserStates.ShootingRange;
+                bullet.Damage = LaserStates.Damage;
+                bullet.BulletShootingSpeed = LaserStates.BulletShootingSpeed;
+                bullet.MovingRange = LaserStates.ShootingRange;
                 bullet.StartPosition = startShootingPointDict[Facing].transform.position;
                 Vector2 different = InputManager.Instance.MouseWorldPosition - bullet.StartPosition;
                 bullet.Direction = different.normalized;
@@ -59,7 +65,7 @@ public class Laser : Weapon
     {
         base.HoldingFire(holdingTime);
 
-        if (holdingTime >= laserStates.HoldingTime)
+        if (holdingTime >= chargeTime)
         {
             charged = true;
         }

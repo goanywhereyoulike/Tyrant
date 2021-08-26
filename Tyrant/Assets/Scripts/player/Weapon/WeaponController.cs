@@ -26,6 +26,8 @@ public class WeaponController : MonoBehaviour
 
     [SerializeField]
     private List<WeaponObject> weaponObjects = null;
+    public List<WeaponObject> WeaponObjects { get => weaponObjects; }
+
 
     public Weapon CurrentWeapon { get; private set; }
 

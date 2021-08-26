@@ -31,7 +31,7 @@ public class PlayerMovement : MonoBehaviour
         isMovingChanged += () => playerAnimation.IsMoving = IsMoving;
     }
 
-    void Update()
+    private void FixedUpdate()
     {
         Vector3 dir = Vector3.zero;
         if (InputManager.Instance.GetKey("GoUp"))

@@ -11,6 +11,9 @@ public class TowerManager : MonoBehaviour
     public List<TowerTemplate> Towers = new List<TowerTemplate>();
 
     [SerializeField]
+    private Animator TowerNumberWarning;
+
+    [SerializeField]
     private int TowerNumberLimit = 5;
 
     [SerializeField]
@@ -113,6 +116,18 @@ public class TowerManager : MonoBehaviour
     
     }
 
+    void ShowWarningUIForTowerNumber()
+    {
+        if (TowerNumber >= TowerNumberLimit)
+        {
+            if (TowerNumberWarning.gameObject.activeSelf)
+            {
+                TowerNumberWarning.SetTrigger("Show");
+            }
+            
+            //TowerWarning.Play("TowerWarningUIDefault");
+        }
+    }
     void CheckNumberLimit()
     {
         if (TowerNumber >= TowerNumberLimit)
@@ -175,33 +190,41 @@ public class TowerManager : MonoBehaviour
     void SetTower(Vector2 target)
     {
 
-        if (InputManager.Instance.GetKeyDown("PreBuildTower") && !IsPreTowerExist && IsAbleToSet[0])
+        if (InputManager.Instance.GetKeyDown("PreBuildTower"))
         {
+            ShowWarningUIForTowerNumber();
+            if (!IsPreTowerExist && IsAbleToSet[0])
+            {
+                PreTower = Instantiate(PreTowerprefab, target, Quaternion.identity);
+                PreTower.transform.parent = player.transform;
+                IsPreTowerExist = true;
+                TowerIndex = 1;
+            }
+        }
 
-            PreTower = Instantiate(PreTowerprefab, target, Quaternion.identity);
-            PreTower.transform.parent = player.transform;
-            IsPreTowerExist = true;
-            TowerIndex = 1;
+        if (InputManager.Instance.GetKeyDown("PreBuildCannonTower"))
+        {
+            ShowWarningUIForTowerNumber();
+            if (!IsPreTowerExist && IsAbleToSet[1])
+            {
+                PreTower = Instantiate(PreCannonTowerprefab, target, Quaternion.identity);
+                PreTower.transform.parent = player.transform;
+                IsPreTowerExist = true;
+                TowerIndex = 2;
+            }
 
         }
 
-        if (InputManager.Instance.GetKeyDown("PreBuildCannonTower") && !IsPreTowerExist && IsAbleToSet[1])
+        if (InputManager.Instance.GetKeyDown("PreBuildChainTower"))
         {
-
-            PreTower = Instantiate(PreCannonTowerprefab, target, Quaternion.identity);
-            PreTower.transform.parent = player.transform;
-            IsPreTowerExist = true;
-            TowerIndex = 2;
-
-        }
-
-        if (InputManager.Instance.GetKeyDown("PreBuildChainTower") && !IsPreTowerExist && IsAbleToSet[2])
-        {
-
-            PreTower = Instantiate(PreChainTowerprefab, target, Quaternion.identity);
-            PreTower.transform.parent = player.transform;
-            IsPreTowerExist = true;
-            TowerIndex = 3;
+            ShowWarningUIForTowerNumber();
+            if (!IsPreTowerExist && IsAbleToSet[2])
+            {
+                PreTower = Instantiate(PreChainTowerprefab, target, Quaternion.identity);
+                PreTower.transform.parent = player.transform;
+                IsPreTowerExist = true;
+                TowerIndex = 3;
+            }
 
         }
 

@@ -72,7 +72,7 @@ public class RangeEnemy : Enemy
         {
             mTarget = mMainTarget;
             FindClosetObject();
-            if(mTarget !=null)
+            if (mTarget != null)
                 GetPath();
 
             if (FindPath)
@@ -133,7 +133,7 @@ public class RangeEnemy : Enemy
                         }
                     }
                     //animation
-                   // anim.SetBool("isRunning", false);
+                    // anim.SetBool("isRunning", false);
                 }
             }
             else

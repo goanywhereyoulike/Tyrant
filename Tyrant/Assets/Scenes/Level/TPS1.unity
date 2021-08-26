@@ -171,7 +171,7 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: fe10d2844b3107f4eabce92b47f7a98e, type: 2}
     - target: {fileID: 170502556355076822, guid: a3e45492d60ce674d8109ffd514a452f, type: 3}
       propertyPath: waveDelay
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 170502556355076822, guid: a3e45492d60ce674d8109ffd514a452f, type: 3}
       propertyPath: roomNumber
@@ -244,7 +244,7 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: b656f7baa20d75944b7d071f391175b9, type: 2}
     - target: {fileID: 170502556355076822, guid: a3e45492d60ce674d8109ffd514a452f, type: 3}
       propertyPath: waveDelay
-      value: 10
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 170502556355076822, guid: a3e45492d60ce674d8109ffd514a452f, type: 3}
       propertyPath: roomNumber
@@ -331,7 +331,7 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: fe10d2844b3107f4eabce92b47f7a98e, type: 2}
     - target: {fileID: 170502556355076822, guid: a3e45492d60ce674d8109ffd514a452f, type: 3}
       propertyPath: waveDelay
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 170502556355076822, guid: a3e45492d60ce674d8109ffd514a452f, type: 3}
       propertyPath: roomNumber
@@ -10601,6 +10601,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6302774489476007329, guid: 468ce44dfafb546448f8cdcaef32096f, type: 3}
+      propertyPath: roomId
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 6302774489476007331, guid: 468ce44dfafb546448f8cdcaef32096f, type: 3}
       propertyPath: m_Name
       value: Room4
@@ -11474,7 +11478,7 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: fe10d2844b3107f4eabce92b47f7a98e, type: 2}
     - target: {fileID: 170502556355076822, guid: a3e45492d60ce674d8109ffd514a452f, type: 3}
       propertyPath: waveDelay
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 170502556355076822, guid: a3e45492d60ce674d8109ffd514a452f, type: 3}
       propertyPath: roomNumber
@@ -12009,7 +12013,7 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: fe10d2844b3107f4eabce92b47f7a98e, type: 2}
     - target: {fileID: 170502556355076822, guid: a3e45492d60ce674d8109ffd514a452f, type: 3}
       propertyPath: waveDelay
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 170502556355076822, guid: a3e45492d60ce674d8109ffd514a452f, type: 3}
       propertyPath: roomNumber

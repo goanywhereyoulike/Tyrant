@@ -55,8 +55,20 @@ public class Pathfinding
         closeList.Clear();
 
         nodePath.ResetPath();
+        if (isBlock(Mathf.FloorToInt(startposition.x), Mathf.FloorToInt(startposition.y)))
+        {
+            if (startposition.x > (int)startposition.x)
+            {
+                startposition.x += 1;
+            }
+            if (startposition.y > (int)startposition.y)
+            {
+                startposition.y += 1;
+            }
+        }
 
         var node = nodePath.FindNode(Mathf.FloorToInt(startposition.x), Mathf.FloorToInt(startposition.y));
+
         openList.Add(node);
         node.opened = true;
       

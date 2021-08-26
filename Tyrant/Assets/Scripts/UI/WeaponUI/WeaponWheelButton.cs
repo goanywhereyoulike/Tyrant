@@ -12,6 +12,7 @@ public class WeaponWheelButton : MonoBehaviour
     public TextMeshProUGUI itemText;
     public Image selectItem;
     private Color color = new Color(1f, 1f, 1f, 1f);
+    private bool canFire;
     private bool selected = false;
     public Sprite icon;
 
@@ -40,26 +41,29 @@ public class WeaponWheelButton : MonoBehaviour
         }
 
     }
-    public void Selected()
-    {
-        selected = true;
-        Debug.Log("Select  " + selected);
-        weaponWheelController.WeaponID = id;
-        weaponWheelController.WeaponWheelSelect = false;
-    }
-    public void DeSelect()
-    {
-        selected = false;
-        Debug.Log("DeSelect  "+selected);
-        //weaponWheelController.WeaponID = 0;
-    }
+    //public void Selected()
+    //{
+    //    selected = true;
+    //    Debug.Log("Select  " + selected);
+
+    //}
+    //public void DeSelect()
+    //{
+    //    selected = false;
+    //    Debug.Log("DeSelect  "+selected);
+    //    //weaponWheelController.WeaponID = 0;
+    //}
     public void HoverEnter()
     {
         animator.SetBool("Hover", true);
         itemText.text = itemName;
+        selected = true;
+        weaponWheelController.WeaponID = id;
+        weaponWheelController.WeaponWheelSelect = false;
     }
     public void HoverExit()
     {
+        selected = false;
         animator.SetBool("Hover", false);
         itemText.text = "";
     }

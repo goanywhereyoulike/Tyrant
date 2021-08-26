@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Connon
   m_EditorClassIdentifier: 
   damage: 10
-  reloadTime: 10
+  reloadTime: 1
   shootingDelayTime: 0.5
   bulletShootingSpeed: 10
   maxBulletCount: 10

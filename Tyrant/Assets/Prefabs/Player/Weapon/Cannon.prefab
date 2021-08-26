@@ -583,6 +583,14 @@ MonoBehaviour:
     gameObject: {fileID: 2613522821161138782}
   - playerFacing: 7
     gameObject: {fileID: 7120871128867740679}
+  maxAmmo: 5
+  reloadTime: 1
+  ammoImages:
+  - {fileID: 5361757939537974409, guid: edd2a7d13be304945a837c37d454a3ef, type: 3}
+  - {fileID: 5361757939537974409, guid: edd2a7d13be304945a837c37d454a3ef, type: 3}
+  - {fileID: 5361757939537974409, guid: edd2a7d13be304945a837c37d454a3ef, type: 3}
+  - {fileID: 5361757939537974409, guid: edd2a7d13be304945a837c37d454a3ef, type: 3}
+  - {fileID: 5361757939537974409, guid: edd2a7d13be304945a837c37d454a3ef, type: 3}
 --- !u!114 &2391741083509851211
 MonoBehaviour:
   m_ObjectHideFlags: 0

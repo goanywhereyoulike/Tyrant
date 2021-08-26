@@ -7,7 +7,7 @@ public class Wave : ScriptableObject
 {
     public enum Enemytype
     {
-        normalenemy, rangeEnemy
+        normalenemy, rangeEnemy , Level1Boss
     }
 
     [Serializable]

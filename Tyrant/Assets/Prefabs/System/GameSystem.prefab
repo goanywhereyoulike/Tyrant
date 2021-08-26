@@ -183,6 +183,10 @@ MonoBehaviour:
     objectToPool: {fileID: 8168810704617534243, guid: 343c93e0066ed814480f71dd30842dd7, type: 3}
     amountToPool: 10
     shouldExpand: 1
+  - tagName: Level1Boss
+    objectToPool: {fileID: 4500605628715117330, guid: f2b1c7d5917a5fe43ab7a679608c44e3, type: 3}
+    amountToPool: 1
+    shouldExpand: 0
 --- !u!1 &3980476720704669719
 GameObject:
   m_ObjectHideFlags: 0

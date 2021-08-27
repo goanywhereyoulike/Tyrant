@@ -7,10 +7,8 @@ public class SpawnArea : MonoBehaviour, GameObjectsLocator.IGameObjectRegister
 {
     [SerializeField]
     private float waveDelay;
-    [SerializeField]
-    private string enemyType;
-    [SerializeField]
 
+    [SerializeField]
     private Wave wave;
     private int spawnCount;
     private int currentWave;
@@ -28,7 +26,6 @@ public class SpawnArea : MonoBehaviour, GameObjectsLocator.IGameObjectRegister
     private Vector2 spMin;
     public Vector2 SpMax { get => spMax; }
     public Vector2 SpMin { get => spMin; }
-    public string EnemyType { get => enemyType; }
     public float WaveDelay { get => waveDelay; }
     public int CurrentWave { get => currentWave; set => currentWave = value; }
     public int SpawnCount { get => spawnCount; set => spawnCount = value; }

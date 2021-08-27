@@ -55,6 +55,7 @@ public class Cannon : Weapon
 
         if (canFire && currentAmmo > 0)
         {
+
             var bulletObject = ObjectPoolManager.Instance.GetPooledObject("ConnonBullet");
             if (bulletObject)
             {
@@ -67,6 +68,7 @@ public class Cannon : Weapon
                 bullet.Direction = different.normalized;
                 bulletObject.transform.position = bullet.StartPosition;
                 bulletObject.SetActive(true);
+                AudioManager.instance.PlaySFX(0);
             }
             currentAmmo-=1;
             ammoImages[currentAmmo].gameObject.SetActive(false);

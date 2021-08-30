@@ -10,6 +10,8 @@ public class RoomManager : MonoBehaviour
 
     private int roomId;
 
+    private bool isBossRoom;
+ 
     private static RoomManager instance = null;
     public static RoomManager Instance { get => instance; }
     public int RoomId { 
@@ -19,6 +21,7 @@ public class RoomManager : MonoBehaviour
             RoomChanged?.Invoke(roomId);
         }
     }
+    public bool IsBossRoom { get => isBossRoom; set => isBossRoom = value; }
 
     // Start is called before the first frame update
     void Awake()

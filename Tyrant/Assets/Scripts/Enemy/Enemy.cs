@@ -271,7 +271,7 @@ public class Enemy : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDam
     public void SlowDown(float slowTime, float newSpeed)
     {
         IsSlow = true;
-        float oldSpeed = moveSpeed;
+        float oldSpeed = enemyState.MaxMoveSpeed;
         moveSpeed = newSpeed;
         StartCoroutine(SpeedBack(slowTime, oldSpeed));
     }

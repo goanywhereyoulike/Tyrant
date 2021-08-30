@@ -4,8 +4,15 @@ using UnityEngine;
 public class SpawnManager : MonoBehaviour
 {
     List<GameObject> enemies;
-    List<SpawnArea> spawns;
-    List<SpawnArea> roomSpawns;
+
+    [System.Serializable]
+    public class room
+    {
+        public List<SpawnArea> roomSpawns;
+    }
+    public List<room> rooms = new List<room>();
+
+    private room currentRoom;
 
     private static SpawnManager _instance;
     public static SpawnManager Instance { get => _instance; }
@@ -24,11 +31,11 @@ public class SpawnManager : MonoBehaviour
     int roomNumber = 0;
 
     string basicName;
-    public bool waveDelayTurnOn;
     private bool roomClear;
     private bool isRoomCheck;
     private int checkcount;
     private int lastroom;
+    private int enemyDrop;
     //int randomSpawn;
 
     private void Start()
@@ -36,12 +43,9 @@ public class SpawnManager : MonoBehaviour
         ObjectPoolManager.Instance.InstantiateObjects("normalenemy");
         ObjectPoolManager.Instance.InstantiateObjects("rangeEnemy");
         ObjectPoolManager.Instance.InstantiateObjects("Level1Boss");
-        spawns = new List<SpawnArea>();
+        ObjectPoolManager.Instance.InstantiateObjects("DropItem");
         enemies = new List<GameObject>();
-        roomSpawns = new List<SpawnArea>();
         RoomManager.Instance.RoomChanged = RoomChange;
-        //StartCoroutine(Spawn());
-        GetSpawnArea();
         if (_instance == null)
         {
             _instance = this;
@@ -58,32 +62,63 @@ public class SpawnManager : MonoBehaviour
             CheckRoomSpawn();
 
         CheckRoomClear();
-        if (roomSpawns.Count != 0)
+        if (currentRoom.roomSpawns.Count != 0)
         {
-            for (int i = 0; i < roomSpawns.Count; ++i)
+            for (int i = 0; i < currentRoom.roomSpawns.Count; ++i)
             {
-                if (waveDelayTurnOn)
+                if (currentRoom.roomSpawns[i].WaveDelayTurnOn)
                 {
-                    if (roomSpawns[i].DelayTime <= 0.0f)
+                    if (currentRoom.roomSpawns[i].DelayTime <= 0.0f)
                     {
                         SpawnWave(i);
                         currentWave++;
-                        roomSpawns[i].DelayTime = roomSpawns[i].WaveDelay;
+                        currentRoom.roomSpawns[i].DelayTime = currentRoom.roomSpawns[i].WaveDelay;
                     }
-                    roomSpawns[i].DelayTime -= Time.deltaTime;
+                    currentRoom.roomSpawns[i].DelayTime -= Time.deltaTime;
                 }
                 else
                 {
                     SpawnWave(i);
                 }
 
-
-                for (int e = 0; e < roomSpawns[i].Enemies.Count; ++e)
+                while (currentRoom.roomSpawns[i].ItemDropNum > currentRoom.roomSpawns[i].ItemDropCount)
                 {
-                    if (roomSpawns[i].Enemies[e].activeInHierarchy == false)
+                    enemyDrop = Random.Range(0, currentRoom.roomSpawns[i].Enemies.Count);
+                    currentRoom.roomSpawns[i].DropNumber.Add(enemyDrop);
+                    currentRoom.roomSpawns[i].ItemDropCount++;
+                }
+
+                for (int e = 0; e < currentRoom.roomSpawns[i].Enemies.Count; ++e)
+                {
+                    if (currentRoom.roomSpawns[i].Enemies[e].activeInHierarchy == false)
                     {
-                        roomSpawns[i].Enemies.RemoveAt(e);
-                        roomSpawns[i].SpawnCount--;
+                        if (currentRoom.roomSpawns[i].DropNumber.Count <= 0)
+                        {
+                            currentRoom.roomSpawns[i].Enemies.RemoveAt(e);
+                            currentRoom.roomSpawns[i].SpawnCount--;
+                        }
+
+                        //check which enemy will drop
+                        for (int d = 0; d < currentRoom.roomSpawns[i].DropNumber.Count; ++d)
+                        {
+                            if (e == currentRoom.roomSpawns[i].DropNumber[d])
+                            {
+                                enemyObject = ObjectPoolManager.Instance.GetPooledObject("DropItem");
+                                enemyObject.transform.position = currentRoom.roomSpawns[i].Enemies[e].transform.position;
+                                enemyObject.SetActive(true);
+                                currentRoom.roomSpawns[i].DropNumber.RemoveAt(d);
+                                currentRoom.roomSpawns[i].Enemies.RemoveAt(e);
+                                currentRoom.roomSpawns[i].SpawnCount--;
+                                break;
+                            }
+                            else
+                            {
+                                currentRoom.roomSpawns[i].Enemies.RemoveAt(e);
+                                currentRoom.roomSpawns[i].SpawnCount--;
+                            }
+                        }
+
+
                     }
                 }
             }
@@ -91,7 +126,7 @@ public class SpawnManager : MonoBehaviour
     }
 
     private void RoomChange(int changeId)
-   {
+    {
         roomNumber = changeId;
         checkcount = 0;
         roomClear = false;
@@ -101,43 +136,26 @@ public class SpawnManager : MonoBehaviour
         }
     }
 
-    void GetSpawnArea()
-    {
-        spawns.Clear();
-        var spawnArea = GameObjectsLocator.Instance.Get<SpawnArea>();
-        foreach (var spawn in spawnArea)
-        {
-            spawns.Add(spawn);
-        }
-    }
-
     void CheckRoomSpawn()
     {
-        foreach (var spawn in spawns)
-        {
-            if (spawn.roomNumber == roomNumber)
-            {
-                roomSpawns.Add(spawn);
-            }
-        }
+        currentRoom = rooms[roomNumber];
         isRoomCheck = true;
     }
 
     void CheckRoomClear()
     {
-        if (roomSpawns.Count != 0)
+        if (currentRoom.roomSpawns.Count != 0)
         {
-            for (int i = 0; i < roomSpawns.Count; ++i)
+            for (int i = 0; i < currentRoom.roomSpawns.Count; ++i)
             {
-                if (roomSpawns[i].CurrentWave == roomSpawns[i].Wave.waveData.Count && roomSpawns[i].SpawnCount == 0 && !roomSpawns[i].SpawnClear)
+                if (currentRoom.roomSpawns[i].CurrentWave == currentRoom.roomSpawns[i].Wave.waveData.Count && currentRoom.roomSpawns[i].SpawnCount == 0 && !currentRoom.roomSpawns[i].SpawnClear)
                 {
-                    roomSpawns[i].SpawnClear = true;
+                    currentRoom.roomSpawns[i].SpawnClear = true;
                     checkcount++;
                 }
 
-                if (checkcount == roomSpawns.Count)
+                if (checkcount == currentRoom.roomSpawns.Count)
                 {
-                    roomSpawns.Clear();
                     isRoomCheck = false;
                     RoomClear = true;
                     break;
@@ -149,130 +167,130 @@ public class SpawnManager : MonoBehaviour
     void SpawnWave(int count)
     {
         int c;
-        if (waveDelayTurnOn)
+        if (currentRoom.roomSpawns[count].WaveDelayTurnOn)
         {
-            if (roomSpawns[count].CurrentWave < roomSpawns[count].Wave.waveData.Count)
+            if (currentRoom.roomSpawns[count].CurrentWave < currentRoom.roomSpawns[count].Wave.waveData.Count)
             {
-                for (c = 0; c < roomSpawns[count].Wave.waveData[roomSpawns[count].CurrentWave].spawnNumber; ++c)
+                for (c = 0; c < currentRoom.roomSpawns[count].Wave.waveData[currentRoom.roomSpawns[count].CurrentWave].spawnNumber; ++c)
                 {
-                    switch (roomSpawns[count].Wave.waveData[roomSpawns[count].CurrentWave].enemytype)
+                    switch (currentRoom.roomSpawns[count].Wave.waveData[currentRoom.roomSpawns[count].CurrentWave].enemytype)
                     {
                         case Wave.Enemytype.normalenemy:
-                            spawnMax = new Vector2(roomSpawns[count].SpMax.x, roomSpawns[count].SpMax.y);
-                            spawnMin = new Vector2(roomSpawns[count].SpMin.x, roomSpawns[count].SpMin.y);
-                            spawnX = Random.Range((int)roomSpawns[count].SpMin.x, (int)roomSpawns[count].SpMax.x);
-                            spawnY = Random.Range((int)roomSpawns[count].SpMin.y, (int)roomSpawns[count].SpMax.y);
+                            spawnMax = new Vector2(currentRoom.roomSpawns[count].SpMax.x, currentRoom.roomSpawns[count].SpMax.y);
+                            spawnMin = new Vector2(currentRoom.roomSpawns[count].SpMin.x, currentRoom.roomSpawns[count].SpMin.y);
+                            spawnX = Random.Range((int)currentRoom.roomSpawns[count].SpMin.x, (int)currentRoom.roomSpawns[count].SpMax.x);
+                            spawnY = Random.Range((int)currentRoom.roomSpawns[count].SpMin.y, (int)currentRoom.roomSpawns[count].SpMax.y);
                             spawnPosition = new Vector2(spawnX, spawnY);
 
                             enemyObject = ObjectPoolManager.Instance.GetPooledObject("normalenemy");
                             enemyObject.transform.position = spawnPosition;
                             enemyObject.SetActive(true);
-                            roomSpawns[count].Enemies.Add(enemyObject);
-                            roomSpawns[count].SpawnCount++;
+                            currentRoom.roomSpawns[count].Enemies.Add(enemyObject);
+                            currentRoom.roomSpawns[count].SpawnCount++;
                             print("spawn");
                             break;
                         case Wave.Enemytype.rangeEnemy:
-                            spawnMax = new Vector2(roomSpawns[count].SpMax.x, roomSpawns[count].SpMax.y);
-                            spawnMin = new Vector2(roomSpawns[count].SpMin.x, roomSpawns[count].SpMin.y);
-                            spawnX = Random.Range((int)roomSpawns[count].SpMin.x, (int)roomSpawns[count].SpMax.x);
-                            spawnY = Random.Range((int)roomSpawns[count].SpMin.y, (int)roomSpawns[count].SpMax.y);
+                            spawnMax = new Vector2(currentRoom.roomSpawns[count].SpMax.x, currentRoom.roomSpawns[count].SpMax.y);
+                            spawnMin = new Vector2(currentRoom.roomSpawns[count].SpMin.x, currentRoom.roomSpawns[count].SpMin.y);
+                            spawnX = Random.Range((int)currentRoom.roomSpawns[count].SpMin.x, (int)currentRoom.roomSpawns[count].SpMax.x);
+                            spawnY = Random.Range((int)currentRoom.roomSpawns[count].SpMin.y, (int)currentRoom.roomSpawns[count].SpMax.y);
                             spawnPosition = new Vector2(spawnX, spawnY);
 
                             enemyObject = ObjectPoolManager.Instance.GetPooledObject("rangeEnemy");
                             enemyObject.transform.position = spawnPosition;
                             enemyObject.SetActive(true);
-                            roomSpawns[count].Enemies.Add(enemyObject);
-                            roomSpawns[count].SpawnCount++;
+                            currentRoom.roomSpawns[count].Enemies.Add(enemyObject);
+                            currentRoom.roomSpawns[count].SpawnCount++;
                             print("spawn");
                             break;
                         case Wave.Enemytype.Level1Boss:
-                            spawnMax = new Vector2(roomSpawns[count].SpMax.x, roomSpawns[count].SpMax.y);
-                            spawnMin = new Vector2(roomSpawns[count].SpMin.x, roomSpawns[count].SpMin.y);
-                            spawnX = Random.Range((int)roomSpawns[count].SpMin.x, (int)roomSpawns[count].SpMax.x);
-                            spawnY = Random.Range((int)roomSpawns[count].SpMin.y, (int)roomSpawns[count].SpMax.y);
+                            spawnMax = new Vector2(currentRoom.roomSpawns[count].SpMax.x, currentRoom.roomSpawns[count].SpMax.y);
+                            spawnMin = new Vector2(currentRoom.roomSpawns[count].SpMin.x, currentRoom.roomSpawns[count].SpMin.y);
+                            spawnX = Random.Range((int)currentRoom.roomSpawns[count].SpMin.x, (int)currentRoom.roomSpawns[count].SpMax.x);
+                            spawnY = Random.Range((int)currentRoom.roomSpawns[count].SpMin.y, (int)currentRoom.roomSpawns[count].SpMax.y);
                             spawnPosition = new Vector2(spawnX, spawnY);
 
                             enemyObject = ObjectPoolManager.Instance.GetPooledObject("Level1Boss");
                             enemyObject.transform.position = spawnPosition;
                             enemyObject.SetActive(true);
-                            roomSpawns[count].Enemies.Add(enemyObject);
-                            roomSpawns[count].SpawnCount++;
+                            currentRoom.roomSpawns[count].Enemies.Add(enemyObject);
+                            currentRoom.roomSpawns[count].SpawnCount++;
                             print("spawn");
                             break;
                         default:
                             break;
                     }
                     //spawn position
-                  
+
 
                 }
                 //if (c == roomSpawns[count].Wave.waveData[c].spawnNumber)
                 //{
                 //    c = 0;
                 //}
-                roomSpawns[count].CurrentWave++;
+                currentRoom.roomSpawns[count].CurrentWave++;
             }
         }
         else
         {
-            if (roomSpawns[count].SpawnCount == 0 && roomSpawns[count].CurrentWave < roomSpawns[count].Wave.waveData.Count)
+            if (currentRoom.roomSpawns[count].SpawnCount == 0 && currentRoom.roomSpawns[count].CurrentWave < currentRoom.roomSpawns[count].Wave.waveData.Count)
             {
-                for (c = 0; c < roomSpawns[count].Wave.waveData[roomSpawns[count].CurrentWave].spawnNumber; ++c)
+                for (c = 0; c < currentRoom.roomSpawns[count].Wave.waveData[currentRoom.roomSpawns[count].CurrentWave].spawnNumber; ++c)
                 {
                     //spawn position
-                    switch (roomSpawns[count].Wave.waveData[roomSpawns[count].CurrentWave].enemytype)
+                    switch (currentRoom.roomSpawns[count].Wave.waveData[currentRoom.roomSpawns[count].CurrentWave].enemytype)
                     {
                         case Wave.Enemytype.normalenemy:
-                            spawnMax = new Vector2(roomSpawns[count].SpMax.x, roomSpawns[count].SpMax.y);
-                            spawnMin = new Vector2(roomSpawns[count].SpMin.x, roomSpawns[count].SpMin.y);
-                            spawnX = Random.Range((int)roomSpawns[count].SpMin.x, (int)roomSpawns[count].SpMax.x);
-                            spawnY = Random.Range((int)roomSpawns[count].SpMin.y, (int)roomSpawns[count].SpMax.y);
+                            spawnMax = new Vector2(currentRoom.roomSpawns[count].SpMax.x, currentRoom.roomSpawns[count].SpMax.y);
+                            spawnMin = new Vector2(currentRoom.roomSpawns[count].SpMin.x, currentRoom.roomSpawns[count].SpMin.y);
+                            spawnX = Random.Range((int)currentRoom.roomSpawns[count].SpMin.x, (int)currentRoom.roomSpawns[count].SpMax.x);
+                            spawnY = Random.Range((int)currentRoom.roomSpawns[count].SpMin.y, (int)currentRoom.roomSpawns[count].SpMax.y);
                             spawnPosition = new Vector2(spawnX, spawnY);
 
                             enemyObject = ObjectPoolManager.Instance.GetPooledObject("normalenemy");
                             enemyObject.transform.position = spawnPosition;
                             enemyObject.SetActive(true);
-                            roomSpawns[count].Enemies.Add(enemyObject);
-                            roomSpawns[count].SpawnCount++;
+                            currentRoom.roomSpawns[count].Enemies.Add(enemyObject);
+                            currentRoom.roomSpawns[count].SpawnCount++;
                             print("spawn");
                             break;
                         case Wave.Enemytype.rangeEnemy:
-                            spawnMax = new Vector2(roomSpawns[count].SpMax.x, roomSpawns[count].SpMax.y);
-                            spawnMin = new Vector2(roomSpawns[count].SpMin.x, roomSpawns[count].SpMin.y);
-                            spawnX = Random.Range((int)roomSpawns[count].SpMin.x, (int)roomSpawns[count].SpMax.x);
-                            spawnY = Random.Range((int)roomSpawns[count].SpMin.y, (int)roomSpawns[count].SpMax.y);
+                            spawnMax = new Vector2(currentRoom.roomSpawns[count].SpMax.x, currentRoom.roomSpawns[count].SpMax.y);
+                            spawnMin = new Vector2(currentRoom.roomSpawns[count].SpMin.x, currentRoom.roomSpawns[count].SpMin.y);
+                            spawnX = Random.Range((int)currentRoom.roomSpawns[count].SpMin.x, (int)currentRoom.roomSpawns[count].SpMax.x);
+                            spawnY = Random.Range((int)currentRoom.roomSpawns[count].SpMin.y, (int)currentRoom.roomSpawns[count].SpMax.y);
                             spawnPosition = new Vector2(spawnX, spawnY);
 
                             enemyObject = ObjectPoolManager.Instance.GetPooledObject("rangeEnemy");
                             enemyObject.transform.position = spawnPosition;
                             enemyObject.SetActive(true);
-                            roomSpawns[count].Enemies.Add(enemyObject);
-                            roomSpawns[count].SpawnCount++;
+                            currentRoom.roomSpawns[count].Enemies.Add(enemyObject);
+                            currentRoom.roomSpawns[count].SpawnCount++;
                             print("spawn");
                             break;
                         case Wave.Enemytype.Level1Boss:
-                            spawnMax = new Vector2(roomSpawns[count].SpMax.x, roomSpawns[count].SpMax.y);
-                            spawnMin = new Vector2(roomSpawns[count].SpMin.x, roomSpawns[count].SpMin.y);
-                            spawnX = Random.Range((int)roomSpawns[count].SpMin.x, (int)roomSpawns[count].SpMax.x);
-                            spawnY = Random.Range((int)roomSpawns[count].SpMin.y, (int)roomSpawns[count].SpMax.y);
+                            spawnMax = new Vector2(currentRoom.roomSpawns[count].SpMax.x, currentRoom.roomSpawns[count].SpMax.y);
+                            spawnMin = new Vector2(currentRoom.roomSpawns[count].SpMin.x, currentRoom.roomSpawns[count].SpMin.y);
+                            spawnX = Random.Range((int)currentRoom.roomSpawns[count].SpMin.x, (int)currentRoom.roomSpawns[count].SpMax.x);
+                            spawnY = Random.Range((int)currentRoom.roomSpawns[count].SpMin.y, (int)currentRoom.roomSpawns[count].SpMax.y);
                             spawnPosition = new Vector2(spawnX, spawnY);
 
                             enemyObject = ObjectPoolManager.Instance.GetPooledObject("Level1Boss");
                             enemyObject.transform.position = spawnPosition;
                             enemyObject.SetActive(true);
-                            roomSpawns[count].Enemies.Add(enemyObject);
-                            roomSpawns[count].SpawnCount++;
+                            currentRoom.roomSpawns[count].Enemies.Add(enemyObject);
+                            currentRoom.roomSpawns[count].SpawnCount++;
                             print("spawn");
                             break;
                         default:
                             break;
                     }
                 }
-                //if (c == roomSpawns[count].spawnNumber)
+                //if (c == currentRoom.roomSpawns[count].spawnNumber)
                 //{
                 //    c = 0;
                 //}
-                roomSpawns[count].CurrentWave++;
+                currentRoom.roomSpawns[count].CurrentWave++;
             }
         }
     }

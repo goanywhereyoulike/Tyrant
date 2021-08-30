@@ -1,7 +1,5 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Tilemaps;
 
 public class SpawnArea : MonoBehaviour, GameObjectsLocator.IGameObjectRegister
 {
@@ -21,12 +19,15 @@ public class SpawnArea : MonoBehaviour, GameObjectsLocator.IGameObjectRegister
     private float delayTime;
     private bool spawnClear;
     private int itemDropCount;
+    private int chooseEnemyDrop;
+    private int totalEnemies;
 
     public int spWidth;
     public int spHeight;
     public int roomNumber;
-
-
+    [SerializeField]
+    private SpawnUI spawnUI;
+    
     List<int> dropNumber;
     List<GameObject> enemies;
 
@@ -43,22 +44,25 @@ public class SpawnArea : MonoBehaviour, GameObjectsLocator.IGameObjectRegister
     public float DelayTime { get => delayTime; set => delayTime = value; }
     public List<int> DropNumber { get => dropNumber; set => dropNumber = value; }
     public List<GameObject> Enemies { get => enemies; set => enemies = value; }
-    public Wave Wave { get => wave;}
+    public Wave Wave { get => wave; }
     public bool SpawnClear { get => spawnClear; set => spawnClear = value; }
-    public bool WaveDelayTurnOn { get => waveDelayTurnOn;}
-
-    //  public string[] enemyType = { "normalenemy", "rangeEnemy" };
-    //
-    // public List<string> waveSpawn;
+    public bool WaveDelayTurnOn { get => waveDelayTurnOn; }
+    public int ChooseEnemyDrop { get => chooseEnemyDrop; set => chooseEnemyDrop = value; }
+    public int TotalEnemies { get => totalEnemies; set => totalEnemies = value; }
 
     private void Awake()
     {
-        //waveSpawn = new List<string>(waveNumber);
         mCollider = GetComponent<Collider2D>();
-        Area();
         Enemies = new List<GameObject>();
         DropNumber = new List<int>();
+        Area();
+        spawnUI.MaxSpawn(wave.waveData.Count);
         RegisterToLocator();
+    }
+
+    private void Update()
+    {
+        spawnUI.SpawnChanged(currentWave);
     }
 
     void Area()

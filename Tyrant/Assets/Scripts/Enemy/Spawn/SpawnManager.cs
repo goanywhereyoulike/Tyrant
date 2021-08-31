@@ -68,7 +68,7 @@ public class SpawnManager : MonoBehaviour
             {
                 if (currentRoom.roomSpawns[i].CurrentWave == currentRoom.roomSpawns[i].Wave.waveData.Count)
                 {
-                    currentRoom.roomSpawns[i].gameObject.SetActive(false);
+                    //currentRoom.roomSpawns[i].gameObject.SetActive(false);
                 }
 
                 if (currentRoom.roomSpawns[i].WaveDelayTurnOn)
@@ -150,6 +150,11 @@ public class SpawnManager : MonoBehaviour
     void CheckRoomSpawn()
     {
         currentRoom = rooms[roomNumber];
+        foreach(var spawn in currentRoom.roomSpawns)
+        {
+            spawn.gameObject.SetActive(true);
+        }
+
         for (int i = 0; i < currentRoom.roomSpawns.Count; ++i)
         {
             for (int s = 0; s < currentRoom.roomSpawns[i].Wave.waveData.Count; ++s)

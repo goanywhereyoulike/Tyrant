@@ -65,6 +65,11 @@ public class SpawnArea : MonoBehaviour, GameObjectsLocator.IGameObjectRegister
         spawnUI.SpawnChanged(currentWave);
     }
 
+    private void Deactive()
+    {
+        gameObject.SetActive(false);
+    }
+
     void Area()
     {
         spMax = mCollider.bounds.max;

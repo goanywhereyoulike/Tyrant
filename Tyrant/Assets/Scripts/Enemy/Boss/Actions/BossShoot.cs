@@ -6,6 +6,10 @@ using BehaviorDesigner.Runtime.Tasks;
 public class BossShoot : Action
 {
     public BossFindTarget findTarget;
+    public int maxAnmoCount = 3;
+
+    private int anmoCount = 0;
+    public float speed;
 
     private PSC psc;
 
@@ -13,6 +17,8 @@ public class BossShoot : Action
     {
         ObjectPoolManager.Instance.InstantiateObjects("enemyBullet");
         psc = GetComponent<PSC>();
+        anmoCount = maxAnmoCount;
+        speed = 20;
     }
 
     public override TaskStatus OnUpdate()
@@ -23,11 +29,20 @@ public class BossShoot : Action
         if (!ObjectPoolManager.Instance.GetPooledObject("enemyBullet"))
             return TaskStatus.Failure;
 
-        var bullet = ObjectPoolManager.Instance.GetPooledObject("enemyBullet");
-        var bulletClass = bullet.GetComponent<EnemyBullet>();
-        bulletClass.Position = findTarget.TargetPos;
-        bulletClass.bulletSpeed = 20;
-        bullet.SetActive(true);
+        if (anmoCount > 0)
+        {
+            var bullet = ObjectPoolManager.Instance.GetPooledObject("enemyBullet");
+            var bulletClass = bullet.GetComponent<EnemyBullet>();
+            bulletClass.Position = findTarget.TargetPos;
+            bulletClass.bulletSpeed = speed;
+            speed += 5;
+            speed = speed > 30 ? speed - 10 : speed;
+            bullet.SetActive(true);
+            anmoCount--;
+            return TaskStatus.Running;
+        }
+
+        anmoCount = maxAnmoCount;
 
         return TaskStatus.Success;
     }

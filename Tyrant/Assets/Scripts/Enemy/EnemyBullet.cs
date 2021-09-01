@@ -32,7 +32,7 @@ public class EnemyBullet : MonoBehaviour
         distance = Mathf.Sqrt((a * a) + (b * b));
         if ((Vector2)transform.position == Position)
         {
-            //gameObject.SetActive(false);
+            gameObject.SetActive(false);
         }
         speed = bulletSpeed * Time.deltaTime;
         transform.position = Vector2.MoveTowards(transform.position, Position, speed);

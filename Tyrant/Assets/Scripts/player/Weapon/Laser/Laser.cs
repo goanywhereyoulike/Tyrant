@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Laser : Weapon
 {
@@ -8,10 +9,13 @@ public class Laser : Weapon
     private Animator animator;
 
     private LaserStates laserStates = null;
-
+    
     private bool charged = false;
     private bool charging = true;
 
+    public Slider chargingBar;
+    //private float currentChargingTime;
+   
     protected override void Start()
     {
         base.Start();
@@ -19,9 +23,10 @@ public class Laser : Weapon
         {
             return;
         }
-
+        
+        chargingBar.gameObject.SetActive(false);
         laserStates = weaponStates as LaserStates;
-
+        chargingBar.maxValue = laserStates.HoldingTime;
         ObjectPoolManager.Instance.InstantiateObjects("LaserBullet");
         ObjectPoolManager.Instance.InstantiateObjects("LaserBulletEffect");
         weaponInit = true;
@@ -33,6 +38,7 @@ public class Laser : Weapon
 
         charging = false;
         animator.SetBool("Charging", charging);
+        chargingBar.value = 0f;
 
         if (charged)
         {
@@ -59,12 +65,13 @@ public class Laser : Weapon
     public override void HoldingFire(float holdingTime)
     {
         base.HoldingFire(holdingTime);
-
+        chargingBar.gameObject.SetActive(true);
         if (holdingTime >= laserStates.HoldingTime)
         {
             charged = true;
         }
 
+        chargingBar.value = holdingTime;
         Vector3 vecDir = InputManager.Instance.MouseWorldPosition - transform.position;
         animator.gameObject.transform.eulerAngles = new Vector3(0.0f, 0.0f, 180.0f - Mathf.Atan2(-vecDir.y, vecDir.x) * Mathf.Rad2Deg);
         animator.gameObject.transform.position = startShootingPointDict[Facing].transform.position;

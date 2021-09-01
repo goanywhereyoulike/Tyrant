@@ -32,10 +32,14 @@ public class Player : MonoBehaviour , IDamageable, GameObjectsLocator.IGameObjec
     private PlayerMovement playerMovement = null;
 
     public DialogueUI DialogueUI => dialogueUI;
+    
     public IInteractable interactable { get; set; }
 
     [SerializeField]
     private PlayerUI playerUI = null;
+
+    [SerializeField]
+    private Cannon bulletUI = null;
 
     public int coin;
 

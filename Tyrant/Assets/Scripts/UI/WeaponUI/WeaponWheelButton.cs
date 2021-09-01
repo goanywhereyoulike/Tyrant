@@ -12,7 +12,6 @@ public class WeaponWheelButton : MonoBehaviour
     public TextMeshProUGUI itemText;
     public Image selectItem;
     private Color color = new Color(1f, 1f, 1f, 1f);
-    private bool canFire;
     private bool selected = false;
     public Sprite icon;
 

@@ -5,8 +5,6 @@ using UnityEngine;
 public class Cannon : Weapon
 {
     private ConnonStates connonStates = null;
-
-    [SerializeField]private int maxAmmo = 5;
     private int currentAmmo;
     public float reloadTime = 1f;
     public GameObject[] ammoImages;
@@ -27,11 +25,11 @@ public class Cannon : Weapon
         connonStates = weaponStates as ConnonStates;
         weaponInit = true;
 
-        currentAmmo = maxAmmo;
+        currentAmmo = connonStates.MaxAmmo;
     }
     private void Update()
     {
-        if (currentAmmo<=0)
+        if (currentAmmo <= 0)
         {
             Reload();
             return;
@@ -46,7 +44,7 @@ public class Cannon : Weapon
                 ammoImages[i].gameObject.SetActive(true);
             }
             Debug.Log("reloading");
-            currentAmmo = maxAmmo;
+            currentAmmo = connonStates.MaxAmmo;
         }
     }
     public override void Fire()
@@ -68,7 +66,7 @@ public class Cannon : Weapon
                 bulletObject.transform.position = bullet.StartPosition;
                 bulletObject.SetActive(true);
             }
-            currentAmmo-=1;
+            currentAmmo -= 1;
             ammoImages[currentAmmo].gameObject.SetActive(false);
             //currentAmmo--;
         }

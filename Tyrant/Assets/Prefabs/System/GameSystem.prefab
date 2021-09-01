@@ -187,6 +187,10 @@ MonoBehaviour:
     objectToPool: {fileID: 4500605628715117330, guid: f2b1c7d5917a5fe43ab7a679608c44e3, type: 3}
     amountToPool: 1
     shouldExpand: 0
+  - tagName: BossBullet
+    objectToPool: {fileID: 3104685805077678868, guid: 78d45480b81ded0498296ed4b1a2510f, type: 3}
+    amountToPool: 1
+    shouldExpand: 1
 --- !u!1 &3980476720704669719
 GameObject:
   m_ObjectHideFlags: 0

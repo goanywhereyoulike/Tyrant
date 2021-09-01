@@ -18,7 +18,6 @@ public class BossShoot : Action
         ObjectPoolManager.Instance.InstantiateObjects("enemyBullet");
         psc = GetComponent<PSC>();
         anmoCount = maxAnmoCount;
-        speed = 20;
     }
 
     public override TaskStatus OnUpdate()
@@ -34,6 +33,7 @@ public class BossShoot : Action
             var bullet = ObjectPoolManager.Instance.GetPooledObject("enemyBullet");
             var bulletClass = bullet.GetComponent<EnemyBullet>();
             bulletClass.Position = findTarget.TargetPos;
+            bulletClass.transform.position = transform.position;
             bulletClass.bulletSpeed = speed;
             speed += 5;
             speed = speed > 30 ? speed - 10 : speed;

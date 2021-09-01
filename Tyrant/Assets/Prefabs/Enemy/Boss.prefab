@@ -70,7 +70,8 @@ MonoBehaviour:
         Find Target","Instant":true},{"Type":"BossCharge","NodeData":{"Offset":"(119.93866,123.4491)"},"ID":11,"Name":"Boss
         Charge","Instant":true,"BossFindTargetfindTarget":10,"Singleacceleration":7,"SinglemaxMoveSpeed":100,"SingleminMoveSpeed":25},{"Type":"BossHold","NodeData":{"Offset":"(237.5,124.375)"},"ID":12,"Name":"Boss
         Hold","Instant":true,"SingleholdTime":0.5,"SliderholdSlider":1},{"Type":"BossBalls","NodeData":{"Offset":"(363.125,124.375)"},"ID":13,"Name":"Boss
-        Balls","Instant":true,"Int32maxAnmoCount":8,"Int32range":3,"Int32damage":1,"Int32stayTime":5}]}]}]}]}}'
+        Balls","Instant":true,"Int32maxAnmoCount":8,"Int32range":3,"Int32damage":1,"Int32stayTime":5}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(735.6936,137.892761)"},"ID":14,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"BossBulletHell","NodeData":{"Offset":"(4.749527,105.046867)"},"ID":15,"Name":"Boss
+        Bullet Hell","Instant":true,"Int32bulletCount":20,"Int32bulletMoveSpeed":5}]}]}]}]}}'
       fieldSerializationData:
         typeName: []
         fieldNameHash: 

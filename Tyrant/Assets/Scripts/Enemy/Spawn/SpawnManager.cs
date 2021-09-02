@@ -62,6 +62,7 @@ public class SpawnManager : MonoBehaviour
             CheckRoomSpawn();
 
         CheckRoomClear();
+        // check all spawns in current room
         if (currentRoom.roomSpawns.Count != 0)
         {
             for (int i = 0; i < currentRoom.roomSpawns.Count; ++i)

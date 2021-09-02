@@ -46,7 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GravityEffect: {fileID: 4862142306489124203, guid: ead6d95432083d547a821bd02be63a01, type: 3}
   radius: 3
-  forcemagnitude: 8
+  forcemagnitude: 0.001
   duration: 10
 --- !u!212 &3124416122216975887
 SpriteRenderer:

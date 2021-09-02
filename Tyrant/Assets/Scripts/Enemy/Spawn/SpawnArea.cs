@@ -6,6 +6,9 @@ using UnityEngine.Tilemaps;
 public class SpawnArea : MonoBehaviour, GameObjectsLocator.IGameObjectRegister
 {
     [SerializeField]
+    GameObject Portal;
+
+    [SerializeField]
     private float waveDelay;
 
     [SerializeField]
@@ -32,7 +35,7 @@ public class SpawnArea : MonoBehaviour, GameObjectsLocator.IGameObjectRegister
     public List<GameObject> Enemies { get => enemies; set => enemies = value; }
     public float DelayTime { get => delayTime; set => delayTime = value; }
     public bool SpawnClear { get => spawnClear; set => spawnClear = value; }
-    public Wave Wave { get => wave;}
+    public Wave Wave { get => wave; }
 
 
     //  public string[] enemyType = { "normalenemy", "rangeEnemy" };
@@ -45,10 +48,23 @@ public class SpawnArea : MonoBehaviour, GameObjectsLocator.IGameObjectRegister
         mCollider = GetComponent<Collider2D>();
         Area();
         Enemies = new List<GameObject>();
-        
+        Portal.GetComponent<Portal>().index = roomNumber;
         RegisterToLocator();
     }
+    private void Update()
+    {
 
+        Portal.GetComponent<Portal>().waveCount = Wave.waveData.Count;
+        Portal.GetComponent<Portal>().currentWave = CurrentWave;
+        if (roomNumber == RoomManager.Instance.RoomId)
+        {
+            Portal.SetActive(true);
+        }
+        else
+        {
+            Portal.SetActive(false);
+        }
+    }
     void Area()
     {
         spMax = mCollider.bounds.max;

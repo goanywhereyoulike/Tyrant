@@ -83,7 +83,7 @@ public class Enemy : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDam
         set
         {
             isSlow = value;
-            spriteRenderer.material.color = isSlow ? new Color(1.0f, 118.0f, 255.0f) : Color.white; 
+            spriteRenderer.material.color = isSlow ? new Color(1.0f, 118.0f, 255.0f) : Color.white;
         }
     }
 
@@ -104,6 +104,7 @@ public class Enemy : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDam
 
     protected virtual void Update()
     {
+        GetComponent<Rigidbody2D>().Sleep();
         if (!isSpawn)
         {
             ReUse();
@@ -283,7 +284,7 @@ public class Enemy : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDam
         moveSpeed = oldSpeed;
     }
 
-     protected IEnumerator DelayFindPath(float delayTime)
+    protected IEnumerator DelayFindPath(float delayTime)
     {
         if (canFind)
         {
@@ -394,15 +395,15 @@ public class Enemy : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDam
             mPath.Clear();
             nextNodes.Clear();
 
-   
+
             // Beginning from the end node, trace back to it's parent one at a timec
             NodePath.Node path = closedList[closedList.Count - 1];
             while (path != null)
             {
-                 mPath.Add(path);
-                 path = path.parent;
+                mPath.Add(path);
+                path = path.parent;
             }
-            
+
             // Once we recorded all the position from end to start, we need to reverse
             // them to get the correct order
             mPath.Reverse();
@@ -424,4 +425,5 @@ public class Enemy : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDam
         //rb.AddForce(force);
         transform.position += force;
     }
+
 }

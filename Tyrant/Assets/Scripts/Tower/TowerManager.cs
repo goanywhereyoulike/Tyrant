@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class TowerManager : MonoBehaviour
 {
-
+    public TowerLimitTemplate towerroomInfos;
     PlayerMovement player;
     SpriteRenderer TowerSprite;
     public List<TowerTemplate> Towers = new List<TowerTemplate>();
@@ -13,22 +13,23 @@ public class TowerManager : MonoBehaviour
     [SerializeField]
     private Animator TowerNumberWarning;
 
-    [SerializeField]
-    private int TowerNumberLimit = 5;
+
+    private int TowerNumberLimit;
 
     [SerializeField]
-    private Text TowerNumlimit;
+    private Text TowerNumberText;
 
     [SerializeField]
     private Image TowerPanel;
 
-    //[SerializeField]
-    //private Image TrapPanel;
-
-    //[SerializeField]
-    //private Text Coinnumber;
     [SerializeField]
-    private Text TowerNumberText;
+    private Image Tower1Cover;
+
+    [SerializeField]
+    private Image Tower2Cover;
+
+    [SerializeField]
+    private Image Tower3Cover;
 
     [SerializeField]
     private Text Tower1Price;
@@ -65,6 +66,11 @@ public class TowerManager : MonoBehaviour
     private int TowerNumber = 0;
     private bool IsReachTowerNumberLimit = false;
 
+    int roomNumber = 0;
+    private bool roomClear;
+    private bool isRoomCheck;
+    private int checkcount;
+    private int lastroom;
 
     List<bool> IsAbleToSet = new List<bool>(3);
     GameObject preTower;
@@ -73,7 +79,7 @@ public class TowerManager : MonoBehaviour
     void Start()
     {
         TowerPanel.gameObject.SetActive(true);
-
+        RoomManager.Instance.RoomChanged += RoomChanged;
         ObjectPoolManager.Instance.InstantiateObjects("TowerBullet");
         ObjectPoolManager.Instance.InstantiateObjects("CannonTowerBullet");
         ObjectPoolManager.Instance.InstantiateObjects("ChainTowerBullet");
@@ -87,7 +93,21 @@ public class TowerManager : MonoBehaviour
         Tower2Price.text = Towers[1].price.ToString();
         Tower3Price.text = Towers[2].price.ToString();
 
-        TowerNumlimit.text = TowerNumberLimit.ToString();
+
+
+        TowerNumberLimit = towerroomInfos.towerroomInfo[0].TowerNumber;
+        //TowerNumlimit.text = TowerNumberLimit.ToString();
+        TowerNumberText.text = SetTowerNumberUI(TowerNumber, TowerNumberLimit).ToString();
+     
+
+        //towerroomInfos.towerroomInfo.Reverse(RoomManager.Instance.);
+    }
+
+    string SetTowerNumberUI(int towernumber, int towerlimit)
+    {
+        string towerinformation = towernumber + "/" + towerlimit;
+        return towerinformation;
+
     }
 
     void DestroyTower()
@@ -108,14 +128,71 @@ public class TowerManager : MonoBehaviour
 
 
         }
-       
+
     }
+
+    void ClearAll()
+    {
+        ResetTowerNumber();
+        var dtowers = GameObjectsLocator.Instance.Get<DestroyedTower>();
+        var towers = GameObjectsLocator.Instance.Get<Tower>();
+        if (towers != null)
+        {
+            foreach (var tower in towers)
+            {
+                if (tower)
+                {
+                    Destroy(tower.gameObject);
+                    tower.UnRegisterToLocator();
+                   
+                }
+
+
+            }
+        }
+
+        if (dtowers != null)
+        {
+            foreach (var dtower in dtowers)
+            {
+                if (dtower)
+                {
+                    Destroy(dtower.gameObject);
+                    dtower.UnRegisterToLocator();
+                    
+                }
+
+
+            }
+        }
+
+
+
+    }
+
+    private void RoomChanged(int changeId)
+    {
+        ClearAll();
+        roomNumber = changeId;
+        TowerNumberLimit = towerroomInfos.towerroomInfo[roomNumber].TowerNumber;
+        TowerNumberText.text = SetTowerNumberUI(TowerNumber, TowerNumberLimit).ToString();
+        if (RoomManager.Instance.IsBossRoom)
+        {
+            TowerNumberLimit = int.MaxValue;
+        }
+        
+    }
+
     public void ResetTowerNumber()
     {
         TowerNumber = 0;
-    
+        IsReachTowerNumberLimit = false;
     }
 
+    void SetTowerLimit(int num)
+    {
+        TowerNumberLimit = num;
+    }
     void ShowWarningUIForTowerNumber()
     {
         if (TowerNumber >= TowerNumberLimit)
@@ -124,7 +201,7 @@ public class TowerManager : MonoBehaviour
             {
                 TowerNumberWarning.SetTrigger("Show");
             }
-            
+
             //TowerWarning.Play("TowerWarningUIDefault");
         }
     }
@@ -135,15 +212,15 @@ public class TowerManager : MonoBehaviour
             for (int i = 0; i < IsAbleToSet.Count; ++i)
             {
                 IsAbleToSet[i] = false;
-                
+
             }
             PreTowerSprite.color = Color.red;
             PreCannonTowerSprite.color = Color.red;
             PreChainTowerSprite.color = Color.red;
             IsReachTowerNumberLimit = true;
         }
-    
-    
+
+
     }
     void CheckCoin()
     {
@@ -304,14 +381,48 @@ public class TowerManager : MonoBehaviour
 
 
     //}
+    void ApplyUnlock()
+    {
+        if (TowerNumber >= TowerNumberLimit)
+        {
+            Tower1Cover.fillAmount = 0.0f;
+            Tower2Cover.fillAmount = 0.0f;
+            Tower3Cover.fillAmount = 0.0f;
+            return;
+        }
 
+        if (player.GetComponent<Player>().coin == Towers[0].price)
+        {
+            Tower1Cover.fillAmount = 1.0f;
+        }
+        if (player.GetComponent<Player>().coin == Towers[1].price)
+        {
+            Tower2Cover.fillAmount = 1.0f;
+        }
+        if (player.GetComponent<Player>().coin == Towers[2].price)
+        {
+            Tower2Cover.fillAmount = 1.0f;
+        }
+
+        else
+        {
+            Tower1Cover.fillAmount = (float)player.GetComponent<Player>().coin / (float)Towers[0].price;
+            Tower2Cover.fillAmount = (float)player.GetComponent<Player>().coin / (float)Towers[1].price;
+            Tower3Cover.fillAmount = (float)player.GetComponent<Player>().coin / (float)Towers[2].price;
+        }
+        
+
+
+
+    }
     // Update is called once per frame
     void Update()
     {
 
         //ChangePanel();
         //Coinnumber.text = player.GetComponent<Player>().coin.ToString();
-        TowerNumberText.text = TowerNumber.ToString();
+        TowerNumberText.text = SetTowerNumberUI(TowerNumber, TowerNumberLimit).ToString();
+        ApplyUnlock();
         CheckNumberLimit();
         CheckCoin();
         Vector2 PlayerPos = player.transform.position + offset;

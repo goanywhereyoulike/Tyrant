@@ -7,6 +7,11 @@ public class SpawnManager : MonoBehaviour
     List<SpawnArea> spawns;
     List<SpawnArea> roomSpawns;
 
+    //[SerializeField]
+    //GameObject Spawnportal;
+
+    //List<GameObject> Portals;
+
     private static SpawnManager _instance;
     public static SpawnManager Instance { get => _instance; }
     public bool RoomClear { get => roomClear; set => roomClear = value; }
@@ -39,7 +44,8 @@ public class SpawnManager : MonoBehaviour
         spawns = new List<SpawnArea>();
         enemies = new List<GameObject>();
         roomSpawns = new List<SpawnArea>();
-        RoomManager.Instance.RoomChanged = RoomChange;
+        //Portals = new List<GameObject>();
+        RoomManager.Instance.RoomChanged += RoomChange;
         //StartCoroutine(Spawn());
         GetSpawnArea();
         if (_instance == null)
@@ -67,6 +73,7 @@ public class SpawnManager : MonoBehaviour
                     if (roomSpawns[i].DelayTime <= 0.0f)
                     {
                         SpawnWave(i);
+
                         currentWave++;
                         roomSpawns[i].DelayTime = roomSpawns[i].WaveDelay;
                     }
@@ -75,6 +82,7 @@ public class SpawnManager : MonoBehaviour
                 else
                 {
                     SpawnWave(i);
+
                 }
 
 
@@ -91,7 +99,7 @@ public class SpawnManager : MonoBehaviour
     }
 
     private void RoomChange(int changeId)
-   {
+    {
         roomNumber = changeId;
         checkcount = 0;
         roomClear = false;
@@ -140,6 +148,11 @@ public class SpawnManager : MonoBehaviour
                     roomSpawns.Clear();
                     isRoomCheck = false;
                     RoomClear = true;
+                    //foreach (var portal in Portals)
+                    //{
+                    //    Destroy(portal);
+                    //}
+                    //Portals.Clear();
                     break;
                 }
             }
@@ -153,6 +166,7 @@ public class SpawnManager : MonoBehaviour
         {
             if (roomSpawns[count].CurrentWave < roomSpawns[count].Wave.waveData.Count)
             {
+
                 for (c = 0; c < roomSpawns[count].Wave.waveData[roomSpawns[count].CurrentWave].spawnNumber; ++c)
                 {
                     switch (roomSpawns[count].Wave.waveData[roomSpawns[count].CurrentWave].enemytype)
@@ -203,7 +217,7 @@ public class SpawnManager : MonoBehaviour
                             break;
                     }
                     //spawn position
-                  
+
 
                 }
                 //if (c == roomSpawns[count].Wave.waveData[c].spawnNumber)
@@ -217,6 +231,7 @@ public class SpawnManager : MonoBehaviour
         {
             if (roomSpawns[count].SpawnCount == 0 && roomSpawns[count].CurrentWave < roomSpawns[count].Wave.waveData.Count)
             {
+
                 for (c = 0; c < roomSpawns[count].Wave.waveData[roomSpawns[count].CurrentWave].spawnNumber; ++c)
                 {
                     //spawn position
@@ -272,6 +287,7 @@ public class SpawnManager : MonoBehaviour
                 //{
                 //    c = 0;
                 //}
+
                 roomSpawns[count].CurrentWave++;
             }
         }

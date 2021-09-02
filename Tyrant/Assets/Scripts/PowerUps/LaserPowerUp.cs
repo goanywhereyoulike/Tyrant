@@ -11,21 +11,24 @@ public class LaserPowerUp : PowerUps
     private float originalHold;
     private void Start()
     {
-        
+
     }
     protected override void activeEffect()
     {
+
         weaponController = player.GetComponentInChildren<WeaponController>();
-        foreach (var item in weaponController.WeaponObjects)
+        // foreach (var item in weaponController.WeaponObjects)
+        //{
+        if (weaponController.CurrentWeapon.weaponType == WeaponController.WeaponType.Laser)
         {
-            if (item.weaponType == WeaponController.WeaponType.Laser)
-            {
-                laser = item.weaponObject.GetComponent<Laser>();
-                break;
-            }
+            isTriggered = true;
+            gameObject.GetComponent<SpriteRenderer>().enabled = false;
+            laser = weaponController.CurrentWeapon.weaponObject.GetComponent<Laser>();
+            originalHold = laser.ChargeTime;
+            laser.ChargeTime -= reduceHold;
         }
-        originalHold = laser.ChargeTime;
-        laser.ChargeTime -= reduceHold;
+        //}
+
     }
     protected override void deactiveEffect()
     {

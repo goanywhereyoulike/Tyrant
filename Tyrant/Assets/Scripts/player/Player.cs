@@ -73,10 +73,10 @@ public class Player : MonoBehaviour , IDamageable, GameObjectsLocator.IGameObjec
         Vector3 mousePosition = Input.mousePosition;
         mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
         mousePosition.z = 0;
-        if (InputManager.Instance.GetKeyDown("drop"))
+        /*if (InputManager.Instance.GetKeyDown("drop"))
         {
             MyInventory.DropPickUp(transform.position, MyInventory.GetPickUp("health potion"));
-        }
+        }*/
         if (InputManager.Instance.GetKeyDown("OpenDialogue"))
         {
             if (interactable!=null)

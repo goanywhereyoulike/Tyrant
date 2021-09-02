@@ -10,9 +10,15 @@ public class Invulnerable : PowerUps
     private Color colorEffect = Color.yellow;
     protected override void activeEffect()
     {
-        rend = player.GetComponentInChildren<SpriteRenderer>();
-        rend.material.color = colorEffect;
-        player.IsInvulnerbale = true;
+        if (!player.IsInvulnerbale)
+        {
+            isTriggered = true;
+            gameObject.GetComponent<SpriteRenderer>().enabled = false;
+            rend = player.GetComponentInChildren<SpriteRenderer>();
+            rend.material.color = colorEffect;
+            player.IsInvulnerbale = true;
+        }
+
     }
     protected override void deactiveEffect()
     {

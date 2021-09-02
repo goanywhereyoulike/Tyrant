@@ -5,6 +5,7 @@ public class WeaponWheelController : MonoBehaviour
 {
     [SerializeField]
     private WeaponController weaponController = null;
+    public WeaponController WeaponController { get=>weaponController; }
     public Animator animator;
     private bool weaponWheelSelect = false;
     public bool WeaponWheelSelect { get=>weaponWheelSelect; set { weaponWheelSelect = value; } }

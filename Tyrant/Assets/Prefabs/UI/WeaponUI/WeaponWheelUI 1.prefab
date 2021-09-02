@@ -366,7 +366,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponWheelController: {fileID: 6423018489069567569}
   id: 2
-  itemName: Gun2
+  itemName: FlameThrower
   itemText: {fileID: 1334408270601734760}
   selectItem: {fileID: 1334408271631521162}
   icon: {fileID: 21300000, guid: e486eb9e909a21b4c92c8fd33ee8d85a, type: 3}
@@ -857,7 +857,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponWheelController: {fileID: 6423018489069567569}
   id: 3
-  itemName: Gun3
+  itemName: Laser
   itemText: {fileID: 1334408270601734760}
   selectItem: {fileID: 1334408271631521162}
   icon: {fileID: 21300000, guid: d70543c342fd26343a0a5b5cca7f32ad, type: 3}
@@ -1572,7 +1572,7 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: b73f3d1e4790d4148b908e550b6321a6, type: 3}
     - target: {fileID: 6620215181631795726, guid: e15825f0cf10c89449a8075b20872fc9, type: 3}
       propertyPath: itemName
-      value: Gun1
+      value: Canon
       objectReference: {fileID: 0}
     - target: {fileID: 6620215181631795726, guid: e15825f0cf10c89449a8075b20872fc9, type: 3}
       propertyPath: itemText

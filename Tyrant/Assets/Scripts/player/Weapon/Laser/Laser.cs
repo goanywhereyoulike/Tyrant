@@ -9,13 +9,16 @@ public class Laser : Weapon
     private Animator animator;
 
     private LaserStates laserStates = null;
-    
+
+    public LaserStates LaserStates { get => laserStates; set => laserStates = value; }
+
     private bool charged = false;
     private bool charging = true;
 
     public Slider chargingBar;
-    //private float currentChargingTime;
-   
+    private float chargeTime;
+    public float ChargeTime { get => chargeTime; set => chargeTime = value; }
+
     protected override void Start()
     {
         base.Start();
@@ -23,13 +26,16 @@ public class Laser : Weapon
         {
             return;
         }
-        
+ 
         chargingBar.gameObject.SetActive(false);
-        laserStates = weaponStates as LaserStates;
-        chargingBar.maxValue = laserStates.HoldingTime;
+        LaserStates = weaponStates as LaserStates;
+
         ObjectPoolManager.Instance.InstantiateObjects("LaserBullet");
         ObjectPoolManager.Instance.InstantiateObjects("LaserBulletEffect");
         weaponInit = true;
+
+        chargeTime = LaserStates.HoldingTime;
+        chargingBar.maxValue = chargeTime;
     }
 
     public override void UnFire()
@@ -46,10 +52,12 @@ public class Laser : Weapon
             if (bulletObject)
             {
                 var bullet = bulletObject.GetComponent<LaserBullet>();
+
                 bullet.ForzenTime = laserStates.FrozenTime;
                 bullet.FrozenSpeed = laserStates.FrozenSpeed;
                 bullet.BulletShootingSpeed = laserStates.BulletShootingSpeed;
                 bullet.MovingRange = laserStates.ShootingRange;
+
                 bullet.StartPosition = startShootingPointDict[Facing].transform.position;
                 Vector2 different = InputManager.Instance.MouseWorldPosition - bullet.StartPosition;
                 bullet.Direction = different.normalized;
@@ -65,8 +73,10 @@ public class Laser : Weapon
     public override void HoldingFire(float holdingTime)
     {
         base.HoldingFire(holdingTime);
+
+        chargingBar.maxValue = chargeTime;
         chargingBar.gameObject.SetActive(true);
-        if (holdingTime >= laserStates.HoldingTime)
+        if (holdingTime >= chargeTime)
         {
             charged = true;
         }

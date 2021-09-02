@@ -13,8 +13,8 @@ public class BlackHoleTrap : MonoBehaviour
     void Start()
     {
         effect = Instantiate(GravityEffect, transform.position, transform.rotation);
-        
-        
+
+
     }
 
     // Update is called once per frame
@@ -27,30 +27,33 @@ public class BlackHoleTrap : MonoBehaviour
             Destroy(gameObject);
 
         }
-        else 
+        else
         {
             Attract();
         }
-       
+
     }
 
     void Attract()
     {
 
-        
+
         Collider2D[] collidiers = Physics2D.OverlapCircleAll(transform.position, radius);
         foreach (Collider2D co in collidiers)
         {
-            Vector3 direction = ( transform.position- co.gameObject.transform.position).normalized;
-            Rigidbody2D rb = co.GetComponent<Rigidbody2D>();
-            Enemy enemy = co.GetComponent<Enemy>();
-            Vector2 force = direction * forcemagnitude;
-
-            if (rb && enemy)
+            if (co.GetComponent<Enemy>())
             {
-                rb.AddForce(force,ForceMode2D.Force);
-            }
+                Enemy enemy = co.GetComponent<Enemy>();
+                Vector3 direction = (transform.position - co.gameObject.transform.position).normalized;
+                Rigidbody2D rb = co.GetComponent<Rigidbody2D>();
+                Vector2 force = direction * forcemagnitude;
 
+                if (rb && enemy)
+                {
+                    rb.AddForce(force, ForceMode2D.Force);
+                }
+
+            }
 
         }
 

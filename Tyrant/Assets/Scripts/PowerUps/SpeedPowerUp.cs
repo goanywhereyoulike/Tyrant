@@ -7,18 +7,18 @@ public class SpeedPowerUp : PowerUps
     private PlayerMovement playerMovement;
     [SerializeField]
     private float increaseSpeed;
-    // Start is called before the first frame update
-
+    //private float originalSpeed;
 
     protected override void activeEffect()
     {
-        gameObject.GetComponent<MeshRenderer>().enabled = false;
+        isTriggered = true;
+        gameObject.GetComponent<SpriteRenderer>().enabled = false;
         playerMovement = player.gameObject.GetComponent<PlayerMovement>();
+        //originalSpeed = playerMovement.MoveSpeed;
         playerMovement.MoveSpeed += increaseSpeed;
     }
     protected override void deactiveEffect()
     {
         playerMovement.MoveSpeed -= increaseSpeed;
-        //Destroy(gameObject);
     }
 }

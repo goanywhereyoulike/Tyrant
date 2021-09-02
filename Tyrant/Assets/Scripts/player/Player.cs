@@ -28,7 +28,8 @@ public class Player : MonoBehaviour , IDamageable, GameObjectsLocator.IGameObjec
             healthChanged?.Invoke();
         }
     }
-
+    private bool isInvulnerbale = false;
+    public bool IsInvulnerbale { get=>isInvulnerbale; set => isInvulnerbale=value; }
     private PlayerMovement playerMovement = null;
 
     public DialogueUI DialogueUI => dialogueUI;
@@ -76,10 +77,10 @@ public class Player : MonoBehaviour , IDamageable, GameObjectsLocator.IGameObjec
         Vector3 mousePosition = Input.mousePosition;
         mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
         mousePosition.z = 0;
-        if (InputManager.Instance.GetKeyDown("drop"))
+        /*if (InputManager.Instance.GetKeyDown("drop"))
         {
             MyInventory.DropPickUp(transform.position, MyInventory.GetPickUp("health potion"));
-        }
+        }*/
         if (InputManager.Instance.GetKeyDown("OpenDialogue"))
         {
             if (interactable!=null)
@@ -100,11 +101,14 @@ public class Player : MonoBehaviour , IDamageable, GameObjectsLocator.IGameObjec
     }
     public void TakeDamage(float damage)
     {
-        Health -= damage;
-        if (Health < 0)
+        if (!isInvulnerbale)
         {
-            Health = 0;
-            SceneManager.LoadScene("GameOverScene");
+            Health -= damage;
+            if (Health < 0)
+            {
+                Health = 0;
+                SceneManager.LoadScene("GameOverScene");
+            }
         }
     }
     public void HealthRecover(float recover)

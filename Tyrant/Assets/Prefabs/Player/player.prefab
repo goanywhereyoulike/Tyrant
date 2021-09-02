@@ -399,7 +399,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.03040576, y: -0.21891981}
+  m_Offset: {x: 0.03040576, y: -0.04371336}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -410,7 +410,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.0608113, y: 1.5710129}
+  m_Size: {x: 1.0608113, y: 1.2205999}
   m_EdgeRadius: 0
 --- !u!50 &7266535905772159018
 Rigidbody2D:
@@ -424,7 +424,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 0.001
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
@@ -446,6 +446,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerStates: {fileID: 11400000, guid: fb38b2de578a30845b20adece0381713, type: 2}
+  dialogueUI: {fileID: 0}
   myInventory:
     maxPickUpAmount: 0
     maxInventoryAmount: 0
@@ -973,7 +974,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 915017098524561060, guid: 5dec29a98ab7cf8469e830ef363b69cf, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1810997237415844275, guid: 5dec29a98ab7cf8469e830ef363b69cf, type: 3}
       propertyPath: m_Sprite

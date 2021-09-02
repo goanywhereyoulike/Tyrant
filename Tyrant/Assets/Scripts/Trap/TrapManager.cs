@@ -16,13 +16,13 @@ public class TrapManager : MonoBehaviour
     //private Text Coinnumber;
 
     [SerializeField]
-    private Text Trap1Price;
+    private Text Trap1number;
 
     [SerializeField]
-    private Text Trap2Price;
+    private Text Trap2number;
 
     [SerializeField]
-    private Text Trap3Price;
+    private Text Trap3number;
 
     [SerializeField]
     Image PreClipSprite;
@@ -40,21 +40,21 @@ public class TrapManager : MonoBehaviour
     public GameObject PreClipprefab;
     public GameObject PreBombprefab;
     public GameObject PreBlackHoleprefab;
-
-    private bool IsClipUnlock      = true;
-    private bool IsBombUnlock      = true;
-    private bool IsBlckHoleUnlock  = true;
+                      
+    private int Clipnumber      = 0;
+    private int Bombnumber      = 0;
+    private int BlckHolenumber  = 0;
 
 
     private GameObject PreTrap;
 
     public Vector3 offset;
 
-
-    private int TrapNumber = 0;
+    private int TrapIndex = -1;
+    private int TotalTrapNumber = 0;
     List<bool> IsAbleToSet = new List<bool>(3);
     GameObject preTrap;
-    bool IsPreTrapExist = false;
+    public bool IsPreTrapExist = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -65,9 +65,9 @@ public class TrapManager : MonoBehaviour
             IsAbleToSet.Add(false);
         }
 
-        Trap1Price.text = Traps[0].price.ToString();
-        Trap2Price.text = Traps[1].price.ToString();
-        Trap3Price.text = Traps[2].price.ToString();
+        Trap1number.text = Clipnumber.ToString();
+        Trap2number.text = Bombnumber.ToString();
+        Trap3number.text = BlckHolenumber.ToString();
 
         //GetComponentInChildren<CanvasGroup>().alpha = 0;
         //GetComponentInChildren<CanvasGroup>().interactable = false;
@@ -75,7 +75,7 @@ public class TrapManager : MonoBehaviour
 
     }
 
-    void DestroyTower()
+    void DestroyTrap()
     {
         Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         RaycastHit2D hit = Physics2D.Raycast(mousePosition, Vector2.zero);
@@ -95,82 +95,109 @@ public class TrapManager : MonoBehaviour
         }
 
     }
-    public void UnlockClipTrap()
+    public void AddClipTrap()
     {
-        IsClipUnlock = true;
+        Clipnumber++;
     }
-    public void UnlockBombTrap()
+    public void AddBombTrap()
     {
-        IsBombUnlock = true;
+        Bombnumber++;
     }
-    public void UnlockBlackHoleTrap()
+    public void AddBlackHoleTrap()
     {
-        IsBlckHoleUnlock = true;
-    }
-
-    void CheckLock()
-    {
-        if (!IsClipUnlock)
-        {
-            PreClipSprite.color = Color.black;
-            IsAbleToSet[0] = false;
-
-        }
-        if (!IsBombUnlock)
-        {
-            PreBombSprite.color = Color.black;
-            IsAbleToSet[1] = false;
-
-        }
-        if (!IsBlckHoleUnlock)
-        {
-            PreBlackHoleSprite.color = Color.black;
-            IsAbleToSet[2] = false;
-
-        }
-
+        BlckHolenumber++;
     }
 
-    void CheckCoin()
+    void CheckTrapnumber()
     {
-
-        if (player.GetComponent<Player>().coin < Traps[0].price && IsClipUnlock)
+        if (Clipnumber <= 0)
         {
             PreClipSprite.color = Color.red;
             IsAbleToSet[0] = false;
+            Clipnumber = 0;
+
         }
-        if (player.GetComponent<Player>().coin < Traps[1].price && IsBombUnlock)
-        {
-            PreBombSprite.color = Color.red;
-            IsAbleToSet[1] = false;
-        }
-        if (player.GetComponent<Player>().coin < Traps[2].price && IsBlckHoleUnlock)
-        {
-            PreBlackHoleSprite.color = Color.red;
-            IsAbleToSet[2] = false;
-        }
-        if (player.GetComponent<Player>().coin >= Traps[0].price && IsClipUnlock)
+        else
         {
             PreClipSprite.color = Color.green;
             IsAbleToSet[0] = true;
+
         }
-        if (player.GetComponent<Player>().coin >= Traps[1].price && IsBombUnlock)
+        if (Bombnumber <= 0)
+        {
+            PreBombSprite.color = Color.red;
+            IsAbleToSet[1] = false;
+            Bombnumber = 0;
+
+        }
+        else 
         {
             PreBombSprite.color = Color.green;
             IsAbleToSet[1] = true;
+
         }
-        if (player.GetComponent<Player>().coin >= Traps[2].price && IsBlckHoleUnlock)
+        if (BlckHolenumber <= 0)
+        {
+            PreBlackHoleSprite.color = Color.red;
+            IsAbleToSet[2] = false;
+            BlckHolenumber = 0;
+        }
+        else 
         {
             PreBlackHoleSprite.color = Color.green;
             IsAbleToSet[2] = true;
+
         }
-
-
 
     }
 
+    //void CheckCoin()
+    //{
 
-    void SetTower(Vector2 target)
+    //    if (player.GetComponent<Player>().coin < Traps[0].price && IsClipUnlock)
+    //    {
+    //        PreClipSprite.color = Color.red;
+    //        IsAbleToSet[0] = false;
+    //    }
+    //    if (player.GetComponent<Player>().coin < Traps[1].price && IsBombUnlock)
+    //    {
+    //        PreBombSprite.color = Color.red;
+    //        IsAbleToSet[1] = false;
+    //    }
+    //    if (player.GetComponent<Player>().coin < Traps[2].price && IsBlckHoleUnlock)
+    //    {
+    //        PreBlackHoleSprite.color = Color.red;
+    //        IsAbleToSet[2] = false;
+    //    }
+    //    if (player.GetComponent<Player>().coin >= Traps[0].price && IsClipUnlock)
+    //    {
+    //        PreClipSprite.color = Color.green;
+    //        IsAbleToSet[0] = true;
+    //    }
+    //    if (player.GetComponent<Player>().coin >= Traps[1].price && IsBombUnlock)
+    //    {
+    //        PreBombSprite.color = Color.green;
+    //        IsAbleToSet[1] = true;
+    //    }
+    //    if (player.GetComponent<Player>().coin >= Traps[2].price && IsBlckHoleUnlock)
+    //    {
+    //        PreBlackHoleSprite.color = Color.green;
+    //        IsAbleToSet[2] = true;
+    //    }
+
+
+
+    //}
+
+    void UpdateTrapUI()
+    {
+        Trap1number.text = Clipnumber.ToString();
+        Trap2number.text = Bombnumber.ToString();
+        Trap3number.text = BlckHolenumber.ToString();
+
+    }
+
+    void SetTrap(Vector2 target)
     {
 
         if (InputManager.Instance.GetKeyDown("PreBuildTower") && !IsPreTrapExist && IsAbleToSet[0])
@@ -179,7 +206,8 @@ public class TrapManager : MonoBehaviour
             PreTrap = Instantiate(PreClipprefab, target, Quaternion.identity);
             PreTrap.transform.parent = player.transform;
             IsPreTrapExist = true;
-            TrapNumber = 1;
+            TrapIndex = 1;
+
 
         }
 
@@ -189,7 +217,7 @@ public class TrapManager : MonoBehaviour
             PreTrap = Instantiate(PreBombprefab, target, Quaternion.identity);
             PreTrap.transform.parent = player.transform;
             IsPreTrapExist = true;
-            TrapNumber = 2;
+            TrapIndex = 2;
 
         }
 
@@ -199,7 +227,7 @@ public class TrapManager : MonoBehaviour
             PreTrap = Instantiate(PreBlackHoleprefab, target, Quaternion.identity);
             PreTrap.transform.parent = player.transform;
             IsPreTrapExist = true;
-            TrapNumber = 3;
+            TrapIndex = 3;
 
         }
 
@@ -228,20 +256,20 @@ public class TrapManager : MonoBehaviour
                 TrapSprite.color = Color.green;
                 if (InputManager.Instance.GetKeyDown("BuildTower"))
                 {
-                    if (TrapNumber == 1)
+                    if (TrapIndex == 1)
                     {
                         Instantiate(Clipprefab, target, Quaternion.identity);
-                        player.GetComponent<Player>().coin -= 50;
+                        Clipnumber--;
                     }
-                    if (TrapNumber == 2)
+                    if (TrapIndex == 2)
                     {
                         Instantiate(Bombprefab, target, Quaternion.identity);
-                        player.GetComponent<Player>().coin -= 100;
+                        Bombnumber--;
                     }
-                    if (TrapNumber == 3)
+                    if (TrapIndex == 3)
                     {
                         Instantiate(BlackHoleprefab, target, Quaternion.identity);
-                        player.GetComponent<Player>().coin -= 150;
+                        BlckHolenumber--;
                     }
 
                     Destroy(bluePrint.gameObject);
@@ -283,15 +311,18 @@ public class TrapManager : MonoBehaviour
 
         // ChangePanel();
         //Coinnumber.text = player.GetComponent<Player>().coin.ToString();
-        CheckLock();
-        CheckCoin();
+        //CheckLock();
+        //CheckCoin();
+        UpdateTrapUI();
+        CheckTrapnumber();
         Vector2 PlayerPos = player.transform.position + offset;
-        SetTower(PlayerPos);
+        SetTrap(PlayerPos);
 
         if (PreTrap)
         {
             PreTrap.transform.position = PlayerPos;
         }
-        DestroyTower();
+       
+        DestroyTrap();
     }
 }

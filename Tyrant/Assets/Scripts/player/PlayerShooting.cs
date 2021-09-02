@@ -12,16 +12,19 @@ public class PlayerShooting : MonoBehaviour
         float holdingTime;
         if (InputManager.Instance.GetKey("Fire", out holdingTime))
         {
-            weaponController.CurrentWeapon.HoldingFire(holdingTime);
+            weaponController.CurrentWeapon.weaponObject.HoldingFire(holdingTime);
+
         }
 
         if (InputManager.Instance.GetKey("Fire"))
         {
-            weaponController.CurrentWeapon.Fire();
+            weaponController.CurrentWeapon.weaponObject.Fire();
+
+   
         }
         else if (InputManager.Instance.GetKeyUp("Fire"))
         {
-            weaponController.CurrentWeapon.UnFire();
+            weaponController.CurrentWeapon.weaponObject.UnFire();
         }
     }
 }

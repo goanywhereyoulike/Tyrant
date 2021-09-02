@@ -49,8 +49,8 @@ public class PlayerAnimation : MonoBehaviour
             spriteDict.Add(item.playerFacing, item.sprite);
         }
 
-        facingChanged += () => weaponController.CurrentWeapon.gameObject.GetComponent<WeaponFacing>().Facing = CurrentFacing;
-        facingChanged += () => weaponController.CurrentWeapon.gameObject.GetComponent<Weapon>().Facing = CurrentFacing;
+        facingChanged += () => weaponController.CurrentWeapon.weaponObject.gameObject.GetComponent<WeaponFacing>().Facing = CurrentFacing;
+        facingChanged += () => weaponController.CurrentWeapon.weaponObject.gameObject.GetComponent<Weapon>().Facing = CurrentFacing;
     }
 
     private void FixedUpdate()

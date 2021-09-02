@@ -36,7 +36,7 @@ public class ManagerSwitch : MonoBehaviour
 
         if (InputManager.Instance.GetKeyDown("ChangeTowerPanel"))
         {
-            if (towermng.gameObject.activeSelf == true)
+            if (towermng.gameObject.activeSelf == true && !towermng.IsPreTowerExist)
             {
                 towermng.gameObject.SetActive(false);
                 trapmgn.gameObject.SetActive(true);
@@ -44,7 +44,7 @@ public class ManagerSwitch : MonoBehaviour
                 //trapmgn.gameObject.GetComponentInChildren<CanvasGroup>().interactable = true;
                 //trapmgn.gameObject.GetComponentInChildren<CanvasGroup>().blocksRaycasts = true;
             }
-            else if (trapmgn.gameObject.activeSelf == true)
+            else if (trapmgn.gameObject.activeSelf == true && !trapmgn.IsPreTrapExist)
             {
                 towermng.gameObject.SetActive(true);
                 trapmgn.gameObject.SetActive(false);

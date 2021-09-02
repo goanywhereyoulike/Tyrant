@@ -4,6 +4,7 @@ using TMPro;
 
 public class WeaponWheelButton : MonoBehaviour
 {
+
     [SerializeField]
     private WeaponWheelController weaponWheelController = null;
     public int id;
@@ -18,6 +19,10 @@ public class WeaponWheelButton : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if(!weaponWheelController.WeaponController.WeaponObjects[id-1].isUnlocked)
+        {
+            gameObject.SetActive(false);
+        }
         animator = GetComponent<Animator>();
         selectItem.sprite = null;
         

@@ -11583,6 +11583,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1081298599060395626, guid: e0342963580770d4bbbfa79b77e84777, type: 3}
+      propertyPath: weaponObjects.Array.data[0].isUnlocked
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1081298599060395626, guid: e0342963580770d4bbbfa79b77e84777, type: 3}
+      propertyPath: weaponObjects.Array.data[1].isUnlocked
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1081298599060395626, guid: e0342963580770d4bbbfa79b77e84777, type: 3}
+      propertyPath: weaponObjects.Array.data[2].isUnlocked
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2702765690356643225, guid: e0342963580770d4bbbfa79b77e84777, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0

@@ -11603,6 +11603,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3184058933189925408, guid: e0342963580770d4bbbfa79b77e84777, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3638676786344950365, guid: e0342963580770d4bbbfa79b77e84777, type: 3}
       propertyPath: dialogueUI
       value: 

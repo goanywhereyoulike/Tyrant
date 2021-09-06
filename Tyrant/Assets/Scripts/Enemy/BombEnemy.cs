@@ -55,6 +55,7 @@ public class BombEnemy : Enemy
     {
         base.AttackBehavior();
         bombAnimator.gameObject.SetActive(true);
+        MoveSpeed = 0.0f;
     }
 
     public override void TakeDamage(float damage)

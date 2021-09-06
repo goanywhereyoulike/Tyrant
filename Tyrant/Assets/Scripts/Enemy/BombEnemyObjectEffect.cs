@@ -7,12 +7,15 @@ public class BombEnemyObjectEffect : MonoBehaviour
     [SerializeField] private GameObject gameObject;
     private Animator animator;
 
+    bool isEnter = false;
+
     private void Start()
     {
         animator = GetComponent<Animator>();
     }
     public void DestroyedObject()
     {
+        isEnter = false;
         animator.gameObject.SetActive(false);
         gameObject.GetComponent<BombEnemy>().Killed();
         //gameObject.SetActive(false);
@@ -20,10 +23,12 @@ public class BombEnemyObjectEffect : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Player")
+        if (collision.gameObject.tag == "Player" && !isEnter)
         {
             Player player = collision.gameObject.GetComponent<Player>();
             player.TakeDamage(20);
         }
+
+        isEnter = true;
     }
 }

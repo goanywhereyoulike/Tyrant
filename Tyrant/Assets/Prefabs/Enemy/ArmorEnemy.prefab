@@ -21,7 +21,7 @@ MonoBehaviour:
     stopDistance: 2
     attackSpeed: 1
     detectRange: 4
-    maxArmor: 0
+    maxArmor: 20
   mTarget: {fileID: 0}
   enemyUi: {fileID: 6129767443431876111}
   burningAnimator: {fileID: 661433285204766010}
@@ -110,7 +110,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4179336317843623671, guid: 8b9f0df936cf54392b9c2877c62446d7, type: 3}
       propertyPath: m_Name
-      value: normalEnemy
+      value: ArmorEnemy
       objectReference: {fileID: 0}
     - target: {fileID: 4333404663726077029, guid: 8b9f0df936cf54392b9c2877c62446d7, type: 3}
       propertyPath: m_AnchorMax.x

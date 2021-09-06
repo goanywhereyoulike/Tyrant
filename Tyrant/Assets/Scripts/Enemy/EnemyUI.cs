@@ -34,4 +34,9 @@ public class EnemyUI : MonoBehaviour
             return;
         armorBar.value = value;
     }
+
+    public void ShutdownArmorBar()
+    {
+        armorBar.gameObject.SetActive(false);
+    }
 }

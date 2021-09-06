@@ -63,6 +63,7 @@ public class Enemy : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDam
         get => isDead;
         set
         {
+            isDead = value;
             if (isDead)
             {
                 gameObject.SetActive(false);
@@ -70,7 +71,6 @@ public class Enemy : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDam
                 IsSlow = false;
                 UnRegisterToLocator();
             }
-            isDead = value;
         }
     }
 
@@ -233,7 +233,8 @@ public class Enemy : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDam
                     // enemyState.velocity = Vector3.zero;
                     if (Time.time >= attacktime)
                     {
-                        StartCoroutine("Attack");
+                        //StartCoroutine("Attack");
+                        AttackBehavior();
                         attacktime = Time.time + EnemyState.TimeBetweenAttacks;
                     }
                     //animation
@@ -255,23 +256,28 @@ public class Enemy : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDam
         }
     }
     //------------------attck animation------------------------
-    IEnumerator Attack()
+    //IEnumerator Attack()
+    //{
+    //    Vector2 originalPosition = transform.position;
+
+    //    Vector2 targetPosition = mTarget.position;
+
+    //    float percent = 0;
+    //    while (percent <= 1)
+    //    {
+    //        percent += Time.deltaTime * EnemyState.AttackSpeed;
+
+    //        float formula = (-Mathf.Pow(percent, 2) + percent) * 4;
+
+    //        transform.position = Vector2.Lerp(originalPosition, targetPosition, formula);
+
+    //        yield return null;
+    //    }
+    //}
+
+    protected virtual void AttackBehavior()
     {
-        Vector2 originalPosition = transform.position;
 
-        Vector2 targetPosition = mTarget.position;
-
-        float percent = 0;
-        while (percent <= 1)
-        {
-            percent += Time.deltaTime * EnemyState.AttackSpeed;
-
-            float formula = (-Mathf.Pow(percent, 2) + percent) * 4;
-
-            transform.position = Vector2.Lerp(originalPosition, targetPosition, formula);
-
-            yield return null;
-        }
     }
 
     public void SlowDown(float slowTime, float newSpeed)
@@ -352,7 +358,7 @@ public class Enemy : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDam
         }
     }
 
-    protected void ReUse()
+    protected virtual void ReUse()
     {
         canFind = false;
         mTarget = null;

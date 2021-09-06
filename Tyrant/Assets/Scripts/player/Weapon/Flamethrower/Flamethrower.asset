@@ -20,3 +20,4 @@ MonoBehaviour:
   isLocked: 0
   bulletExistTime: 5
   burnDamage: 1
+  maxAmmo: 1000

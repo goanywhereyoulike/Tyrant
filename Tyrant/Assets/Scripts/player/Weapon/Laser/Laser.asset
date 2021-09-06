@@ -18,7 +18,7 @@ MonoBehaviour:
   maxBulletCount: 10
   maxBulletPerClipCount: 10
   isLocked: 0
-  chargingTime: 0.2
+  chargingTime: -1.5
   shootingRange: 10
   holdingTime: 1
   frozenTime: 2

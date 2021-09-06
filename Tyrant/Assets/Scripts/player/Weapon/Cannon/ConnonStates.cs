@@ -7,7 +7,10 @@ public class ConnonStates : WeaponStates
 {
     [SerializeField] private float shootingRange;
     [SerializeField] private float pushForce;
+    [SerializeField] private int maxAmmo;
+
     public float ShootingRange { get => shootingRange; set => shootingRange = value; }
     public float PushForce { get => pushForce; set => pushForce = value; }
+    public int MaxAmmo { get => maxAmmo; set => maxAmmo = value; }
 }
 

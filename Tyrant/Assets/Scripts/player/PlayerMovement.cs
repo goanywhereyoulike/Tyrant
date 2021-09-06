@@ -35,6 +35,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
+        rb.Sleep();
         moveDirection = Vector3.zero;
         if (InputManager.Instance.GetKey("GoUp"))
             moveDirection.y = 1;

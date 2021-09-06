@@ -138,6 +138,8 @@ MonoBehaviour:
     keyCode: 289
   - name: Reload
     keyCode: 114
+  - name: Interact
+    keyCode: 102
   axesLibrary:
   - name: Horizontal
     positiveButton: 100

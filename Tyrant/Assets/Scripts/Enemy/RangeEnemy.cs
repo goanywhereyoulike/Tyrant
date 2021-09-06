@@ -51,6 +51,11 @@ public class RangeEnemy : Enemy
         detectObject();
         //behaviours.Update();
 
+        if (IsDead)
+        {
+            return;
+        }
+
         // check mtarget is null or check deafult target is enemy,but not in range
         if (mTarget == null)
             findTarget = false;

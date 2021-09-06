@@ -20,3 +20,4 @@ MonoBehaviour:
   isLocked: 0
   shootingRange: 10
   pushForce: 0.5
+  maxAmmo: 5

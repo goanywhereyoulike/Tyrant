@@ -4,6 +4,7 @@ using TMPro;
 
 public class WeaponWheelButton : MonoBehaviour
 {
+
     [SerializeField]
     private WeaponWheelController weaponWheelController = null;
     public int id;
@@ -12,13 +13,16 @@ public class WeaponWheelButton : MonoBehaviour
     public TextMeshProUGUI itemText;
     public Image selectItem;
     private Color color = new Color(1f, 1f, 1f, 1f);
-    private bool canFire;
     private bool selected = false;
     public Sprite icon;
 
     // Start is called before the first frame update
     void Start()
     {
+        if(!weaponWheelController.WeaponController.WeaponObjects[id-1].isUnlocked)
+        {
+            gameObject.SetActive(false);
+        }
         animator = GetComponent<Animator>();
         selectItem.sprite = null;
         

@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 
 public class Enemy : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDamageable, IPushable
@@ -83,7 +82,7 @@ public class Enemy : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDam
         set
         {
             isSlow = value;
-            spriteRenderer.material.color = isSlow ? new Color(1.0f, 118.0f, 255.0f) : Color.white; 
+            spriteRenderer.material.color = isSlow ? new Color(1.0f, 118.0f, 255.0f) : Color.white;
         }
     }
 
@@ -104,6 +103,7 @@ public class Enemy : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDam
 
     protected virtual void Update()
     {
+        //GetComponent<Rigidbody2D>().Sleep();
         if (!isSpawn)
         {
             ReUse();
@@ -133,6 +133,10 @@ public class Enemy : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDam
         detectObject();
         //behaviours.Update();
 
+        if (IsDead)
+        {
+            return;
+        }
         // check mtarget is null or check deafult target is enemy,but not in range
         if (mTarget == null)
         {
@@ -161,6 +165,7 @@ public class Enemy : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDam
 
             float dis = Vector3.Distance(mTarget.position, transform.position);
             float t = 0.1f + dis * 0.1f;
+            t = Mathf.Clamp(t, 0.1f, 1f);
             if (firstFramePath && mTarget)
             {
                 if (!canFind)
@@ -191,6 +196,7 @@ public class Enemy : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDam
 
             float dis = Vector3.Distance(mTarget.position, transform.position);
             float t = 0.1f + dis * 0.1f;
+            t = Mathf.Clamp(t, 0.1f, 1f);
             if (firstFramePath && mTarget)
             {
                 if (!canFind)
@@ -271,7 +277,7 @@ public class Enemy : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDam
     public void SlowDown(float slowTime, float newSpeed)
     {
         IsSlow = true;
-        float oldSpeed = moveSpeed;
+        float oldSpeed = enemyState.MaxMoveSpeed;
         moveSpeed = newSpeed;
         StartCoroutine(SpeedBack(slowTime, oldSpeed));
     }
@@ -283,7 +289,7 @@ public class Enemy : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDam
         moveSpeed = oldSpeed;
     }
 
-     protected IEnumerator DelayFindPath(float delayTime)
+    protected IEnumerator DelayFindPath(float delayTime)
     {
         if (canFind)
         {
@@ -348,6 +354,11 @@ public class Enemy : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDam
 
     protected void ReUse()
     {
+        canFind = false;
+        mTarget = null;
+        mPath.Clear();
+        findPath = false;
+        firstFramePath = false;
         isDead = false;
         Health = enemyState.MaxHealth;
         damage = enemyState.MaxDamage;
@@ -394,15 +405,15 @@ public class Enemy : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDam
             mPath.Clear();
             nextNodes.Clear();
 
-   
+
             // Beginning from the end node, trace back to it's parent one at a timec
             NodePath.Node path = closedList[closedList.Count - 1];
             while (path != null)
             {
-                 mPath.Add(path);
-                 path = path.parent;
+                mPath.Add(path);
+                path = path.parent;
             }
-            
+
             // Once we recorded all the position from end to start, we need to reverse
             // them to get the correct order
             mPath.Reverse();
@@ -424,4 +435,5 @@ public class Enemy : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDam
         //rb.AddForce(force);
         transform.position += force;
     }
+
 }

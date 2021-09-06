@@ -8,6 +8,8 @@ public class FlamethrowerStates : WeaponStates
 {
     [SerializeField] private float bulletExistTime;
     [SerializeField] private float burnDamage;
+    [SerializeField] private float maxAmmo;
     public float BulletExistTime { get => bulletExistTime; set => bulletExistTime = value; }
     public float BurnDamage { get => burnDamage; set => burnDamage = value; }
+    public float MaxAmmo { get => maxAmmo; set => maxAmmo = value; }
 }

@@ -51,7 +51,7 @@ public class TrapManager : MonoBehaviour
     public Vector3 offset;
 
     private int TrapIndex = -1;
-    private int TotalTrapNumber = 0;
+    //private int TotalTrapNumber = 0;
     List<bool> IsAbleToSet = new List<bool>(3);
     GameObject preTrap;
     public bool IsPreTrapExist = false;

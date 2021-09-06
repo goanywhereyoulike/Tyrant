@@ -30,8 +30,8 @@ public class TrapUnlock : MonoBehaviour
             }
 
 
-
-            Destroy(gameObject);
+            gameObject.SetActive(false);
+           // Destroy(gameObject);
 
         }
     }

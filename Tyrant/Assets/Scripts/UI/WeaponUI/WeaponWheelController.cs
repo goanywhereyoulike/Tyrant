@@ -5,6 +5,7 @@ public class WeaponWheelController : MonoBehaviour
 {
     [SerializeField]
     private WeaponController weaponController = null;
+    public WeaponController WeaponController { get=>weaponController; }
     public Animator animator;
     private bool weaponWheelSelect = false;
     public bool WeaponWheelSelect { get=>weaponWheelSelect; set { weaponWheelSelect = value; } }
@@ -24,7 +25,7 @@ public class WeaponWheelController : MonoBehaviour
     void Update()
     {
 
-        if (InputManager.Instance.GetKey("WeaponWheelToggle"))
+        if (InputManager.Instance.GetKeyDown("WeaponWheelToggle"))
         {
             weaponWheelSelect = !weaponWheelSelect;
         }

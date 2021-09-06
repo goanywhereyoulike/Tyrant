@@ -37,6 +37,7 @@ public class SpawnManager : MonoBehaviour
 
     string basicName;
     private bool roomClear;
+    private bool isWaveSpawn;
     private bool isRoomCheck;
     private int checkcount;
     private int lastroom;
@@ -66,6 +67,7 @@ public class SpawnManager : MonoBehaviour
         if (!isRoomCheck)
             CheckRoomSpawn();
 
+
         CheckRoomClear();
         // check all spawns in current room
         if (currentRoom.roomSpawns.Count != 0)
@@ -91,7 +93,6 @@ public class SpawnManager : MonoBehaviour
                 else
                 {
                     SpawnWave(i);
-
                 }
 
                 //check how many enemy can drop item
@@ -113,6 +114,7 @@ public class SpawnManager : MonoBehaviour
                     }
                     d++;
                 }
+
 
                 for (int e = 0; e < currentRoom.roomSpawns[i].Enemies.Count; ++e)
                 {
@@ -142,23 +144,25 @@ public class SpawnManager : MonoBehaviour
                 }
             }
         }
+
+
     }
 
     private void RoomChange(int changeId)
     {
         roomNumber = changeId;
-        checkcount = 0;
         roomClear = false;
         if (roomNumber != lastroom)
         {
             lastroom = roomNumber;
+            checkcount = 0;
         }
     }
 
     void CheckRoomSpawn()
     {
         currentRoom = rooms[roomNumber];
-        foreach(var spawn in currentRoom.roomSpawns)
+        foreach (var spawn in currentRoom.roomSpawns)
         {
             spawn.gameObject.SetActive(true);
         }
@@ -187,14 +191,17 @@ public class SpawnManager : MonoBehaviour
 
                 if (checkcount == currentRoom.roomSpawns.Count)
                 {
-                    isRoomCheck = false;
-                    RoomClear = true;
-                    //foreach (var portal in Portals)
-                    //{
-                    //    Destroy(portal);
-                    //}
-                    //Portals.Clear();
-                    break;
+                    if (currentRoom.roomSpawns[i].Enemies.Count == 0)
+                    {
+                        isRoomCheck = false;
+                        RoomClear = true;
+                        //foreach (var portal in Portals)
+                        //{
+                        //    Destroy(portal);
+                        //}
+                        //Portals.Clear();
+                        break;
+                    }
                 }
             }
         }
@@ -209,6 +216,7 @@ public class SpawnManager : MonoBehaviour
             {
                 for (c = 0; c < currentRoom.roomSpawns[count].Wave.waveData[currentRoom.roomSpawns[count].CurrentWave].spawnNumber; ++c)
                 {
+                    isWaveSpawn = true;
                     switch (currentRoom.roomSpawns[count].Wave.waveData[currentRoom.roomSpawns[count].CurrentWave].enemytype)
                     {
                         case Wave.Enemytype.normalenemy:
@@ -221,8 +229,8 @@ public class SpawnManager : MonoBehaviour
                             enemyObject = ObjectPoolManager.Instance.GetPooledObject("normalenemy");
                             enemyObject.transform.position = spawnPosition;
                             enemyObject.SetActive(true);
-                            currentRoom.roomSpawns[count].Enemies.Add(enemyObject);
                             currentRoom.roomSpawns[count].SpawnCount++;
+                            currentRoom.roomSpawns[count].Enemies.Add(enemyObject);
                             print("spawn");
                             break;
                         case Wave.Enemytype.rangeEnemy:
@@ -264,7 +272,11 @@ public class SpawnManager : MonoBehaviour
                 //{
                 //    c = 0;
                 //}
-                currentRoom.roomSpawns[count].CurrentWave++;
+                if (isWaveSpawn)
+                {
+                    currentRoom.roomSpawns[count].CurrentWave++;
+                    isWaveSpawn = false;
+                }
             }
         }
         else
@@ -273,6 +285,7 @@ public class SpawnManager : MonoBehaviour
             {
                 for (c = 0; c < currentRoom.roomSpawns[count].Wave.waveData[currentRoom.roomSpawns[count].CurrentWave].spawnNumber; ++c)
                 {
+                    isWaveSpawn = true;
                     //spawn position
                     switch (currentRoom.roomSpawns[count].Wave.waveData[currentRoom.roomSpawns[count].CurrentWave].enemytype)
                     {
@@ -286,8 +299,8 @@ public class SpawnManager : MonoBehaviour
                             enemyObject = ObjectPoolManager.Instance.GetPooledObject("normalenemy");
                             enemyObject.transform.position = spawnPosition;
                             enemyObject.SetActive(true);
-                            currentRoom.roomSpawns[count].Enemies.Add(enemyObject);
                             currentRoom.roomSpawns[count].SpawnCount++;
+                            currentRoom.roomSpawns[count].Enemies.Add(enemyObject);
                             print("spawn");
                             break;
                         case Wave.Enemytype.rangeEnemy:
@@ -322,7 +335,12 @@ public class SpawnManager : MonoBehaviour
                             break;
                     }
                 }
-                currentRoom.roomSpawns[count].CurrentWave++;
+
+                if (isWaveSpawn && currentRoom.roomSpawns[count].SpawnCount!=0)
+                {
+                    currentRoom.roomSpawns[count].CurrentWave++;
+                    isWaveSpawn = false;
+                }
             }
         }
     }

@@ -272,7 +272,7 @@ public class SpawnManager : MonoBehaviour
                 //{
                 //    c = 0;
                 //}
-                if (isWaveSpawn)
+                if (isWaveSpawn && currentRoom.roomSpawns[count].SpawnCount != 0)
                 {
                     currentRoom.roomSpawns[count].CurrentWave++;
                     isWaveSpawn = false;

@@ -35166,6 +35166,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1675778620063880746, guid: 61f88a680d6d40b47b3c6acb088419d9, type: 3}
+      propertyPath: enemyState.maxDamage
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1675778620063880746, guid: 61f88a680d6d40b47b3c6acb088419d9, type: 3}
+      propertyPath: enemyState.maxHealth
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 1675778620063880747, guid: 61f88a680d6d40b47b3c6acb088419d9, type: 3}
       propertyPath: m_SortingOrder
       value: 2
@@ -35222,8 +35230,20 @@ PrefabInstance:
       propertyPath: m_Name
       value: Boss
       objectReference: {fileID: 0}
+    - target: {fileID: 1675778620063880751, guid: 61f88a680d6d40b47b3c6acb088419d9, type: 3}
+      propertyPath: m_TagString
+      value: Tower
+      objectReference: {fileID: 0}
     - target: {fileID: 2816869499753893572, guid: 61f88a680d6d40b47b3c6acb088419d9, type: 3}
       propertyPath: m_FillAmount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4370933838504106819, guid: 61f88a680d6d40b47b3c6acb088419d9, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.33128357
+      objectReference: {fileID: 0}
+    - target: {fileID: 4666947681910776589, guid: 61f88a680d6d40b47b3c6acb088419d9, type: 3}
+      propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4746715680216202296, guid: 61f88a680d6d40b47b3c6acb088419d9, type: 3}

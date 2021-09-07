@@ -320,6 +320,14 @@ public class Enemy : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDam
         {
             targets.Add(target);
         }
+        foreach (GameObject target in GameObject.FindGameObjectsWithTag("ChainTower"))
+        {
+            targets.Add(target);
+        }
+        foreach (GameObject target in GameObject.FindGameObjectsWithTag("CannonTower"))
+        {
+            targets.Add(target);
+        }
     }
 
     protected void FindClosetObject()

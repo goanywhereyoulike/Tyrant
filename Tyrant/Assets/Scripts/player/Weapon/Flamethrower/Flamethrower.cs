@@ -11,6 +11,8 @@ public class Flamethrower : Weapon
     //public float maxAmmo;
     public Slider ammoBar;
     private float currentAmmo;
+    private WaitForSeconds regenTick = new WaitForSeconds(0.1f);
+    private Coroutine ammoRegen;
     protected override void Start()
     {
         base.Start();
@@ -35,7 +37,7 @@ public class Flamethrower : Weapon
     public override void Fire()
     {
         base.Fire();
-        if (canFire && currentAmmo > 0)
+        if (canFire && currentAmmo >= 0)
         {
             ammoBar.gameObject.SetActive(true);
             Vector3 vecDir = InputManager.Instance.MouseWorldPosition - flameParticle.gameObject.transform.position;
@@ -46,6 +48,11 @@ public class Flamethrower : Weapon
             flameParticle.gameObject.transform.position = startShootingPointDict[Facing].transform.position;
             flameParticle.Play();
             ammoBar.value = currentAmmo;
+            if (ammoRegen != null)
+            {
+                StopCoroutine(ammoRegen);
+            }
+            ammoRegen = StartCoroutine(RegenAmmo());
         }
         currentAmmo--;
     }
@@ -54,7 +61,17 @@ public class Flamethrower : Weapon
     {
         return Mathf.Atan2(a.y - b.y, a.x - b.x) * Mathf.Rad2Deg;
     }
-
+    private IEnumerator RegenAmmo()
+    {
+        yield return new WaitForSeconds(2);
+        while (currentAmmo<flamethrowerStates.MaxAmmo)
+        {
+            currentAmmo += flamethrowerStates.MaxAmmo / 100;
+            ammoBar.value = currentAmmo;
+            yield return regenTick;
+        }
+        ammoRegen = null;
+    }
     public override void UnFire()
     {
         base.UnFire();

@@ -15,7 +15,7 @@ public class BossBulletHell : Action
 
     public override void OnStart()
     {
-        ObjectPoolManager.Instance.InstantiateObjects("enemyBullet");
+        ObjectPoolManager.Instance.InstantiateObjects("BossBullet");
         psc = GetComponent<PSC>();
     }
 
@@ -24,7 +24,7 @@ public class BossBulletHell : Action
         if (psc.IsDied)
             return TaskStatus.Failure;
 
-        if (!ObjectPoolManager.Instance.GetPooledObject("enemyBullet"))
+        if (!ObjectPoolManager.Instance.GetPooledObject("BossBullet"))
             return TaskStatus.Failure;
 
         if (timeCheck < bulletDelayTime)
@@ -37,8 +37,8 @@ public class BossBulletHell : Action
 
         if (count > 0)
         {
-            var bullet = ObjectPoolManager.Instance.GetPooledObject("enemyBullet");
-            var bulletClass = bullet.GetComponent<EnemyBullet>();
+            var bullet = ObjectPoolManager.Instance.GetPooledObject("BossBullet");
+            var bulletClass = bullet.GetComponent<BossBullet>();
 
             float bulDirX = transform.position.x + Mathf.Sin((angle * Mathf.PI) / 180f);
             float bulDirY = transform.position.y + Mathf.Cos((angle * Mathf.PI) / 180f);

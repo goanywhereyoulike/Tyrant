@@ -12,7 +12,6 @@ TagManager:
   - Weapon
   - Chain
   - Trap
-  - CannonToweer
   - ChainTower
   layers:
   - Default

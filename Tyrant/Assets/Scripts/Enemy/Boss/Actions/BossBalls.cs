@@ -17,7 +17,7 @@ public class BossBalls : Action
 
     public override void OnStart()
     {
-        ObjectPoolManager.Instance.InstantiateObjects("BossBullet");
+        ObjectPoolManager.Instance.InstantiateObjects("BossBallBullet");
         psc = GetComponent<PSC>();
         anmoCount = maxAnmoCount;
         AttackArea();
@@ -28,7 +28,7 @@ public class BossBalls : Action
         if (psc.IsDied)
             return TaskStatus.Failure;
 
-        if (!ObjectPoolManager.Instance.GetPooledObject("BossBullet"))
+        if (!ObjectPoolManager.Instance.GetPooledObject("BossBallBullet"))
             return TaskStatus.Failure;
 
         Debug.DrawLine(transform.position, new Vector3(transform.position.x + range, transform.position.y, transform.position.z));
@@ -80,7 +80,7 @@ public class BossBalls : Action
     }
     private void spawn(Vector2 spPos)
     {
-        var bullet = ObjectPoolManager.Instance.GetPooledObject("BossBullet");
+        var bullet = ObjectPoolManager.Instance.GetPooledObject("BossBallBullet");
         var bulletClass = bullet.GetComponent<BossBallsBullet>();
         bulletClass.Damage = damage;
         bulletClass.stayTime = stayTime;

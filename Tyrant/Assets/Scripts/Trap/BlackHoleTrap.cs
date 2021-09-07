@@ -9,11 +9,11 @@ public class BlackHoleTrap : MonoBehaviour
     public float forcemagnitude = 10.0f;
     public float duration = 10.0f;
     private GameObject effect;
+    bool AddForce = false;
     // Start is called before the first frame update
     void Start()
     {
         effect = Instantiate(GravityEffect, transform.position, transform.rotation);
-
 
     }
 
@@ -34,10 +34,11 @@ public class BlackHoleTrap : MonoBehaviour
 
     }
 
+
     void Attract()
     {
 
-
+        AddForce = true;
         Collider2D[] collidiers = Physics2D.OverlapCircleAll(transform.position, radius);
         foreach (Collider2D co in collidiers)
         {

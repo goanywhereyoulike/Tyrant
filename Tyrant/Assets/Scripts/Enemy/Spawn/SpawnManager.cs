@@ -14,6 +14,11 @@ public class SpawnManager : MonoBehaviour
 
     private room currentRoom;
 
+    //[SerializeField]
+    //GameObject Spawnportal;
+
+    //List<GameObject> Portals;
+
     private static SpawnManager _instance;
     public static SpawnManager Instance { get => _instance; }
     public bool RoomClear { get => roomClear; set => roomClear = value; }
@@ -45,7 +50,7 @@ public class SpawnManager : MonoBehaviour
         ObjectPoolManager.Instance.InstantiateObjects("Level1Boss");
         ObjectPoolManager.Instance.InstantiateObjects("DropItem");
         enemies = new List<GameObject>();
-        RoomManager.Instance.RoomChanged = RoomChange;
+        RoomManager.Instance.RoomChanged += RoomChange;
         if (_instance == null)
         {
             _instance = this;
@@ -77,6 +82,7 @@ public class SpawnManager : MonoBehaviour
                     if (currentRoom.roomSpawns[i].DelayTime <= 0.0f)
                     {
                         SpawnWave(i);
+
                         currentWave++;
                         currentRoom.roomSpawns[i].DelayTime = currentRoom.roomSpawns[i].WaveDelay;
                     }
@@ -85,6 +91,7 @@ public class SpawnManager : MonoBehaviour
                 else
                 {
                     SpawnWave(i);
+
                 }
 
                 //check how many enemy can drop item
@@ -182,6 +189,11 @@ public class SpawnManager : MonoBehaviour
                 {
                     isRoomCheck = false;
                     RoomClear = true;
+                    //foreach (var portal in Portals)
+                    //{
+                    //    Destroy(portal);
+                    //}
+                    //Portals.Clear();
                     break;
                 }
             }

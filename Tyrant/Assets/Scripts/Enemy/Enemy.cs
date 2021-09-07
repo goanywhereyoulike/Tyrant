@@ -103,6 +103,7 @@ public class Enemy : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDam
 
     protected virtual void Update()
     {
+        //GetComponent<Rigidbody2D>().Sleep();
         if (!isSpawn)
         {
             ReUse();
@@ -434,4 +435,5 @@ public class Enemy : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDam
         //rb.AddForce(force);
         transform.position += force;
     }
+
 }

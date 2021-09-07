@@ -1,8 +1,13 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class SpawnArea : MonoBehaviour, GameObjectsLocator.IGameObjectRegister
 {
+    [SerializeField]
+    GameObject Portal;
+
     [SerializeField]
     private float waveDelay;
 
@@ -27,7 +32,7 @@ public class SpawnArea : MonoBehaviour, GameObjectsLocator.IGameObjectRegister
     public int roomNumber;
     [SerializeField]
     private SpawnUI spawnUI;
-    
+
     List<int> dropNumber;
     List<GameObject> enemies;
 
@@ -50,26 +55,35 @@ public class SpawnArea : MonoBehaviour, GameObjectsLocator.IGameObjectRegister
     public int ChooseEnemyDrop { get => chooseEnemyDrop; set => chooseEnemyDrop = value; }
     public int TotalEnemies { get => totalEnemies; set => totalEnemies = value; }
 
+
+    //  public string[] enemyType = { "normalenemy", "rangeEnemy" };
+    //
+    // public List<string> waveSpawn;
+
     private void Awake()
     {
+        //waveSpawn = new List<string>(waveNumber);
         mCollider = GetComponent<Collider2D>();
-        Enemies = new List<GameObject>();
-        DropNumber = new List<int>();
         Area();
-        spawnUI.MaxSpawn(wave.waveData.Count);
+        Enemies = new List<GameObject>();
+        Portal.GetComponent<Portal>().index = roomNumber;
+        DropNumber = new List<int>();
         RegisterToLocator();
     }
-
     private void Update()
     {
-        spawnUI.SpawnChanged(currentWave);
-    }
 
-    private void Deactive()
-    {
-        gameObject.SetActive(false);
+        Portal.GetComponent<Portal>().waveCount = Wave.waveData.Count;
+        Portal.GetComponent<Portal>().currentWave = CurrentWave;
+        if (roomNumber == RoomManager.Instance.RoomId)
+        {
+            Portal.SetActive(true);
+        }
+        else
+        {
+            Portal.SetActive(false);
+        }
     }
-
     void Area()
     {
         spMax = mCollider.bounds.max;

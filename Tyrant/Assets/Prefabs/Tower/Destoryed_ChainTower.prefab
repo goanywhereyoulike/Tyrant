@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1619224099236019677}
   - component: {fileID: 3857576930100976790}
   - component: {fileID: 8087113504260419742}
+  - component: {fileID: -1896211298642490272}
   m_Layer: 0
   m_Name: Destoryed_ChainTower
   m_TagString: TowerBlockArea
@@ -109,3 +110,15 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.8233335, y: 0.50398517}
   m_EdgeRadius: 0
+--- !u!114 &-1896211298642490272
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 726300743984907434}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62dd857d8c8fa42438f8832ae71f4aab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

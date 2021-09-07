@@ -10,15 +10,14 @@ public class TowerBullet : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         Enemy enemy = collision.gameObject.GetComponent<Enemy>();
-        GameObject effect = Instantiate(hitEffect, transform.position, Quaternion.identity);
-        Destroy(effect, 0.3f);
-        gameObject.SetActive(false);
         //Destroy(gameObject);
 
         if (enemy)
         {
+            GameObject effect = Instantiate(hitEffect, transform.position, Quaternion.identity);
             enemy.TakeDamage(bulletDamage);
             gameObject.SetActive(false);
+            Destroy(effect, 0.3f);
 
         }
 
@@ -26,14 +25,14 @@ public class TowerBullet : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         Enemy enemy = collision.gameObject.GetComponent<Enemy>();
-        GameObject effect = Instantiate(hitEffect, transform.position, Quaternion.identity);
-        Destroy(effect, 0.3f);
-        gameObject.SetActive(false);
+
         //Destroy(gameObject);
 
         if (enemy)
         {
             enemy.TakeDamage(bulletDamage);
+            GameObject effect = Instantiate(hitEffect, transform.position, Quaternion.identity);
+            Destroy(effect, 0.3f);
             gameObject.SetActive(false);
 
         }

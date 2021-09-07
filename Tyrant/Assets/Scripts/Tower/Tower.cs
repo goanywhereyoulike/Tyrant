@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Tower : MonoBehaviour, IDamageable
+public class Tower : MonoBehaviour, IDamageable, GameObjectsLocator.IGameObjectRegister
 {
     // Start is called before the first frame update
    
@@ -20,7 +20,6 @@ public class Tower : MonoBehaviour, IDamageable
             if (health <= 0)
             {
                 Die();
-
             }
         }
         get
@@ -44,6 +43,7 @@ public class Tower : MonoBehaviour, IDamageable
         animator = GetComponent<Animator>();
         Healthbar.maxValue = health;
         Healthbar.value = health;
+        RegisterToLocator();
     }
 
     // Update is called once per frame
@@ -83,4 +83,13 @@ public class Tower : MonoBehaviour, IDamageable
         gameObject.GetComponent<SpriteRenderer>().color = Color.white;
     }
 
+    public void RegisterToLocator()
+    {
+        GameObjectsLocator.Instance.Register<Tower>(this);
+    }
+
+    public void UnRegisterToLocator()
+    {
+        GameObjectsLocator.Instance.Unregister<Tower>(this);
+    }
 }

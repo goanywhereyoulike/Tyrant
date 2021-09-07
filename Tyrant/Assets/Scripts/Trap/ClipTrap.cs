@@ -52,6 +52,7 @@ public class ClipTrap : MonoBehaviour
                 animator.SetTrigger("Enable");
                 TrapNumber++;
                 StartCoroutine(Trap(enemy));
+                enemy.GetComponent<Rigidbody2D>().Sleep();
             }
 
         }

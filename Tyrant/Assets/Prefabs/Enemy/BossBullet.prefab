@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4197932082142489589}
   - component: {fileID: 516448191364735352}
   - component: {fileID: 7295815517226393823}
-  - component: {fileID: 796081295725925506}
+  - component: {fileID: 3609896684877912247}
   m_Layer: 0
   m_Name: BossBullet
   m_TagString: Untagged
@@ -101,8 +101,8 @@ MonoBehaviour:
   damagetoCannonTower: 10
   damagetoChainTower: 10
   bulletSpeed: 1
---- !u!58 &796081295725925506
-CircleCollider2D:
+--- !u!61 &3609896684877912247
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -115,5 +115,15 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0

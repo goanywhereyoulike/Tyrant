@@ -796,7 +796,7 @@ GameObject:
   - component: {fileID: 5474746244509275082}
   m_Layer: 6
   m_Name: Tower
-  m_TagString: Tower
+  m_TagString: ChainTower
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

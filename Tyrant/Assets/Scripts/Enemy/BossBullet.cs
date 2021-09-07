@@ -42,9 +42,10 @@ public class BossBullet : MonoBehaviour
         speed = bulletSpeed * Time.deltaTime;
         transform.position = Vector2.MoveTowards(transform.position, Position, speed);
     }
+
     private void OnTriggerEnter2D(Collider2D collider)
     {
-        if(collider.gameObject.tag == "Tower")
+        if (collider.gameObject.tag == "Tower")
         {
             IDamageable Targets = collider.gameObject.GetComponent<IDamageable>();
             if (Targets == null)
@@ -52,8 +53,9 @@ public class BossBullet : MonoBehaviour
                 Targets = collider.gameObject.GetComponentInChildren<IDamageable>();
             }
             Targets.TakeDamage(damagetoTower);
+            gameObject.SetActive(false);
         }
-        if(collider.gameObject.tag == "ChainTower")
+        if (collider.gameObject.tag == "ChainTower")
         {
             IDamageable Targets = collider.gameObject.GetComponent<IDamageable>();
             if (Targets == null)
@@ -61,6 +63,7 @@ public class BossBullet : MonoBehaviour
                 Targets = collider.gameObject.GetComponentInChildren<IDamageable>();
             }
             Targets.TakeDamage(damagetoChainTower);
+            gameObject.SetActive(false);
         }
         if (collider.gameObject.tag == "CannonTower")
         {
@@ -70,8 +73,9 @@ public class BossBullet : MonoBehaviour
                 Targets = collider.gameObject.GetComponentInChildren<IDamageable>();
             }
             Targets.TakeDamage(damagetoCannonTower);
+            gameObject.SetActive(false);
         }
-        if (collider.gameObject.tag == "Player" || collider.gameObject.tag == "Tower" || collider.gameObject.tag == "Base")
+        if (collider.gameObject.tag == "Player" || collider.gameObject.tag == "Base")
         {
             IDamageable Targets = collider.gameObject.GetComponent<IDamageable>();
             if (Targets == null)
@@ -79,6 +83,8 @@ public class BossBullet : MonoBehaviour
                 Targets = collider.gameObject.GetComponentInChildren<IDamageable>();
             }
             Targets.TakeDamage(damage);
+            gameObject.SetActive(false);
         }
+        //gameObject.SetActive(false);
     }
 }

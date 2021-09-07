@@ -48,6 +48,8 @@ public class SpawnManager : MonoBehaviour
         ObjectPoolManager.Instance.InstantiateObjects("normalenemy");
         ObjectPoolManager.Instance.InstantiateObjects("rangeEnemy");
         ObjectPoolManager.Instance.InstantiateObjects("Level1Boss");
+        ObjectPoolManager.Instance.InstantiateObjects("bombenemy");
+        ObjectPoolManager.Instance.InstantiateObjects("armorenemy");
         ObjectPoolManager.Instance.InstantiateObjects("DropItem");
         enemies = new List<GameObject>();
         RoomManager.Instance.RoomChanged += RoomChange;
@@ -253,6 +255,34 @@ public class SpawnManager : MonoBehaviour
                             currentRoom.roomSpawns[count].SpawnCount++;
                             print("spawn");
                             break;
+                        case Wave.Enemytype.armorenemy:
+                            spawnMax = new Vector2(currentRoom.roomSpawns[count].SpMax.x, currentRoom.roomSpawns[count].SpMax.y);
+                            spawnMin = new Vector2(currentRoom.roomSpawns[count].SpMin.x, currentRoom.roomSpawns[count].SpMin.y);
+                            spawnX = Random.Range((int)currentRoom.roomSpawns[count].SpMin.x, (int)currentRoom.roomSpawns[count].SpMax.x);
+                            spawnY = Random.Range((int)currentRoom.roomSpawns[count].SpMin.y, (int)currentRoom.roomSpawns[count].SpMax.y);
+                            spawnPosition = new Vector2(spawnX, spawnY);
+
+                            enemyObject = ObjectPoolManager.Instance.GetPooledObject("armorenemy");
+                            enemyObject.transform.position = spawnPosition;
+                            enemyObject.SetActive(true);
+                            currentRoom.roomSpawns[count].Enemies.Add(enemyObject);
+                            currentRoom.roomSpawns[count].SpawnCount++;
+                            print("spawn");
+                            break;
+                        case Wave.Enemytype.bombenemy:
+                            spawnMax = new Vector2(currentRoom.roomSpawns[count].SpMax.x, currentRoom.roomSpawns[count].SpMax.y);
+                            spawnMin = new Vector2(currentRoom.roomSpawns[count].SpMin.x, currentRoom.roomSpawns[count].SpMin.y);
+                            spawnX = Random.Range((int)currentRoom.roomSpawns[count].SpMin.x, (int)currentRoom.roomSpawns[count].SpMax.x);
+                            spawnY = Random.Range((int)currentRoom.roomSpawns[count].SpMin.y, (int)currentRoom.roomSpawns[count].SpMax.y);
+                            spawnPosition = new Vector2(spawnX, spawnY);
+
+                            enemyObject = ObjectPoolManager.Instance.GetPooledObject("bombenemy");
+                            enemyObject.transform.position = spawnPosition;
+                            enemyObject.SetActive(true);
+                            currentRoom.roomSpawns[count].Enemies.Add(enemyObject);
+                            currentRoom.roomSpawns[count].SpawnCount++;
+                            print("spawn");
+                            break;
                         default:
                             break;
                     }
@@ -312,6 +342,34 @@ public class SpawnManager : MonoBehaviour
                             spawnPosition = new Vector2(spawnX, spawnY);
 
                             enemyObject = ObjectPoolManager.Instance.GetPooledObject("Level1Boss");
+                            enemyObject.transform.position = spawnPosition;
+                            enemyObject.SetActive(true);
+                            currentRoom.roomSpawns[count].Enemies.Add(enemyObject);
+                            currentRoom.roomSpawns[count].SpawnCount++;
+                            print("spawn");
+                            break;
+                        case Wave.Enemytype.armorenemy:
+                            spawnMax = new Vector2(currentRoom.roomSpawns[count].SpMax.x, currentRoom.roomSpawns[count].SpMax.y);
+                            spawnMin = new Vector2(currentRoom.roomSpawns[count].SpMin.x, currentRoom.roomSpawns[count].SpMin.y);
+                            spawnX = Random.Range((int)currentRoom.roomSpawns[count].SpMin.x, (int)currentRoom.roomSpawns[count].SpMax.x);
+                            spawnY = Random.Range((int)currentRoom.roomSpawns[count].SpMin.y, (int)currentRoom.roomSpawns[count].SpMax.y);
+                            spawnPosition = new Vector2(spawnX, spawnY);
+
+                            enemyObject = ObjectPoolManager.Instance.GetPooledObject("armorenemy");
+                            enemyObject.transform.position = spawnPosition;
+                            enemyObject.SetActive(true);
+                            currentRoom.roomSpawns[count].Enemies.Add(enemyObject);
+                            currentRoom.roomSpawns[count].SpawnCount++;
+                            print("spawn");
+                            break;
+                        case Wave.Enemytype.bombenemy:
+                            spawnMax = new Vector2(currentRoom.roomSpawns[count].SpMax.x, currentRoom.roomSpawns[count].SpMax.y);
+                            spawnMin = new Vector2(currentRoom.roomSpawns[count].SpMin.x, currentRoom.roomSpawns[count].SpMin.y);
+                            spawnX = Random.Range((int)currentRoom.roomSpawns[count].SpMin.x, (int)currentRoom.roomSpawns[count].SpMax.x);
+                            spawnY = Random.Range((int)currentRoom.roomSpawns[count].SpMin.y, (int)currentRoom.roomSpawns[count].SpMax.y);
+                            spawnPosition = new Vector2(spawnX, spawnY);
+
+                            enemyObject = ObjectPoolManager.Instance.GetPooledObject("bombenemy");
                             enemyObject.transform.position = spawnPosition;
                             enemyObject.SetActive(true);
                             currentRoom.roomSpawns[count].Enemies.Add(enemyObject);

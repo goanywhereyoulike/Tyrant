@@ -13,6 +13,7 @@ TagManager:
   - Chain
   - Trap
   - ChainTower
+  - CannonTower
   layers:
   - Default
   - TransparentFX

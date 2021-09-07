@@ -480,7 +480,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3980476719206707401, guid: 3afd5aaeef770eb448a16210ee2c0f67, type: 3}
       propertyPath: objectPoolItems.Array.size
-      value: 17
+      value: 19
       objectReference: {fileID: 0}
     - target: {fileID: 3980476719206707401, guid: 3afd5aaeef770eb448a16210ee2c0f67, type: 3}
       propertyPath: objectPoolItems.Array.data[2].tagName
@@ -541,6 +541,14 @@ PrefabInstance:
     - target: {fileID: 3980476719206707401, guid: 3afd5aaeef770eb448a16210ee2c0f67, type: 3}
       propertyPath: objectPoolItems.Array.data[16].tagName
       value: BossBullet
+      objectReference: {fileID: 0}
+    - target: {fileID: 3980476719206707401, guid: 3afd5aaeef770eb448a16210ee2c0f67, type: 3}
+      propertyPath: objectPoolItems.Array.data[17].tagName
+      value: bombenemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 3980476719206707401, guid: 3afd5aaeef770eb448a16210ee2c0f67, type: 3}
+      propertyPath: objectPoolItems.Array.data[18].tagName
+      value: armorenemy
       objectReference: {fileID: 0}
     - target: {fileID: 3980476719206707401, guid: 3afd5aaeef770eb448a16210ee2c0f67, type: 3}
       propertyPath: objectPoolItems.Array.data[1].amountToPool
@@ -654,6 +662,14 @@ PrefabInstance:
       propertyPath: objectPoolItems.Array.data[16].shouldExpand
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3980476719206707401, guid: 3afd5aaeef770eb448a16210ee2c0f67, type: 3}
+      propertyPath: objectPoolItems.Array.data[17].objectToPool
+      value: 
+      objectReference: {fileID: 2447981995903305430, guid: fe6e1cff6d8542f4091335df43b180de, type: 3}
+    - target: {fileID: 3980476719206707401, guid: 3afd5aaeef770eb448a16210ee2c0f67, type: 3}
+      propertyPath: objectPoolItems.Array.data[18].objectToPool
+      value: 
+      objectReference: {fileID: 2447981995903305430, guid: 159eefdd9082bda4b98ba59501b11be2, type: 3}
     - target: {fileID: 3980476720704669718, guid: 3afd5aaeef770eb448a16210ee2c0f67, type: 3}
       propertyPath: m_RootOrder
       value: 0

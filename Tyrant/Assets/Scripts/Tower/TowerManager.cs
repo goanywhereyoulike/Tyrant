@@ -98,13 +98,19 @@ public class TowerManager : MonoBehaviour
         TowerNumberLimit = towerroomInfos.towerroomInfo[0].TowerNumber;
         //TowerNumlimit.text = TowerNumberLimit.ToString();
         TowerNumberText.text = SetTowerNumberUI(TowerNumber, TowerNumberLimit).ToString();
-     
+
 
         //towerroomInfos.towerroomInfo.Reverse(RoomManager.Instance.);
     }
 
     string SetTowerNumberUI(int towernumber, int towerlimit)
     {
+        if (towerlimit > 10000)
+        {
+            string towernumbertext = TowerNumber.ToString() + "/" + "\u221E";
+
+            return towernumbertext;
+        }
         string towerinformation = towernumber + "/" + towerlimit;
         return towerinformation;
 
@@ -142,9 +148,9 @@ public class TowerManager : MonoBehaviour
             {
                 if (tower)
                 {
-                    Destroy(tower.gameObject);
+                    Destroy(tower.transform.parent.gameObject);
                     tower.UnRegisterToLocator();
-                   
+
                 }
 
 
@@ -157,9 +163,9 @@ public class TowerManager : MonoBehaviour
             {
                 if (dtower)
                 {
-                    Destroy(dtower.gameObject);
+                    Destroy(dtower.transform.parent.gameObject);
                     dtower.UnRegisterToLocator();
-                    
+
                 }
 
 
@@ -176,11 +182,9 @@ public class TowerManager : MonoBehaviour
         roomNumber = changeId;
         TowerNumberLimit = towerroomInfos.towerroomInfo[roomNumber].TowerNumber;
         TowerNumberText.text = SetTowerNumberUI(TowerNumber, TowerNumberLimit).ToString();
-        if (RoomManager.Instance.IsBossRoom)
-        {
-            TowerNumberLimit = int.MaxValue;
-        }
-        
+
+
+
     }
 
     public void ResetTowerNumber()
@@ -245,17 +249,17 @@ public class TowerManager : MonoBehaviour
         }
         if (player.GetComponent<Player>().coin >= Towers[0].price)
         {
-            PreTowerSprite.color = Color.green;
+            PreTowerSprite.color = Color.white;
             IsAbleToSet[0] = true;
         }
         if (player.GetComponent<Player>().coin >= Towers[1].price)
         {
-            PreCannonTowerSprite.color = Color.green;
+            PreCannonTowerSprite.color = Color.white;
             IsAbleToSet[1] = true;
         }
         if (player.GetComponent<Player>().coin >= Towers[2].price)
         {
-            PreChainTowerSprite.color = Color.green;
+            PreChainTowerSprite.color = Color.white;
             IsAbleToSet[2] = true;
         }
 
@@ -410,7 +414,7 @@ public class TowerManager : MonoBehaviour
             Tower2Cover.fillAmount = (float)player.GetComponent<Player>().coin / (float)Towers[1].price;
             Tower3Cover.fillAmount = (float)player.GetComponent<Player>().coin / (float)Towers[2].price;
         }
-        
+
 
 
 

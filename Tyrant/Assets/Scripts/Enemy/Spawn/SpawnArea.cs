@@ -70,11 +70,26 @@ public class SpawnArea : MonoBehaviour, GameObjectsLocator.IGameObjectRegister
         DropNumber = new List<int>();
         RegisterToLocator();
     }
+
+    void SetPortalColor()
+    {
+
+        Color color = Portal.GetComponent<SpriteRenderer>().color;
+        Color startcolor = new Color( 0, 255, 0 );
+        Color endcolor = new Color(255, 0, 0);
+        float value = (float)CurrentWave / (float)Wave.waveData.Count;
+        float t = Mathf.Clamp(value, 0.0f, 1.0f);
+        color = Color.Lerp(startcolor, endcolor, t);
+
+        Portal.GetComponent<SpriteRenderer>().color = color;
+    }
+
     private void Update()
     {
 
         Portal.GetComponent<Portal>().waveCount = Wave.waveData.Count;
         Portal.GetComponent<Portal>().currentWave = CurrentWave;
+        SetPortalColor();
         if (roomNumber == RoomManager.Instance.RoomId)
         {
             Portal.SetActive(true);

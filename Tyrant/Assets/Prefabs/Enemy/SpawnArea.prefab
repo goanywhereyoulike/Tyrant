@@ -48,9 +48,12 @@ MonoBehaviour:
   Portal: {fileID: 7305994517873634745}
   waveDelay: 0
   wave: {fileID: 0}
+  itemDropNum: 0
+  waveDelayTurnOn: 0
   spWidth: 1
   spHeight: 1
   roomNumber: 0
+  spawnUI: {fileID: 0}
 --- !u!61 &4474750558795555253
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -405,7 +408,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.990566, g: 0.98495907, b: 0.98495907, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

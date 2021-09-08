@@ -74,7 +74,7 @@ public class TowerShoot : MonoBehaviour
 
 
         }
-        if (currentTarget)
+        if (currentTarget && currentTarget.gameObject.activeSelf)
         {
 
             float Distance = (currentTarget.transform.position - transform.position).sqrMagnitude;
@@ -135,7 +135,7 @@ public class TowerShoot : MonoBehaviour
                     bullet.GetComponentInChildren<ChainTowerBullet>().bulletDamage = towerInfo.tower.bulletDamage;
                     IsChainTower = true;
                 }
-               
+
             }
         }
 

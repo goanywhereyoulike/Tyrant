@@ -85,8 +85,7 @@ public class SpawnManager : MonoBehaviour
                     if (currentRoom.roomSpawns[i].DelayTime <= 0.0f)
                     {
                         SpawnWave(i);
-
-                        //currentRoom.roomSpawns[i].CurrentWave++;
+                        
                         currentRoom.roomSpawns[i].DelayTime = currentRoom.roomSpawns[i].WaveDelay;
                     }
                     currentRoom.roomSpawns[i].DelayTime -= Time.deltaTime;
@@ -109,10 +108,10 @@ public class SpawnManager : MonoBehaviour
                         currentRoom.roomSpawns[i].DropNumber.Add(enemyDrop);
                         currentRoom.roomSpawns[i].ChooseEnemyDrop++;
                     }
-                    else
-                    {
-                        Debug.LogError("Drop number can not larger than enemy total number Room: " + i.ToString() + " Total Spawn Number: " + currentRoom.roomSpawns[i].TotalEnemies.ToString());
-                    }
+                    //else
+                    //{
+                    //    Debug.LogError("Drop number can not larger than enemy total number Room: " + i.ToString() + " Total Spawn Number: " + currentRoom.roomSpawns[i].TotalEnemies.ToString());
+                    //}
                     d++;
                 }
 
@@ -138,9 +137,10 @@ public class SpawnManager : MonoBehaviour
                         if (currentRoom.roomSpawns[i].ItemDropCount == currentRoom.roomSpawns[i].ItemDropNum)
                         {
                             currentRoom.roomSpawns[i].Enemies.RemoveAt(e);
+                            currentRoom.roomSpawns[i].TotalEnemies--;
                         }
-
                         currentRoom.roomSpawns[i].SpawnCount--;
+                     
                     }
                 }
             }
@@ -184,7 +184,7 @@ public class SpawnManager : MonoBehaviour
         {
             for (int i = 0; i < currentRoom.roomSpawns.Count; ++i)
             {
-                if (currentRoom.roomSpawns[i].CurrentWave == currentRoom.roomSpawns[i].Wave.waveData.Count && currentRoom.roomSpawns[i].SpawnCount == 0 && !currentRoom.roomSpawns[i].SpawnClear)
+                if (currentRoom.roomSpawns[i].CurrentWave == currentRoom.roomSpawns[i].Wave.waveData.Count && currentRoom.roomSpawns[i].TotalEnemies == 0 && !currentRoom.roomSpawns[i].SpawnClear)
                 {
                     currentRoom.roomSpawns[i].SpawnClear = true;
                     checkcount++;
@@ -218,6 +218,7 @@ public class SpawnManager : MonoBehaviour
                 for (c = 0; c < currentRoom.roomSpawns[count].Wave.waveData[currentRoom.roomSpawns[count].CurrentWave].spawnNumber; ++c)
                 {
                     isWaveSpawn = true;
+                    currentRoom.roomSpawns[count].TotalEnemies--;
                     switch (currentRoom.roomSpawns[count].Wave.waveData[currentRoom.roomSpawns[count].CurrentWave].enemytype)
                     {
                         case Wave.Enemytype.normalenemy:
@@ -315,6 +316,7 @@ public class SpawnManager : MonoBehaviour
                 for (c = 0; c < currentRoom.roomSpawns[count].Wave.waveData[currentRoom.roomSpawns[count].CurrentWave].spawnNumber; ++c)
                 {
                     isWaveSpawn = true;
+             
                     //spawn position
                     switch (currentRoom.roomSpawns[count].Wave.waveData[currentRoom.roomSpawns[count].CurrentWave].enemytype)
                     {
@@ -395,6 +397,7 @@ public class SpawnManager : MonoBehaviour
 
                 if (isWaveSpawn && currentRoom.roomSpawns[count].SpawnCount!=0)
                 {
+                    // currentRoom.roomSpawns[count].CurrentWave++;
                     currentRoom.roomSpawns[count].CurrentWave++;
                     isWaveSpawn = false;
                 }

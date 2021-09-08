@@ -46,7 +46,6 @@ public class BossSpawn : Action
         ObjectPoolManager.Instance.InstantiateObjects("DropItem");
         roomSpawns = new List<SpawnArea>();
         m_Collider = GetComponent<Collider2D>();
-        m_Collider.enabled = false;
         psc = GetComponent<PSC>();
     }
 
@@ -55,6 +54,9 @@ public class BossSpawn : Action
     {
         if (!isSpawn)
         {
+            if(!roomClear)
+                m_Collider.enabled = false;
+
             if (!isRoomCheck)
                 CheckRoomSpawn();
 
@@ -136,7 +138,7 @@ public class BossSpawn : Action
             }
 
             if (roomClear)
-            {
+           {
                 m_Collider.enabled = true;
                 isSpawn = true;
                 return TaskStatus.Success;

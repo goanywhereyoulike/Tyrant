@@ -53,7 +53,6 @@ public class BossBullet : MonoBehaviour
                 Targets = collider.gameObject.GetComponentInChildren<IDamageable>();
             }
             Targets.TakeDamage(damagetoTower);
-            gameObject.SetActive(false);
         }
         if (collider.gameObject.tag == "ChainTower")
         {

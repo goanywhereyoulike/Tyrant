@@ -32,10 +32,9 @@ public class SpawnManager : MonoBehaviour
     int spawnX;
     int spawnY;
     int spawnCount;
-    int currentWave = 0;
+    //int currentWave = 0;
     int roomNumber = 0;
 
-    string basicName;
     private bool roomClear;
     private bool isRoomCheck;
     private int checkcount;
@@ -85,7 +84,7 @@ public class SpawnManager : MonoBehaviour
                     {
                         SpawnWave(i);
 
-                        currentWave++;
+                        //currentRoom.roomSpawns[i].CurrentWave++;
                         currentRoom.roomSpawns[i].DelayTime = currentRoom.roomSpawns[i].WaveDelay;
                     }
                     currentRoom.roomSpawns[i].DelayTime -= Time.deltaTime;

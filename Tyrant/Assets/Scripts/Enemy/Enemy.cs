@@ -411,14 +411,13 @@ public class Enemy : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDam
             search = true;
             closedList.Clear();
             closedList = path.CloseList;
-            pathcount = 1;
         }
 
         if (findPath)
         {
             mPath.Clear();
             nextNodes.Clear();
-
+            pathcount = 2;
 
             // Beginning from the end node, trace back to it's parent one at a timec
             NodePath.Node path = closedList[closedList.Count - 1];

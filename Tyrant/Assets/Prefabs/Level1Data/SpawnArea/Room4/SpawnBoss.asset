@@ -15,5 +15,3 @@ MonoBehaviour:
   waveData:
   - enemytype: 2
     spawnNumber: 1
-  - enemytype: 0
-    spawnNumber: 1

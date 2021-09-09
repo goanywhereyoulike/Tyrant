@@ -104,9 +104,11 @@ public class Player : MonoBehaviour , IDamageable, GameObjectsLocator.IGameObjec
         if (!isInvulnerbale)
         {
             Health -= damage;
+            AudioManager.instance.PlaySFX(3);
             if (Health < 0)
             {
                 Health = 0;
+                AudioManager.instance.PlaySFX(4);
                 SceneManager.LoadScene("GameOverScene");
             }
         }

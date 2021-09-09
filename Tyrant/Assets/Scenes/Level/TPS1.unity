@@ -11619,6 +11619,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3638676786344950365, guid: e0342963580770d4bbbfa79b77e84777, type: 3}
+      propertyPath: coin
+      value: 9999
+      objectReference: {fileID: 0}
+    - target: {fileID: 3638676786344950365, guid: e0342963580770d4bbbfa79b77e84777, type: 3}
       propertyPath: dialogueUI
       value: 
       objectReference: {fileID: 638438242}
@@ -35583,6 +35587,10 @@ PrefabInstance:
     - target: {fileID: 3041242100437289400, guid: 5defdebbbab9209468ae20c39544ce84, type: 3}
       propertyPath: m_PlayOnAwake
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3255850456771715775, guid: 5defdebbbab9209468ae20c39544ce84, type: 3}
+      propertyPath: m_Name
+      value: Pickup Item
       objectReference: {fileID: 0}
     - target: {fileID: 3275664974598401676, guid: 5defdebbbab9209468ae20c39544ce84, type: 3}
       propertyPath: m_PlayOnAwake

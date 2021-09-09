@@ -202,10 +202,17 @@ MonoBehaviour:
   weaponObjects:
   - weaponType: 0
     weaponObject: {fileID: 8546702924393238467}
+    isUnlocked: 0
   - weaponType: 1
     weaponObject: {fileID: 1514701611847028491}
+    isUnlocked: 0
   - weaponType: 2
     weaponObject: {fileID: 3289228325216752598}
+    isUnlocked: 0
+  CurrentWeapon:
+    weaponType: 0
+    weaponObject: {fileID: 0}
+    isUnlocked: 0
 --- !u!1 &3583525615146759097
 GameObject:
   m_ObjectHideFlags: 0
@@ -451,6 +458,7 @@ MonoBehaviour:
     maxPickUpAmount: 0
     maxInventoryAmount: 0
   playerUI: {fileID: 5892948272906082853}
+  bulletUI: {fileID: 0}
   coin: 0
 --- !u!114 &4966918331871143739
 MonoBehaviour:
@@ -1074,6 +1082,11 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: 64f6f2f4b9883ff42a38c4b49f8729e3, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5dec29a98ab7cf8469e830ef363b69cf, type: 3}
+--- !u!4 &923949134187444485 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4286668168501483722, guid: 5dec29a98ab7cf8469e830ef363b69cf, type: 3}
+  m_PrefabInstance: {fileID: 4012649179901125071}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &3289228325216752598 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1876422795629851161, guid: 5dec29a98ab7cf8469e830ef363b69cf, type: 3}
@@ -1088,11 +1101,6 @@ MonoBehaviour:
 --- !u!1 &1655972723978553290 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2401818556216813061, guid: 5dec29a98ab7cf8469e830ef363b69cf, type: 3}
-  m_PrefabInstance: {fileID: 4012649179901125071}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &923949134187444485 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4286668168501483722, guid: 5dec29a98ab7cf8469e830ef363b69cf, type: 3}
   m_PrefabInstance: {fileID: 4012649179901125071}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7050116342011132689

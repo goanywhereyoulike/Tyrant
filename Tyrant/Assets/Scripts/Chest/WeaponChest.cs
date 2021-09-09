@@ -11,7 +11,7 @@ public class WeaponChest : Chest
 
     protected override void OpenChest()
     {
-        GameObject item = Instantiate(weapon, dropPosition);
+        GameObject item = Instantiate(weapon, dropPosition.position,dropPosition.rotation);
         
     }
 

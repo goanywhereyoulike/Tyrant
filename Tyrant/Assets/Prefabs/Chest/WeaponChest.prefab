@@ -99,6 +99,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   openedSprite: {fileID: -5627866836883545433, guid: 142d652c0731f374398b4a4faa3d6d77, type: 3}
+  tutorialButton: {fileID: 0}
   weapon: {fileID: 3985837113073938250, guid: 4b3fd7ba49e15ab45bb68c1d1e397f69, type: 3}
   dropPosition: {fileID: 6481084721565057846}
 --- !u!61 &6481084721352610360
@@ -108,7 +109,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6481084721352610341}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0

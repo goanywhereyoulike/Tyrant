@@ -1,12 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BluePrint : MonoBehaviour
 {
+    [SerializeField]
+    Image TowerRangeUI;
 
     public bool IsAbleToSet;
+    public TowerTemplate tower;
 
+    private void Start()
+    {
+        TowerRangeUI.rectTransform.sizeDelta = new Vector2(tower.distanceToShoot, tower.distanceToShoot);
+
+        //TowerRangeUI.rectTransform.SetSizeWithCurrentAnchors(TowerRangeUI.rectTransform.Axis);
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
 

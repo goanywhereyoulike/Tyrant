@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 100
   type: ChainTower
-  distanceToShoot: 5
+  distanceToShoot: 3
   fireRate: 1
   bulletForce: 20
   bulletDamage: 5

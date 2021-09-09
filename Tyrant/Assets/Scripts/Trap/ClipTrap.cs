@@ -6,8 +6,10 @@ public class ClipTrap : MonoBehaviour
 {
     public GameObject DestroyedTower;
     public int TrapNumber = 0;
+    public float duration = 10.0f;
     PlayerMovement player;
     public Animator animator;
+    private bool IsCounting = false;
     //public Transform targetpos;
 
     void Awake()
@@ -19,7 +21,15 @@ public class ClipTrap : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //TowerToTarget(player.transform);
+        if (IsCounting)
+        {
+            duration -= Time.deltaTime;
+        }
+        if (duration <= 0.0f)
+        {
+            Destroy(gameObject);
+
+        }//TowerToTarget(player.transform);
     }
 
 
@@ -50,6 +60,7 @@ public class ClipTrap : MonoBehaviour
             if (enemy)
             {
                 animator.SetTrigger("Enable");
+                IsCounting = true;
                 TrapNumber++;
                 StartCoroutine(Trap(enemy));
                 enemy.GetComponent<Rigidbody2D>().Sleep();

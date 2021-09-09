@@ -12,8 +12,9 @@ TagManager:
   - Weapon
   - Chain
   - Trap
-  - ChainTower
+  - Undefined
   - CannonTower
+  - ChainTower
   layers:
   - Default
   - TransparentFX

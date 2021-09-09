@@ -99,6 +99,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   openedSprite: {fileID: -5627866836883545433, guid: 142d652c0731f374398b4a4faa3d6d77, type: 3}
+  tutorialButton: {fileID: 5706039408164123849, guid: 6c7ca7080ebdb2040bac61c2ed245823, type: 3}
   weapon: {fileID: 915017098524561060, guid: 5dec29a98ab7cf8469e830ef363b69cf, type: 3}
   dropPosition: {fileID: 6481084721565057846}
 --- !u!61 &6481084721352610360

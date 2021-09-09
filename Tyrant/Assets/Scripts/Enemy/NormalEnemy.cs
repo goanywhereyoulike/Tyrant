@@ -9,14 +9,24 @@ public class NormalEnemy : Enemy
     [SerializeField]
     private Animator burningAnimator;
 
+    private bool armorEnemy = false;
+
     // Start is called before the first frame update
     protected override void Start()
     {
         base.Start();
         enemyUi.MaxHealthChanged(EnemyState.MaxHealth);
         enemyUi.HealthChanged(EnemyState.MaxHealth);
-        enemyUi.MaxArmorChanged(EnemyState.MaxArmor);
-        enemyUi.ArmorChanged(EnemyState.MaxArmor);
+        armorEnemy = EnemyState.MaxArmor > 0;
+        if (armorEnemy)
+        {
+            enemyUi.MaxArmorChanged(EnemyState.MaxArmor);
+            enemyUi.ArmorChanged(EnemyState.MaxArmor);
+        }
+        else
+        {
+            enemyUi.ShutdownArmorBar();
+        }
     }
 
     // Update is called once per frame
@@ -32,16 +42,22 @@ public class NormalEnemy : Enemy
 
     public override void TakeDamage(float damage)
     {
+        if (armor > 0)
+            return;
+
         Health -= damage;
         enemyUi.HealthChanged(Health);
     }
 
     public override void BurnArmor(float buringDamge)
     {
-        armor -= buringDamge;
-        enemyUi.ArmorChanged(armor);
         burningAnimator.gameObject.SetActive(true);
         burningAnimator.SetBool("Burning", true);
+        if (!armorEnemy)
+            return;
+
+        armor -= buringDamge;
+        enemyUi.ArmorChanged(armor);
     }
 
     //------------------attck animation------------------------
@@ -106,4 +122,9 @@ public class NormalEnemy : Enemy
         // Gizmos.DrawSphere(transform.position, enemyState.DetectRange);
     }
 
+    protected override void AttackBehavior()
+    {
+        base.AttackBehavior();
+        StartCoroutine("Attack");
+    }
 }

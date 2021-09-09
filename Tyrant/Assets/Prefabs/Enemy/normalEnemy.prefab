@@ -14,14 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyState:
     maxHealth: 1
-    maxDamage: 1
+    maxDamage: 10
     maxMoveSpeed: 2
     mass: 0
     timeBetweenAttacks: 2
     stopDistance: 2
     attackSpeed: 1
     detectRange: 4
-    maxArmor: 20
+    maxArmor: 0
   mTarget: {fileID: 0}
   enemyUi: {fileID: 6129767443431876111}
   burningAnimator: {fileID: 661433285204766010}

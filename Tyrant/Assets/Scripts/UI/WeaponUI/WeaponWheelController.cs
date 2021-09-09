@@ -27,7 +27,7 @@ public class WeaponWheelController : MonoBehaviour
 
         if (InputManager.Instance.GetKeyDown("WeaponWheelToggle"))
         {
-            weaponWheelSelect = !weaponWheelSelect;
+            weaponWheelSelect = true;//!weaponWheelSelect;
         }
         if (weaponWheelSelect)
         {

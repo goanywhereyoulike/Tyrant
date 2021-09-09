@@ -122,5 +122,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94ba3a5474c8c374da85f27036448b32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  duration: 5
+  duration: 10
   colorEffect: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}

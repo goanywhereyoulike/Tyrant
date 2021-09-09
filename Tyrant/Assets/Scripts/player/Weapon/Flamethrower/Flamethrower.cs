@@ -63,7 +63,7 @@ public class Flamethrower : Weapon
     }
     private IEnumerator RegenAmmo()
     {
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(0.5f);
         while (currentAmmo<flamethrowerStates.MaxAmmo)
         {
             currentAmmo += flamethrowerStates.MaxAmmo / 100;

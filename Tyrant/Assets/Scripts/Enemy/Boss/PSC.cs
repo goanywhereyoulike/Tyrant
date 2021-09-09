@@ -9,6 +9,8 @@ public class PSC : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDamag
 
     public EnemyState EnemyState { get => enemyState; set => enemyState = value; }
 
+    SpriteRenderer spriteRenderer;
+
     private float health = 0f;
 
     private bool isDead = false;
@@ -31,12 +33,14 @@ public class PSC : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDamag
     private void Start()
     {
         healthSilder.maxValue = EnemyState.MaxHealth;
+        spriteRenderer = GetComponent<SpriteRenderer>();
         Health = EnemyState.MaxHealth;
     }
     private void Update()
     {
         healthSilder.value = Health;
     }
+
     public void RegisterToLocator()
     {
         GameObjectsLocator.Instance.Register<PSC>(this);

@@ -24,7 +24,7 @@ public class WeaponController : MonoBehaviour
         public Weapon weaponObject;
         public GameObject weaponUI;
         public bool isUnlocked;
-        
+        public WeaponWheelButton weaponButton;
     }
 
     [SerializeField]
@@ -50,6 +50,7 @@ public class WeaponController : MonoBehaviour
     public void UnlockWeapon(int weaponIndex)
     {
         weaponObjects[weaponIndex].isUnlocked = true;
+        weaponObjects[weaponIndex].weaponButton.gameObject.SetActive(true);
         //weaponObjects[0].isUnlocked = true;
     }
 

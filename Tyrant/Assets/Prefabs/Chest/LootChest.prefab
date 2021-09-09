@@ -162,6 +162,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   openedSprite: {fileID: 21300000, guid: 2586576bafed6684fb3fccf68a0a2380, type: 3}
+  tutorialButton: {fileID: 5706039408164123849, guid: 6c7ca7080ebdb2040bac61c2ed245823, type: 3}
   items:
   - {fileID: 2964659710371450152, guid: b11d7d0053a74c946ac817bc47814a9b, type: 3}
   - {fileID: 6585873395443747110, guid: af96a862bd8b9e044a9e5d71814d0a39, type: 3}

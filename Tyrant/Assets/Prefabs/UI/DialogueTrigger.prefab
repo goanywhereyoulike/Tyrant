@@ -123,3 +123,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogueObject: {fileID: 11400000, guid: e92cc885291be3141a2d83e33e98c903, type: 2}
+  tutorialButton: {fileID: 5706039408164123849, guid: 6c7ca7080ebdb2040bac61c2ed245823, type: 3}

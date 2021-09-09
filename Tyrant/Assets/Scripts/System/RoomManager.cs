@@ -23,13 +23,6 @@ public class RoomManager : MonoBehaviour
     }
     public bool IsBossRoom { get => isBossRoom; set => isBossRoom = value; }
 
-    [System.Serializable]
-    public class Door
-    {
-        public GameObject door;
-        public int roomID;
-    }
-
     public List<Door> Doors = new List<Door>();
     // Start is called before the first frame update
     void Awake()
@@ -52,13 +45,14 @@ public class RoomManager : MonoBehaviour
         {
             if (Doors[i].roomID <= RoomId && SpawnManager.Instance.RoomClear)
             {
-                Doors[i].door.SetActive(false);
+                Doors[i].Animator.SetBool("IsClose", true);
             }
             else if (RoomId != 0)
             {
                 if (RoomId - 1 == Doors[i].roomID)
                 {
-                    Doors[i].door.SetActive(true);
+                    Doors[i].gameObject.SetActive(true);
+                    Doors[i].Animator.SetBool("IsClose", false);
                 }
             }
         }

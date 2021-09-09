@@ -30,8 +30,6 @@ public class SpawnArea : MonoBehaviour, GameObjectsLocator.IGameObjectRegister
     public int spWidth;
     public int spHeight;
     public int roomNumber;
-    [SerializeField]
-    private SpawnUI spawnUI;
 
     List<int> dropNumber;
     List<GameObject> enemies;

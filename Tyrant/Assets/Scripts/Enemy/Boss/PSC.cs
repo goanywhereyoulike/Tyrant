@@ -9,7 +9,7 @@ public class PSC : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDamag
 
     public EnemyState EnemyState { get => enemyState; set => enemyState = value; }
 
-    private float health = 100.0f;
+    private float health = 0f;
 
     private bool isDead = false;
     public bool IsDied
@@ -26,14 +26,16 @@ public class PSC : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDamag
         }
     }
 
+    public float Health { get => health; set => health = value; }
+
     private void Start()
     {
         healthSilder.maxValue = EnemyState.MaxHealth;
-        health = EnemyState.MaxHealth;
+        Health = EnemyState.MaxHealth;
     }
     private void Update()
     {
-        healthSilder.value = health;
+        healthSilder.value = Health;
     }
     public void RegisterToLocator()
     {
@@ -47,7 +49,7 @@ public class PSC : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDamag
 
     public void TakeDamage(float damage)
     {
-        health -= damage;
+        Health -= damage;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

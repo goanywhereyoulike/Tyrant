@@ -191,8 +191,20 @@ MonoBehaviour:
     objectToPool: {fileID: 2964659710371450152, guid: b11d7d0053a74c946ac817bc47814a9b, type: 3}
     amountToPool: 1
     shouldExpand: 1
-  - tagName: BossBullet
+  - tagName: BossBallBullet
     objectToPool: {fileID: 3104685805077678868, guid: 78d45480b81ded0498296ed4b1a2510f, type: 3}
+    amountToPool: 1
+    shouldExpand: 1
+  - tagName: BossBullet
+    objectToPool: {fileID: 6723065293706111440, guid: 4bde7f85894a9b147a452296632cc516, type: 3}
+    amountToPool: 1
+    shouldExpand: 1
+  - tagName: armorenemy
+    objectToPool: {fileID: 2447981995903305430, guid: 159eefdd9082bda4b98ba59501b11be2, type: 3}
+    amountToPool: 1
+    shouldExpand: 1
+  - tagName: bombenemy
+    objectToPool: {fileID: 2447981995903305430, guid: fe6e1cff6d8542f4091335df43b180de, type: 3}
     amountToPool: 1
     shouldExpand: 1
 --- !u!1 &3980476720704669719

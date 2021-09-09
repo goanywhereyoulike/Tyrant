@@ -12,7 +12,8 @@ TagManager:
   - Weapon
   - Chain
   - Trap
-  - Boss
+  - ChainTower
+  - CannonTower
   layers:
   - Default
   - TransparentFX

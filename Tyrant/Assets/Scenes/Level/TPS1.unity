@@ -1552,11 +1552,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 484209897982530004, guid: e0342963580770d4bbbfa79b77e84777, type: 3}
       propertyPath: weaponObjects.Array.data[1].isUnlocked
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 484209897982530004, guid: e0342963580770d4bbbfa79b77e84777, type: 3}
       propertyPath: weaponObjects.Array.data[2].isUnlocked
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 484209897982530004, guid: e0342963580770d4bbbfa79b77e84777, type: 3}
       propertyPath: weaponObjects.Array.data[0].weaponButton
@@ -1606,6 +1606,10 @@ PrefabInstance:
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 6200000, guid: 5f47e76adc2e42045b243abfc073ed7e, type: 2}
+    - target: {fileID: 3453184920380148159, guid: e0342963580770d4bbbfa79b77e84777, type: 3}
+      propertyPath: CollisionModule.collidesWith.m_Bits
+      value: 9479
+      objectReference: {fileID: 0}
     - target: {fileID: 3638676786344950365, guid: e0342963580770d4bbbfa79b77e84777, type: 3}
       propertyPath: coin
       value: 10000
@@ -3956,6 +3960,10 @@ PrefabInstance:
     - target: {fileID: 143193456068351355, guid: 916e89dbb740f4d429f9ef0e872f3ed0, type: 3}
       propertyPath: m_Name
       value: Level_1_Map
+      objectReference: {fileID: 0}
+    - target: {fileID: 143193456945993294, guid: 916e89dbb740f4d429f9ef0e872f3ed0, type: 3}
+      propertyPath: m_TagString
+      value: Wall
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 916e89dbb740f4d429f9ef0e872f3ed0, type: 3}

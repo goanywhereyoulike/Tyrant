@@ -25,6 +25,10 @@ public class BossBallsBullet : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collider)
     {
+        if (collider.gameObject.tag == "Wall")
+        {
+            gameObject.SetActive(false);
+        }
         if (collider.gameObject.tag == "Player" || collider.gameObject.tag == "Tower" || collider.gameObject.tag == "Base")
         {
             IDamageable Targets = collider.gameObject.GetComponent<IDamageable>();

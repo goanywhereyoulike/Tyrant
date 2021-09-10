@@ -27,8 +27,9 @@ public class BombEnemyObjectEffect : MonoBehaviour
         {
             Player player = collision.gameObject.GetComponent<Player>();
             player.TakeDamage(20);
+            isEnter = true;
         }
 
-        isEnter = true;
+        
     }
 }

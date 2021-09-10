@@ -300,7 +300,7 @@ public class Enemy : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDam
         if (canFind)
         {
             yield return new WaitForSeconds(delayTime);
-            Debug.Log("Delay111");
+            //Debug.Log("Delay111");
             GetPath();
             canFind = false;
         }

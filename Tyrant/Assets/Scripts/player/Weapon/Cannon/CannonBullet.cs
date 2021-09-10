@@ -53,5 +53,12 @@ public class CannonBullet : Bullet
             OnhitEffect();
             gameObject.SetActive(false);
         }
+
+        if (collision.gameObject.tag == "Wall")
+        {
+            gameObject.SetActive(false);
+        }
     }
+
+
 }

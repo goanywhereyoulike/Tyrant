@@ -51,5 +51,10 @@ public class EnemyBullet : MonoBehaviour
             gameObject.SetActive(false);
             Debug.Log("attack");
         }
+
+        if (collider.gameObject.tag == "Wall")
+        {
+            gameObject.SetActive(false);
+        }
     }
 }

@@ -33,7 +33,10 @@ public class Flamethrower : Weapon
         flameParticle.gameObject.GetComponent<FlamethrowerBullet>().BurnDamage = flamethrowerStates.BurnDamage;
         weaponInit = true;
     }
-
+    private void OnEnable()
+    {
+        flameParticle.Stop();
+    }
     public override void Fire()
     {
         base.Fire();

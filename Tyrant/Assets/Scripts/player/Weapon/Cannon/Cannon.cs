@@ -15,10 +15,10 @@ public class Cannon : Weapon
         {
             return;
         }
-        for (int i = 0; i <=0; i++)
+        /*for (int i = 0; i <=0; i++)
         {
             ammoImages[i].gameObject.SetActive(false);
-        }
+        }*/
         ObjectPoolManager.Instance.InstantiateObjects("ConnonBullet");
         ObjectPoolManager.Instance.InstantiateObjects("ConnonBulletEffect");
 

@@ -14,6 +14,10 @@ public class PickUp : MonoBehaviour
     protected virtual void Trigger2DStay(Collider2D collision) { }
     protected virtual void Trigger2DExit(Collider2D collision) { }
 
+    private void Awake()
+    {
+        CanBePicked = false;
+    }
     private void OnCollisionEnter2D(Collision2D collision)
     {
         Collide2DEnter(collision);

@@ -57,6 +57,7 @@ public class FlamethrowerBullet : Bullet
 
     private void OnParticleCollision(GameObject other)
     {
+
         if (other.tag == "Enemy")
         {
             other.GetComponent<Enemy>().BurnArmor(BurnDamage);

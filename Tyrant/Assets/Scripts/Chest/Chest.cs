@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Chest : MonoBehaviour, IInteractable
+public class Chest : MonoBehaviour
 {
     private SpriteRenderer rend;
     [SerializeField]
@@ -11,7 +11,7 @@ public class Chest : MonoBehaviour, IInteractable
     [SerializeField] private Image tutorialButton;
 
     private bool isOpen;
-
+    private bool CanOpen = false;
     virtual protected void OpenChest() { }
 
     private void Start()
@@ -19,14 +19,15 @@ public class Chest : MonoBehaviour, IInteractable
         isOpen = false;
         rend = GetComponent<SpriteRenderer>();
     }
-    private void OnTriggerStay2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (!isOpen)
         {
             if (collision.gameObject.CompareTag("Player"))
             {
-                Interact(collision.gameObject.GetComponent<Player>());
+                //Interact(collision.gameObject.GetComponent<Player>());
                 tutorialButton.enabled = true;
+                CanOpen = true;
             }
         }
     }
@@ -35,15 +36,18 @@ public class Chest : MonoBehaviour, IInteractable
         if (collision.gameObject.CompareTag("Player"))
         {
             tutorialButton.enabled = false;
+            CanOpen = false;
         }
     }
-    public void Interact(Player player)
+    private void Update()
     {
-        if (InputManager.Instance.GetKey("Interact"))
+        if(CanOpen&& InputManager.Instance.GetKey("Interact"))
         {
             rend.sprite = openedSprite;
             OpenChest();
             isOpen = true;
+            CanOpen = false;
         }
     }
+    
 }

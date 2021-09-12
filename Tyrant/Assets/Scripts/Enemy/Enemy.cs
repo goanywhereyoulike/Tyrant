@@ -66,6 +66,7 @@ public class Enemy : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDam
             isDead = value;
             if (isDead)
             {
+                AudioManager.instance.PlaySFX(6);
                 gameObject.SetActive(false);
                 isSpawn = false;
                 IsSlow = false;
@@ -300,7 +301,7 @@ public class Enemy : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDam
         if (canFind)
         {
             yield return new WaitForSeconds(delayTime);
-            Debug.Log("Delay111");
+            //Debug.Log("Delay111");
             GetPath();
             canFind = false;
         }
@@ -395,6 +396,7 @@ public class Enemy : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDam
     public virtual void TakeDamage(float damage)
     {
         Health -= damage;
+        AudioManager.instance.PlaySFX(5);
     }
 
     public virtual void BurnArmor(float buringDamge)

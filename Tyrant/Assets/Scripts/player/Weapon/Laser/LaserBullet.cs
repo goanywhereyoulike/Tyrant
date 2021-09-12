@@ -60,5 +60,9 @@ public class LaserBullet : Bullet
             OnHit(collision.gameObject);
             OnhitEffect(collision.gameObject.transform.position);
         }
+        if (collision.gameObject.tag == "Wall")
+        {
+            gameObject.SetActive(false);
+        }
     }
 }

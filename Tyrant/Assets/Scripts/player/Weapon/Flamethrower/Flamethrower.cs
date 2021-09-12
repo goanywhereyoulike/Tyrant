@@ -53,6 +53,7 @@ public class Flamethrower : Weapon
                 StopCoroutine(ammoRegen);
             }
             ammoRegen = StartCoroutine(RegenAmmo());
+            AudioManager.instance.PlaySFX(2);
         }
         currentAmmo--;
     }

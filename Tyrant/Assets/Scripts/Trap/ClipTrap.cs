@@ -10,12 +10,15 @@ public class ClipTrap : MonoBehaviour
     PlayerMovement player;
     public Animator animator;
     private bool IsCounting = false;
+    private float enemyMovespeed = 0.0f;
+    Enemy enemy;
     //public Transform targetpos;
 
     void Awake()
     {
         player = FindObjectOfType<PlayerMovement>();
         animator = GetComponent<Animator>();
+
     }
 
     // Update is called once per frame
@@ -28,6 +31,11 @@ public class ClipTrap : MonoBehaviour
         if (duration <= 0.0f)
         {
             Destroy(gameObject);
+            if (enemy)
+            {
+                enemy.MoveSpeed = enemyMovespeed;
+                enemy.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
+            }
 
         }//TowerToTarget(player.transform);
     }
@@ -36,7 +44,8 @@ public class ClipTrap : MonoBehaviour
     void Die()
     {
         Destroy(gameObject.transform.parent.gameObject);
-        Instantiate(DestroyedTower, transform.position, transform.rotation);
+
+       // Instantiate(DestroyedTower, transform.position, transform.rotation);
 
     }
 
@@ -56,9 +65,10 @@ public class ClipTrap : MonoBehaviour
         if (TrapNumber < 1)
         {
             string tag = collision.gameObject.tag;
-            Enemy enemy = collision.gameObject.GetComponent<Enemy>();
+            enemy = collision.gameObject.GetComponent<Enemy>();
             if (enemy)
             {
+                enemyMovespeed = enemy.MoveSpeed;
                 animator.SetTrigger("Enable");
                 IsCounting = true;
                 TrapNumber++;

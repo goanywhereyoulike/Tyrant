@@ -10,10 +10,14 @@ public class BluePrint : MonoBehaviour
 
     public bool IsAbleToSet;
     public TowerTemplate tower;
-
+    public bool IsTower = true;
     private void Start()
     {
-        TowerRangeUI.rectTransform.sizeDelta = new Vector2(tower.distanceToShoot, tower.distanceToShoot);
+        if (IsTower)
+        {
+            TowerRangeUI.rectTransform.sizeDelta = new Vector2(tower.distanceToShoot, tower.distanceToShoot);
+        }
+        
 
         //TowerRangeUI.rectTransform.SetSizeWithCurrentAnchors(TowerRangeUI.rectTransform.Axis);
     }

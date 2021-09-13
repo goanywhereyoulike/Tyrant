@@ -72,7 +72,7 @@ public class PSC : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDamag
         transform.position += force;
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Player" || collision.gameObject.tag == "Tower" || collision.gameObject.tag == "Base")
         {

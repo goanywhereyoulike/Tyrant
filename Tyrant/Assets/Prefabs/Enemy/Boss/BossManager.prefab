@@ -373,29 +373,29 @@ MonoBehaviour:
       variableStartIndex: 
       JSONSerialization: '{"EntryTask":{"Type":"BehaviorDesigner.Runtime.Tasks.EntryTask","NodeData":{"Offset":"(187,17)"},"ID":0,"Name":"Entry","Instant":true},"RootTask":{"Type":"BehaviorDesigner.Runtime.Tasks.Repeater","NodeData":{"Offset":"(-3,117)"},"ID":1,"Name":"Repeater","Instant":true,"SharedIntcount":{"Type":"BehaviorDesigner.Runtime.SharedInt","Name":null,"Int32mValue":0},"SharedBoolrepeatForever":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":true},"SharedBoolendOnFailure":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false},"Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(-4.75553226,139.047821)"},"ID":2,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Wait","NodeData":{"Offset":"(-1187.67188,81.90016)"},"ID":3,"Name":"Wait","Instant":true,"SharedFloatwaitTime":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":2},"SharedBoolrandomWait":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false},"SharedFloatrandomWaitMin":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":1},"SharedFloatrandomWaitMax":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":1}},{"Type":"BehaviorDesigner.Runtime.Tasks.Selector","NodeData":{"Offset":"(163.70816,144.1532)"},"ID":4,"Name":"Selector","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(-686.4698,131.176514)"},"ID":5,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"CheckHealth","NodeData":{"Offset":"(-48.8062744,139.635681)"},"ID":6,"Name":"Check
         Health","Instant":true,"SingleminTargetHealth":70,"SinglemaxTargetHealth":100,"PSCTargetBoss":0},{"Type":"BossSpawn","NodeData":{"Offset":"(84.99274,144.548279)"},"ID":7,"Name":"Boss
-        Spawn","Instant":true,"List`1roomSpawns":[],"Int32roomNumber":4}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(-157.031,163.612)"},"ID":8,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"CheckHealth","NodeData":{"Offset":"(-128.700165,122.875473)"},"ID":9,"Name":"Check
-        Health","Instant":true,"SingleminTargetHealth":50,"SinglemaxTargetHealth":100,"PSCTargetBoss":1},{"Type":"BehaviorDesigner.Runtime.Tasks.RandomSelector","NodeData":{"Offset":"(52.99369,110.224251)"},"ID":10,"Name":"Random
-        Selector","Instant":true,"Int32seed":0,"BooleanuseSeed":false,"AbortTypeabortType":"None","Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(-176.666687,197.564026)"},"ID":11,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"BossFindTarget","NodeData":{"Offset":"(-112.166573,97.23794)"},"ID":12,"Name":"Boss
-        Find Target","Instant":true},{"Type":"BossShoot","NodeData":{"Offset":"(71.2078247,97.23794)"},"ID":13,"Name":"Boss
-        Shoot","Instant":true,"BossFindTargetfindTarget":12,"Int32maxAnmoCount":5,"Singlespeed":10}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(153.333252,188.3974)"},"ID":14,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"BossHold","NodeData":{"Offset":"(-115.000046,115.833344)"},"ID":15,"Name":"Boss
-        Hold","Instant":true,"SingleholdTime":1,"SliderholdSlider":2},{"Type":"BossFindTarget","NodeData":{"Offset":"(3.636406,117.241371)"},"ID":16,"Name":"Boss
-        Find Target","Instant":true},{"Type":"BossCharge","NodeData":{"Offset":"(119.93866,123.4491)"},"ID":17,"Name":"Boss
-        Charge","Instant":true,"BossFindTargetfindTarget":16,"Singleacceleration":7,"SinglemaxMoveSpeed":100,"SingleminMoveSpeed":25},{"Type":"BossHold","NodeData":{"Offset":"(237.5,124.375)"},"ID":18,"Name":"Boss
-        Hold","Instant":true,"SingleholdTime":0.5,"SliderholdSlider":3},{"Type":"BossBalls","NodeData":{"Offset":"(363.125,124.375)"},"ID":19,"Name":"Boss
-        Balls","Instant":true,"Int32maxAnmoCount":8,"Int32range":3,"Int32damage":5,"Int32stayTime":8}]}]}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(1021.02368,231.380814)"},"ID":20,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"CheckHealth","NodeData":{"Offset":"(-158.333618,122.499939)"},"ID":21,"Name":"Check
-        Health","Instant":true,"SingleminTargetHealth":0,"SinglemaxTargetHealth":50,"PSCTargetBoss":4},{"Type":"BehaviorDesigner.Runtime.Tasks.RandomSelector","NodeData":{"Offset":"(140.64209,128.464157)"},"ID":22,"Name":"Random
-        Selector","Instant":true,"Int32seed":0,"BooleanuseSeed":false,"AbortTypeabortType":"None","Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(-440,280)"},"ID":23,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"BossFindTarget","NodeData":{"Offset":"(-110,100)"},"ID":24,"Name":"Boss
-        Find Target","Instant":true},{"Type":"BossShoot","NodeData":{"Offset":"(70,100)"},"ID":25,"Name":"Boss
-        Shoot","Instant":true,"BossFindTargetfindTarget":12,"Int32maxAnmoCount":5,"Singlespeed":10}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(-110.833374,280)"},"ID":26,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"BossHold","NodeData":{"Offset":"(-120,120)"},"ID":27,"Name":"Boss
-        Hold","Instant":true,"SingleholdTime":1,"SliderholdSlider":5},{"Type":"BossFindTarget","NodeData":{"Offset":"(-3.05175781E-05,120)"},"ID":28,"Name":"Boss
-        Find Target","Instant":true},{"Type":"BossCharge","NodeData":{"Offset":"(120,120)"},"ID":29,"Name":"Boss
-        Charge","Instant":true,"BossFindTargetfindTarget":16,"Singleacceleration":7,"SinglemaxMoveSpeed":100,"SingleminMoveSpeed":25},{"Type":"BossHold","NodeData":{"Offset":"(240,120)"},"ID":30,"Name":"Boss
-        Hold","Instant":true,"SingleholdTime":0.5,"SliderholdSlider":6},{"Type":"BossBalls","NodeData":{"Offset":"(360,120)"},"ID":31,"Name":"Boss
-        Balls","Instant":true,"Int32maxAnmoCount":8,"Int32range":3,"Int32damage":5,"Int32stayTime":8}]},{"Type":"BehaviorDesigner.Runtime.Tasks.RandomSequence","NodeData":{"Offset":"(649.999756,120.832825)"},"ID":32,"Name":"Random
-        Sequence","Instant":true,"Int32seed":0,"BooleanuseSeed":false,"AbortTypeabortType":"None","Children":[{"Type":"BossBulletHell","NodeData":{"Offset":"(-200.833282,274.999969)"},"ID":33,"Name":"Boss
-        Bullet Hell","Instant":true,"Int32bulletCount":20,"Int32bulletMoveSpeed":5,"SinglebulletDelayTime":0,"BooleaninverseAngle":false},{"Type":"BehaviorDesigner.Runtime.Tasks.Wait","NodeData":{"Offset":"(-80.83327,274.999969)"},"ID":34,"Name":"Wait","Instant":true,"SharedFloatwaitTime":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":0.5},"SharedBoolrandomWait":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false},"SharedFloatrandomWaitMin":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":1},"SharedFloatrandomWaitMax":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":1}},{"Type":"BossBulletHell","NodeData":{"Offset":"(49.16678,274.999969)"},"ID":35,"Name":"Boss
-        Bullet Hell","Instant":true,"Int32bulletCount":20,"Int32bulletMoveSpeed":5,"SinglebulletDelayTime":0.2,"BooleaninverseAngle":false},{"Type":"BehaviorDesigner.Runtime.Tasks.Wait","NodeData":{"Offset":"(169.166855,274.999969)"},"ID":36,"Name":"Wait","Instant":true,"SharedFloatwaitTime":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":0.5},"SharedBoolrandomWait":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false},"SharedFloatrandomWaitMin":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":1},"SharedFloatrandomWaitMax":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":1}},{"Type":"BossBulletHell","NodeData":{"Offset":"(289.166931,274.999969)"},"ID":37,"Name":"Boss
-        Bullet Hell","Instant":true,"Int32bulletCount":20,"Int32bulletMoveSpeed":5,"SinglebulletDelayTime":0.2,"BooleaninverseAngle":true}]}]}]}]}]}]},"DetachedTasks":[{"Type":"BehaviorDesigner.Runtime.Tasks.RandomSelector","NodeData":{"Offset":"(1118.92761,420)"},"ID":38,"Name":"Random
+        Spawn","Instant":true,"List`1roomSpawns":[],"Int32roomNumber":4}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(-219.715683,231.380814)"},"ID":8,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"CheckHealth","NodeData":{"Offset":"(-158.333618,122.499939)"},"ID":9,"Name":"Check
+        Health","Instant":true,"SingleminTargetHealth":0,"SinglemaxTargetHealth":50,"PSCTargetBoss":1},{"Type":"BehaviorDesigner.Runtime.Tasks.RandomSelector","NodeData":{"Offset":"(140.64209,128.464157)"},"ID":10,"Name":"Random
+        Selector","Instant":true,"Int32seed":0,"BooleanuseSeed":false,"AbortTypeabortType":"None","Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(-440,280)"},"ID":11,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"BossFindTarget","NodeData":{"Offset":"(-110,100)"},"ID":12,"Name":"Boss
+        Find Target","Instant":true},{"Type":"BossShoot","NodeData":{"Offset":"(70,100)"},"ID":13,"Name":"Boss
+        Shoot","Instant":true,"BossFindTargetfindTarget":30,"Int32maxAnmoCount":5,"Singlespeed":10}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(-110.833374,280)"},"ID":14,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"BossHold","NodeData":{"Offset":"(-120,120)"},"ID":15,"Name":"Boss
+        Hold","Instant":true,"SingleholdTime":1,"SliderholdSlider":2},{"Type":"BossFindTarget","NodeData":{"Offset":"(-3.05175781E-05,120)"},"ID":16,"Name":"Boss
+        Find Target","Instant":true},{"Type":"BossCharge","NodeData":{"Offset":"(120,120)"},"ID":17,"Name":"Boss
+        Charge","Instant":true,"BossFindTargetfindTarget":34,"Singleacceleration":7,"SinglemaxMoveSpeed":100,"SingleminMoveSpeed":25},{"Type":"BossHold","NodeData":{"Offset":"(240,120)"},"ID":18,"Name":"Boss
+        Hold","Instant":true,"SingleholdTime":0.5,"SliderholdSlider":3},{"Type":"BossBalls","NodeData":{"Offset":"(360,120)"},"ID":19,"Name":"Boss
+        Balls","Instant":true,"Int32maxAnmoCount":8,"Int32range":3,"Int32damage":5,"Int32stayTime":8}]},{"Type":"BehaviorDesigner.Runtime.Tasks.RandomSequence","NodeData":{"Offset":"(649.999756,120.832825)"},"ID":20,"Name":"Random
+        Sequence","Instant":true,"Int32seed":0,"BooleanuseSeed":false,"AbortTypeabortType":"None","Children":[{"Type":"BossBulletHell","NodeData":{"Offset":"(-200.833282,274.999969)"},"ID":21,"Name":"Boss
+        Bullet Hell","Instant":true,"Int32bulletCount":20,"Int32bulletMoveSpeed":5,"SinglebulletDelayTime":0,"BooleaninverseAngle":false},{"Type":"BehaviorDesigner.Runtime.Tasks.Wait","NodeData":{"Offset":"(-80.83327,274.999969)"},"ID":22,"Name":"Wait","Instant":true,"SharedFloatwaitTime":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":0.5},"SharedBoolrandomWait":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false},"SharedFloatrandomWaitMin":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":1},"SharedFloatrandomWaitMax":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":1}},{"Type":"BossBulletHell","NodeData":{"Offset":"(49.16678,274.999969)"},"ID":23,"Name":"Boss
+        Bullet Hell","Instant":true,"Int32bulletCount":20,"Int32bulletMoveSpeed":5,"SinglebulletDelayTime":0.2,"BooleaninverseAngle":false},{"Type":"BehaviorDesigner.Runtime.Tasks.Wait","NodeData":{"Offset":"(169.166855,274.999969)"},"ID":24,"Name":"Wait","Instant":true,"SharedFloatwaitTime":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":0.5},"SharedBoolrandomWait":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false},"SharedFloatrandomWaitMin":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":1},"SharedFloatrandomWaitMax":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":1}},{"Type":"BossBulletHell","NodeData":{"Offset":"(289.166931,274.999969)"},"ID":25,"Name":"Boss
+        Bullet Hell","Instant":true,"Int32bulletCount":20,"Int32bulletMoveSpeed":5,"SinglebulletDelayTime":0.2,"BooleaninverseAngle":true}]}]}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(1046.67139,163.612)"},"ID":26,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"CheckHealth","NodeData":{"Offset":"(-128.700165,122.875473)"},"ID":27,"Name":"Check
+        Health","Instant":true,"Disabled":true,"SingleminTargetHealth":50,"SinglemaxTargetHealth":100,"PSCTargetBoss":4},{"Type":"BehaviorDesigner.Runtime.Tasks.RandomSelector","NodeData":{"Offset":"(52.99369,110.224251)"},"ID":28,"Name":"Random
+        Selector","Instant":true,"Int32seed":0,"BooleanuseSeed":false,"AbortTypeabortType":"None","Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(-176.666687,197.564026)"},"ID":29,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"BossFindTarget","NodeData":{"Offset":"(-112.166573,97.23794)"},"ID":30,"Name":"Boss
+        Find Target","Instant":true},{"Type":"BossShoot","NodeData":{"Offset":"(71.2078247,97.23794)"},"ID":31,"Name":"Boss
+        Shoot","Instant":true,"BossFindTargetfindTarget":30,"Int32maxAnmoCount":5,"Singlespeed":10}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(153.333252,188.3974)"},"ID":32,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"BossHold","NodeData":{"Offset":"(-115.000046,115.833344)"},"ID":33,"Name":"Boss
+        Hold","Instant":true,"SingleholdTime":1,"SliderholdSlider":5},{"Type":"BossFindTarget","NodeData":{"Offset":"(3.636406,117.241371)"},"ID":34,"Name":"Boss
+        Find Target","Instant":true},{"Type":"BossCharge","NodeData":{"Offset":"(119.93866,123.4491)"},"ID":35,"Name":"Boss
+        Charge","Instant":true,"BossFindTargetfindTarget":34,"Singleacceleration":7,"SinglemaxMoveSpeed":100,"SingleminMoveSpeed":25},{"Type":"BossHold","NodeData":{"Offset":"(237.5,124.375)"},"ID":36,"Name":"Boss
+        Hold","Instant":true,"SingleholdTime":0.5,"SliderholdSlider":6},{"Type":"BossBalls","NodeData":{"Offset":"(363.125,124.375)"},"ID":37,"Name":"Boss
+        Balls","Instant":true,"Int32maxAnmoCount":8,"Int32range":3,"Int32damage":5,"Int32stayTime":8}]}]}]}]}]}]},"DetachedTasks":[{"Type":"BehaviorDesigner.Runtime.Tasks.RandomSelector","NodeData":{"Offset":"(1118.92761,420)"},"ID":38,"Name":"Random
         Selector","Instant":true,"Int32seed":0,"BooleanuseSeed":false,"AbortTypeabortType":"None"}]}'
       fieldSerializationData:
         typeName: []
@@ -413,8 +413,8 @@ MonoBehaviour:
         byteData: 
         byteDataArray: 
       Version: 1.6.8
-  gizmoViewMode: 0
-  showBehaviorDesignerGizmo: 0
+  gizmoViewMode: 2
+  showBehaviorDesignerGizmo: 1
 --- !u!114 &399871459117369948
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -499,7 +499,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.0016602725, y: -0.28633022}
@@ -535,7 +535,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 7
+  m_Constraints: 4
 --- !u!1 &399871459213564674
 GameObject:
   m_ObjectHideFlags: 0

@@ -14,6 +14,7 @@ TagManager:
   - Trap
   - ChainTower
   - CannonTower
+  - Boss
   layers:
   - Default
   - TransparentFX

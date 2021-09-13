@@ -58,6 +58,14 @@ public class CannonBullet : Bullet
         {
             gameObject.SetActive(false);
         }
+
+        if (collision.gameObject.tag == "Boss")
+        {
+            //Debug.Log(damage);
+            OnHit(collision.gameObject);
+            OnhitEffect();
+            gameObject.SetActive(false);
+        }
     }
 
 

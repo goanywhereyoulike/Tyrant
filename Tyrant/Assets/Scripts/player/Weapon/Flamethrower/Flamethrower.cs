@@ -10,9 +10,10 @@ public class Flamethrower : Weapon
     private ParticleSystem flameParticle = null;
     //public float maxAmmo;
     public Slider ammoBar;
-    private float currentAmmo;
     private WaitForSeconds regenTick = new WaitForSeconds(0.1f);
     private Coroutine ammoRegen;
+
+    [SerializeField] private FlameThrowerReloader reloader;
     protected override void Start()
     {
         base.Start();
@@ -25,7 +26,8 @@ public class Flamethrower : Weapon
         ammoBar.gameObject.SetActive(false);
 
         ammoBar.maxValue = flamethrowerStates.MaxAmmo;
-        currentAmmo = flamethrowerStates.MaxAmmo;
+        reloader.MaxAmmo = flamethrowerStates.MaxAmmo;
+        reloader.CurrentAmmo = flamethrowerStates.MaxAmmo;
         ammoBar.value = flamethrowerStates.MaxAmmo;
 
         
@@ -37,7 +39,7 @@ public class Flamethrower : Weapon
     public override void Fire()
     {
         base.Fire();
-        if (canFire && currentAmmo >= 0)
+        if (canFire && reloader.CurrentAmmo >= 0)
         {
             ammoBar.gameObject.SetActive(true);
             Vector3 vecDir = InputManager.Instance.MouseWorldPosition - flameParticle.gameObject.transform.position;
@@ -47,36 +49,27 @@ public class Flamethrower : Weapon
             shapeModule.rotation = new Vector3(Mathf.Atan2(-vecDir.y, vecDir.x) * Mathf.Rad2Deg, 90.0f, 0.0f);
             flameParticle.gameObject.transform.position = startShootingPointDict[Facing].transform.position;
             flameParticle.Play();
-            ammoBar.value = currentAmmo;
-            if (ammoRegen != null)
-            {
-                StopCoroutine(ammoRegen);
-            }
-            ammoRegen = StartCoroutine(RegenAmmo());
+            ammoBar.value = reloader.CurrentAmmo;
+            reloader.FirstStart = false;
             AudioManager.instance.PlaySFX(2);
         }
-        currentAmmo--;
+        reloader.CurrentAmmo--;
     }
 
     float AngleBetweenPoints(Vector2 a, Vector2 b)
     {
         return Mathf.Atan2(a.y - b.y, a.x - b.x) * Mathf.Rad2Deg;
     }
-    private IEnumerator RegenAmmo()
-    {
-        yield return new WaitForSeconds(0.5f);
-        while (currentAmmo<flamethrowerStates.MaxAmmo)
-        {
-            currentAmmo += flamethrowerStates.MaxAmmo / 100;
-            ammoBar.value = currentAmmo;
-            yield return regenTick;
-        }
-        ammoRegen = null;
-    }
+
     public override void UnFire()
     {
         base.UnFire();
         //ammoBar.value = currentAmmo;
         flameParticle.Stop();
+    }
+
+    public void Update()
+    {
+        ammoBar.value = reloader.CurrentAmmo;
     }
 }

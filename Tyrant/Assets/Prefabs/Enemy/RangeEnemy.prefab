@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyState:
-    maxHealth: 1
-    maxDamage: 1
+    maxHealth: 3
+    maxDamage: 5
     maxMoveSpeed: 3
     mass: 0
     timeBetweenAttacks: 3
-    stopDistance: 7
+    stopDistance: 5
     attackSpeed: 1
     detectRange: 5
     maxArmor: 0
@@ -38,6 +38,18 @@ PrefabInstance:
     - target: {fileID: 1300328857231449900, guid: 8b9f0df936cf54392b9c2877c62446d7, type: 3}
       propertyPath: m_IsTrigger
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3002693670958593652, guid: 8b9f0df936cf54392b9c2877c62446d7, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3002693670958593652, guid: 8b9f0df936cf54392b9c2877c62446d7, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3002693670958593652, guid: 8b9f0df936cf54392b9c2877c62446d7, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 4136874122364066178, guid: 8b9f0df936cf54392b9c2877c62446d7, type: 3}
       propertyPath: m_BodyType

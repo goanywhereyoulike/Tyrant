@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyState:
-    maxHealth: 1
-    maxDamage: 1
-    maxMoveSpeed: 2
+    maxHealth: 2
+    maxDamage: 10
+    maxMoveSpeed: 1
     mass: 0
     timeBetweenAttacks: 2
     stopDistance: 1
@@ -142,6 +142,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameObject: {fileID: 2447981995903305430}
+  bombEnemy: {fileID: 0}
 --- !u!58 &1119729488333506866
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -172,6 +173,18 @@ PrefabInstance:
     - target: {fileID: -7198696103068060942, guid: 8b9f0df936cf54392b9c2877c62446d7, type: 3}
       propertyPath: m_UsedByEffector
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3002693670958593652, guid: 8b9f0df936cf54392b9c2877c62446d7, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3002693670958593652, guid: 8b9f0df936cf54392b9c2877c62446d7, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3002693670958593652, guid: 8b9f0df936cf54392b9c2877c62446d7, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 4136874122364066178, guid: 8b9f0df936cf54392b9c2877c62446d7, type: 3}
       propertyPath: m_Mass

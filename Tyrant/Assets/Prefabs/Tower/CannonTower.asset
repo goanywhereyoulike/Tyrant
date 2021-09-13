@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 50
   type: CannonTower
-  distanceToShoot: 4
+  distanceToShoot: 5
   fireRate: 0.5
   bulletForce: 20
-  bulletDamage: 10
+  bulletDamage: 1.5
   price: 100
   BulletLimit: 20
   CoolDownSpeed: 10

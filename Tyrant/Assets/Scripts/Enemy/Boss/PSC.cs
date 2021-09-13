@@ -1,6 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
-
+using UnityEngine.SceneManagement;
 public class PSC : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDamageable, IPushable
 {
     public Slider healthSilder;
@@ -14,17 +14,18 @@ public class PSC : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDamag
     private float health = 0f;
 
     private bool isDead = false;
-    public bool IsDied
+    public bool IsDead
     {
         get => isDead;
         set
         {
+            isDead = value;
             if (isDead)
             {
                 gameObject.SetActive(false);
                 UnRegisterToLocator();
+                SceneManager.LoadScene("Win");
             }
-            isDead = value;
         }
     }
 
@@ -54,7 +55,15 @@ public class PSC : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDamag
 
     public void TakeDamage(float damage)
     {
-        Health -= damage;
+        if (Health>0)
+        {
+            Health -= damage;
+        }
+        else
+        {
+            IsDead = true;
+        }
+
     }
 
     public void BePushed(Vector3 force)

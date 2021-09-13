@@ -42,7 +42,7 @@ public class Flamethrower : Weapon
     public override void Fire()
     {
         base.Fire();
-        if (canFire && reloader.CurrentAmmo >= 0)
+        if (canFire && reloader.CurrentAmmo > 0)
         {
             ammoBar.gameObject.SetActive(true);
             Vector3 vecDir = InputManager.Instance.MouseWorldPosition - flameParticle.gameObject.transform.position;
@@ -53,10 +53,14 @@ public class Flamethrower : Weapon
             flameParticle.gameObject.transform.position = startShootingPointDict[Facing].transform.position;
             flameParticle.Play();
             ammoBar.value = reloader.CurrentAmmo;
-            reloader.FirstStart = false;
             AudioManager.instance.PlaySFX(2);
         }
+        else if (reloader.CurrentAmmo <= 0)
+            flameParticle.Stop();
+
+        reloader.FirstStart = false;
         reloader.CurrentAmmo--;
+        reloader.CurrentAmmo = Mathf.Clamp(reloader.CurrentAmmo, -1f, flamethrowerStates.MaxAmmo);
     }
 
     float AngleBetweenPoints(Vector2 a, Vector2 b)

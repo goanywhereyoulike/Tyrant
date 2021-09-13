@@ -23,7 +23,7 @@ public class BossCharge : Action
 
     public override TaskStatus OnUpdate()
     {
-        if (psc.IsDied)
+        if (psc.IsDead)
             return TaskStatus.Failure;
         Vector3 displacement = transform.position;
         float oldDistance = Vector3.Distance(transform.position, findTarget.TargetPos);

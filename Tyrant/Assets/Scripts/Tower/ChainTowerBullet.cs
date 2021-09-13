@@ -35,10 +35,15 @@ public class ChainTowerBullet : MonoBehaviour
     {
         string tag = collision.gameObject.tag;
         Enemy enemy = collision.gameObject.GetComponent<Enemy>();
+        PSC levelBoss = collision.gameObject.GetComponent<PSC>();
 
         if (enemy)
         {
             enemy.TakeDamage(bulletDamage);
+        }
+        if (levelBoss)
+        {
+            levelBoss.TakeDamage(bulletDamage);
         }
         if (tag != "Chain" && tag != "Tower" )
         {

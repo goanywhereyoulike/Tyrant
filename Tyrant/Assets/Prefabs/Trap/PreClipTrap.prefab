@@ -144,4 +144,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0421014b2f044884b8237ff4cb1c5d45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  TowerRangeUI: {fileID: 0}
   IsAbleToSet: 1
+  tower: {fileID: 0}
+  IsTower: 0

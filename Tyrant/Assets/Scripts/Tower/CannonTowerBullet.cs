@@ -36,11 +36,16 @@ public class CannonTowerBullet : MonoBehaviour
     {
         string tag = collision.gameObject.tag;
         Enemy enemy = collision.gameObject.GetComponent<Enemy>();
+        PSC levelBoss = collision.gameObject.GetComponent<PSC>();
 
         realHittime++;
         if (enemy)
         {
             enemy.TakeDamage(bulletDamage);
+        }
+        if (levelBoss)
+        {
+            levelBoss.TakeDamage(bulletDamage);
         }
         if (realHittime >= AllHittime)
         {

@@ -10,12 +10,21 @@ public class TowerBullet : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         Enemy enemy = collision.gameObject.GetComponent<Enemy>();
+        PSC levelBoss = collision.gameObject.GetComponent<PSC>();
         //Destroy(gameObject);
 
         if (enemy)
         {
             GameObject effect = Instantiate(hitEffect, transform.position, Quaternion.identity);
             enemy.TakeDamage(bulletDamage);
+            gameObject.SetActive(false);
+            Destroy(effect, 0.3f);
+
+        }
+        if (levelBoss)
+        {
+            GameObject effect = Instantiate(hitEffect, transform.position, Quaternion.identity);
+            levelBoss.TakeDamage(bulletDamage);
             gameObject.SetActive(false);
             Destroy(effect, 0.3f);
 
@@ -31,6 +40,7 @@ public class TowerBullet : MonoBehaviour
             Destroy(effect, 0.3f);
             gameObject.SetActive(false);
         }
+        PSC levelBoss = collision.gameObject.GetComponent<PSC>();
         //Destroy(gameObject);
 
         if (enemy)
@@ -39,6 +49,14 @@ public class TowerBullet : MonoBehaviour
             GameObject effect = Instantiate(hitEffect, transform.position, Quaternion.identity);
             Destroy(effect, 0.3f);
             gameObject.SetActive(false);
+
+        }
+        if (levelBoss)
+        {
+            GameObject effect = Instantiate(hitEffect, transform.position, Quaternion.identity);
+            levelBoss.TakeDamage(bulletDamage);
+            gameObject.SetActive(false);
+            Destroy(effect, 0.3f);
 
         }
         //Destroy(gameObject);

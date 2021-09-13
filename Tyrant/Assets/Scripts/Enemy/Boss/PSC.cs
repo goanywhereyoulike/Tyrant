@@ -35,6 +35,7 @@ public class PSC : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDamag
         healthSilder.maxValue = EnemyState.MaxHealth;
         spriteRenderer = GetComponent<SpriteRenderer>();
         Health = EnemyState.MaxHealth;
+        RegisterToLocator();
     }
     private void Update()
     {

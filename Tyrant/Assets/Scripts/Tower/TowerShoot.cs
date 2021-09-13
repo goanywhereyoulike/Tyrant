@@ -181,32 +181,76 @@ public class TowerShoot : MonoBehaviour
     void UpdateTarget()
     {
         // GameObject[] enemyobjs = GameObject.FindGameObjectsWithTag("Enemy");
+        bool aimtoBoss = false;
 
-
-        if (GameObjectsLocator.Instance.Get<Enemy>() == null)
+        if (GameObjectsLocator.Instance.Get<PSC>() != null)
         {
-            return;
-        }
-        List<Enemy> enemies = GameObjectsLocator.Instance.Get<Enemy>();
-        GameObject target = GetClosestTarget(enemies);
-        //foreach (GameObject target in enemyobjs)
-        //{
-        if (target != null)
-        {
-            //Enemy enemy = target.GetComponent<Enemy>();
-            float Distance = (target.transform.position - transform.position).sqrMagnitude;
-            if (Distance < DistanceToShoot * DistanceToShoot)
+            List<PSC> level1boss = GameObjectsLocator.Instance.Get<PSC>();
+            GameObject targetboss = GetClosestTarget(level1boss);
+            if (targetboss != null)
             {
-                currentTarget = target;
-                TowerToTarget(target.transform);
+                float Distance = (targetboss.transform.position - transform.position).sqrMagnitude;
+                if (Distance < DistanceToShoot * DistanceToShoot)
+                {
+                    aimtoBoss = true;
+                    currentTarget = targetboss;
+                    TowerToTarget(targetboss.transform);
+                }
+                else
+                {
+                    aimtoBoss = false;
+                }
+            }
+            else
+            {
+                aimtoBoss = false;
+                currentTarget = null;
             }
         }
-        else
+        if (!aimtoBoss)
         {
-            currentTarget = null;
+            if (GameObjectsLocator.Instance.Get<Enemy>() == null)
+            {
+                return;
+            }
+
+            List<Enemy> enemies = GameObjectsLocator.Instance.Get<Enemy>();
+            GameObject target = GetClosestTarget(enemies);
+            if (target != null)
+            {
+                float Distance = (target.transform.position - transform.position).sqrMagnitude;
+                if (Distance < DistanceToShoot * DistanceToShoot)
+                {
+                    currentTarget = target;
+                    TowerToTarget(target.transform);
+                }
+            }
+            else
+            {
+                currentTarget = null;
+            }
         }
-        //}
     }
+    GameObject GetClosestTarget(List<PSC> bosses)
+    {
+        GameObject retBoss = null;
+        for (int i = 0; i < bosses.Count; ++i)
+        {
+            if (!bosses[i].IsDied)
+            {
+                if (retBoss == null)
+                {
+                    retBoss = bosses[i].gameObject;
+                }
+                else if ((bosses[i].transform.position - transform.position).sqrMagnitude < (retBoss.transform.position - transform.position).sqrMagnitude)
+                {
+                    retBoss = bosses[i].gameObject;
+                }
+            }
+        }
+        return retBoss;
+    }
+
 
     GameObject GetClosestTarget(List<Enemy> enemies)
     {

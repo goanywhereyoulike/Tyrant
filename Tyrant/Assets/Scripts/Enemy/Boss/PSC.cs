@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PSC : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDamageable
+public class PSC : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDamageable, IPushable
 {
     public Slider healthSilder;
     [SerializeField]
@@ -54,6 +54,12 @@ public class PSC : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDamag
     public void TakeDamage(float damage)
     {
         Health -= damage;
+    }
+
+    public void BePushed(Vector3 force)
+    {
+        //rb.AddForce(force);
+        transform.position += force;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

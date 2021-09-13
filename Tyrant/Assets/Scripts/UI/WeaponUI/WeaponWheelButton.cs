@@ -25,7 +25,7 @@ public class WeaponWheelButton : MonoBehaviour
         }
         animator = GetComponent<Animator>();
         selectItem.sprite = null;
-        
+        selectItem.preserveAspect = true;
     }
 
     // Update is called once per frame

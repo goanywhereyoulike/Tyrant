@@ -10,6 +10,7 @@ public class DialogueActivate : MonoBehaviour,IInteractable
     private bool isTriggered = false;
     private bool canTrigger;
     private Player player;
+    private bool startChecked;
     private void Start()
     {
         isTriggered = false;

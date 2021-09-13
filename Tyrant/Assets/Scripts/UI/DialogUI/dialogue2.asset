@@ -13,10 +13,12 @@ MonoBehaviour:
   m_Name: dialogue2
   m_EditorClassIdentifier: 
   dialogue:
-  - Hello, Player. Welcome to Tyrant. This is a simple introduction of the game.
-    press F1 to continue.
-  - 'First, use W A S D to move around the map! '
-  - 'Press ESC to pause the game ! '
-  - 'Cannon is use for push enemy away, use tower to help you kill enemies! '
-  - use L-CTRL to change between tower mode and trap mode. Press "[1] [2][3]" to
-    select towers and traps, press  Q to cancel, press space to build tower
+  - "Hello, Player. Welcome to Tyrant. This is a simple introduction of the game.  
+    \npress F2 to continue.\n                                                 "
+  - "First, use W A S D to move around the map! \n press F2 to continue.\n                                                 "
+  - "Press ESC to pause the game !\npress F2 to continue.\n                                                 "
+  - "Cannon is use for push enemy away, use tower to help you kill enemies! \npress
+    F2 to continue.\n                                                 \n                       "
+  - "use L-CTRL to change between tower mode and trap mode. Press \"[1] [2][3]\"
+    to select towers and traps, press  Q to cancel, press space to build tower\n                                                         
+    press F1 to continue.\n                                                 \n\t "

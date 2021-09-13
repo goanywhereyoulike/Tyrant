@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: room2Dialogue
   m_EditorClassIdentifier: 
   dialogue:
-  - 'Flamethrower is for destory enemies'' armor
+  - "Flamethrower is for destory enemies' armor\n\n\t\t\tpress F2 to continue.\n                                                 "
+  - 'Your ammo regenerates over time
 
 '

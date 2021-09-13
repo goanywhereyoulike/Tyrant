@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: room1Dialogue Object
   m_EditorClassIdentifier: 
   dialogue:
-  - the laser gun is for freezing enemies
+  - "The laser gun is for freezing enemies.\n \n\t\t\t           press F2 to continue.\n                                                 "
+  - Hold Left Mouse to fire a freezing beam!

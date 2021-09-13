@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogue:
   - "Flamethrower is for destory enemies' armor\n\n\t\t\tpress F2 to continue.\n                                                 "
-  - 'Your ammo regenerates over time
+  - 'Your ammo regenerates over time, use it wisely!
 
 '

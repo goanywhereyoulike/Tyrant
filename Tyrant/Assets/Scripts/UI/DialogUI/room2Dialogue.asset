@@ -13,6 +13,11 @@ MonoBehaviour:
   m_Name: room2Dialogue
   m_EditorClassIdentifier: 
   dialogue:
-  - 'Flamethrower is for destory enemies'' armor
+  - 'Flamethrower is for destory enemies'' armor.
 
-'
+    Hold [Left Mouse] to fire.
+
+    ->
+    Press [F2] to continue.'
+  - "Your flamethrower ammo regenerates over time, use it wisely !\n  ------ End->
+    Press [F2] ........"

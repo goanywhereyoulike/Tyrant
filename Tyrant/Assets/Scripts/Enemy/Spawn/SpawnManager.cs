@@ -22,6 +22,7 @@ public class SpawnManager : MonoBehaviour
     private static SpawnManager _instance;
     public static SpawnManager Instance { get => _instance; }
     public bool RoomClear { get => roomClear; set => roomClear = value; }
+    public bool StartLevel { get => startLevel; set => startLevel = value; }
 
     GameObject enemyObject;
 
@@ -41,6 +42,8 @@ public class SpawnManager : MonoBehaviour
     private int checkcount;
     private int lastroom;
     private int enemyDrop;
+    private bool startLevel;
+
     //int randomSpawn;
 
     private void Start()
@@ -51,6 +54,7 @@ public class SpawnManager : MonoBehaviour
         ObjectPoolManager.Instance.InstantiateObjects("bombenemy");
         ObjectPoolManager.Instance.InstantiateObjects("armorenemy");
         ObjectPoolManager.Instance.InstantiateObjects("DropItem");
+        StartLevel = false;
         enemies = new List<GameObject>();
         RoomManager.Instance.RoomChanged += RoomChange;
         if (_instance == null)
@@ -65,87 +69,91 @@ public class SpawnManager : MonoBehaviour
 
     void Update()
     {
-        if (!isRoomCheck)
-            CheckRoomSpawn();
-
-
-        CheckRoomClear();
-        // check all spawns in current room
-        if (currentRoom.roomSpawns.Count != 0)
+        if (StartLevel)
         {
-            for (int i = 0; i < currentRoom.roomSpawns.Count; ++i)
-            {
-                if (currentRoom.roomSpawns[i].CurrentWave == currentRoom.roomSpawns[i].Wave.waveData.Count)
-                {
-                    //currentRoom.roomSpawns[i].gameObject.SetActive(false);
-                }
 
-                if (currentRoom.roomSpawns[i].WaveDelayTurnOn)
+
+            if (!isRoomCheck)
+                CheckRoomSpawn();
+
+
+            CheckRoomClear();
+            // check all spawns in current room
+            if (currentRoom.roomSpawns.Count != 0)
+            {
+                for (int i = 0; i < currentRoom.roomSpawns.Count; ++i)
                 {
-                    if (currentRoom.roomSpawns[i].DelayTime <= 0.0f)
+                    if (currentRoom.roomSpawns[i].CurrentWave == currentRoom.roomSpawns[i].Wave.waveData.Count)
+                    {
+                        //currentRoom.roomSpawns[i].gameObject.SetActive(false);
+                    }
+
+                    if (currentRoom.roomSpawns[i].WaveDelayTurnOn)
+                    {
+                        if (currentRoom.roomSpawns[i].DelayTime <= 0.0f)
+                        {
+                            SpawnWave(i);
+
+                            currentRoom.roomSpawns[i].DelayTime = currentRoom.roomSpawns[i].WaveDelay;
+                        }
+                        currentRoom.roomSpawns[i].DelayTime -= Time.deltaTime;
+                    }
+                    else
                     {
                         SpawnWave(i);
-                        
-                        currentRoom.roomSpawns[i].DelayTime = currentRoom.roomSpawns[i].WaveDelay;
                     }
-                    currentRoom.roomSpawns[i].DelayTime -= Time.deltaTime;
-                }
-                else
-                {
-                    SpawnWave(i);
-                }
 
-                //check how many enemy can drop item
-                for (int d = currentRoom.roomSpawns[i].ChooseEnemyDrop; d < currentRoom.roomSpawns[i].ItemDropNum;)
-                {
-                    enemyDrop = Random.Range(0, currentRoom.roomSpawns[i].TotalEnemies);
-                    if (currentRoom.roomSpawns[i].ItemDropNum <= currentRoom.roomSpawns[i].TotalEnemies)
+                    //check how many enemy can drop item
+                    for (int d = currentRoom.roomSpawns[i].ChooseEnemyDrop; d < currentRoom.roomSpawns[i].ItemDropNum;)
                     {
-                        while (currentRoom.roomSpawns[i].DropNumber.Contains(enemyDrop))
+                        enemyDrop = Random.Range(0, currentRoom.roomSpawns[i].TotalEnemies);
+                        if (currentRoom.roomSpawns[i].ItemDropNum <= currentRoom.roomSpawns[i].TotalEnemies)
                         {
-                            enemyDrop = Random.Range(0, currentRoom.roomSpawns[i].TotalEnemies);
-                        }
-                        currentRoom.roomSpawns[i].DropNumber.Add(enemyDrop);
-                        currentRoom.roomSpawns[i].ChooseEnemyDrop++;
-                    }
-                    //else
-                    //{
-                    //    Debug.LogError("Drop number can not larger than enemy total number Room: " + i.ToString() + " Total Spawn Number: " + currentRoom.roomSpawns[i].TotalEnemies.ToString());
-                    //}
-                    d++;
-                }
-
-
-                for (int e = 0; e < currentRoom.roomSpawns[i].Enemies.Count; ++e)
-                {
-                    if (currentRoom.roomSpawns[i].Enemies[e].activeInHierarchy == false)
-                    {
-                        //check which enemy will drop
-                        for (int d = 0; d < currentRoom.roomSpawns[i].DropNumber.Count; ++d)
-                        {
-                            if (e == currentRoom.roomSpawns[i].DropNumber[d])
+                            while (currentRoom.roomSpawns[i].DropNumber.Contains(enemyDrop))
                             {
-                                enemyObject = ObjectPoolManager.Instance.GetPooledObject("DropItem");
-                                enemyObject.transform.position = currentRoom.roomSpawns[i].Enemies[e].transform.position;
-                                enemyObject.SetActive(true);
-                                currentRoom.roomSpawns[i].DropNumber.RemoveAt(d);
-                                currentRoom.roomSpawns[i].ItemDropCount++;
-                                break;
+                                enemyDrop = Random.Range(0, currentRoom.roomSpawns[i].TotalEnemies);
                             }
+                            currentRoom.roomSpawns[i].DropNumber.Add(enemyDrop);
+                            currentRoom.roomSpawns[i].ChooseEnemyDrop++;
                         }
+                        //else
+                        //{
+                        //    Debug.LogError("Drop number can not larger than enemy total number Room: " + i.ToString() + " Total Spawn Number: " + currentRoom.roomSpawns[i].TotalEnemies.ToString());
+                        //}
+                        d++;
+                    }
 
-                        if (currentRoom.roomSpawns[i].ItemDropCount == currentRoom.roomSpawns[i].ItemDropNum)
+
+                    for (int e = 0; e < currentRoom.roomSpawns[i].Enemies.Count; ++e)
+                    {
+                        if (currentRoom.roomSpawns[i].Enemies[e].activeInHierarchy == false)
                         {
-                            currentRoom.roomSpawns[i].Enemies.RemoveAt(e);
-                            currentRoom.roomSpawns[i].TotalEnemies--;
+                            //check which enemy will drop
+                            for (int d = 0; d < currentRoom.roomSpawns[i].DropNumber.Count; ++d)
+                            {
+                                if (e == currentRoom.roomSpawns[i].DropNumber[d])
+                                {
+                                    enemyObject = ObjectPoolManager.Instance.GetPooledObject("DropItem");
+                                    enemyObject.transform.position = currentRoom.roomSpawns[i].Enemies[e].transform.position;
+                                    enemyObject.SetActive(true);
+                                    currentRoom.roomSpawns[i].DropNumber.RemoveAt(d);
+                                    currentRoom.roomSpawns[i].ItemDropCount++;
+                                    break;
+                                }
+                            }
+
+                            if (currentRoom.roomSpawns[i].ItemDropCount == currentRoom.roomSpawns[i].ItemDropNum)
+                            {
+                                currentRoom.roomSpawns[i].Enemies.RemoveAt(e);
+                                currentRoom.roomSpawns[i].TotalEnemies--;
+                            }
+                            currentRoom.roomSpawns[i].SpawnCount--;
+
                         }
-                        currentRoom.roomSpawns[i].SpawnCount--;
-                     
                     }
                 }
             }
         }
-
 
     }
 

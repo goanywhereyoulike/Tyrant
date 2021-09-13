@@ -6,6 +6,8 @@ public class BombEnemyObjectEffect : MonoBehaviour
 {
     [SerializeField] private GameObject gameObject;
     private Animator animator;
+    [SerializeField]
+    BombEnemy bombEnemy = new BombEnemy();
 
     bool isEnter = false;
 
@@ -26,7 +28,7 @@ public class BombEnemyObjectEffect : MonoBehaviour
         if (collision.gameObject.tag == "Player" && !isEnter)
         {
             Player player = collision.gameObject.GetComponent<Player>();
-            player.TakeDamage(20);
+            player.TakeDamage(bombEnemy.Damage);
             isEnter = true;
         }
 

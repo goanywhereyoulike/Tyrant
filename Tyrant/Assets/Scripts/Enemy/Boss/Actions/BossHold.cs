@@ -17,7 +17,7 @@ public class BossHold : Action
 
     public override TaskStatus OnUpdate()
     {
-        if (psc.IsDied)
+        if (psc.IsDead)
             return TaskStatus.Failure;
 
         if (timeCheck <= holdTime)

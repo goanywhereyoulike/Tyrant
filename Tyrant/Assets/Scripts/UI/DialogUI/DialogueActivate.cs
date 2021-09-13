@@ -6,6 +6,7 @@ public class DialogueActivate : MonoBehaviour,IInteractable
 {
     [SerializeField] private DialogueObject dialogueObject;
     public Image tutorialButton;
+    private bool startChecked=false;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -29,5 +30,10 @@ public class DialogueActivate : MonoBehaviour,IInteractable
     public void Interact(Player player)
     {
         player.DialogueUI.ShowDialogue(dialogueObject);
+        if (!startChecked)
+        {
+            SpawnManager.Instance.StartLevel = true;
+            startChecked = true;
+        }
     }
 }

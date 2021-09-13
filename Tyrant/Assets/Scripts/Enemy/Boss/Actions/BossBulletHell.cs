@@ -21,7 +21,7 @@ public class BossBulletHell : Action
 
     public override TaskStatus OnUpdate()
     {
-        if (psc.IsDied)
+        if (psc.IsDead)
             return TaskStatus.Failure;
 
         if (!ObjectPoolManager.Instance.GetPooledObject("BossBullet"))

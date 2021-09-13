@@ -236,7 +236,7 @@ public class TowerShoot : MonoBehaviour
         GameObject retBoss = null;
         for (int i = 0; i < bosses.Count; ++i)
         {
-            if (!bosses[i].IsDied)
+            if (!bosses[i].IsDead)
             {
                 if (retBoss == null)
                 {

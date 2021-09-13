@@ -3,29 +3,30 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class WeaponUnlocker : MonoBehaviour,IInteractable
+public class WeaponUnlocker : PickUp
 {
     private Player player;
     [SerializeField]
     private int weaponIndex;
     public void Interact(Player player)
     {
-       //if(InputManager.Instance.GetKey("Interact"))
-       //{
-            player.GetComponentInChildren<WeaponController>().UnlockWeapon(weaponIndex);
-            Destroy(gameObject);
-       //}
+        player.GetComponentInChildren<WeaponController>().UnlockWeapon(weaponIndex);
+        Destroy(gameObject);
     }
-
-    private void OnTriggerStay2D(Collider2D collision)
+    protected override void Trigger2DEnter(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
             player = collision.gameObject.GetComponent<Player>();
+        }
+    }
+    private void Update()
+    {
+        if (CanBePicked && InputManager.Instance.GetKey("Interact"))
+        {
             Interact(player);
         }
     }
-
 
 
 }

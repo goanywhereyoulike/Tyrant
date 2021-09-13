@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 100
   type: Basic
-  distanceToShoot: 4
+  distanceToShoot: 6
   fireRate: 0.6
   bulletForce: 30
   bulletDamage: 1

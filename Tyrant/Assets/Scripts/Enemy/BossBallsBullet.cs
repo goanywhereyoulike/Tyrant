@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class BossBallsBullet : MonoBehaviour
 {
-    int damage;
+    private int damage;
     float range;
     public float stayTime;
     float timeCheck;

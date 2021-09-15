@@ -34,7 +34,7 @@ public class ClipTrap : MonoBehaviour
             if (enemy)
             {
                 enemy.MoveSpeed = enemyMovespeed;
-                enemy.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
+                enemy.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
             }
 
         }//TowerToTarget(player.transform);

@@ -163,7 +163,7 @@ public class TowerManager : MonoBehaviour
             {
                 if (dtower)
                 {
-                    Destroy(dtower.transform.parent.gameObject);
+                    Destroy(dtower.gameObject);
                     dtower.UnRegisterToLocator();
                 }
 

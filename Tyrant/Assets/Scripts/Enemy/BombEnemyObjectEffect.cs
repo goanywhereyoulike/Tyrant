@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BombEnemyObjectEffect : MonoBehaviour
 {
-    [SerializeField] private GameObject gameObject;
+    [SerializeField] private GameObject Obj;
     private Animator animator;
     [SerializeField]
     BombEnemy bombEnemy = new BombEnemy();
@@ -19,24 +19,27 @@ public class BombEnemyObjectEffect : MonoBehaviour
     {
         isEnter = false;
         animator.gameObject.SetActive(false);
-        gameObject.GetComponent<BombEnemy>().Killed();
+        Obj.GetComponent<BombEnemy>().Killed();
         //gameObject.SetActive(false);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Player" && !isEnter)
+        if (!isEnter)
         {
-            Player player = collision.gameObject.GetComponent<Player>();
-            player.TakeDamage(bombEnemy.Damage);
-            isEnter = true;
-        }
+            if (collision.gameObject.tag == "Player")
+            {
+                Player player = collision.gameObject.GetComponent<Player>();
+                player.TakeDamage(bombEnemy.Damage);
+                isEnter = true;
+            }
 
-        if (collision.gameObject.tag == "Tower" && !isEnter)
-        {
-            Tower tower = collision.gameObject.GetComponent<Tower>();
-            tower.TakeDamage(bombEnemy.Damage);
-            isEnter = true;
+            if (collision.gameObject.tag == "Tower")
+            {
+                Tower tower = collision.gameObject.GetComponent<Tower>();
+                tower.TakeDamage(bombEnemy.Damage);
+                isEnter = true;
+            }
         }
     }
 }

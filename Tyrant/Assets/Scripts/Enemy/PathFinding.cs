@@ -1,8 +1,7 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Pathfinding 
+public class Pathfinding
 {
     private List<NodePath.Node> openList;
     private List<NodePath.Node> closeList;
@@ -34,7 +33,7 @@ public class Pathfinding
         {
             foreach (var block in objects.blockObject)
             {
-                if (row == block.x && column == block.y )
+                if (row == block.x && column == block.y)
                 {
                     return true;
                 }
@@ -71,10 +70,10 @@ public class Pathfinding
 
         openList.Add(node);
         node.opened = true;
-      
+
         var end = nodePath.FindNode(Mathf.FloorToInt(endposition.x), Mathf.FloorToInt(endposition.y));
 
-        if(isBlock(end.r,end.c))
+        if (isBlock(end.r, end.c))
         {
             end = lastend;
         }
@@ -87,82 +86,85 @@ public class Pathfinding
         {
             var current = OpenList[0];
             OpenList.RemoveAt(0);
-
-            if (current.c == end.c && current.r == end.r)
+            if (end != null)
             {
-                found = true;
-            }
-            else
-            {
-                //eight direction
-                for (int i = 0; i < current.neighbors.Count; i++)
+                if (current.c == end.c && current.r == end.r)
                 {
-                    if (current.neighbors[i] != null)
+                    found = true;
+                }
+                else
+                {
+                    //eight direction
+                    for (int i = 0; i < current.neighbors.Count; i++)
                     {
-                        if (isBlock(current.neighbors[i].r, current.neighbors[i].c))
+                        if (current.neighbors[i] != null)
                         {
-                            continue;
-                        }
-
-                        current.neighbors[i].h = GetHCost(current.neighbors[i].r, current.neighbors[i].c, end.r, end.c);
-                        var G = current.neighbors[i].g + GetGCost();
-                        float F = G + current.neighbors[i].h;
-
-                        if (!current.neighbors[i].opened)
-                        {
-                            if (OpenList.Count != 0)
+                            if (isBlock(current.neighbors[i].r, current.neighbors[i].c))
                             {
-                                for (int op = 0; op < OpenList.Count; op++)
+                                continue;
+                            }
+
+                            current.neighbors[i].h = GetHCost(current.neighbors[i].r, current.neighbors[i].c, end.r, end.c);
+                            var G = current.neighbors[i].g + GetGCost();
+                            float F = G + current.neighbors[i].h;
+
+                            if (!current.neighbors[i].opened)
+                            {
+                                if (OpenList.Count != 0)
                                 {
-                                    if (F < OpenList[op].g + OpenList[op].h)
+                                    for (int op = 0; op < OpenList.Count; op++)
+                                    {
+                                        if (F < OpenList[op].g + OpenList[op].h)
+                                        {
+                                            current.neighbors[i].opened = true;
+                                            current.neighbors[i].parent = current;
+                                            current.neighbors[i].g = G;
+                                            OpenList.Insert(op, current.neighbors[i]);
+                                            less = true;
+                                            break;
+                                        }
+                                    }
+                                    if (less == false)
                                     {
                                         current.neighbors[i].opened = true;
                                         current.neighbors[i].parent = current;
                                         current.neighbors[i].g = G;
-                                        OpenList.Insert(op, current.neighbors[i]);
-                                        less = true;
-                                        break;
+                                        OpenList.Add(current.neighbors[i]);
                                     }
+                                    less = false;
                                 }
-                                if (less == false)
+                                else
                                 {
                                     current.neighbors[i].opened = true;
                                     current.neighbors[i].parent = current;
                                     current.neighbors[i].g = G;
                                     OpenList.Add(current.neighbors[i]);
                                 }
-                                less = false;
                             }
-                            else
+                            if (!current.neighbors[i].closed)
                             {
-                                current.neighbors[i].opened = true;
-                                current.neighbors[i].parent = current;
-                                current.neighbors[i].g = G;
-                                OpenList.Add(current.neighbors[i]);
-                            }
-                        }
-                        if (!current.neighbors[i].closed)
-                        {
-                            if (F < current.neighbors[i].g + current.neighbors[i].h)
-                            {
-                                current.neighbors[i].g = G;
-                                current.neighbors[i].parent = current;
-                                for (int op = 0; op < OpenList.Count; op++)
+                                if (F < current.neighbors[i].g + current.neighbors[i].h)
                                 {
-                                    if (OpenList[op] == current.neighbors[i])
+                                    current.neighbors[i].g = G;
+                                    current.neighbors[i].parent = current;
+                                    for (int op = 0; op < OpenList.Count; op++)
                                     {
-                                        OpenList.Remove(OpenList[op]);
-                                        OpenList.Insert(0, current.neighbors[i]);
-                                        break;
+                                        if (OpenList[op] == current.neighbors[i])
+                                        {
+                                            OpenList.Remove(OpenList[op]);
+                                            OpenList.Insert(0, current.neighbors[i]);
+                                            break;
+                                        }
                                     }
                                 }
                             }
                         }
                     }
                 }
+
+                CloseList.Add(current);
+                current.closed = true;
             }
-            CloseList.Add(current);
-            current.closed = true;
         }
         return found;
     }

@@ -137,7 +137,7 @@ GameObject:
   - component: {fileID: 3713750060510784549}
   m_Layer: 6
   m_Name: Tower
-  m_TagString: CannonTower
+  m_TagString: Tower
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -268,7 +268,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DestroyedTower: {fileID: 7210653859842090583, guid: 5d05c266a885cb248a3786f8e6cdc689, type: 3}
-  health: 100
+  health: 25
   Healthbar: {fileID: 8175864840137596784}
   animator: {fileID: 2154632679574910804}
 --- !u!114 &8916406395599377104

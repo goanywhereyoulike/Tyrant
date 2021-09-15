@@ -319,7 +319,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DestroyedTower: {fileID: 5777696799881548026, guid: 72bed82f7d1faef4582f13d9bc8a8a19, type: 3}
-  health: 100
+  health: 50
   Healthbar: {fileID: 7878463339341565912}
   animator: {fileID: 127691142856124412}
 --- !u!114 &6641549557017462864

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyState:
-    maxHealth: 2
+    maxHealth: 4
     maxDamage: 10
     maxMoveSpeed: 1
     mass: 0
@@ -141,7 +141,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb7d8f4f0725d67409d7f2e47300f457, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameObject: {fileID: 2447981995903305430}
+  Obj: {fileID: 2447981995903305430}
   bombEnemy: {fileID: 8440924992914553284}
 --- !u!58 &1119729488333506866
 CircleCollider2D:

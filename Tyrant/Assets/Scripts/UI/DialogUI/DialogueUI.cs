@@ -27,11 +27,25 @@ public class DialogueUI : MonoBehaviour
     {
         foreach (string dialogue in dialogueObject.Dialogue)
         {
-            yield return textEffect.Run(dialogue, textLabel);
+            yield return runTextEffect(dialogue);
+            textLabel.text = dialogue;
             yield return new WaitUntil(() => InputManager.Instance.GetKeyDown("NextDialogue"));
         }
         Time.timeScale = 1;
         CloseDialogueBox();
+    }
+
+    private IEnumerator runTextEffect(string dialogue)
+    {
+        textEffect.Run(dialogue, textLabel);
+        while (textEffect.IsRunning)
+        {
+            yield return null;
+            if (InputManager.Instance.GetKeyDown("Interact"))
+            {
+                textEffect.Stop();
+            }
+        }
     }
     private void CloseDialogueBox()
     {

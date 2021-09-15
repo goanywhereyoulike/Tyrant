@@ -13,13 +13,21 @@ public class TextEffect : MonoBehaviour
         new Punctuation(new HashSet<char>(){',',';',':'},0.3f)
         // you can add more like this format
     };
+    public bool IsRunning { get; private set; }
 
-    public Coroutine Run(string textToType, TMP_Text textLabel)
+    private Coroutine textingCoroutine;
+    public void Run(string textToType, TMP_Text textLabel)
     {
-        return StartCoroutine(TypeText(textToType,textLabel));
+        textingCoroutine = StartCoroutine(TypeText(textToType,textLabel));
+    }
+    public void Stop()
+    {
+        StopCoroutine(textingCoroutine);
+        IsRunning = false;
     }
     private IEnumerator TypeText(string textToType, TMP_Text textLabel)
     {
+        IsRunning = true;
         textLabel.text = string.Empty;
 
         
@@ -46,7 +54,8 @@ public class TextEffect : MonoBehaviour
             }
             yield return null;
         }
-        textLabel.text = textToType;
+        IsRunning = false;
+        //textLabel.text = textToType;
     }
     private bool isPunctuation(char character, out float waitTime)
     {

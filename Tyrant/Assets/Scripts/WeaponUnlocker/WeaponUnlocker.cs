@@ -22,7 +22,7 @@ public class WeaponUnlocker : PickUp
     }
     private void Update()
     {
-        if (CanBePicked && InputManager.Instance.GetKey("Interact"))
+        if (CanBePicked && InputManager.Instance.GetKeyDown("Interact"))
         {
             Interact(player);
         }

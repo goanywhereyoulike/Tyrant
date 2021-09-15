@@ -24,7 +24,7 @@ public class PSC : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDamag
             {
                 gameObject.SetActive(false);
                 UnRegisterToLocator();
-                SceneManager.LoadScene("Win");
+                SceneManager.LoadScene("WinScene");
             }
         }
     }

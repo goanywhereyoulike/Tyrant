@@ -32,6 +32,11 @@ public class BombEnemyObjectEffect : MonoBehaviour
             isEnter = true;
         }
 
-        
+        if (collision.gameObject.tag == "Tower" && !isEnter)
+        {
+            Tower tower = collision.gameObject.GetComponent<Tower>();
+            tower.TakeDamage(bombEnemy.Damage);
+            isEnter = true;
+        }
     }
 }

@@ -9,15 +9,16 @@ public class BombEnemyObjectEffect : MonoBehaviour
     [SerializeField]
     BombEnemy bombEnemy = new BombEnemy();
 
-    bool isEnter = false;
-
+    //bool isEnter = false;
+    private List<IDamageable> damageables = new List<IDamageable>();
     private void Start()
     {
         animator = GetComponent<Animator>();
     }
     public void DestroyedObject()
     {
-        isEnter = false;
+        //isEnter = false;
+        damageables.Clear();
         animator.gameObject.SetActive(false);
         Obj.GetComponent<BombEnemy>().Killed();
         //gameObject.SetActive(false);
@@ -25,8 +26,22 @@ public class BombEnemyObjectEffect : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!isEnter)
+        if (damageables.Contains(collision.gameObject.GetComponent<IDamageable>()))
         {
+            return;
+        }
+        if (collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("Tower"))
+        {
+            
+            IDamageable damagebaleObejct = collision.gameObject.GetComponent<IDamageable>();
+            if (damagebaleObejct != null)
+            {
+                damagebaleObejct.TakeDamage(bombEnemy.Damage);
+                damageables.Add(damagebaleObejct);
+            }
+        }
+
+        /*{
             if (collision.gameObject.tag == "Player")
             {
                 Player player = collision.gameObject.GetComponent<Player>();
@@ -40,6 +55,6 @@ public class BombEnemyObjectEffect : MonoBehaviour
                 tower.TakeDamage(bombEnemy.Damage);
                 isEnter = true;
             }
-        }
+        }*/
     }
 }

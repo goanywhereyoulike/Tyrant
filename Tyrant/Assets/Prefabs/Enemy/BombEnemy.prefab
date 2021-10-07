@@ -15,12 +15,12 @@ MonoBehaviour:
   enemyState:
     maxHealth: 4
     maxDamage: 10
-    maxMoveSpeed: 1
+    maxMoveSpeed: 10
     mass: 0
     timeBetweenAttacks: 2
     stopDistance: 1
     attackSpeed: 1
-    detectRange: 4
+    detectRange: 1
     maxArmor: 0
   mTarget: {fileID: 4707894365722169238, guid: e0342963580770d4bbbfa79b77e84777, type: 3}
   enemyUi: {fileID: 6129767443431876111}

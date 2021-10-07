@@ -3985,6 +3985,42 @@ PrefabInstance:
       propertyPath: Doors.Array.data[5]
       value: 
       objectReference: {fileID: 1027899629}
+    - target: {fileID: 4488405804619565659, guid: e3065554a13e24320bd7ae7aeca6a670, type: 3}
+      propertyPath: objectPoolItems.Array.size
+      value: 21
+      objectReference: {fileID: 0}
+    - target: {fileID: 4488405804619565659, guid: e3065554a13e24320bd7ae7aeca6a670, type: 3}
+      propertyPath: objectPoolItems.Array.data[19].tagName
+      value: boomerangebullet
+      objectReference: {fileID: 0}
+    - target: {fileID: 4488405804619565659, guid: e3065554a13e24320bd7ae7aeca6a670, type: 3}
+      propertyPath: objectPoolItems.Array.data[20].tagName
+      value: boomerangeenemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 4488405804619565659, guid: e3065554a13e24320bd7ae7aeca6a670, type: 3}
+      propertyPath: objectPoolItems.Array.data[19].amountToPool
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4488405804619565659, guid: e3065554a13e24320bd7ae7aeca6a670, type: 3}
+      propertyPath: objectPoolItems.Array.data[19].objectToPool
+      value: 
+      objectReference: {fileID: 3953673854791159322, guid: 83c8fe2a433a38d44acc8b15a8c729e3, type: 3}
+    - target: {fileID: 4488405804619565659, guid: e3065554a13e24320bd7ae7aeca6a670, type: 3}
+      propertyPath: objectPoolItems.Array.data[19].shouldExpand
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4488405804619565659, guid: e3065554a13e24320bd7ae7aeca6a670, type: 3}
+      propertyPath: objectPoolItems.Array.data[20].amountToPool
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4488405804619565659, guid: e3065554a13e24320bd7ae7aeca6a670, type: 3}
+      propertyPath: objectPoolItems.Array.data[20].objectToPool
+      value: 
+      objectReference: {fileID: 3777636570803404992, guid: b4461230960fd1c4cb17f892f5a7c1b6, type: 3}
+    - target: {fileID: 4488405804619565659, guid: e3065554a13e24320bd7ae7aeca6a670, type: 3}
+      propertyPath: objectPoolItems.Array.data[20].shouldExpand
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e3065554a13e24320bd7ae7aeca6a670, type: 3}
 --- !u!1001 &7972967070812177936

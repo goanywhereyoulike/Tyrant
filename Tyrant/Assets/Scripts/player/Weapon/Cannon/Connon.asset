@@ -15,6 +15,7 @@ MonoBehaviour:
   reloadTime: 10
   shootingDelayTime: 0.5
   bulletShootingSpeed: 10
+  damage: 0.2
   maxBulletCount: 10
   maxBulletPerClipCount: 10
   isLocked: 0

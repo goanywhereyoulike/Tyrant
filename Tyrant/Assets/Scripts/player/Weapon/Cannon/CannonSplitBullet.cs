@@ -2,19 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LaserBullet : Bullet
+public class CannonSplitBullet : Bullet
 {
-    [SerializeField]
-    private Animator animator = null;
-
-    private void Start()
-    {
-        animator = GetComponent<Animator>();
-    }
-
     public float MovingRange { get; set; }
-    public float ForzenTime { get; set; }
-    public float FrozenSpeed { get; set; }
     protected override void BulletMoving()
     {
         base.BulletMoving();
@@ -27,13 +17,13 @@ public class LaserBullet : Bullet
         }
     }
 
-    protected override void OnhitEffect(Vector3 objectPosition)
+    protected override void OnhitEffect()
     {
         base.OnhitEffect();
-        var effectObject = ObjectPoolManager.Instance.GetPooledObject("LaserBulletEffect");
+        var effectObject = ObjectPoolManager.Instance.GetPooledObject("ConnonBulletEffect");
         if (effectObject)
         {
-            effectObject.transform.position = objectPosition;
+            effectObject.transform.position = transform.position;
             effectObject.SetActive(true);
         }
     }
@@ -42,10 +32,8 @@ public class LaserBullet : Bullet
     {
         base.OnHit(Enemy);
 
-        //Enemy.TakeDamage(Damage);
-        var enemyClass = Enemy.GetComponent<Enemy>();
-        enemyClass.SlowDown(ForzenTime, FrozenSpeed);
-        enemyClass.TakeDamage(Damage);
+        Enemy.GetComponent<Enemy>().TakeDamage(Damage);
+        //IPushable hitObject = Enemy.GetComponent<IPushable>();
     }
 
     private void Update()
@@ -57,13 +45,20 @@ public class LaserBullet : Bullet
     {
         if (collision.gameObject.tag == "Enemy")
         {
-            //Debug.Log(damage);
             OnHit(collision.gameObject);
-            OnhitEffect(collision.gameObject.transform.position);
+
         }
+
         if (collision.gameObject.tag == "Wall")
         {
             gameObject.SetActive(false);
         }
+
+        if (collision.gameObject.tag == "Boss")
+        {
+            //Debug.Log(damage);
+            //gameObject.SetActive(false);
+        }
     }
+
 }

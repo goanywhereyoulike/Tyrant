@@ -54,6 +54,8 @@ public class SpawnManager : MonoBehaviour
         ObjectPoolManager.Instance.InstantiateObjects("bombenemy");
         ObjectPoolManager.Instance.InstantiateObjects("armorenemy");
         ObjectPoolManager.Instance.InstantiateObjects("boomerangeenemy");
+        ObjectPoolManager.Instance.InstantiateObjects("xrangeenemy");
+        ObjectPoolManager.Instance.InstantiateObjects("meleeenemy");
         ObjectPoolManager.Instance.InstantiateObjects("DropItem");
         StartLevel = false;
         enemies = new List<GameObject>();
@@ -314,6 +316,34 @@ public class SpawnManager : MonoBehaviour
                             currentRoom.roomSpawns[count].SpawnCount++;
                             print("spawn");
                             break;
+                        case Wave.Enemytype.meleeenemy:
+                            spawnMax = new Vector2(currentRoom.roomSpawns[count].SpMax.x, currentRoom.roomSpawns[count].SpMax.y);
+                            spawnMin = new Vector2(currentRoom.roomSpawns[count].SpMin.x, currentRoom.roomSpawns[count].SpMin.y);
+                            spawnX = Random.Range((int)currentRoom.roomSpawns[count].SpMin.x, (int)currentRoom.roomSpawns[count].SpMax.x);
+                            spawnY = Random.Range((int)currentRoom.roomSpawns[count].SpMin.y, (int)currentRoom.roomSpawns[count].SpMax.y);
+                            spawnPosition = new Vector2(spawnX, spawnY);
+
+                            enemyObject = ObjectPoolManager.Instance.GetPooledObject("meleeenemy");
+                            enemyObject.transform.position = spawnPosition;
+                            enemyObject.SetActive(true);
+                            currentRoom.roomSpawns[count].Enemies.Add(enemyObject);
+                            currentRoom.roomSpawns[count].SpawnCount++;
+                            print("spawn");
+                            break;
+                        case Wave.Enemytype.xrangeenemy:
+                            spawnMax = new Vector2(currentRoom.roomSpawns[count].SpMax.x, currentRoom.roomSpawns[count].SpMax.y);
+                            spawnMin = new Vector2(currentRoom.roomSpawns[count].SpMin.x, currentRoom.roomSpawns[count].SpMin.y);
+                            spawnX = Random.Range((int)currentRoom.roomSpawns[count].SpMin.x, (int)currentRoom.roomSpawns[count].SpMax.x);
+                            spawnY = Random.Range((int)currentRoom.roomSpawns[count].SpMin.y, (int)currentRoom.roomSpawns[count].SpMax.y);
+                            spawnPosition = new Vector2(spawnX, spawnY);
+
+                            enemyObject = ObjectPoolManager.Instance.GetPooledObject("xrangeenemy");
+                            enemyObject.transform.position = spawnPosition;
+                            enemyObject.SetActive(true);
+                            currentRoom.roomSpawns[count].Enemies.Add(enemyObject);
+                            currentRoom.roomSpawns[count].SpawnCount++;
+                            print("spawn");
+                            break;
                         default:
                             break;
                     }
@@ -421,6 +451,34 @@ public class SpawnManager : MonoBehaviour
                             spawnPosition = new Vector2(spawnX, spawnY);
 
                             enemyObject = ObjectPoolManager.Instance.GetPooledObject("boomerangeenemy");
+                            enemyObject.transform.position = spawnPosition;
+                            enemyObject.SetActive(true);
+                            currentRoom.roomSpawns[count].Enemies.Add(enemyObject);
+                            currentRoom.roomSpawns[count].SpawnCount++;
+                            print("spawn");
+                            break;
+                        case Wave.Enemytype.meleeenemy:
+                            spawnMax = new Vector2(currentRoom.roomSpawns[count].SpMax.x, currentRoom.roomSpawns[count].SpMax.y);
+                            spawnMin = new Vector2(currentRoom.roomSpawns[count].SpMin.x, currentRoom.roomSpawns[count].SpMin.y);
+                            spawnX = Random.Range((int)currentRoom.roomSpawns[count].SpMin.x, (int)currentRoom.roomSpawns[count].SpMax.x);
+                            spawnY = Random.Range((int)currentRoom.roomSpawns[count].SpMin.y, (int)currentRoom.roomSpawns[count].SpMax.y);
+                            spawnPosition = new Vector2(spawnX, spawnY);
+
+                            enemyObject = ObjectPoolManager.Instance.GetPooledObject("meleeenemy");
+                            enemyObject.transform.position = spawnPosition;
+                            enemyObject.SetActive(true);
+                            currentRoom.roomSpawns[count].Enemies.Add(enemyObject);
+                            currentRoom.roomSpawns[count].SpawnCount++;
+                            print("spawn");
+                            break;
+                        case Wave.Enemytype.xrangeenemy:
+                            spawnMax = new Vector2(currentRoom.roomSpawns[count].SpMax.x, currentRoom.roomSpawns[count].SpMax.y);
+                            spawnMin = new Vector2(currentRoom.roomSpawns[count].SpMin.x, currentRoom.roomSpawns[count].SpMin.y);
+                            spawnX = Random.Range((int)currentRoom.roomSpawns[count].SpMin.x, (int)currentRoom.roomSpawns[count].SpMax.x);
+                            spawnY = Random.Range((int)currentRoom.roomSpawns[count].SpMin.y, (int)currentRoom.roomSpawns[count].SpMax.y);
+                            spawnPosition = new Vector2(spawnX, spawnY);
+
+                            enemyObject = ObjectPoolManager.Instance.GetPooledObject("xrangeenemy");
                             enemyObject.transform.position = spawnPosition;
                             enemyObject.SetActive(true);
                             currentRoom.roomSpawns[count].Enemies.Add(enemyObject);

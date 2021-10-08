@@ -8,6 +8,7 @@ public class RoomManager : MonoBehaviour
 
     private int roomId;
 
+    //public cameracontroller camera;
     private bool isBossRoom;
 
     private static RoomManager instance = null;
@@ -46,6 +47,8 @@ public class RoomManager : MonoBehaviour
             if (Doors[i].roomID <= RoomId && SpawnManager.Instance.RoomClear)
             {
                 Doors[i].Animator.SetBool("IsClose", true);
+                //Doors[i].gameObject.transform.position = Vector3.Lerp(Camera.main.transform.position, Doors[i].gameObject.transform.position, 2.0f * Time.deltaTime);
+                
             }
             else if (RoomId != 0)
             {

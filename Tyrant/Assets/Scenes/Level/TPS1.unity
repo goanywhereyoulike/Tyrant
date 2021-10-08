@@ -674,6 +674,8 @@ GameObject:
   - component: {fileID: 275897701}
   - component: {fileID: 275897700}
   - component: {fileID: 275897699}
+  - component: {fileID: 275897704}
+  - component: {fileID: 275897703}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -695,6 +697,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 1068628303}
   playerViewZone: 0
+  cameraMoving: {fileID: 275897704}
 --- !u!81 &275897700
 AudioListener:
   m_ObjectHideFlags: 0
@@ -754,12 +757,46 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 275897698}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalPosition: {x: 30.52, y: 8.12, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &275897703
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 275897698}
+  m_Enabled: 0
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d46508f7b33117d4f8edc83abc834148, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &275897704
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 275897698}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c1d14908135235429d829cbe9f721fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cameraMovingSpeed: 10
+  lerpPos:
+  - {x: 0, y: 0, z: 0}
 --- !u!1 &303306155 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4707894363968585239, guid: e0342963580770d4bbbfa79b77e84777, type: 3}
@@ -2703,6 +2740,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7130684735778634844, guid: fb083abcc3b7b2844b31026d194bd151, type: 3}
+      propertyPath: cameraMoving
+      value: 
+      objectReference: {fileID: 275897704}
+    - target: {fileID: 7130684735778634844, guid: fb083abcc3b7b2844b31026d194bd151, type: 3}
       propertyPath: waveDelayTurnOn
       value: 1
       objectReference: {fileID: 0}
@@ -3961,6 +4002,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
+    - target: {fileID: 4488405804283684250, guid: e3065554a13e24320bd7ae7aeca6a670, type: 3}
+      propertyPath: camera
+      value: 
+      objectReference: {fileID: 275897699}
     - target: {fileID: 4488405804283684250, guid: e3065554a13e24320bd7ae7aeca6a670, type: 3}
       propertyPath: Doors.Array.data[0]
       value: 

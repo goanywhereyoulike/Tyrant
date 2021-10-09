@@ -5,8 +5,7 @@ using UnityEngine.UI;
 
 public class Tower : MonoBehaviour, IDamageable, GameObjectsLocator.IGameObjectRegister
 {
-    // Start is called before the first frame update
-   
+    public TowerTemplate towerData;
     public GameObject DestroyedTower;
 
     [SerializeField]
@@ -32,6 +31,8 @@ public class Tower : MonoBehaviour, IDamageable, GameObjectsLocator.IGameObjectR
     [SerializeField]
     private Slider Healthbar;
 
+    TowerManager towerMngr;
+
     PlayerMovement player;
     public Animator animator;
     //public Transform targetpos;
@@ -41,8 +42,11 @@ public class Tower : MonoBehaviour, IDamageable, GameObjectsLocator.IGameObjectR
     {
         player = FindObjectOfType<PlayerMovement>();
         animator = GetComponent<Animator>();
+        health = towerData.health;
         Healthbar.maxValue = health;
         Healthbar.value = health;
+
+        towerMngr = FindObjectOfType<TowerManager>();
         RegisterToLocator();
     }
 
@@ -63,6 +67,12 @@ public class Tower : MonoBehaviour, IDamageable, GameObjectsLocator.IGameObjectR
     {
         Destroy(gameObject.transform.parent.gameObject);
         Instantiate(DestroyedTower, transform.position, transform.rotation);
+        if (towerMngr)
+        {
+            towerMngr.DecreaseTowerlimit();
+        }
+
+
     
     }
 

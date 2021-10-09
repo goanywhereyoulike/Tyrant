@@ -2018,3 +2018,7 @@ MonoBehaviour:
     objectToPool: {fileID: 6723065293706111440, guid: 4bde7f85894a9b147a452296632cc516, type: 3}
     amountToPool: 1
     shouldExpand: 1
+  - tagName: LightingTowerBullet
+    objectToPool: {fileID: 1852333693292672983, guid: 9c5f79227f90b8f4d969999b19b465b7, type: 3}
+    amountToPool: 5
+    shouldExpand: 1

@@ -83,6 +83,7 @@ public class TowerManager : MonoBehaviour
         ObjectPoolManager.Instance.InstantiateObjects("TowerBullet");
         ObjectPoolManager.Instance.InstantiateObjects("CannonTowerBullet");
         ObjectPoolManager.Instance.InstantiateObjects("ChainTowerBullet");
+        ObjectPoolManager.Instance.InstantiateObjects("LightingTowerBullet");
         player = FindObjectOfType<PlayerMovement>();
         for (int i = 0; i < 3; i++)
         {
@@ -102,6 +103,18 @@ public class TowerManager : MonoBehaviour
 
         //towerroomInfos.towerroomInfo.Reverse(RoomManager.Instance.);
     }
+
+    public void DecreaseTowerlimit()
+    {
+        TowerNumber--;
+        if (TowerNumber < 0)
+        {
+            TowerNumber = 0;
+        }
+
+        TowerNumberText.text = SetTowerNumberUI(TowerNumber, TowerNumberLimit).ToString();
+    }
+
 
     string SetTowerNumberUI(int towernumber, int towerlimit)
     {
@@ -222,7 +235,6 @@ public class TowerManager : MonoBehaviour
             PreChainTowerSprite.color = Color.red;
             IsReachTowerNumberLimit = true;
         }
-
 
     }
     void CheckCoin()

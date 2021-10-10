@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 
 public class RoomManager : MonoBehaviour
 {
@@ -10,7 +10,7 @@ public class RoomManager : MonoBehaviour
 
     //public cameracontroller camera;
     private bool isBossRoom;
-
+    public GameObject[] FogOfWar;
     private static RoomManager instance = null;
     public static RoomManager Instance { get => instance; }
     public int RoomId
@@ -48,7 +48,7 @@ public class RoomManager : MonoBehaviour
             {
                 Doors[i].Animator.SetBool("IsClose", true);
                 //Doors[i].gameObject.transform.position = Vector3.Lerp(Camera.main.transform.position, Doors[i].gameObject.transform.position, 2.0f * Time.deltaTime);
-                
+                FogOfWar[roomId].SetActive(false);
             }
             else if (RoomId != 0)
             {

@@ -6,10 +6,16 @@ public class Cannon : Weapon
 {
     private ConnonStates connonStates = null;
     private int currentAmmo;
-    public float reloadTime = 1f;
+
+    [SerializeField]
+    private float reloadTime = 0.5f;
+
+    //private bool isReloading = false;
+    public GameObject reloadUI;
     public GameObject[] ammoImages;
     protected override void Start()
     {
+        reloadUI.SetActive(false);
         base.Start();
         if (weaponInit)
         {
@@ -29,22 +35,31 @@ public class Cannon : Weapon
     }
     private void Update()
     {
-        if (currentAmmo <= 0)
+        //if(isReloading)
+        //{
+        //    return;
+        //}
+        if (currentAmmo <= 4)
         {
-            Reload();
+            StartCoroutine(Reload());
             return;
         }
     }
-    void Reload()
+    IEnumerator Reload()
     {
+        //isReloading = true;
         if (InputManager.Instance.GetKeyDown("Reload"))
         {
+            reloadUI.SetActive(true);
+            yield return new WaitForSeconds(reloadTime);
             for (int i = 0; i <=4; i++)
             {
                 ammoImages[i].gameObject.SetActive(true);
             }
             Debug.Log("reloading");
             currentAmmo = connonStates.MaxAmmo;
+            reloadUI.SetActive(false);
+            //isReloading = false;
         }
     }
     public override void Fire()

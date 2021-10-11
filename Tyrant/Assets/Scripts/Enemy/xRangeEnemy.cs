@@ -87,18 +87,20 @@ public class xRangeEnemy : Enemy
         {
             for (int i = 1; i <= 3; i++)
             {
-                Vector3 direction = mTarget.position - transform.position;
+                Vector3 direction = transform.position - mTarget.position;
                 direction.Normalize();
                 bObject = ObjectPoolManager.Instance.GetPooledObject("xbullet");
-                //float angle = i * 60 * Mathf.Deg2Rad;
-                //float x = Mathf.Cos(angle) * direction.x - Mathf.Sin(angle) * direction.y;
-                //float y = Mathf.Sin(angle) * direction.x + Mathf.Cos(angle) * direction.y;
-                //Vector3 rotateDir = new Vector3(x, y, 0);
                 bObject.transform.position = transform.position;
+                float angle = i * 60 * Mathf.Deg2Rad;
+                float x = Mathf.Cos(angle) * direction.x - Mathf.Sin(angle) * direction.y;
+                float y = Mathf.Sin(angle) * direction.x + Mathf.Cos(angle) * direction.y;
+                Vector3 rotateDir = new Vector3(x, y, 0);
                 var bo = bObject.GetComponent<XBullet>();
-                bo.Direction = direction;//rotateDir.normalized
+                bo.StartPosition = transform.position;
+                bo.Direction = rotateDir.normalized;
                 bo.Damage = (int)damage;
                 bo.Range = stopDistance;
+                bObject.SetActive(true);
             }
         }
     }

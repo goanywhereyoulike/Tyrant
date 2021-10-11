@@ -46,7 +46,6 @@ public class LightingShoot : MonoBehaviour
     void Start()
     {
         tower = GetComponentInParent<Tower>();
-        bullets = new List<LightingTowerBullet>();
         IsCoolDown = false;
         Bulletnum = 0.0f;
 
@@ -59,8 +58,6 @@ public class LightingShoot : MonoBehaviour
         ColdDown.maxValue = BulletLimit;
         ColdDown.value = float.IsNaN(Bulletnum) ? 0f : Bulletnum;
         ColdDown.fillRect.transform.GetComponent<Image>().color = Color.yellow;
-
-        AttackableTargets = new List<GameObject>();
     }
     public void UpdateSlider()
     {
@@ -73,15 +70,61 @@ public class LightingShoot : MonoBehaviour
 
     void Update()
     {
+        if (IsCoolDown)
+        {
+            LightingTowerBullet bullet = transform.parent.gameObject.GetComponentInChildren<LightingTowerBullet>();
+            if (bullet)
+            {
+                bullet.gameObject.SetActive(false);
+
+            }
+
+            ColdDown.fillRect.transform.GetComponent<Image>().color = Color.red;
+
+            Bulletnum -= CoolDownSpeed * Time.deltaTime;
+            ColdDown.value = Bulletnum;
+
+            if (Bulletnum <= 0)
+            {
+                Bulletnum = 0;
+                ColdDown.value = Bulletnum;
+                ColdDown.fillRect.transform.GetComponent<Image>().color = Color.yellow;
+                IsCoolDown = false;
+            }
+
+
+        }
     }
 
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        
 
+        string tag = collision.gameObject.tag;
+        Enemy enemy = collision.gameObject.GetComponent<Enemy>();
+        PSC levelBoss = collision.gameObject.GetComponent<PSC>();
+        if (!IsCoolDown)
+        {
+            if (enemy || levelBoss)
+            {
+                Bulletnum += Time.deltaTime;
+                ColdDown.value = Bulletnum;
 
+                if (Bulletnum >= BulletLimit)
+                {
+                    IsCoolDown = true;
+                }
 
+                if (enemy)
+                {
+                    enemy.TakeDamage(towerData.bulletDamage * Time.deltaTime);
+                }
+                if (levelBoss)
+                {
+                    levelBoss.TakeDamage(towerData.bulletDamage * Time.deltaTime);
+                }
+            }
+        }
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -89,7 +132,8 @@ public class LightingShoot : MonoBehaviour
         Enemy enemy = collision.gameObject.GetComponent<Enemy>();
         PSC levelBoss = collision.gameObject.GetComponent<PSC>();
         GameObject bullet = ObjectPoolManager.Instance.GetPooledObject("LightingTowerBullet");
-        if (bullet )
+
+        if (bullet && !IsCoolDown)
         {
             if (enemy || levelBoss)
             {
@@ -106,7 +150,7 @@ public class LightingShoot : MonoBehaviour
                     bullet.gameObject.transform.parent = transform;
                 }
                 bullet.SetActive(true);
-          
+
             }
 
         }

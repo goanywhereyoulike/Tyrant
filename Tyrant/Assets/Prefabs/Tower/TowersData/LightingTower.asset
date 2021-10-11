@@ -17,7 +17,7 @@ MonoBehaviour:
   distanceToShoot: 5
   fireRate: 1
   bulletForce: 20
-  bulletDamage: 5
+  bulletDamage: 1
   price: 200
   BulletLimit: 10
   CoolDownSpeed: 0.5

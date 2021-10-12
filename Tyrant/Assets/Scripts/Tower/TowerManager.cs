@@ -82,6 +82,9 @@ public class TowerManager : MonoBehaviour
     private bool isRoomCheck;
     private int checkcount;
     private int lastroom;
+    [SerializeField]
+    List<bool> SelectAbleToSet = new List<bool>(4);
+
 
     List<bool> IsAbleToSet = new List<bool>(4);
     GameObject preTower;
@@ -99,6 +102,7 @@ public class TowerManager : MonoBehaviour
         for (int i = 0; i < 4; i++)
         {
             IsAbleToSet.Add(false);
+            SelectAbleToSet.Add(false);
         }
 
         Tower1Price.text = Towers[0].price.ToString();
@@ -239,6 +243,7 @@ public class TowerManager : MonoBehaviour
             for (int i = 0; i < IsAbleToSet.Count; ++i)
             {
                 IsAbleToSet[i] = false;
+                SelectAbleToSet[i] = false;
 
             }
             PreTowerSprite.color = Color.red;
@@ -249,12 +254,67 @@ public class TowerManager : MonoBehaviour
         }
 
     }
+
+    void CheckSelection()
+    {
+        if (SelectAbleToSet[0])
+        {
+            PreTowerSprite.color = Color.white;
+            IsAbleToSet[0] = true;
+        }
+        else
+        {
+            PreTowerSprite.color = Color.red;
+            IsAbleToSet[0] = false;
+          
+
+        }
+        if (SelectAbleToSet[1])
+        {
+            PreCannonTowerSprite.color = Color.white;
+            IsAbleToSet[1] = true;
+        }
+        else
+        {
+            PreCannonTowerSprite.color = Color.red;
+            IsAbleToSet[1] = false;
+        
+
+        }
+        if (SelectAbleToSet[2])
+        {
+            PreChainTowerSprite.color = Color.white;
+            IsAbleToSet[2] = true;
+        }
+        else
+        {
+            PreChainTowerSprite.color = Color.red;
+            IsAbleToSet[2] = false;
+         
+
+        }
+        if (SelectAbleToSet[3])
+        {
+            PreLightingTowerSprite.color = Color.white;
+            IsAbleToSet[3] = true;
+        }
+        else
+        {
+            PreLightingTowerSprite.color = Color.red;
+            IsAbleToSet[3] = false;
+           
+
+        }
+
+        IsReachTowerNumberLimit = true;
+    }
     void CheckCoin()
     {
         if (IsReachTowerNumberLimit)
         {
             return;
         }
+
         if (player.GetComponent<Player>().coin < Towers[0].price)
         {
             PreTowerSprite.color = Color.red;
@@ -445,19 +505,19 @@ public class TowerManager : MonoBehaviour
             return;
         }
 
-        if (player.GetComponent<Player>().coin == Towers[0].price)
+        if (player.GetComponent<Player>().coin >= Towers[0].price)
         {
             Tower1Cover.fillAmount = 1.0f;
         }
-        if (player.GetComponent<Player>().coin == Towers[1].price)
+        if (player.GetComponent<Player>().coin >= Towers[1].price)
         {
             Tower2Cover.fillAmount = 1.0f;
         }
-        if (player.GetComponent<Player>().coin == Towers[2].price)
+        if (player.GetComponent<Player>().coin >= Towers[2].price)
         {
             Tower3Cover.fillAmount = 1.0f;
         }
-        if (player.GetComponent<Player>().coin == Towers[3].price)
+        if (player.GetComponent<Player>().coin >= Towers[3].price)
         {
             Tower4Cover.fillAmount = 1.0f;
         }
@@ -484,6 +544,7 @@ public class TowerManager : MonoBehaviour
         ApplyUnlock();
         CheckNumberLimit();
         CheckCoin();
+        CheckSelection();
         Vector2 PlayerPos = player.transform.position + offset;
         SetTower(PlayerPos);
 

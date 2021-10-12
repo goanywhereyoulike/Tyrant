@@ -1584,7 +1584,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1804423044535300180, guid: e0342963580770d4bbbfa79b77e84777, type: 3}
       propertyPath: coin
-      value: 999
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1804423044535300180, guid: e0342963580770d4bbbfa79b77e84777, type: 3}
       propertyPath: dialogueUI

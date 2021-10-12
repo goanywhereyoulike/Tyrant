@@ -70,8 +70,7 @@ public class LightingShoot : MonoBehaviour
 
     void Update()
     {
-        AddTarget();
-        Attack();
+
         if (IsCoolDown)
         {
             List<Enemy> enemies = GameObjectsLocator.Instance.Get<Enemy>();
@@ -106,10 +105,13 @@ public class LightingShoot : MonoBehaviour
 
 
         }
+        if (!IsCoolDown)
+        {
+            AddTarget();
+            Attack();
+            ApplyDamage();
 
-
-
-
+        }
     }
 
     //private void OnTriggerStay2D(Collider2D collision)
@@ -279,6 +281,20 @@ public class LightingShoot : MonoBehaviour
         }
     }
 
+    void ApplyDamage()
+    {
+        if (!IsCoolDown)
+        {
+            for (int i = 0; i < attacknumber; ++i)
+            {
+                Enemy enemy = Targets[i].GetComponent<Enemy>();
+                enemy.TakeDamage(towerData.bulletDamage * Time.deltaTime);
+
+            }
+        }
+
+
+    }
     void Attack()
     {
         for (int i = 0; i < Targets.Count; ++i)
@@ -293,21 +309,20 @@ public class LightingShoot : MonoBehaviour
             {
                 Enemy enemy = Targets[i].GetComponent<Enemy>();
 
-                if (attacknumber <= firenumber)
+
+                if (enemy)
                 {
-                    if (enemy)
+                    Bulletnum += Time.deltaTime * 0.5f;
+                    ColdDown.value = Bulletnum;
+
+                    if (Bulletnum >= BulletLimit)
                     {
-                        Bulletnum += Time.deltaTime * 0.5f;
-                        ColdDown.value = Bulletnum;
-
-                        if (Bulletnum >= BulletLimit)
-                        {
-                            IsCoolDown = true;
-                        }
-
+                        IsCoolDown = true;
                     }
 
                 }
+
+
                 if (enemy.IsDead)
                 {
                     LightingTowerBullet bullet = enemy.GetComponentInChildren<LightingTowerBullet>();
@@ -328,22 +343,23 @@ public class LightingShoot : MonoBehaviour
                 {
                     Vector3 offset = new Vector3(0.0f, 0.5f, 0.0f);
                     GameObject bullet = ObjectPoolManager.Instance.GetPooledObject("LightingTowerBullet");
-                    
+
                     if (bullet && !Targets[i].GetComponentInChildren<LightingTowerBullet>() && (attacknumber < firenumber))
                     {
                         bullet.transform.parent = Targets[i].transform;
                         bullet.GetComponent<LightingTowerBullet>().SetTarget(transform.position + offset, Targets[i].gameObject.transform);
                         bullet.SetActive(true);
                         Bullets.Add(bullet);
+                        attacknumber++;
                     }
                 }
-                
-                if (attacknumber <= firenumber)
-                {
-                    enemy.TakeDamage(towerData.bulletDamage * Time.deltaTime);
-                    attacknumber++;
-                }
-                
+
+                //if (attacknumber <= firenumber)
+                //{
+                //    enemy.TakeDamage(towerData.bulletDamage * Time.deltaTime);
+                //    attacknumber++;
+                //}
+
 
 
 

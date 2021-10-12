@@ -602,6 +602,8 @@ MonoBehaviour:
     keyCode: 114
   - name: Interact
     keyCode: 102
+  - name: PreBuildLightingTower
+    keyCode: 52
   axesLibrary:
   - name: Horizontal
     positiveButton: 100

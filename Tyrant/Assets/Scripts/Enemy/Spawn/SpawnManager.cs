@@ -9,6 +9,8 @@ public class SpawnManager : MonoBehaviour
     public class room
     {
         public List<SpawnArea> roomSpawns;
+        public bool clear;
+        public bool isBossRoom;
     }
     public List<room> rooms = new List<room>();
 
@@ -207,6 +209,7 @@ public class SpawnManager : MonoBehaviour
                     {
                         isRoomCheck = false;
                         RoomClear = true;
+                        currentRoom.clear = true;
                         //foreach (var portal in Portals)
                         //{
                         //    Destroy(portal);

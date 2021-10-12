@@ -85,13 +85,21 @@ public class xRangeEnemy : Enemy
         base.AttackBehavior();
         if (mTarget != null)
         {
-            for (int i = 1; i <= 3; i++)
+            for (int i = 0; i < 3; i++)
             {
-                Vector3 direction = transform.position - mTarget.position;
+                Vector3 direction =  mTarget.position - transform.position;
                 direction.Normalize();
                 bObject = ObjectPoolManager.Instance.GetPooledObject("xbullet");
                 bObject.transform.position = transform.position;
-                float angle = i * 60 * Mathf.Deg2Rad;
+                float angle = 60 * Mathf.Deg2Rad;
+                if (i==2)
+                {
+                    angle *= -1;
+                }
+                else
+                {
+                    angle *= i;
+                }
                 float x = Mathf.Cos(angle) * direction.x - Mathf.Sin(angle) * direction.y;
                 float y = Mathf.Sin(angle) * direction.x + Mathf.Cos(angle) * direction.y;
                 Vector3 rotateDir = new Vector3(x, y, 0);

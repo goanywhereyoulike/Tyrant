@@ -39,6 +39,6 @@ public class cameracontroller : MonoBehaviour
         if (cameraMoving.MovingForward || cameraMoving.MovingBack)
             return;
 
-        Camera.main.transform.position = new Vector3(target.transform.position.x, target.transform.position.y, transform.position.z);
+        Camera.main.transform.position = new Vector3(target.transform.position.x, target.transform.position.y, -20);
     }
 }

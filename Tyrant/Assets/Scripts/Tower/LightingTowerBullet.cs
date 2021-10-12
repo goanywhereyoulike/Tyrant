@@ -29,8 +29,8 @@ public class LightingTowerBullet : MonoBehaviour
         lineRenderer.positionCount = 2;
         lineRenderer.SetPosition(0, startpos);
         target = newTarget;
+        lineRenderer.SetPosition(1, target.position);
 
-    
     }
 
     // Update is called once per frame

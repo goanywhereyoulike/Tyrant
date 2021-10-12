@@ -7,21 +7,18 @@ public class LightingShoot : MonoBehaviour
 {
 
     public TowerTemplate towerData;
-
-    List<LightingTowerBullet> bullets;
+    [SerializeField]
+    List<GameObject> Targets;
+    [SerializeField]
+    List<GameObject> Bullets;
 
     [SerializeField]
     Slider ColdDown;
 
     bool IsCoolDown = false;
 
-    [SerializeField]
-    bool HasAnimation = true;
 
-    bool IsAttacking = false;
 
-    private GameObject currentTarget = null;
-    private List<GameObject> AttackableTargets;
     Tower tower;
     PlayerMovement player;
     public Transform ShootPoint;
@@ -34,15 +31,14 @@ public class LightingShoot : MonoBehaviour
     public float CoolDownSpeed;
 
 
-    private bool IsChainTower;
-
     public float DistanceToShoot;
     public float BulletForce = 20.0f;
-    float firetime = 0.0f;
-    float duration = 0.0f;
+    float firenumber = 0.0f;
 
-    private Vector3 direction;
-    float angle;
+
+    [SerializeField]
+    float attacknumber = 0.0f;
+
     void Start()
     {
         tower = GetComponentInParent<Tower>();
@@ -52,12 +48,14 @@ public class LightingShoot : MonoBehaviour
         BulletLimit = towerData.BulletLimit;
         CoolDownSpeed = towerData.CoolDownSpeed;
         DistanceToShoot = towerData.distanceToShoot;
-        firetime = towerData.fireRate;
+        firenumber = towerData.fireRate;
         BulletForce = towerData.bulletForce;
 
         ColdDown.maxValue = BulletLimit;
         ColdDown.value = float.IsNaN(Bulletnum) ? 0f : Bulletnum;
         ColdDown.fillRect.transform.GetComponent<Image>().color = Color.yellow;
+        Targets = new List<GameObject>();
+        Bullets = new List<GameObject>();
     }
     public void UpdateSlider()
     {
@@ -70,6 +68,8 @@ public class LightingShoot : MonoBehaviour
 
     void Update()
     {
+        AddTarget();
+        Attack();
         if (IsCoolDown)
         {
             LightingTowerBullet bullet = transform.parent.gameObject.GetComponentInChildren<LightingTowerBullet>();
@@ -96,86 +96,204 @@ public class LightingShoot : MonoBehaviour
         }
     }
 
+    //private void OnTriggerStay2D(Collider2D collision)
+    //{
+    //    string tag = collision.gameObject.tag;
+    //    Enemy enemy = collision.gameObject.GetComponent<Enemy>();
+    //    PSC levelBoss = collision.gameObject.GetComponent<PSC>();
+    //    if (!IsCoolDown)
+    //    {
+    //        if (enemy || levelBoss)
+    //        {
+    //            if (!Targets.ContainsKey(collision.gameObject))
+    //            {
+    //                return;
+    //            }
+    //            Bulletnum += Time.deltaTime;
+    //            ColdDown.value = Bulletnum;
 
-    private void OnTriggerStay2D(Collider2D collision)
+    //            if (Bulletnum >= BulletLimit)
+    //            {
+    //                IsCoolDown = true;
+    //            }
+
+    //            if (enemy)
+    //            {
+    //                enemy.TakeDamage(towerData.bulletDamage * Time.deltaTime);
+    //            }
+    //            if (levelBoss)
+    //            {
+    //                levelBoss.TakeDamage(towerData.bulletDamage * Time.deltaTime);
+    //            }
+    //        }
+    //    }
+    //}
+    //private void OnTriggerEnter2D(Collider2D collision)
+    //{
+    //    string tag = collision.gameObject.tag;
+    //    Enemy enemy = collision.gameObject.GetComponent<Enemy>();
+    //    PSC levelBoss = collision.gameObject.GetComponent<PSC>();
+    //    GameObject bullet = ObjectPoolManager.Instance.GetPooledObject("LightingTowerBullet");
+    //    if (bullet && !IsCoolDown)
+    //    {
+    //        if (enemy || levelBoss)
+    //        {
+    //            attacknumber++;
+    //            if (attacknumber <= firenumber)
+    //            {
+    //                Targets.Add(collision.gameObject, true);
+    //                Vector3 offset = new Vector3(0.0f, 0.5f, 0.0f);
+    //                bullet.GetComponent<LightingTowerBullet>().SetTarget(transform.position + offset, collision.gameObject.transform);
+    //                if (enemy)
+    //                {
+    //                    bullet.gameObject.transform.parent = transform;
+
+    //                }
+    //                if (levelBoss)
+    //                {
+    //                    bullet.gameObject.transform.parent = transform;
+    //                }
+    //                bullet.SetActive(true);
+    //            }
+
+
+
+    //        }
+
+    //    }
+
+    //}
+
+    //private void OnTriggerExit2D(Collider2D collision)
+    //{
+
+    //    string tag = collision.gameObject.tag;
+    //    Enemy enemy = collision.gameObject.GetComponent<Enemy>();
+    //    PSC levelBoss = collision.gameObject.GetComponent<PSC>();
+
+    //    if (enemy || levelBoss)
+    //    {
+    //        attacknumber--;
+    //        Targets.Remove(collision.gameObject);
+    //        LightingTowerBullet bullet = transform.parent.gameObject.GetComponentInChildren<LightingTowerBullet>();
+    //        if (bullet)
+    //        {
+    //            bullet.gameObject.SetActive(false);
+
+
+    //        }
+    //    }
+
+
+
+    //}
+
+    void AddTarget()
     {
+        bool aimtoBoss = false;
 
-        string tag = collision.gameObject.tag;
-        Enemy enemy = collision.gameObject.GetComponent<Enemy>();
-        PSC levelBoss = collision.gameObject.GetComponent<PSC>();
-        if (!IsCoolDown)
+        if (GameObjectsLocator.Instance.Get<PSC>() != null)
         {
-            if (enemy || levelBoss)
+            List<PSC> level1boss = GameObjectsLocator.Instance.Get<PSC>();
+            if (level1boss.Count != 0)
             {
-                Bulletnum += Time.deltaTime;
-                ColdDown.value = Bulletnum;
+                GameObject targetboss = level1boss[0].gameObject;
+                float Distance = (targetboss.transform.position - transform.position).sqrMagnitude;
+                if (Distance < DistanceToShoot * DistanceToShoot)
+                {
+                    aimtoBoss = true;
+                    if (!Targets.Contains(targetboss))
+                    {
+                        Targets.Add(targetboss);
+                    }
 
-                if (Bulletnum >= BulletLimit)
-                {
-                    IsCoolDown = true;
                 }
+                else
+                {
+                    if (Targets.Contains(targetboss))
+                    {
+                        Targets.Remove(targetboss);
+                    }
+                    aimtoBoss = false;
+                }
+            }
+            else
+            {
+                aimtoBoss = false;
+            }
+        }
+        if (!aimtoBoss)
+        {
+            if (GameObjectsLocator.Instance.Get<Enemy>() == null)
+            {
+                return;
+            }
 
-                if (enemy)
+            List<Enemy> enemies = GameObjectsLocator.Instance.Get<Enemy>();
+            foreach (var enemy in enemies)
+            {
+                float Distance = (enemy.transform.position - transform.position).sqrMagnitude;
+                if (Distance < DistanceToShoot * DistanceToShoot)
                 {
-                    enemy.TakeDamage(towerData.bulletDamage * Time.deltaTime);
+                    if (!Targets.Contains(enemy.gameObject))
+                    {
+                        Targets.Add(enemy.gameObject);
+                    }
                 }
-                if (levelBoss)
+                else
                 {
-                    levelBoss.TakeDamage(towerData.bulletDamage * Time.deltaTime);
+                    if (Targets.Contains(enemy.gameObject))
+                    {
+                        Targets.Remove(enemy.gameObject);
+                    }
+
                 }
             }
         }
     }
-    private void OnTriggerEnter2D(Collider2D collision)
+
+    void Attack()
     {
-        string tag = collision.gameObject.tag;
-        Enemy enemy = collision.gameObject.GetComponent<Enemy>();
-        PSC levelBoss = collision.gameObject.GetComponent<PSC>();
-        GameObject bullet = ObjectPoolManager.Instance.GetPooledObject("LightingTowerBullet");
-
-        if (bullet && !IsCoolDown)
+        for (int i = 0; i < Targets.Count; ++i)
         {
-            if (enemy || levelBoss)
+            Enemy enemy = Targets[i].GetComponent<Enemy>();
+            if (enemy.IsDead)
             {
-                bullet.GetComponent<LightingTowerBullet>().bulletDamage = towerData.bulletDamage;
-                Vector3 offset = new Vector3(0.0f, 0.5f, 0.0f);
-                bullet.GetComponent<LightingTowerBullet>().SetTarget(transform.position + offset, collision.gameObject.transform);
-                if (enemy)
-                {
-                    bullet.gameObject.transform.parent = transform;
-
-                }
-                if (levelBoss)
-                {
-                    bullet.gameObject.transform.parent = transform;
-                }
-                bullet.SetActive(true);
-
+                Targets.Remove(enemy.gameObject);
+            }
+            else
+            {
+                enemy.TakeDamage(towerData.bulletDamage * Time.deltaTime);
             }
 
         }
 
+        //foreach (var target in Targets)
+        //{
+        //    Enemy enemy = target.GetComponent<Enemy>();
+        //    // PSC levelBoss = target.GetComponent<PSC>();
+
+        //    if (enemy)
+        //    {
+        //        if (!IsCoolDown)
+        //        {
+        //            Bulletnum += Time.deltaTime;
+        //            ColdDown.value = Bulletnum;
+
+        //            if (Bulletnum >= BulletLimit)
+        //            {
+        //                IsCoolDown = true;
+        //            }
+
+
+        //        }
+        //    }
+        //}
     }
-
-    private void OnTriggerExit2D(Collider2D collision)
+    IEnumerator DestroyBullet(GameObject bullet)
     {
-
-        string tag = collision.gameObject.tag;
-        Enemy enemy = collision.gameObject.GetComponent<Enemy>();
-        PSC levelBoss = collision.gameObject.GetComponent<PSC>();
-
-        if (enemy || levelBoss)
-        {
-            LightingTowerBullet bullet = transform.parent.gameObject.GetComponentInChildren<LightingTowerBullet>();
-            if (bullet)
-            {
-                bullet.gameObject.SetActive(false);
-
-            }
-        }
-
-
-
+        yield return new WaitForSeconds(0.01f);
+        bullet.SetActive(false);
     }
     void OnDrawGizmosSelected()
     {

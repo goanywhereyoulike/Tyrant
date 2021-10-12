@@ -2021,4 +2021,4 @@ MonoBehaviour:
   - tagName: LightingTowerBullet
     objectToPool: {fileID: 1852333693292672983, guid: 9c5f79227f90b8f4d969999b19b465b7, type: 3}
     amountToPool: 5
-    shouldExpand: 1
+    shouldExpand: 0

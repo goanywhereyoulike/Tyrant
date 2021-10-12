@@ -71,7 +71,22 @@ public class Tower : MonoBehaviour, IDamageable, GameObjectsLocator.IGameObjectR
         {
             towerMngr.DecreaseTowerlimit();
         }
+        LightingShoot ls = GetComponent<LightingShoot>();
+        if (ls)
+        {
+            List<Enemy> enemies = GameObjectsLocator.Instance.Get<Enemy>();
+            foreach (var enemy in enemies)
+            {
+                LightingTowerBullet bullet = enemy.GetComponentInChildren<LightingTowerBullet>();
+                if (bullet)
+                {
+                    bullet.gameObject.transform.parent = null;
+                    bullet.gameObject.SetActive(false);
 
+                }
+            }
+
+        }
 
     
     }

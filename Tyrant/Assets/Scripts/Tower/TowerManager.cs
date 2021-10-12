@@ -113,6 +113,7 @@ public class TowerManager : MonoBehaviour
         }
 
         TowerNumberText.text = SetTowerNumberUI(TowerNumber, TowerNumberLimit).ToString();
+        IsReachTowerNumberLimit = false;
     }
 
 

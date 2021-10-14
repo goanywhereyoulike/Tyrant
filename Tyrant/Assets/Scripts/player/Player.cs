@@ -33,8 +33,7 @@ public class Player : MonoBehaviour , IDamageable, GameObjectsLocator.IGameObjec
     private PlayerMovement playerMovement = null;
 
     public DialogueUI DialogueUI => dialogueUI;
-    
-    public IInteractable interactable { get; set; }
+   
 
     [SerializeField]
     private PlayerUI playerUI = null;
@@ -81,14 +80,6 @@ public class Player : MonoBehaviour , IDamageable, GameObjectsLocator.IGameObjec
         {
             MyInventory.DropPickUp(transform.position, MyInventory.GetPickUp("health potion"));
         }*/
-        if (InputManager.Instance.GetKeyDown("Interact"))
-        {
-            if (interactable!=null)
-            {
-                Time.timeScale = 0;
-                interactable.Interact(this);
-            }
-        }
     }
 
     IEnumerator Coin()

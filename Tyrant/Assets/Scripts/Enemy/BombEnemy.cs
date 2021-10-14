@@ -39,7 +39,7 @@ public class BombEnemy : Enemy
 
         base.Update();
 
-        MoveSpeed = (2 * EnemyState.MaxHealth - Health) * 4;
+        MoveSpeed = Mathf.Clamp((2 * EnemyState.MaxHealth - Health) * 4,1.0f,EnemyState.MaxMoveSpeed);
     }
 
     IEnumerator HealthDecay()
@@ -48,7 +48,7 @@ public class BombEnemy : Enemy
         {
             yield return new WaitForSeconds(0.5f);
             if (Health > 0.1)
-                TakeDamage(0.1f);
+                TakeDamage(EnemyState.MaxHealth*0.05f);
         }
     }
 

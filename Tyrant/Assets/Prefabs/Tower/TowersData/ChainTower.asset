@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de2d0873e4d494f45b39226787d49272, type: 3}
   m_Name: ChainTower
   m_EditorClassIdentifier: 
-  health: 100
+  health: 50
   type: ChainTower
   distanceToShoot: 3
   fireRate: 1

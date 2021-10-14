@@ -5,6 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class GameOverUI : MonoBehaviour
 {
+    private void Awake()
+    {
+        Cursor.visible = true;
+    }
     public void onReturnClicked()
     {
         SceneManager.LoadScene("MenuUI");

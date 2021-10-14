@@ -29,22 +29,24 @@ public class ChainTowerBullet : MonoBehaviour
             gameObject.SetActive(false);
             IsFired = false;
         }
+        if(tag == "Boss")
+        {
+            PSC levelBoss = collision.gameObject.GetComponent<PSC>();
+            levelBoss.TakeDamage(bulletDamage);
+        }
 
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
         string tag = collision.gameObject.tag;
         Enemy enemy = collision.gameObject.GetComponent<Enemy>();
-        PSC levelBoss = collision.gameObject.GetComponent<PSC>();
+        
 
         if (enemy)
         {
             enemy.TakeDamage(bulletDamage);
         }
-        if (levelBoss)
-        {
-            levelBoss.TakeDamage(bulletDamage);
-        }
+
         if (tag != "Chain" && tag != "Tower" )
         {
             GameObject effect = Instantiate(hitEffect, transform.position, Quaternion.identity);

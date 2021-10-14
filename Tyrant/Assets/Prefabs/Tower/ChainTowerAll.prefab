@@ -795,7 +795,7 @@ GameObject:
   - component: {fileID: 8435642582495110383}
   m_Layer: 6
   m_Name: Tower
-  m_TagString: ChainTower
+  m_TagString: Tower
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -927,7 +927,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   towerData: {fileID: 11400000, guid: b98cf827f1f74b045a6fe86a23c139a9, type: 2}
   DestroyedTower: {fileID: 726300743984907434, guid: 7265db8221c77dd439f1dd70a04cba12, type: 3}
-  health: 100
+  health: 50
   Healthbar: {fileID: 4526928092737472423}
   towerMngr: {fileID: 666673663090152462, guid: ca6a03c1d14e54040af2cd8bcf59be72, type: 3}
   animator: {fileID: 5927489026001596291}

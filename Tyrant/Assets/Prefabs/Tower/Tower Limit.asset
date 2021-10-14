@@ -19,8 +19,8 @@ MonoBehaviour:
   - RoomId: 1
     TowerNumber: 2
   - RoomId: 2
-    TowerNumber: 3
+    TowerNumber: 1
   - RoomId: 3
-    TowerNumber: 4
+    TowerNumber: 3
   - RoomId: 4
     TowerNumber: 100000

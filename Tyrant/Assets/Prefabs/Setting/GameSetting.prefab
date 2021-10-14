@@ -127,7 +127,7 @@ MonoBehaviour:
   - name: ChangeTowerPanel
     keyCode: 306
   - name: NextDialogue
-    keyCode: 32
+    keyCode: 283
   - name: OpenDialogue
     keyCode: 283
   - name: CameraZoomIn

@@ -16,6 +16,7 @@ public class Laser : Weapon
     private bool charging = true;
 
     public Slider chargingBar;
+
     private float chargeTime;
     public float ChargeTime { get => chargeTime; set => chargeTime = value; }
 

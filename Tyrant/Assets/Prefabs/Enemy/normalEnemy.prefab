@@ -15,7 +15,7 @@ MonoBehaviour:
   enemyState:
     maxHealth: 3
     maxDamage: 5
-    maxMoveSpeed: 2
+    maxMoveSpeed: 3
     mass: 0
     timeBetweenAttacks: 2
     stopDistance: 2

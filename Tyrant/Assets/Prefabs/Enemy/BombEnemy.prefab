@@ -13,14 +13,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyState:
-    maxHealth: 2
+    maxHealth: 4
     maxDamage: 10
-    maxMoveSpeed: 1
+    maxMoveSpeed: 10
     mass: 0
     timeBetweenAttacks: 2
     stopDistance: 1
     attackSpeed: 1
-    detectRange: 4
+    detectRange: 1
     maxArmor: 0
   mTarget: {fileID: 4707894365722169238, guid: e0342963580770d4bbbfa79b77e84777, type: 3}
   enemyUi: {fileID: 6129767443431876111}
@@ -141,8 +141,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb7d8f4f0725d67409d7f2e47300f457, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameObject: {fileID: 2447981995903305430}
-  bombEnemy: {fileID: 0}
+  Obj: {fileID: 2447981995903305430}
+  bombEnemy: {fileID: 8440924992914553284}
 --- !u!58 &1119729488333506866
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -156,9 +156,9 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.28}
+  m_Offset: {x: 0.038704395, y: -0.27999997}
   serializedVersion: 2
-  m_Radius: 2.01
+  m_Radius: 2.342857
 --- !u!1001 &1731359845336680481
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -168,7 +168,6 @@ MonoBehaviour:
   - {fileID: 6585873395443747110, guid: af96a862bd8b9e044a9e5d71814d0a39, type: 3}
   - {fileID: 6946490498697162879, guid: 4730f805d0099a04d8b2a31c1b51d8d9, type: 3}
   - {fileID: 5907147187683525855, guid: efe9ff0b46d693c46b2655e3a714bfcd, type: 3}
-  - {fileID: 4369142151728487491, guid: 9b83bc96c9677eb4bbc459fc7c7bca93, type: 3}
   dropPositions:
   - {fileID: 2857335999967479508}
   - {fileID: 2857336001275663467}

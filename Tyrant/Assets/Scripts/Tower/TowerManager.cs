@@ -243,7 +243,7 @@ public class TowerManager : MonoBehaviour
             for (int i = 0; i < IsAbleToSet.Count; ++i)
             {
                 IsAbleToSet[i] = false;
-                SelectAbleToSet[i] = false;
+                SelectAbleToSet[i] = true;
 
             }
             PreTowerSprite.color = Color.red;
@@ -544,7 +544,7 @@ public class TowerManager : MonoBehaviour
         ApplyUnlock();
         CheckNumberLimit();
         CheckCoin();
-        CheckSelection();
+        //CheckSelection();
         Vector2 PlayerPos = player.transform.position + offset;
         SetTower(PlayerPos);
 

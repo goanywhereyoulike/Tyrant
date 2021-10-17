@@ -332,6 +332,10 @@ public class LightingShoot : MonoBehaviour
                         //bullet.gameObject.transform.DetachChildren();
                         bullet.gameObject.transform.parent = null;
                         attacknumber--;
+                        if (attacknumber <= 0)
+                        {
+                            attacknumber = 0;
+                        }
                         bullet.gameObject.SetActive(false);
                         Bullets.Remove(bullet.gameObject);
 

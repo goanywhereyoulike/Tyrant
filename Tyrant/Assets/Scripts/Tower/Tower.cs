@@ -7,18 +7,21 @@ public class Tower : MonoBehaviour, IDamageable, GameObjectsLocator.IGameObjectR
 {
     public TowerTemplate towerData;
     public GameObject DestroyedTower;
-
-    [SerializeField]
     private float health;
 
     public float Health
     {
-        set 
+        set
         {
             health = value;
             if (health <= 0)
             {
                 Die();
+            }
+
+            if (health >= towerData.health)
+            {
+                health = towerData.health;
             }
         }
         get
@@ -88,14 +91,23 @@ public class Tower : MonoBehaviour, IDamageable, GameObjectsLocator.IGameObjectR
 
         }
 
-    
+
     }
 
     public void TakeDamage(float damage)
     {
+        TauntTowerEffect tt = GetComponent<TauntTowerEffect>();
+        if (tt)
+        {
+            if (!tt.IsCoolDown)
+            {
+                return;
+            
+            }
+        }
         Health -= damage;
         Healthbar.value = Health;
-        Debug.Log("Tower"+health);
+        Debug.Log("Tower" + health);
     }
 
     private void OnMouseEnter()

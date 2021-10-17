@@ -604,6 +604,8 @@ MonoBehaviour:
     keyCode: 102
   - name: PreBuildLightingTower
     keyCode: 52
+  - name: PreBuildTauntTower
+    keyCode: 53
   axesLibrary:
   - name: Horizontal
     positiveButton: 100

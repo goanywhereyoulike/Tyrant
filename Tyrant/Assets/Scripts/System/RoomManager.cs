@@ -11,6 +11,8 @@ public class RoomManager : MonoBehaviour
     //public cameracontroller camera;
     private bool isBossRoom;
     public GameObject[] FogOfWar;
+    public GameObject[] Pointers;
+    private bool PointerEnabled;
     private static RoomManager instance = null;
     public static RoomManager Instance { get => instance; }
     public int RoomId
@@ -48,17 +50,18 @@ public class RoomManager : MonoBehaviour
             {
                 Doors[i].Animator.SetBool("IsClose", true);
                 //Doors[i].gameObject.transform.position = Vector3.Lerp(Camera.main.transform.position, Doors[i].gameObject.transform.position, 2.0f * Time.deltaTime);
-                //FogOfWar[roomId].SetActive(false);
-                Image image = FogOfWar[roomId].gameObject.GetComponent<Image>();
-                while (image.color.a != 0.0f)
+                FogOfWar[roomId].SetActive(false);
+                if (!PointerEnabled)
                 {
-                    image.color -= new Color(0.0f, 0.0f, 0.0f, 0.1f);
-                }
+                    Pointers[roomId].SetActive(true);
+                    PointerEnabled = true;
+                }  
             }
             else if (RoomId != 0)
             {
                 if (RoomId - 1 == Doors[i].roomID)
                 {
+                    PointerEnabled = false;
                     Doors[i].gameObject.SetActive(true);
                     Doors[i].Animator.SetBool("IsClose", false);
                 }

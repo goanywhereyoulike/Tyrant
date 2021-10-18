@@ -2711,6 +2711,10 @@ PrefabInstance:
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7130684735778634844, guid: fb083abcc3b7b2844b31026d194bd151, type: 3}
+      propertyPath: rooms.Array.data[4].isBossRoom
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7130684735778634844, guid: fb083abcc3b7b2844b31026d194bd151, type: 3}
       propertyPath: rooms.Array.data[0].roomSpawns.Array.size
       value: 2
       objectReference: {fileID: 0}
@@ -4133,6 +4137,14 @@ PrefabInstance:
     - target: {fileID: 4614489845783246768, guid: 916e89dbb740f4d429f9ef0e872f3ed0, type: 3}
       propertyPath: m_Name
       value: Level_1_Map
+      objectReference: {fileID: 0}
+    - target: {fileID: 7024263200716198797, guid: 916e89dbb740f4d429f9ef0e872f3ed0, type: 3}
+      propertyPath: isBossRoom
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7972967070907237191, guid: 916e89dbb740f4d429f9ef0e872f3ed0, type: 3}
+      propertyPath: isBossDoor
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 916e89dbb740f4d429f9ef0e872f3ed0, type: 3}

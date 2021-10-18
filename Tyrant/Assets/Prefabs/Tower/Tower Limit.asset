@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   RoomNumber: 0
   towerroomInfo:
-  - BasicTower: 1
+  - BasicTower: 0
     CannonTower: 0
     ChainTower: 0
     LightingTower: 1

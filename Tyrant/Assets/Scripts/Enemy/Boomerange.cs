@@ -23,8 +23,13 @@ public class Boomerange : MonoBehaviour
     public int Damage { get => damage; set => damage = value; }
     public float Range { get => range; set => range = value; }
 
+
+
     void Update()
     {
+        //rotate 30 degree
+        transform.Rotate(0, 0, 360 * Time.deltaTime); 
+
         speed = bulletSpeed * Time.deltaTime;
         if ((Vector2)transform.position == Position)
         {

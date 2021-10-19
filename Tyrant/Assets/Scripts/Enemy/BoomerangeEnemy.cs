@@ -1,29 +1,32 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class BombEnemy : Enemy
+public class BoomerangeEnemy : Enemy
 {
+    GameObject bObject;
     [SerializeField]
     private EnemyUI enemyUi = null;
 
-    [SerializeField]
-    private Animator bombAnimator = null;
+  //  [SerializeField]
+  //  private Animator BoomerangeAnimator = null;
 
     public float Damage { get => damage; set => damage = value; }
+    bool firstshoot = false;
 
     // Start is called before the first frame update
     protected override void Start()
     {
         base.Start();
+        ObjectPoolManager.Instance.InstantiateObjects("boomerangebullet");
         enemyUi.MaxHealthChanged(EnemyState.MaxHealth);
         enemyUi.HealthChanged(EnemyState.MaxHealth);
-        bombAnimator.gameObject.SetActive(false);
+        //BoomerangeAnimator.gameObject.SetActive(false);
     }
 
     protected override void ReUse()
     {
         base.ReUse();
-        StartCoroutine(HealthDecay());
     }
 
     // Update is called once per frame
@@ -35,18 +38,6 @@ public class BombEnemy : Enemy
         }
 
         base.Update();
-
-        MoveSpeed = Mathf.Clamp((2 * EnemyState.MaxHealth - Health) * 4,1.0f,EnemyState.MaxMoveSpeed);
-    }
-
-    IEnumerator HealthDecay()
-    {
-        while (!IsDead)
-        {
-            yield return new WaitForSeconds(0.5f);
-            if (Health > 0.1)
-                TakeDamage(EnemyState.MaxHealth*0.05f);
-        }
     }
 
     public void Killed()
@@ -57,8 +48,35 @@ public class BombEnemy : Enemy
     protected override void AttackBehavior()
     {
         base.AttackBehavior();
-        bombAnimator.gameObject.SetActive(true);
-        MoveSpeed = 0.0f;
+        // BoomerangeAnimator.gameObject.SetActive(true);
+        if (mTarget != null)
+        {
+            Vector3 direction = mTarget.position - transform.position;
+            direction.Normalize();
+            //if (!create)
+            //{
+            //
+            //}
+
+            if(!firstshoot)
+            {
+                bObject = ObjectPoolManager.Instance.GetPooledObject("boomerangebullet");
+                bObject.transform.position = transform.position;
+                var bo = bObject.GetComponent<Boomerange>();
+                bo.ShootPosition = transform.position;
+                bo.Position = mTarget.position;
+                bo.Damage = (int)damage;
+                bo.Range = stopDistance;
+                bo.Direction = direction;
+                bObject.SetActive(true);
+                firstshoot = true;
+            }
+
+            if (bObject.activeInHierarchy == false)
+            {
+                firstshoot = false;
+            }
+        }
     }
 
     public override void TakeDamage(float damage)
@@ -78,4 +96,3 @@ public class BombEnemy : Enemy
         // Gizmos.DrawSphere(transform.position, enemyState.DetectRange);
     }
 }
-

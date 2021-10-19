@@ -283,7 +283,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4488405803849767227}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &4488405803256324603
 AudioSource:
@@ -410,7 +410,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4488405803849767227}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &4488405803271091234
 AudioSource:
@@ -1042,8 +1042,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 4488405803256324602}
   - {fileID: 4488405803271091237}
+  - {fileID: 4488405803256324602}
   - {fileID: 4488405802633250356}
   m_Father: {fileID: 4488405803580369899}
   m_RootOrder: 0
@@ -1889,4 +1889,7 @@ MonoBehaviour:
   - tagName: xbullet
     objectToPool: {fileID: 3609322105442357686, guid: 23bf8268d4097ed4c8557e4a9c27e445, type: 3}
     amountToPool: 10
+  - tagName: ConnonSplitBullet
+    objectToPool: {fileID: 6682998411512925883, guid: 17e12ce6939249d4f93f42af2695f0a7, type: 3}
+    amountToPool: 18
     shouldExpand: 1

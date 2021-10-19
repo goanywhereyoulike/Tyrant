@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class Indicator : MonoBehaviour
 {
-    public GameObject Indicators;
-    public GameObject Targets;
+    [SerializeField]
+    private GameObject Indicators;
+    [SerializeField]
+    private GameObject Targets;
     Renderer render;
 
     // Start is called before the first frame update
@@ -25,7 +27,6 @@ public class Indicator : MonoBehaviour
             }
             Vector2 dir = Targets.transform.position - transform.position;
             RaycastHit2D ray = Physics2D.Raycast(transform.position, dir);
-
             if (ray.collider!=null)
             {
                 Indicators.transform.position = ray.point;
@@ -38,13 +39,5 @@ public class Indicator : MonoBehaviour
                 Indicators.SetActive(false);
             }
         }
-    }
-    public void HideArrow()
-    {
-        gameObject.SetActive(false);
-    }
-    public void ShowArrow()
-    {
-        gameObject.SetActive(true);
     }
 }

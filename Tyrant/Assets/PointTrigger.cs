@@ -4,28 +4,8 @@ using UnityEngine;
 
 public class PointTrigger : MonoBehaviour
 {
-    public GameObject[] Pointers;
-    //public GameObject[] FogofWar;
-    //private static PointTrigger instance = null;
-    //public static PointTrigger Instance { get => instance; }
-    protected virtual void Trigger2DEnter(Collider2D collision) { }
-    //void Awake()
-    //{
-    //    if (instance == null)
-    //    {
-          
-    //        instance = this;
-    //    }
-    //    else if (instance != this)
-    //    {
-    //        Destroy(gameObject);
-    //    }
-    //}
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    [SerializeField]
+    private GameObject[] Pointers;
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag=="Player")

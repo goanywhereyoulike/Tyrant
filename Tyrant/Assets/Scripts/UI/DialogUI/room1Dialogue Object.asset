@@ -15,7 +15,7 @@ MonoBehaviour:
   dialogue:
   - 'Press [Tab] to open your weapon wheel to switch weapon.
 
-    -> Press [F2] to
-    continue.'
+    -> Press [Space]
+    to continue.'
   - Your freeze ray gun will freeze the enemies, Hold [Left Mouse] to charge up and
-    fire.  ------ End-> Press [F2] ........
+    fire.  ------ End-> Press [Space] ........

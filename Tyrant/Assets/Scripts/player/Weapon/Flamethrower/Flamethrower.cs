@@ -33,7 +33,6 @@ public class Flamethrower : Weapon
         
         flameParticle.Stop();
         flameParticle.gameObject.GetComponent<FlamethrowerBullet>().BurnDamage = flamethrowerStates.BurnDamage;
-        flameParticle.gameObject.GetComponent<FlamethrowerBullet>().Damage = flamethrowerStates.Damage;
         weaponInit = true;
     }
     private void OnEnable()

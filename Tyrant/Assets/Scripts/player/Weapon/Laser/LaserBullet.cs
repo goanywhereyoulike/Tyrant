@@ -45,7 +45,6 @@ public class LaserBullet : Bullet
         //Enemy.TakeDamage(Damage);
         var enemyClass = Enemy.GetComponent<Enemy>();
         enemyClass.SlowDown(ForzenTime, FrozenSpeed);
-        enemyClass.TakeDamage(Damage);
     }
 
     private void Update()

@@ -5,23 +5,21 @@ using UnityEngine.UI;
 
 public class Tower : MonoBehaviour, IDamageable, GameObjectsLocator.IGameObjectRegister
 {
-    public TowerTemplate towerData;
+    // Start is called before the first frame update
+   
     public GameObject DestroyedTower;
+
+    [SerializeField]
     private float health;
 
     public float Health
     {
-        set
+        set 
         {
             health = value;
             if (health <= 0)
             {
                 Die();
-            }
-
-            if (health >= towerData.health)
-            {
-                health = towerData.health;
             }
         }
         get
@@ -34,8 +32,6 @@ public class Tower : MonoBehaviour, IDamageable, GameObjectsLocator.IGameObjectR
     [SerializeField]
     private Slider Healthbar;
 
-    TowerManager towerMngr;
-
     PlayerMovement player;
     public Animator animator;
     //public Transform targetpos;
@@ -45,11 +41,8 @@ public class Tower : MonoBehaviour, IDamageable, GameObjectsLocator.IGameObjectR
     {
         player = FindObjectOfType<PlayerMovement>();
         animator = GetComponent<Animator>();
-        health = towerData.health;
         Healthbar.maxValue = health;
         Healthbar.value = health;
-
-        towerMngr = FindObjectOfType<TowerManager>();
         RegisterToLocator();
     }
 
@@ -70,44 +63,14 @@ public class Tower : MonoBehaviour, IDamageable, GameObjectsLocator.IGameObjectR
     {
         Destroy(gameObject.transform.parent.gameObject);
         Instantiate(DestroyedTower, transform.position, transform.rotation);
-        if (towerMngr)
-        {
-            towerMngr.DecreaseTowerlimit();
-        }
-        LightingShoot ls = GetComponent<LightingShoot>();
-        if (ls)
-        {
-            List<Enemy> enemies = GameObjectsLocator.Instance.Get<Enemy>();
-            foreach (var enemy in enemies)
-            {
-                LightingTowerBullet bullet = enemy.GetComponentInChildren<LightingTowerBullet>();
-                if (bullet)
-                {
-                    bullet.gameObject.transform.parent = null;
-                    bullet.gameObject.SetActive(false);
-
-                }
-            }
-
-        }
-
-
+    
     }
 
     public void TakeDamage(float damage)
     {
-        TauntTowerEffect tt = GetComponent<TauntTowerEffect>();
-        if (tt)
-        {
-            if (!tt.IsCoolDown)
-            {
-                return;
-            
-            }
-        }
         Health -= damage;
         Healthbar.value = Health;
-        Debug.Log("Tower" + health);
+        Debug.Log("Tower"+health);
     }
 
     private void OnMouseEnter()

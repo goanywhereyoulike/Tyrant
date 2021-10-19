@@ -32,7 +32,6 @@ public class CannonBullet : Bullet
     protected override void OnHit(GameObject Enemy)
     {
         base.OnHit(Enemy);
-        SplitBullet();
 
         //Enemy.TakeDamage(Damage);
         Vector3 force = Direction * PushForce;
@@ -43,29 +42,6 @@ public class CannonBullet : Bullet
     private void Update()
     {
         BulletMoving();
-    }
-
-    private void SplitBullet()
-    {
-        for (int i = 1; i <= 6; i++)
-        {
-            var bullet = ObjectPoolManager.Instance.GetPooledObject("ConnonSplitBullet");
-            if (bullet)
-            {
-                CannonSplitBullet cannonBullet = bullet.GetComponent<CannonSplitBullet>();
-                float angle = i * 60 * Mathf.Deg2Rad;
-                float x = Mathf.Cos(angle) * Direction.x - Mathf.Sin(angle) * Direction.y;
-                float y = Mathf.Sin(angle) * Direction.x + Mathf.Cos(angle) * Direction.y;
-                Vector3 rotateDir = new Vector3(x, y, 0);
-                cannonBullet.Direction = rotateDir.normalized;
-                cannonBullet.BulletShootingSpeed = BulletShootingSpeed;
-                cannonBullet.MovingRange = MovingRange * 0.3f;
-                cannonBullet.StartPosition = gameObject.transform.position;
-                cannonBullet.Damage = Damage;
-                bullet.transform.position = gameObject.transform.position;
-                bullet.SetActive(true);
-            }
-        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

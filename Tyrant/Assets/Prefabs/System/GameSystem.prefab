@@ -207,14 +207,6 @@ MonoBehaviour:
     objectToPool: {fileID: 2447981995903305430, guid: fe6e1cff6d8542f4091335df43b180de, type: 3}
     amountToPool: 1
     shouldExpand: 1
-  - tagName: boomerangebullet
-    objectToPool: {fileID: 3953673854791159322, guid: 83c8fe2a433a38d44acc8b15a8c729e3, type: 3}
-    amountToPool: 1
-    shouldExpand: 1
-  - tagName: boomerangeenemy
-    objectToPool: {fileID: 3777636570803404992, guid: b4461230960fd1c4cb17f892f5a7c1b6, type: 3}
-    amountToPool: 1
-    shouldExpand: 1
 --- !u!1 &3980476720704669719
 GameObject:
   m_ObjectHideFlags: 0

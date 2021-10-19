@@ -27,8 +27,4 @@ public class MainMenuUI : MonoBehaviour
         settingMenu.SetActive(true);
         gameObject.SetActive(false);
     }
-    public void onClickQuit()
-    {
-        Application.Quit();
-    }
 }

@@ -51,17 +51,17 @@ public class RoomManager : MonoBehaviour
                 Doors[i].Animator.SetBool("IsClose", true);
                 //Doors[i].gameObject.transform.position = Vector3.Lerp(Camera.main.transform.position, Doors[i].gameObject.transform.position, 2.0f * Time.deltaTime);
                 FogOfWar[roomId].SetActive(false);
-                if (!PointerEnabled)
+                /*if (!PointerEnabled)
                 {
                     Pointers[roomId].SetActive(true);
                     PointerEnabled = true;
-                }  
+                }  */
             }
             else if (RoomId != 0)
             {
                 if (RoomId - 1 == Doors[i].roomID)
                 {
-                    PointerEnabled = false;
+                   /* PointerEnabled = false;*/
                     Doors[i].gameObject.SetActive(true);
                     Doors[i].Animator.SetBool("IsClose", false);
                 }

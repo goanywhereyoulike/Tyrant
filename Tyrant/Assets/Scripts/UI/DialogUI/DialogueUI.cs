@@ -45,10 +45,6 @@ public class DialogueUI : MonoBehaviour
             {
                 textEffect.Stop();
             }
-            if (InputManager.Instance.GetKeyDown("SkipDialogue"))
-            {
-                textEffect.Stop();
-            }
         }
     }
     private void CloseDialogueBox()

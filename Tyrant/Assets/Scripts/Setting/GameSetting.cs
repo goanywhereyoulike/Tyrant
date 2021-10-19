@@ -28,9 +28,9 @@ public class GameSetting : MonoBehaviour
     }
     private void Update()
     {
-        /*if (InputManager.Instance.GetKeyDown("GamePause"))
+        if (InputManager.Instance.GetKeyDown("GamePause"))
         {
             GamePause = !GamePause;
-        }*/
+        }
     }
 }

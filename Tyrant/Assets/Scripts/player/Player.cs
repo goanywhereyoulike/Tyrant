@@ -63,7 +63,7 @@ public class Player : MonoBehaviour , IDamageable, GameObjectsLocator.IGameObjec
     // Update is called once per frame
     void Update()
     {
-        /*if (InputManager.Instance.GetKeyDown("healthpotion"))
+        if (InputManager.Instance.GetKeyDown("healthpotion"))
         {
             HealthPotion healthPotion = MyInventory.GetPickUp("health potion") as HealthPotion;
             if (healthPotion)
@@ -71,7 +71,7 @@ public class Player : MonoBehaviour , IDamageable, GameObjectsLocator.IGameObjec
                 Health += healthPotion.AddHealth;
                 MyInventory.DeletePickUp(healthPotion);
             }
-        }*/
+        }
 
         Vector3 mousePosition = Input.mousePosition;
         mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);

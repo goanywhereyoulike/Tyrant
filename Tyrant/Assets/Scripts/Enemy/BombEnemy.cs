@@ -3,14 +3,11 @@ using UnityEngine;
 
 public class BombEnemy : Enemy
 {
-    
-
     [SerializeField]
     private EnemyUI enemyUi = null;
 
     [SerializeField]
     private Animator bombAnimator = null;
-
 
     public float Damage { get => damage; set => damage = value; }
 

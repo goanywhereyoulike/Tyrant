@@ -26,6 +26,7 @@ public class Cannon : Weapon
             ammoImages[i].gameObject.SetActive(false);
         }*/
         ObjectPoolManager.Instance.InstantiateObjects("ConnonBullet");
+        ObjectPoolManager.Instance.InstantiateObjects("ConnonSplitBullet");
         ObjectPoolManager.Instance.InstantiateObjects("ConnonBulletEffect");
 
         connonStates = weaponStates as ConnonStates;
@@ -82,6 +83,7 @@ public class Cannon : Weapon
                 Vector2 different = InputManager.Instance.MouseWorldPosition - bullet.StartPosition;
                 bullet.PushForce = connonStates.PushForce;
                 bullet.Direction = different.normalized;
+                bullet.Damage = connonStates.Damage;
                 bulletObject.transform.position = bullet.StartPosition;
                 bulletObject.SetActive(true);
                 AudioManager.instance.PlaySFX(0);

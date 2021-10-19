@@ -13,7 +13,9 @@ MonoBehaviour:
   m_Name: R3SpawnArea0-3
   m_EditorClassIdentifier: 
   waveData:
-  - enemytype: 4
-    spawnNumber: 1
+  - enemytype: 0
+    spawnNumber: 2
+  - enemytype: 1
+    spawnNumber: 2
   - enemytype: 0
     spawnNumber: 2

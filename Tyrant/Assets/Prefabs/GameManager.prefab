@@ -283,7 +283,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4488405803849767227}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &4488405803256324603
 AudioSource:
@@ -410,7 +410,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4488405803849767227}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &4488405803271091234
 AudioSource:
@@ -508,115 +508,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!1 &4488405803320322278
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4488405803320322279}
-  - component: {fileID: 4488405803320322276}
-  m_Layer: 0
-  m_Name: InputSystem
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &4488405803320322279
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4488405803320322278}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 4488405804149044886}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4488405803320322276
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4488405803320322278}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 86f4f12433fc0de488feebf274842311, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  keyCodeLibrary:
-  - name: GoRight
-    keyCode: 100
-  - name: GoLeft
-    keyCode: 97
-  - name: GoUp
-    keyCode: 119
-  - name: GoDown
-    keyCode: 115
-  - name: PreBuildTower
-    keyCode: 49
-  - name: PreBuildCannonTower
-    keyCode: 50
-  - name: BuildTower
-    keyCode: 32
-  - name: dropTower
-    keyCode: 113
-  - name: Esc
-    keyCode: 27
-  - name: Shoot
-    keyCode: 323
-  - name: Fire
-    keyCode: 323
-  - name: healthpotion
-    keyCode: 104
-  - name: Melee
-    keyCode: 324
-  - name: pick
-    keyCode: 99
-  - name: drop
-    keyCode: 118
-  - name: DestroyTower
-    keyCode: 324
-  - name: PreBuildChainTower
-    keyCode: 51
-  - name: WeaponWheelToggle
-    keyCode: 9
-  - name: ChangeTowerPanel
-    keyCode: 306
-  - name: NextDialogue
-    keyCode: 283
-  - name: CameraZoomIn
-    keyCode: 280
-  - name: CameraZoomOut
-    keyCode: 281
-  - name: GamePause
-    keyCode: 289
-  - name: Reload
-    keyCode: 114
-  - name: Interact
-    keyCode: 102
-  - name: PreBuildLightingTower
-    keyCode: 52
-  - name: PreBuildTauntTower
-    keyCode: 53
-  axesLibrary:
-  - name: Horizontal
-    positiveButton: 100
-    negativeButton: 97
-    step: 0.01
-    gravity: 0.001
-  - name: Vertical
-    positiveButton: 119
-    negativeButton: 115
-    step: 0.01
-    gravity: 0.001
 --- !u!1 &4488405803428634240
 GameObject:
   m_ObjectHideFlags: 0
@@ -1151,8 +1042,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 4488405803271091237}
   - {fileID: 4488405803256324602}
+  - {fileID: 4488405803271091237}
   - {fileID: 4488405802633250356}
   m_Father: {fileID: 4488405803580369899}
   m_RootOrder: 0
@@ -1978,16 +1869,4 @@ MonoBehaviour:
   - tagName: BossBullet
     objectToPool: {fileID: 6723065293706111440, guid: 4bde7f85894a9b147a452296632cc516, type: 3}
     amountToPool: 1
-    shouldExpand: 1
-  - tagName: LightingTowerBullet
-    objectToPool: {fileID: 1852333693292672983, guid: 9c5f79227f90b8f4d969999b19b465b7, type: 3}
-    amountToPool: 5
-    shouldExpand: 0
-  - tagName: TrapArrow
-    objectToPool: {fileID: 1601992817835711718, guid: a6d0ecfc0c44b8c40aa3057be54b7fd6, type: 3}
-    amountToPool: 10
-    shouldExpand: 0
-  - tagName: ConnonSplitBullet
-    objectToPool: {fileID: 6682998411512925883, guid: 17e12ce6939249d4f93f42af2695f0a7, type: 3}
-    amountToPool: 18
     shouldExpand: 1

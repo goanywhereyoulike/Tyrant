@@ -6,9 +6,6 @@ public class Door : MonoBehaviour
     private Animator animator;
     public Animator Animator { get => animator; set => animator = value; }
 
-    [SerializeField]
-    private bool isBossDoor;
-    public bool IsBossDoor { get=> isBossDoor; }
     // Start is called before the first frame update
     void Start()
     {

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: R2SpawnArea0-1
   m_EditorClassIdentifier: 
   waveData:
-  - enemytype: 1
+  - enemytype: 0
     spawnNumber: 2
-  - enemytype: 1
+  - enemytype: 0
     spawnNumber: 2

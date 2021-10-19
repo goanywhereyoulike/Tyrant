@@ -23,6 +23,7 @@ public class WeaponController : MonoBehaviour
         public WeaponType weaponType;
         public Weapon weaponObject;
         public GameObject weaponUI;
+        public GameObject ReloadUI;
         public bool isUnlocked;
         public WeaponWheelButton weaponButton;
     }

@@ -101,23 +101,13 @@ MonoBehaviour:
   - name: PreBuildCannonTower
     keyCode: 50
   - name: BuildTower
-    keyCode: 32
+    keyCode: 101
   - name: dropTower
     keyCode: 113
   - name: Esc
     keyCode: 27
-  - name: Shoot
-    keyCode: 323
   - name: Fire
     keyCode: 323
-  - name: healthpotion
-    keyCode: 104
-  - name: Melee
-    keyCode: 324
-  - name: pick
-    keyCode: 99
-  - name: drop
-    keyCode: 118
   - name: DestroyTower
     keyCode: 324
   - name: PreBuildChainTower
@@ -127,19 +117,17 @@ MonoBehaviour:
   - name: ChangeTowerPanel
     keyCode: 306
   - name: NextDialogue
-    keyCode: 283
-  - name: OpenDialogue
-    keyCode: 283
+    keyCode: 32
   - name: CameraZoomIn
     keyCode: 280
   - name: CameraZoomOut
     keyCode: 281
-  - name: GamePause
-    keyCode: 289
   - name: Reload
     keyCode: 114
   - name: Interact
     keyCode: 102
+  - name: SkipDialogue
+    keyCode: 32
   axesLibrary:
   - name: Horizontal
     positiveButton: 100

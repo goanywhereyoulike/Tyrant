@@ -9,7 +9,7 @@ public class LevelTrap_Peak : MonoBehaviour
     public float damage = 1.0f;
     bool IsDamaged = false;
     float WaitFire = 0.0f;
-    public float FireRate = 0.1f;
+    public float FireRate = 1.0f;
     void Start()
     {
 
@@ -41,7 +41,8 @@ public class LevelTrap_Peak : MonoBehaviour
         if (player)
         {
 
-            //player.TakeDamage(damage);
+            player.TakeDamage(damage);
+            WaitFire = 0.0f;
             IsDamaged = true;
 
         }

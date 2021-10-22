@@ -101,7 +101,7 @@ MonoBehaviour:
   - name: PreBuildCannonTower
     keyCode: 50
   - name: BuildTower
-    keyCode: 101
+    keyCode: 32
   - name: dropTower
     keyCode: 113
   - name: Esc
@@ -128,6 +128,12 @@ MonoBehaviour:
     keyCode: 102
   - name: SkipDialogue
     keyCode: 32
+  - name: PreBuildLightingTower
+    keyCode: 52
+  - name: PreBuildTauntTower
+    keyCode: 53
+  - name: PreBuildTrap
+    keyCode: 116
   axesLibrary:
   - name: Horizontal
     positiveButton: 100

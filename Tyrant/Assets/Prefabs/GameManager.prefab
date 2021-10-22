@@ -2022,15 +2022,31 @@ MonoBehaviour:
     objectToPool: {fileID: 6723065293706111440, guid: 4bde7f85894a9b147a452296632cc516, type: 3}
     amountToPool: 1
     shouldExpand: 1
+  - tagName: boomerangebullet
+    objectToPool: {fileID: 3953673854791159322, guid: 83c8fe2a433a38d44acc8b15a8c729e3, type: 3}
+    amountToPool: 1
+    shouldExpand: 1
+  - tagName: boomerangeenemy
+    objectToPool: {fileID: 3777636570803404992, guid: b4461230960fd1c4cb17f892f5a7c1b6, type: 3}
+    amountToPool: 1
+    shouldExpand: 1
+  - tagName: xbullet
+    objectToPool: {fileID: 3609322105442357686, guid: 23bf8268d4097ed4c8557e4a9c27e445, type: 3}
+    amountToPool: 1
+    shouldExpand: 1
+  - tagName: xrangeenemy
+    objectToPool: {fileID: 466153425213396084, guid: d53001cd4e71dcd4494368919bf20ac0, type: 3}
+    amountToPool: 1
+    shouldExpand: 1
+  - tagName: meleeenemy
+    objectToPool: {fileID: 5139063408571348512, guid: 4c9a06c97f415ef489ec13db653e42cb, type: 3}
+    amountToPool: 1
+    shouldExpand: 1
+  - tagName: TrapArrow
+    objectToPool: {fileID: 1601992817835711718, guid: a6d0ecfc0c44b8c40aa3057be54b7fd6, type: 3}
+    amountToPool: 5
+    shouldExpand: 1
   - tagName: LightingTowerBullet
     objectToPool: {fileID: 1852333693292672983, guid: 9c5f79227f90b8f4d969999b19b465b7, type: 3}
     amountToPool: 5
-    shouldExpand: 0
-  - tagName: TrapArrow
-    objectToPool: {fileID: 1601992817835711718, guid: a6d0ecfc0c44b8c40aa3057be54b7fd6, type: 3}
-    amountToPool: 10
-    shouldExpand: 0
-  - tagName: ConnonSplitBullet
-    objectToPool: {fileID: 6682998411512925883, guid: 17e12ce6939249d4f93f42af2695f0a7, type: 3}
-    amountToPool: 18
     shouldExpand: 1

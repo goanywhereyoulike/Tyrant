@@ -101,7 +101,7 @@ MonoBehaviour:
   - name: PreBuildCannonTower
     keyCode: 50
   - name: BuildTower
-    keyCode: 101
+    keyCode: 32
   - name: dropTower
     keyCode: 113
   - name: Esc

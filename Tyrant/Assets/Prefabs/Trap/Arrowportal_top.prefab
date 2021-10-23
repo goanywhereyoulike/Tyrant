@@ -97,4 +97,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ArrowPrefab: {fileID: 1601992817835711718, guid: a6d0ecfc0c44b8c40aa3057be54b7fd6, type: 3}
   FireRate: 1
+  offsets: {x: 0, y: -1.11, z: 0}
   sprite: {fileID: 0}

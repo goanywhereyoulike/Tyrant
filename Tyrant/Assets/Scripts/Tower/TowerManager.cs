@@ -5,10 +5,17 @@ using UnityEngine.UI;
 
 public class TowerManager : MonoBehaviour
 {
+
+    enum TowerType {Basic,Cannon,Chain,Lighting,Taunt };
+
+    TowerType towerType;
+
+    List<Tower> towers = new List<Tower>();
+
     public TowerLimitTemplate towerroomInfos;
     PlayerMovement player;
     SpriteRenderer TowerSprite;
-    public List<TowerTemplate> Towers = new List<TowerTemplate>();
+    public List<TowerTemplate> TowerTemplates = new List<TowerTemplate>();
 
     [SerializeField]
     private Animator TowerNumberWarning;
@@ -136,11 +143,11 @@ public class TowerManager : MonoBehaviour
             SelectAbleToSet.Add(false);
         }
 
-        Tower1Price.text = Towers[0].price.ToString();
-        Tower2Price.text = Towers[1].price.ToString();
-        Tower3Price.text = Towers[2].price.ToString();
-        Tower4Price.text = Towers[3].price.ToString();
-        Tower5Price.text = Towers[4].price.ToString();
+        Tower1Price.text = TowerTemplates[0].price.ToString();
+        Tower2Price.text = TowerTemplates[1].price.ToString();
+        Tower3Price.text = TowerTemplates[2].price.ToString();
+        Tower4Price.text = TowerTemplates[3].price.ToString();
+        Tower5Price.text = TowerTemplates[4].price.ToString();
 
 
 
@@ -369,52 +376,52 @@ public class TowerManager : MonoBehaviour
             return;
         }
 
-        if (player.GetComponent<Player>().coin < Towers[0].price)
+        if (player.GetComponent<Player>().coin < TowerTemplates[0].price)
         {
             PreTowerSprite.color = Color.red;
             IsAbleToSet[0] = false;
         }
-        if (player.GetComponent<Player>().coin < Towers[1].price)
+        if (player.GetComponent<Player>().coin < TowerTemplates[1].price)
         {
             PreCannonTowerSprite.color = Color.red;
             IsAbleToSet[1] = false;
         }
-        if (player.GetComponent<Player>().coin < Towers[2].price)
+        if (player.GetComponent<Player>().coin < TowerTemplates[2].price)
         {
             PreChainTowerSprite.color = Color.red;
             IsAbleToSet[2] = false;
         }
-        if (player.GetComponent<Player>().coin < Towers[3].price)
+        if (player.GetComponent<Player>().coin < TowerTemplates[3].price)
         {
             PreLightingTowerSprite.color = Color.red;
             IsAbleToSet[3] = false;
         }
-        if (player.GetComponent<Player>().coin < Towers[4].price)
+        if (player.GetComponent<Player>().coin < TowerTemplates[4].price)
         {
             PreTauntTowerSprite.color = Color.red;
             IsAbleToSet[4] = false;
         }
-        if (player.GetComponent<Player>().coin >= Towers[0].price && SelectAbleToSet[0])
+        if (player.GetComponent<Player>().coin >= TowerTemplates[0].price && SelectAbleToSet[0])
         {
             PreTowerSprite.color = Color.white;
             IsAbleToSet[0] = true;
         }
-        if (player.GetComponent<Player>().coin >= Towers[1].price && SelectAbleToSet[1])
+        if (player.GetComponent<Player>().coin >= TowerTemplates[1].price && SelectAbleToSet[1])
         {
             PreCannonTowerSprite.color = Color.white;
             IsAbleToSet[1] = true;
         }
-        if (player.GetComponent<Player>().coin >= Towers[2].price && SelectAbleToSet[2])
+        if (player.GetComponent<Player>().coin >= TowerTemplates[2].price && SelectAbleToSet[2])
         {
             PreChainTowerSprite.color = Color.white;
             IsAbleToSet[2] = true;
         }
-        if (player.GetComponent<Player>().coin >= Towers[3].price && SelectAbleToSet[3])
+        if (player.GetComponent<Player>().coin >= TowerTemplates[3].price && SelectAbleToSet[3])
         {
             PreLightingTowerSprite.color = Color.white;
             IsAbleToSet[3] = true;
         }
-        if (player.GetComponent<Player>().coin >= Towers[4].price && SelectAbleToSet[4])
+        if (player.GetComponent<Player>().coin >= TowerTemplates[4].price && SelectAbleToSet[4])
         {
             PreTauntTowerSprite.color = Color.white;
             IsAbleToSet[4] = true;
@@ -587,34 +594,34 @@ public class TowerManager : MonoBehaviour
             return;
         }
 
-        if (player.GetComponent<Player>().coin >= Towers[0].price)
+        if (player.GetComponent<Player>().coin >= TowerTemplates[0].price)
         {
             Tower1Cover.fillAmount = 1.0f;
         }
-        if (player.GetComponent<Player>().coin >= Towers[1].price)
+        if (player.GetComponent<Player>().coin >= TowerTemplates[1].price)
         {
             Tower2Cover.fillAmount = 1.0f;
         }
-        if (player.GetComponent<Player>().coin >= Towers[2].price)
+        if (player.GetComponent<Player>().coin >= TowerTemplates[2].price)
         {
             Tower3Cover.fillAmount = 1.0f;
         }
-        if (player.GetComponent<Player>().coin >= Towers[3].price)
+        if (player.GetComponent<Player>().coin >= TowerTemplates[3].price)
         {
             Tower4Cover.fillAmount = 1.0f;
         }
-        if (player.GetComponent<Player>().coin >= Towers[4].price)
+        if (player.GetComponent<Player>().coin >= TowerTemplates[4].price)
         {
             Tower5Cover.fillAmount = 1.0f;
         }
 
         else
         {
-            Tower1Cover.fillAmount = (float)player.GetComponent<Player>().coin / (float)Towers[0].price;
-            Tower2Cover.fillAmount = (float)player.GetComponent<Player>().coin / (float)Towers[1].price;
-            Tower3Cover.fillAmount = (float)player.GetComponent<Player>().coin / (float)Towers[2].price;
-            Tower4Cover.fillAmount = (float)player.GetComponent<Player>().coin / (float)Towers[3].price;
-            Tower5Cover.fillAmount = (float)player.GetComponent<Player>().coin / (float)Towers[4].price;
+            Tower1Cover.fillAmount = (float)player.GetComponent<Player>().coin / (float)TowerTemplates[0].price;
+            Tower2Cover.fillAmount = (float)player.GetComponent<Player>().coin / (float)TowerTemplates[1].price;
+            Tower3Cover.fillAmount = (float)player.GetComponent<Player>().coin / (float)TowerTemplates[2].price;
+            Tower4Cover.fillAmount = (float)player.GetComponent<Player>().coin / (float)TowerTemplates[3].price;
+            Tower5Cover.fillAmount = (float)player.GetComponent<Player>().coin / (float)TowerTemplates[4].price;
         }
 
 

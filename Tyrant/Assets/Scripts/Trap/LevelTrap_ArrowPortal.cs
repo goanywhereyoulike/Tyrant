@@ -9,6 +9,7 @@ public class LevelTrap_ArrowPortal : MonoBehaviour
     float WaitFire = 0.0f;
     public float FireRate;
 
+    public Vector3 offsets = new Vector3();
     [SerializeField]
     SpriteRenderer sprite;
 
@@ -28,7 +29,7 @@ public class LevelTrap_ArrowPortal : MonoBehaviour
             GameObject arrow = ObjectPoolManager.Instance.GetPooledObject("TrapArrow");
             if (arrow)
             {
-                arrow.transform.position = transform.position;
+                arrow.transform.position = transform.position + offsets;
                 Setdirection(arrow);
                 arrow.SetActive(true);
 

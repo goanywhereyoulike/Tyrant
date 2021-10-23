@@ -5,32 +5,34 @@ public class RoomChanger : MonoBehaviour
 {
     [SerializeField]
     private int roomId;
+
     [SerializeField]
     private bool isBossRoom;
+    //[SerializeField]
+    //private bool isTowerTestRoom;
+    //[SerializeField]
+    //private bool isWeaponTestRoom;
+    //[SerializeField]
+    //private bool isTrapTestRoom;
+    //[SerializeField]
+    //private bool isMainRoom;
     [SerializeField]
-    private bool isTowerTestRoom;
-    [SerializeField]
-    private bool isWeaponTestRoom;
-    [SerializeField]
-    private bool isTrapTestRoom;
-    [SerializeField]
-    private bool isMainRoom;
+    RoomManager.RoomName room = RoomManager.RoomName.MainRoom;
 
     private bool isEnter;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (isMainRoom || isTrapTestRoom|| isTowerTestRoom || isWeaponTestRoom)
+        if (room == RoomManager.RoomName.MainRoom ||
+            room == RoomManager.RoomName.TrapRoom ||
+            room == RoomManager.RoomName.TowerRoom ||
+            room == RoomManager.RoomName.WeaponRoom)
         {
             if (collision.tag == "Player")
             {
                 isEnter = true;
                 RoomManager.Instance.RoomId = roomId;
-                RoomManager.Instance.IsBossRoom = isBossRoom;
-                RoomManager.Instance.IsWeaponTestRoom = isWeaponTestRoom;
-                RoomManager.Instance.IsTowerTestRoom = isTowerTestRoom;
-                RoomManager.Instance.IsTrapTestRoom = isTrapTestRoom;
-                RoomManager.Instance.IsMainRoom = isMainRoom;
+                RoomManager.Instance.CurrentRoomName = room;
             }
             return;
         }
@@ -41,6 +43,5 @@ public class RoomChanger : MonoBehaviour
             RoomManager.Instance.RoomId = roomId;
             RoomManager.Instance.IsBossRoom = isBossRoom;
         }
-        
     }
 }

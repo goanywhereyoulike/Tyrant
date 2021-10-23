@@ -4,6 +4,15 @@ using UnityEngine.UI;
 
 public class RoomManager : MonoBehaviour
 {
+    public enum RoomName
+    {
+        MainRoom,
+        BossRoom,
+        TowerRoom,
+        WeaponRoom,
+        TrapRoom
+    }
+
     public System.Action<int> RoomChanged = null;
 
     private int roomId;
@@ -12,10 +21,10 @@ public class RoomManager : MonoBehaviour
     [SerializeField]
     private bool isTutorial;
 
-    private bool isMainRoom;
-    private bool isTowerTestRoom;
-    private bool isWeaponTestRoom;
-    private bool isTrapTestRoom;
+    //private bool isMainRoom;
+    //private bool isTowerTestRoom;
+    //private bool isWeaponTestRoom;
+    //private bool isTrapTestRoom;
     
     private bool isBossRoom;
 
@@ -34,11 +43,15 @@ public class RoomManager : MonoBehaviour
             RoomChanged?.Invoke(roomId);
         }
     }
+
+    public RoomName CurrentRoomName { get; set; }
     public bool IsBossRoom { get => isBossRoom; set => isBossRoom = value; }
-    public bool IsTrapTestRoom { get => isTrapTestRoom; set => isTrapTestRoom = value; }
-    public bool IsWeaponTestRoom { get => isWeaponTestRoom; set => isWeaponTestRoom = value; }
-    public bool IsTowerTestRoom { get => isTowerTestRoom; set => isTowerTestRoom = value; }
-    public bool IsMainRoom { get => isMainRoom; set => isMainRoom = value; }
+    public bool IsTutorial { get => isTutorial; set => isTutorial = value; }
+
+    //public bool IsTrapTestRoom { get => isTrapTestRoom; set => isTrapTestRoom = value; }
+    //public bool IsWeaponTestRoom { get => isWeaponTestRoom; set => isWeaponTestRoom = value; }
+    //public bool IsTowerTestRoom { get => isTowerTestRoom; set => isTowerTestRoom = value; }
+    //public bool IsMainRoom { get => isMainRoom; set => isMainRoom = value; }
 
     private bool Isallclear;
 
@@ -91,7 +104,7 @@ public class RoomManager : MonoBehaviour
         //        }
         //    }
         //}
-        if (!isTutorial)
+        if (!IsTutorial)
         {
             for (int i = 0; i < Doors.Count; ++i)
             {
@@ -164,7 +177,7 @@ public class RoomManager : MonoBehaviour
                 isFirstUpdate = true;
             }
 
-            if (isMainRoom)
+            if (CurrentRoomName == RoomName.MainRoom)
             {
                 //clear all
                 if (!isMain)
@@ -179,8 +192,9 @@ public class RoomManager : MonoBehaviour
                     }
                     isMain = true;
                 }
+
             }
-            if (isTowerTestRoom)
+            if (CurrentRoomName == RoomName.TowerRoom)
             {
                 //close other item only tower can be use
                 if (isMain)
@@ -192,7 +206,7 @@ public class RoomManager : MonoBehaviour
                 }
                 isMain = false;
             }
-            if (isTrapTestRoom)
+            if (CurrentRoomName == RoomName.TrapRoom)
             {
                 //close other item only trap can be use
                 if (isMain)
@@ -204,7 +218,7 @@ public class RoomManager : MonoBehaviour
                 }
                 isMain = false;
             }
-            if (isWeaponTestRoom)
+            if (CurrentRoomName == RoomName.WeaponRoom)
             {
                 //close other item only weapon can be use
                 if (isMain)

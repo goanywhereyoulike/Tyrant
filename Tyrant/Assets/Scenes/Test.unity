@@ -13161,7 +13161,7 @@ GameObject:
   - component: {fileID: 684440286}
   - component: {fileID: 684440285}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: QuestSystem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13462,7 +13462,7 @@ GameObject:
   - component: {fileID: 1007938185}
   - component: {fileID: 1007938187}
   m_Layer: 5
-  m_Name: Image
+  m_Name: QuestBoard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -6,17 +6,17 @@ using UnityEngine.UI;
 public class Quest : MonoBehaviour
 {
     [SerializeField]
-    private string description;
+    protected string description;
     [SerializeField]
-    private Text QuestDesText;
+    protected Text QuestDesText;
     [SerializeField]
-    private Sprite QuestFinishedIcon;
+    protected Sprite QuestFinishedIcon;
     [SerializeField]
-    private Sprite QuestUnifinishedIcon;
+    protected Sprite QuestUnifinishedIcon;
     [SerializeField]
-    private Image QuestCheckBox;
+    protected Image QuestCheckBox;
     // Start is called before the first frame update
-    void Start()
+    protected virtual void Start()
     {
         QuestDesText.text = description;
         QuestCheckBox.sprite = QuestUnifinishedIcon;
@@ -26,10 +26,13 @@ public class Quest : MonoBehaviour
     public void FinishQuest()
     {
         QuestCheckBox.sprite = QuestFinishedIcon;
+        StartCoroutine(WaitBeforeDisable());
     }
     // Update is called once per frame
-    void Update()
+    IEnumerator WaitBeforeDisable()
     {
-        
+        yield return new WaitForSeconds(3);
+        gameObject.SetActive(false);
+
     }
 }

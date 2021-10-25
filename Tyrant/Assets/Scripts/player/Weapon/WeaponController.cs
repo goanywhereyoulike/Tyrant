@@ -22,7 +22,7 @@ public class WeaponController : MonoBehaviour
     {
         public WeaponType weaponType;
         public Weapon weaponObject;
-        public GameObject weaponUI;
+        //public GameObject weaponUI;
         public GameObject ReloadUI;
         public bool isUnlocked;
         public WeaponWheelButton weaponButton;
@@ -38,13 +38,13 @@ public class WeaponController : MonoBehaviour
     public void ChangeWeapon(int weaponIndex)
     {
         CurrentWeapon.weaponObject.gameObject.SetActive(false);
-        CurrentWeapon.weaponUI.gameObject.SetActive(false);
+        //CurrentWeapon.weaponUI.gameObject.SetActive(false);
         //CurrentWeapon.weaponObject = weaponObjects[weaponIndex].weaponObject;
-        CurrentWeapon.weaponUI = weaponObjects[weaponIndex].weaponUI;
+        //CurrentWeapon.weaponUI = weaponObjects[weaponIndex].weaponUI;
         CurrentWeapon.weaponType = weaponObjects[weaponIndex].weaponType;
         CurrentWeapon.weaponObject = weaponObjects[weaponIndex].weaponObject;
         CurrentWeapon.weaponObject.gameObject.SetActive(true);
-        CurrentWeapon.weaponUI.gameObject.SetActive(true);
+        //CurrentWeapon.weaponUI.gameObject.SetActive(true);
 
     }
 
@@ -59,10 +59,10 @@ public class WeaponController : MonoBehaviour
     {
         //CurrentWeapon.weaponObject = weaponObjects[0].weaponObject;
         
-        CurrentWeapon.weaponUI = weaponObjects[0].weaponUI;
+        //CurrentWeapon.weaponUI = weaponObjects[0].weaponUI;
         CurrentWeapon.weaponObject = weaponObjects[0].weaponObject;
         CurrentWeapon.weaponType = weaponObjects[0].weaponType;
-        CurrentWeapon.weaponUI.gameObject.SetActive(true);
+        //CurrentWeapon.weaponUI.gameObject.SetActive(true);
 
     }
 

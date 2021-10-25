@@ -10,7 +10,7 @@ public class WeaponUnlocker : PickUp
     private int weaponIndex;
     public void Interact(Player player)
     {
-        player.GetComponentInChildren<WeaponController>().UnlockWeapon(weaponIndex);
+        player.GetComponentInChildren<WeaponController>().ChangeWeapon(weaponIndex);
         Destroy(gameObject);
     }
     protected override void Trigger2DEnter(Collider2D collision)

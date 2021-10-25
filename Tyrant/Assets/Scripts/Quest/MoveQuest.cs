@@ -11,9 +11,10 @@ public class MoveQuest : Quest
     // Update is called once per frame
     void Update()
     {
-        if (InputManager.Instance.GetKey(key))
+        if (InputManager.Instance.GetKeyDown(key))
         {
             FinishQuest();
+            QuestBoard.moveQuestSetCount--;
         }
     }
   

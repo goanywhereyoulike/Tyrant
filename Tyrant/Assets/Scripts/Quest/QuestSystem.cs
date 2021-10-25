@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class QuestBoard : MonoBehaviour
+public class QuestSystem : MonoBehaviour
 {
     [SerializeField]
     private GameObject MoveQuestSet;
@@ -10,6 +10,7 @@ public class QuestBoard : MonoBehaviour
     private GameObject ShootQuestSet;
     [SerializeField]
     private GameObject board;
+    private Animator animator;
     // Start is called before the first frame update
     //[SerializeField]
     //private int moveQuestCount = 0;
@@ -20,7 +21,9 @@ public class QuestBoard : MonoBehaviour
     void Start()
     {
         board.SetActive(true);
+        animator = board.GetComponent<Animator>();
         moveQuestSetCount = MoveQuestSet.transform.childCount;
+
     }
 
     // Update is called once per frame
@@ -45,13 +48,14 @@ public class QuestBoard : MonoBehaviour
         {
             MoveQuestSet.SetActive(true);
         }
-        if(moveQuestSetCount==0)
+        if (moveQuestSetCount==0)
         {
             moveComplete = true;
-            MoveQuestSet.GetComponent<RectTransform>().position +=Vector3.right* 400 * Time.deltaTime;
+            //MoveQuestSet.GetComponent<RectTransform>().position +=Vector3.right* 400 * Time.deltaTime;
             if (!firstUpdate)
             {
-                StartCoroutine(WaitBeforeDisable(MoveQuestSet));
+                animator.SetTrigger("QuestEnd");
+                //StartCoroutine(WaitBeforeDisable(MoveQuestSet));
             }
             
         }
@@ -78,5 +82,13 @@ public class QuestBoard : MonoBehaviour
         yield return new WaitForSeconds(3);
         obj.SetActive(false);
 
+    }
+    void OnRoomChanged()
+    {
+        if((RoomManager.Instance.CurrentRoomName == RoomManager.RoomName.MainRoom && !moveComplete)
+            || (RoomManager.Instance.CurrentRoomName == RoomManager.RoomName.WeaponRoom && !shootComplete))
+        {
+            animator.SetTrigger("QuestBegin");
+        }
     }
 }

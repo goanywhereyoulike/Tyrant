@@ -29,10 +29,5 @@ public class Quest : MonoBehaviour
         //StartCoroutine(WaitBeforeDisable());
     }
     // Update is called once per frame
-    IEnumerator WaitBeforeDisable()
-    {
-        yield return new WaitForSeconds(3);
-        gameObject.SetActive(false);
-
-    }
+    
 }

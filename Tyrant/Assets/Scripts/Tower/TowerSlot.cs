@@ -14,8 +14,13 @@ public class TowerSlot : MonoBehaviour
 
     bool IsAbleToSet = false;
 
-    [SerializeField]
-    TowerTemplate towerTemplate;
+
+    public GameObject PreTowerprefab;
+
+    public GameObject Towerprefab;
+
+
+    public TowerTemplate towerTemplate;
 
     [SerializeField]
     private TMP_Text TowerPrice;
@@ -91,7 +96,7 @@ public class TowerSlot : MonoBehaviour
             TowerImage.gameObject.SetActive(false);
 
         }
-    
+
     }
 
     // Update is called once per frame

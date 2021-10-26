@@ -512,6 +512,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: b98cf827f1f74b045a6fe86a23c139a9, type: 2}
   - {fileID: 11400000, guid: 1f5ad5d0b026eb04c80838db0f735cb2, type: 2}
   - {fileID: 11400000, guid: 43bcf4cdc341adf4bb19617f20027202, type: 2}
+  TowerSlots: {fileID: 7842058495292279852}
   TowerNumberWarning: {fileID: 8138113493169396453}
   TowerNumberText: {fileID: 760990013602949663}
   TowerPanel: {fileID: 5555223572794265363}
@@ -1399,6 +1400,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05ebd7db804c9b447a937794125551af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PreTowerprefab: {fileID: 4933513445833602227, guid: 1a47897b7772ec94880a67e9e5499d81, type: 3}
+  Towerprefab: {fileID: 5927489027003806759, guid: 6e149c3fd7488c24e9085af9e737cb97, type: 3}
   towerTemplate: {fileID: 11400000, guid: b98cf827f1f74b045a6fe86a23c139a9, type: 2}
   TowerPrice: {fileID: 7254617974286197346}
   TowerCover: {fileID: 5718622768541490857}
@@ -1629,6 +1632,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05ebd7db804c9b447a937794125551af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PreTowerprefab: {fileID: 5900158593864669290, guid: 17f11ad569c774c42b357f0a1c8b45fa, type: 3}
+  Towerprefab: {fileID: 1695595480590805560, guid: f5b10c32f31d28b45a3c8a6b23d1c90f, type: 3}
   towerTemplate: {fileID: 11400000, guid: 43bcf4cdc341adf4bb19617f20027202, type: 2}
   TowerPrice: {fileID: 8017120056428029864}
   TowerCover: {fileID: 4982344681303800937}
@@ -2060,6 +2065,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05ebd7db804c9b447a937794125551af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PreTowerprefab: {fileID: 6325064689663514997, guid: 0a6b624684d12d648a6511095e522c53, type: 3}
+  Towerprefab: {fileID: 8230796614562607430, guid: 470e05c6013e3004e97234a2bc96a0d0, type: 3}
   towerTemplate: {fileID: 11400000, guid: 1f5ad5d0b026eb04c80838db0f735cb2, type: 2}
   TowerPrice: {fileID: 4606043021674754535}
   TowerCover: {fileID: 6307499828947468027}
@@ -4482,6 +4489,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05ebd7db804c9b447a937794125551af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PreTowerprefab: {fileID: 7071839386239554431, guid: ab541a304326aba4ca54909a3bd76a66, type: 3}
+  Towerprefab: {fileID: 127691141845400664, guid: 73eb16e181d22794ab40e4d7493409a7, type: 3}
   towerTemplate: {fileID: 11400000, guid: c1e9d70b0a7a7e24da738d0a8bac8e44, type: 2}
   TowerPrice: {fileID: 7260971845832311132}
   TowerCover: {fileID: 9159453216279626547}
@@ -5090,6 +5099,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05ebd7db804c9b447a937794125551af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PreTowerprefab: {fileID: 5978598576909855969, guid: 5ccc593b683f93c46892c918896524a8, type: 3}
+  Towerprefab: {fileID: 2154632680586423536, guid: b8a78dfb2e960f44f98b5ec2f3c8ebc7, type: 3}
   towerTemplate: {fileID: 11400000, guid: 6a6993094d51d564e829ba77253d06f2, type: 2}
   TowerPrice: {fileID: 1346340520326297432}
   TowerCover: {fileID: 6912096713223089083}

@@ -13478,7 +13478,7 @@ PrefabInstance:
     - target: {fileID: 484209897982530004, guid: e0342963580770d4bbbfa79b77e84777, type: 3}
       propertyPath: weaponObjects.Array.data[0].ReloadUI
       value: 
-      objectReference: {fileID: 1217097531}
+      objectReference: {fileID: 0}
     - target: {fileID: 484209897982530004, guid: e0342963580770d4bbbfa79b77e84777, type: 3}
       propertyPath: weaponObjects.Array.data[0].weaponUI
       value: 
@@ -13486,7 +13486,7 @@ PrefabInstance:
     - target: {fileID: 484209897982530004, guid: e0342963580770d4bbbfa79b77e84777, type: 3}
       propertyPath: weaponObjects.Array.data[1].ReloadUI
       value: 
-      objectReference: {fileID: 1217097531}
+      objectReference: {fileID: 0}
     - target: {fileID: 484209897982530004, guid: e0342963580770d4bbbfa79b77e84777, type: 3}
       propertyPath: weaponObjects.Array.data[1].weaponUI
       value: 
@@ -13494,7 +13494,7 @@ PrefabInstance:
     - target: {fileID: 484209897982530004, guid: e0342963580770d4bbbfa79b77e84777, type: 3}
       propertyPath: weaponObjects.Array.data[2].ReloadUI
       value: 
-      objectReference: {fileID: 1217097531}
+      objectReference: {fileID: 0}
     - target: {fileID: 484209897982530004, guid: e0342963580770d4bbbfa79b77e84777, type: 3}
       propertyPath: weaponObjects.Array.data[2].weaponUI
       value: 
@@ -13866,6 +13866,7 @@ GameObject:
   - component: {fileID: 1007938184}
   - component: {fileID: 1007938186}
   - component: {fileID: 1007938185}
+  - component: {fileID: 1007938187}
   m_Layer: 5
   m_Name: QuestBoard
   m_TagString: Untagged
@@ -13932,6 +13933,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1007938183}
   m_CullTransparentMesh: 1
+--- !u!95 &1007938187
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1007938183}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 897d0bff30bd95440a802c34241af75f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!4 &1019876635 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6302774489476007328, guid: 468ce44dfafb546448f8cdcaef32096f, type: 3}
@@ -14489,11 +14509,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f36bf7750f794fd40b7d8d279893eabb, type: 3}
---- !u!1 &1217097531 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3551717927414799091, guid: e0342963580770d4bbbfa79b77e84777, type: 3}
-  m_PrefabInstance: {fileID: 754856117}
-  m_PrefabAsset: {fileID: 0}
 --- !u!224 &1249899504 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3755791846287605393, guid: 3b5d1ef566048be44b4ba7190f549a02, type: 3}

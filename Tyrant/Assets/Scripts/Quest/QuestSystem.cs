@@ -24,19 +24,20 @@ public class QuestSystem : MonoBehaviour
         animator = board.GetComponent<Animator>();
         moveQuestSetCount = MoveQuestSet.transform.childCount;
 
+        RoomManager.Instance.RoomChanged += this.OnRoomChanged;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(RoomManager.Instance.CurrentRoomName == RoomManager.RoomName.MainRoom)
+        /*if(RoomManager.Instance.CurrentRoomName == RoomManager.RoomName.MainRoom)
         {
             ActiveMoveQuest();
         }
         if (RoomManager.Instance.CurrentRoomName == RoomManager.RoomName.WeaponRoom)
         {
             ActiveShootQuest();
-        }
+        }*/
 
 
 
@@ -47,17 +48,13 @@ public class QuestSystem : MonoBehaviour
         if(!moveComplete)
         {
             MoveQuestSet.SetActive(true);
+
         }
         if (moveQuestSetCount==0)
         {
             moveComplete = true;
-            //MoveQuestSet.GetComponent<RectTransform>().position +=Vector3.right* 400 * Time.deltaTime;
-            if (!firstUpdate)
-            {
-                animator.SetTrigger("QuestEnd");
-                //StartCoroutine(WaitBeforeDisable(MoveQuestSet));
-            }
-            
+            animator.SetTrigger("QuestEnd");
+  
         }
     }
     void ActiveShootQuest()
@@ -83,10 +80,13 @@ public class QuestSystem : MonoBehaviour
         obj.SetActive(false);
 
     }
-    void OnRoomChanged()
+    void OnRoomChanged(int id)
     {
-        if((RoomManager.Instance.CurrentRoomName == RoomManager.RoomName.MainRoom && !moveComplete)
-            || (RoomManager.Instance.CurrentRoomName == RoomManager.RoomName.WeaponRoom && !shootComplete))
+        if(RoomManager.Instance.CurrentRoomName == RoomManager.RoomName.MainRoom && !moveComplete)
+        {
+            animator.SetTrigger("QuestBegin");
+        }
+        if(RoomManager.Instance.CurrentRoomName == RoomManager.RoomName.WeaponRoom && !shootComplete)
         {
             animator.SetTrigger("QuestBegin");
         }

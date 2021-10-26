@@ -18,5 +18,6 @@ public class RoomChanger : MonoBehaviour
             RoomManager.Instance.RoomId = roomId;
             RoomManager.Instance.IsBossRoom = isBossRoom;
         }
+
     }
 }

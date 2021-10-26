@@ -127,8 +127,8 @@ public class TowerManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        RoomManager.Instance.RoomChanged += RoomChange;
         TowerPanel.gameObject.SetActive(true);
-        RoomManager.Instance.RoomChanged += RoomChanged;
         ObjectPoolManager.Instance.InstantiateObjects("TowerBullet");
         ObjectPoolManager.Instance.InstantiateObjects("CannonTowerBullet");
         ObjectPoolManager.Instance.InstantiateObjects("ChainTowerBullet");
@@ -253,7 +253,7 @@ public class TowerManager : MonoBehaviour
 
     }
 
-    private void RoomChanged(int changeId)
+    private void RoomChange(int changeId)
     {
         ClearAll();
         roomNumber = changeId;
@@ -311,11 +311,17 @@ public class TowerManager : MonoBehaviour
 
     void CheckSelection()
     {
-        IsAbleToSet[0] = SelectAbleToSet[0] = towerroomInfos.towerroomInfo[roomNumber].BasicTower;
-        IsAbleToSet[1] = SelectAbleToSet[1] = towerroomInfos.towerroomInfo[roomNumber].CannonTower;
-        IsAbleToSet[2] = SelectAbleToSet[2] = towerroomInfos.towerroomInfo[roomNumber].ChainTower;
-        IsAbleToSet[3] = SelectAbleToSet[3] = towerroomInfos.towerroomInfo[roomNumber].LightingTower;
-        IsAbleToSet[4] = SelectAbleToSet[4] = towerroomInfos.towerroomInfo[roomNumber].TauntTower;
+        SelectAbleToSet[0] = towerroomInfos.towerroomInfo[roomNumber].BasicTower;
+        SelectAbleToSet[1] = towerroomInfos.towerroomInfo[roomNumber].CannonTower;
+        SelectAbleToSet[2] = towerroomInfos.towerroomInfo[roomNumber].ChainTower;
+        SelectAbleToSet[3] = towerroomInfos.towerroomInfo[roomNumber].LightingTower;
+        SelectAbleToSet[4] = towerroomInfos.towerroomInfo[roomNumber].TauntTower;
+
+        for (int i = 0; i < 5; ++i)
+        {
+            IsAbleToSet[i] = SelectAbleToSet[i];
+
+        }
         //IsReachTowerNumberLimit = true;
     }
     void CheckCoin()
@@ -324,55 +330,55 @@ public class TowerManager : MonoBehaviour
         {
             return;
         }
-        
+
         if (player.GetComponent<Player>().coin < TowerTemplates[0].price)
         {
-            
+
             IsAbleToSet[0] = false;
         }
         if (player.GetComponent<Player>().coin < TowerTemplates[1].price)
         {
-            
+
             IsAbleToSet[1] = false;
         }
         if (player.GetComponent<Player>().coin < TowerTemplates[2].price)
         {
-            
+
             IsAbleToSet[2] = false;
         }
         if (player.GetComponent<Player>().coin < TowerTemplates[3].price)
         {
-            
+
             IsAbleToSet[3] = false;
         }
         if (player.GetComponent<Player>().coin < TowerTemplates[4].price)
         {
-            
+
             IsAbleToSet[4] = false;
         }
         if (player.GetComponent<Player>().coin >= TowerTemplates[0].price && SelectAbleToSet[0])
         {
-            
+
             IsAbleToSet[0] = true;
         }
         if (player.GetComponent<Player>().coin >= TowerTemplates[1].price && SelectAbleToSet[1])
         {
-            
+
             IsAbleToSet[1] = true;
         }
         if (player.GetComponent<Player>().coin >= TowerTemplates[2].price && SelectAbleToSet[2])
         {
-           
+
             IsAbleToSet[2] = true;
         }
         if (player.GetComponent<Player>().coin >= TowerTemplates[3].price && SelectAbleToSet[3])
         {
-           
+
             IsAbleToSet[3] = true;
         }
         if (player.GetComponent<Player>().coin >= TowerTemplates[4].price && SelectAbleToSet[4])
         {
-            
+
             IsAbleToSet[4] = true;
         }
 
@@ -543,13 +549,16 @@ public class TowerManager : MonoBehaviour
             return;
         }
 
-        foreach (var slot in slots)
+        for (int i = 0; i < slots.Count; ++i)
         {
-            slot.GetComponent<TowerSlot>().CheckCoin();
+            TowerSlot slot = slots[i].GetComponent<TowerSlot>();
+            if (slot.IsShow)
+            {
+                slot.CheckCoin();
+
+            }
 
         }
-
-
 
     }
     // Update is called once per frame
@@ -563,7 +572,7 @@ public class TowerManager : MonoBehaviour
         CheckNumberLimit();
 
         ApplyUnlock();
-        CheckCoin();
+        //CheckCoin();
         Vector2 PlayerPos = player.transform.position + offset;
         SetTower(PlayerPos);
 

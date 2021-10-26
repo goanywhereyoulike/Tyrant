@@ -108,9 +108,11 @@ public class Tower : MonoBehaviour, IDamageable, GameObjectsLocator.IGameObjectR
 
             }
         }
-        Health -= damage;
-        Healthbar.value = Health;
-        Debug.Log("Tower" + health);
+        if (Health > 0)
+        {
+            Health -= damage;
+            Healthbar.value = Health;
+        }
     }
 
     private void OnMouseEnter()

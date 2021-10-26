@@ -15,7 +15,7 @@ public class TrapUnlock : MonoBehaviour
 
             TrapManager TrapMngr = FindObjectOfType<TrapManager>();
 
-            TrapMngr.AddTrap();
+            TrapMngr.AddTrap(index);
 
             gameObject.SetActive(false);
            // Destroy(gameObject);

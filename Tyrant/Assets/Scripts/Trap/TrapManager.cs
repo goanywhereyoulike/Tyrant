@@ -18,6 +18,8 @@ public class TrapManager : MonoBehaviour
     [SerializeField]
     List<Image> TrapImages = new List<Image>();
 
+    [SerializeField]
+    GameObject TrapUI;
 
     [SerializeField]
     Image ClipTrapImage;
@@ -217,6 +219,20 @@ public class TrapManager : MonoBehaviour
 
     //}
 
+    void CheckUI()
+    {
+        if (TrapNumber <= 0)
+        {
+            TrapUI.SetActive(false);
+
+        }
+        else
+        {
+            TrapUI.SetActive(true);
+
+        }
+
+    }
 
     void SetTrapImage(TrapRoomInfo.TrapType trapType)
     {
@@ -254,8 +270,35 @@ public class TrapManager : MonoBehaviour
         TrapNumber = 0;
         Trapnumber.text = TrapNumber.ToString();
     }
-    public void AddTrap()
+    public void AddTrap(int index)
     {
+        switch (index)
+        {
+            case 1:
+                if (trapType != TrapRoomInfo.TrapType.Clip)
+                {
+                    TrapNumber = 0;
+                }
+                trapType = TrapRoomInfo.TrapType.Clip;
+                break;
+            case 2:
+                if (trapType != TrapRoomInfo.TrapType.Bomb)
+                {
+
+                    TrapNumber = 0;
+                }
+                trapType = TrapRoomInfo.TrapType.Bomb;
+                break;
+            case 3:
+                if (trapType != TrapRoomInfo.TrapType.BlackHole)
+                {
+
+                    TrapNumber = 0;
+                }
+                trapType = TrapRoomInfo.TrapType.BlackHole;
+                break;
+
+        }
         TrapNumber++;
         Trapnumber.text = TrapNumber.ToString();
     }
@@ -378,6 +421,7 @@ public class TrapManager : MonoBehaviour
     {
 
         CheckTrapnumber();
+        CheckUI();
         Vector2 PlayerPos = player.transform.position + offset;
         SetTrap(PlayerPos);
         SetTrapImage(trapType);

@@ -267,11 +267,13 @@ public class TrapManager : MonoBehaviour
             //Slot.GetComponent<SpriteRenderer>().color = Color.red;
             TrapNumber = 0;
             IsAbleToSet = false;
+            TrapPanel.gameObject.SetActive(false);
 
         }
         else
         {
             //Slot.GetComponent<SpriteRenderer>().color = Color.green;
+            TrapPanel.gameObject.SetActive(true);
             IsAbleToSet = true;
         }
 

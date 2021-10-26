@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public class Tower : MonoBehaviour, IDamageable, GameObjectsLocator.IGameObjectRegister
 {
+    public enum TowerType { Basic, Cannon, Chain, Lighting, Taunt };
+
+    public TowerType towertype;
     public TowerTemplate towerData;
     public GameObject DestroyedTower;
     private float health;
@@ -102,7 +105,7 @@ public class Tower : MonoBehaviour, IDamageable, GameObjectsLocator.IGameObjectR
             if (!tt.IsCoolDown)
             {
                 return;
-            
+
             }
         }
         Health -= damage;

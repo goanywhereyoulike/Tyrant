@@ -6,11 +6,8 @@ using UnityEngine.UI;
 public class TowerManager : MonoBehaviour
 {
 
-    enum TowerType {Basic,Cannon,Chain,Lighting,Taunt };
 
-    TowerType towerType;
-
-    List<Tower> towers = new List<Tower>();
+    public List<GameObject> slots = new List<GameObject>();
 
     public TowerLimitTemplate towerroomInfos;
     PlayerMovement player;
@@ -143,22 +140,33 @@ public class TowerManager : MonoBehaviour
             SelectAbleToSet.Add(false);
         }
 
-        Tower1Price.text = TowerTemplates[0].price.ToString();
-        Tower2Price.text = TowerTemplates[1].price.ToString();
-        Tower3Price.text = TowerTemplates[2].price.ToString();
-        Tower4Price.text = TowerTemplates[3].price.ToString();
-        Tower5Price.text = TowerTemplates[4].price.ToString();
-
-
-
         TowerNumberLimit = towerroomInfos.towerroomInfo[0].TowerNumber;
         //TowerNumlimit.text = TowerNumberLimit.ToString();
         TowerNumberText.text = SetTowerNumberUI(TowerNumber, TowerNumberLimit).ToString();
-
-
         //towerroomInfos.towerroomInfo.Reverse(RoomManager.Instance.);
     }
 
+    void UpdateUI()
+    {
+        for (int i = 0; i < 5; ++i)
+        {
+            TowerSlot slot = slots[i].GetComponent<TowerSlot>();
+            if (!SelectAbleToSet[i])
+            {
+                slot.IsShow = false;
+                slot.gameObject.transform.SetAsLastSibling();
+
+            }
+            else
+            {
+                slot.IsShow = true;
+
+            }
+
+
+        }
+
+    }
     public void DecreaseTowerlimit()
     {
         TowerNumber--;
@@ -168,6 +176,7 @@ public class TowerManager : MonoBehaviour
         }
 
         TowerNumberText.text = SetTowerNumberUI(TowerNumber, TowerNumberLimit).ToString();
+
         IsReachTowerNumberLimit = false;
     }
 
@@ -250,13 +259,21 @@ public class TowerManager : MonoBehaviour
         roomNumber = changeId;
         TowerNumberLimit = towerroomInfos.towerroomInfo[roomNumber].TowerNumber;
         TowerNumberText.text = SetTowerNumberUI(TowerNumber, TowerNumberLimit).ToString();
-        //CheckSelection();
+        CheckSelection();
+        UpdateUI();
     }
 
     public void ResetTowerNumber()
     {
         TowerNumber = 0;
         IsReachTowerNumberLimit = false;
+        for (int i = 0; i < 5; ++i)
+        {
+            slots[i].gameObject.transform.SetSiblingIndex(i);
+
+            slots[i].GetComponent<TowerSlot>().IsShow = true;
+        }
+
     }
 
     void SetTowerLimit(int num)
@@ -283,13 +300,10 @@ public class TowerManager : MonoBehaviour
             {
                 IsAbleToSet[i] = false;
                 SelectAbleToSet[i] = true;
+                slots[i].GetComponent<TowerSlot>().LockUI();
 
             }
-            PreTowerSprite.color = Color.red;
-            PreCannonTowerSprite.color = Color.red;
-            PreChainTowerSprite.color = Color.red;
-            PreLightingTowerSprite.color = Color.red;
-            PreTauntTowerSprite.color = Color.red;
+
             IsReachTowerNumberLimit = true;
         }
 
@@ -297,76 +311,11 @@ public class TowerManager : MonoBehaviour
 
     void CheckSelection()
     {
-        SelectAbleToSet[0] = towerroomInfos.towerroomInfo[roomNumber].BasicTower;
-        SelectAbleToSet[1] = towerroomInfos.towerroomInfo[roomNumber].CannonTower;
-        SelectAbleToSet[2] = towerroomInfos.towerroomInfo[roomNumber].ChainTower;
-        SelectAbleToSet[3] = towerroomInfos.towerroomInfo[roomNumber].LightingTower;
-        SelectAbleToSet[4] = towerroomInfos.towerroomInfo[roomNumber].TauntTower;
-
-        //Select Normal Tower
-        if (SelectAbleToSet[0])
-        {
-            Select1Cover.SetActive(false);
-            IsAbleToSet[0] = true;
-        }
-        else
-        {
-            Select1Cover.SetActive(true);
-            IsAbleToSet[0] = false;
-
-
-        }
-        //Select Cannon Tower
-        if (SelectAbleToSet[1])
-        {
-            Select2Cover.SetActive(false);
-            IsAbleToSet[1] = true;
-        }
-        else
-        {
-            Select2Cover.SetActive(true);
-            IsAbleToSet[1] = false;
-
-
-        }
-        //Select Chain Tower
-        if (SelectAbleToSet[2])
-        {
-            Select3Cover.SetActive(false);
-            IsAbleToSet[2] = true;
-        }
-        else
-        {
-            Select3Cover.SetActive(true);
-            IsAbleToSet[2] = false;
-        }
-
-        //Select Lighting Tower
-        if (SelectAbleToSet[3])
-        {
-            Select4Cover.SetActive(false);
-            IsAbleToSet[3] = true;
-        }
-        else
-        {
-            Select4Cover.SetActive(true);
-            IsAbleToSet[3] = false;
-
-        }
-
-        //Select Taunt Tower
-        if (SelectAbleToSet[4])
-        {
-            Select5Cover.SetActive(false);
-            IsAbleToSet[4] = true;
-        }
-        else
-        {
-            Select5Cover.SetActive(true);
-            IsAbleToSet[4] = false;
-
-        }
-
+        IsAbleToSet[0] = SelectAbleToSet[0] = towerroomInfos.towerroomInfo[roomNumber].BasicTower;
+        IsAbleToSet[1] = SelectAbleToSet[1] = towerroomInfos.towerroomInfo[roomNumber].CannonTower;
+        IsAbleToSet[2] = SelectAbleToSet[2] = towerroomInfos.towerroomInfo[roomNumber].ChainTower;
+        IsAbleToSet[3] = SelectAbleToSet[3] = towerroomInfos.towerroomInfo[roomNumber].LightingTower;
+        IsAbleToSet[4] = SelectAbleToSet[4] = towerroomInfos.towerroomInfo[roomNumber].TauntTower;
         //IsReachTowerNumberLimit = true;
     }
     void CheckCoin()
@@ -375,55 +324,55 @@ public class TowerManager : MonoBehaviour
         {
             return;
         }
-
+        
         if (player.GetComponent<Player>().coin < TowerTemplates[0].price)
         {
-            PreTowerSprite.color = Color.red;
+            
             IsAbleToSet[0] = false;
         }
         if (player.GetComponent<Player>().coin < TowerTemplates[1].price)
         {
-            PreCannonTowerSprite.color = Color.red;
+            
             IsAbleToSet[1] = false;
         }
         if (player.GetComponent<Player>().coin < TowerTemplates[2].price)
         {
-            PreChainTowerSprite.color = Color.red;
+            
             IsAbleToSet[2] = false;
         }
         if (player.GetComponent<Player>().coin < TowerTemplates[3].price)
         {
-            PreLightingTowerSprite.color = Color.red;
+            
             IsAbleToSet[3] = false;
         }
         if (player.GetComponent<Player>().coin < TowerTemplates[4].price)
         {
-            PreTauntTowerSprite.color = Color.red;
+            
             IsAbleToSet[4] = false;
         }
         if (player.GetComponent<Player>().coin >= TowerTemplates[0].price && SelectAbleToSet[0])
         {
-            PreTowerSprite.color = Color.white;
+            
             IsAbleToSet[0] = true;
         }
         if (player.GetComponent<Player>().coin >= TowerTemplates[1].price && SelectAbleToSet[1])
         {
-            PreCannonTowerSprite.color = Color.white;
+            
             IsAbleToSet[1] = true;
         }
         if (player.GetComponent<Player>().coin >= TowerTemplates[2].price && SelectAbleToSet[2])
         {
-            PreChainTowerSprite.color = Color.white;
+           
             IsAbleToSet[2] = true;
         }
         if (player.GetComponent<Player>().coin >= TowerTemplates[3].price && SelectAbleToSet[3])
         {
-            PreLightingTowerSprite.color = Color.white;
+           
             IsAbleToSet[3] = true;
         }
         if (player.GetComponent<Player>().coin >= TowerTemplates[4].price && SelectAbleToSet[4])
         {
-            PreTauntTowerSprite.color = Color.white;
+            
             IsAbleToSet[4] = true;
         }
 
@@ -586,44 +535,19 @@ public class TowerManager : MonoBehaviour
     {
         if (TowerNumber >= TowerNumberLimit)
         {
-            Tower1Cover.fillAmount = 0.0f;
-            Tower2Cover.fillAmount = 0.0f;
-            Tower3Cover.fillAmount = 0.0f;
-            Tower4Cover.fillAmount = 0.0f;
-            Tower5Cover.fillAmount = 0.0f;
+            foreach (var slot in slots)
+            {
+                slot.GetComponent<TowerSlot>().SetFill(0.0f);
+
+            }
             return;
         }
 
-        if (player.GetComponent<Player>().coin >= TowerTemplates[0].price)
+        foreach (var slot in slots)
         {
-            Tower1Cover.fillAmount = 1.0f;
-        }
-        if (player.GetComponent<Player>().coin >= TowerTemplates[1].price)
-        {
-            Tower2Cover.fillAmount = 1.0f;
-        }
-        if (player.GetComponent<Player>().coin >= TowerTemplates[2].price)
-        {
-            Tower3Cover.fillAmount = 1.0f;
-        }
-        if (player.GetComponent<Player>().coin >= TowerTemplates[3].price)
-        {
-            Tower4Cover.fillAmount = 1.0f;
-        }
-        if (player.GetComponent<Player>().coin >= TowerTemplates[4].price)
-        {
-            Tower5Cover.fillAmount = 1.0f;
-        }
+            slot.GetComponent<TowerSlot>().CheckCoin();
 
-        else
-        {
-            Tower1Cover.fillAmount = (float)player.GetComponent<Player>().coin / (float)TowerTemplates[0].price;
-            Tower2Cover.fillAmount = (float)player.GetComponent<Player>().coin / (float)TowerTemplates[1].price;
-            Tower3Cover.fillAmount = (float)player.GetComponent<Player>().coin / (float)TowerTemplates[2].price;
-            Tower4Cover.fillAmount = (float)player.GetComponent<Player>().coin / (float)TowerTemplates[3].price;
-            Tower5Cover.fillAmount = (float)player.GetComponent<Player>().coin / (float)TowerTemplates[4].price;
         }
-
 
 
 
@@ -632,11 +556,12 @@ public class TowerManager : MonoBehaviour
     void Update()
     {
         CheckSelection();
+        UpdateUI();
         //ChangePanel();
         //Coinnumber.text = player.GetComponent<Player>().coin.ToString();
         TowerNumberText.text = SetTowerNumberUI(TowerNumber, TowerNumberLimit).ToString();
         CheckNumberLimit();
-        
+
         ApplyUnlock();
         CheckCoin();
         Vector2 PlayerPos = player.transform.position + offset;

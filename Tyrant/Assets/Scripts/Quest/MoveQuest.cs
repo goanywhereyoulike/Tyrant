@@ -14,7 +14,6 @@ public class MoveQuest : Quest
         if (InputManager.Instance.GetKeyDown(key))
         {
             FinishQuest();
-            QuestSystem.moveQuestSetCount--;
         }
     }
   

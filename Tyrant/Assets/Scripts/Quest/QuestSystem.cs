@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,18 +14,52 @@ public class QuestSystem : MonoBehaviour
     private Animator animator;
     // Start is called before the first frame update
     //[SerializeField]
-    //private int moveQuestCount = 0;
-    public static int moveQuestSetCount = 0;
+    private static QuestSystem instance = null;
+    public static QuestSystem Instance { get => instance; }
+    public int CurrentQuestSetCount { get => currentQuestSetCount; 
+        set 
+        { 
+            currentQuestSetCount = value; 
+            if(currentQuestSetCount==0)
+            {
+
+            }
+        } 
+    }
+
+    private int currentQuestSetCount = 0;
+    //public  int moveQuestSetCount;
     private bool moveComplete=false;
     private bool shootComplete=false;
     private bool buildComplete=false;
+    private bool firstRun = true;
+    /*public  int MoveQuestSetCount
+    { 
+        get => moveQuestSetCount; 
+        set 
+        { 
+            moveQuestSetCount = value;
+
+        } 
+    }*/
+
     void Start()
     {
+        if(instance == null)
+        {
+            //DontDestroyOnLoad(gameObject);
+            instance = this;
+        }
+        else if (instance != this)
+        {
+            Destroy(gameObject);
+        }
         board.SetActive(true);
         animator = board.GetComponent<Animator>();
-        moveQuestSetCount = MoveQuestSet.transform.childCount;
-
+        
         RoomManager.Instance.RoomChanged += this.OnRoomChanged;
+        ActiveMoveQuest();
+        
     }
 
     // Update is called once per frame
@@ -38,24 +73,27 @@ public class QuestSystem : MonoBehaviour
         {
             ActiveShootQuest();
         }*/
-
+        /*if (MoveQuestSetCount == 0 && firstRun)
+        {
+            moveComplete = true;
+            animator.SetBool("QuestEnd",true);
+            MoveQuestSet.SetActive(false);
+            firstRun = false;
+        }*/
 
 
     }
-    bool firstUpdate=false;
+    //bool firstUpdate=false;
     void ActiveMoveQuest()
     {
         if(!moveComplete)
         {
             MoveQuestSet.SetActive(true);
+            CurrentQuestSetCount = MoveQuestSet.transform.childCount;
+
 
         }
-        if (moveQuestSetCount==0)
-        {
-            moveComplete = true;
-            animator.SetTrigger("QuestEnd");
-  
-        }
+        
     }
     void ActiveShootQuest()
     {
@@ -75,7 +113,7 @@ public class QuestSystem : MonoBehaviour
 
     IEnumerator WaitBeforeDisable(GameObject obj)
     {
-        firstUpdate = true;
+        //firstUpdate = true;
         yield return new WaitForSeconds(3);
         obj.SetActive(false);
 
@@ -84,11 +122,17 @@ public class QuestSystem : MonoBehaviour
     {
         if(RoomManager.Instance.CurrentRoomName == RoomManager.RoomName.MainRoom && !moveComplete)
         {
+            ActiveMoveQuest();
             animator.SetTrigger("QuestBegin");
         }
         if(RoomManager.Instance.CurrentRoomName == RoomManager.RoomName.WeaponRoom && !shootComplete)
         {
+            ActiveShootQuest();
             animator.SetTrigger("QuestBegin");
         }
+    }
+    void onQuestCompleted()
+    {
+
     }
 }

@@ -16,13 +16,25 @@ public class QuestSystem : MonoBehaviour
     //[SerializeField]
     private static QuestSystem instance = null;
     public static QuestSystem Instance { get => instance; }
+    private GameObject currentQuestSet;
     public int CurrentQuestSetCount { get => currentQuestSetCount; 
         set 
         { 
             currentQuestSetCount = value; 
             if(currentQuestSetCount==0)
             {
-
+                animator.SetBool("QuestEnd", true);
+                if(currentQuestSet == MoveQuestSet)
+                {
+                    moveComplete = true;
+                    StartCoroutine(WaitBeforeDisable(MoveQuestSet));
+                }
+                if(currentQuestSet == ShootQuestSet)
+                {
+                    shootComplete = true;
+                    StartCoroutine(WaitBeforeDisable(ShootQuestSet));
+                }
+                currentQuestSet = null;
             }
         } 
     }
@@ -32,7 +44,7 @@ public class QuestSystem : MonoBehaviour
     private bool moveComplete=false;
     private bool shootComplete=false;
     private bool buildComplete=false;
-    private bool firstRun = true;
+    //private bool firstRun = true;
     /*public  int MoveQuestSetCount
     { 
         get => moveQuestSetCount; 
@@ -90,8 +102,7 @@ public class QuestSystem : MonoBehaviour
         {
             MoveQuestSet.SetActive(true);
             CurrentQuestSetCount = MoveQuestSet.transform.childCount;
-
-
+            currentQuestSet = MoveQuestSet;
         }
         
     }
@@ -100,11 +111,10 @@ public class QuestSystem : MonoBehaviour
         if (!shootComplete)
         {
             ShootQuestSet.SetActive(true);
+            CurrentQuestSetCount = ShootQuestSet.transform.childCount;
+            currentQuestSet = ShootQuestSet;
         }
-        if (board.transform.childCount == 0)
-        {
-            shootComplete = true;
-        }
+      
     }
     void ActiveBuildQuest()
     {
@@ -114,7 +124,7 @@ public class QuestSystem : MonoBehaviour
     IEnumerator WaitBeforeDisable(GameObject obj)
     {
         //firstUpdate = true;
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(1);
         obj.SetActive(false);
 
     }
@@ -131,8 +141,5 @@ public class QuestSystem : MonoBehaviour
             animator.SetTrigger("QuestBegin");
         }
     }
-    void onQuestCompleted()
-    {
 
-    }
 }

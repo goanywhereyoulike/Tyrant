@@ -27,6 +27,7 @@ public class Quest : MonoBehaviour
     public void FinishQuest()
     {
         QuestCheckBox.sprite = QuestFinishedIcon;
+        QuestSystem.Instance.CurrentQuestSetCount--;
         //StartCoroutine(WaitBeforeDisable());
     }
     // Update is called once per frame

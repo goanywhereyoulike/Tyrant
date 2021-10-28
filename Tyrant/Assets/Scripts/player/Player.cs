@@ -8,6 +8,8 @@ using UnityEngine.SceneManagement;
 public class Player : MonoBehaviour , IDamageable, GameObjectsLocator.IGameObjectRegister
 {
     [SerializeField]
+    private GameObject interactButton;
+    [SerializeField]
     private PlayerStates playerStates;
 
     [SerializeField] private DialogueUI dialogueUI;
@@ -33,7 +35,8 @@ public class Player : MonoBehaviour , IDamageable, GameObjectsLocator.IGameObjec
     private PlayerMovement playerMovement = null;
 
     public DialogueUI DialogueUI => dialogueUI;
-   
+
+    public GameObject InteractButton { get => interactButton; }
 
     [SerializeField]
     private PlayerUI playerUI = null;

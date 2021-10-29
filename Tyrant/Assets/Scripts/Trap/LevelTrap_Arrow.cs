@@ -9,15 +9,21 @@ public class LevelTrap_Arrow : MonoBehaviour
     public float speed = 2.0f;
     SpriteRenderer sprite;
     public float damage = 1.0f;
-
+    float waitfordestroy = 0.0f;
+    float destroytime = 1.0f;
     private int direction = -1;
     private void Start()
     {
 
         // Setdirection(sprite);
+        //StartCoroutine(DestroyBullet());
 
     }
-
+    IEnumerator DestroyBullet()
+    {
+        yield return new WaitForSeconds(1.0f);
+        gameObject.SetActive(false);
+    }
     public void SetDirection(int dir)
     {
         direction = dir;
@@ -53,6 +59,16 @@ public class LevelTrap_Arrow : MonoBehaviour
     void Update()
     {
         MoveDirection();
+
+        waitfordestroy += Time.deltaTime;
+        if (waitfordestroy > destroytime)
+        {
+            waitfordestroy = 0.0f;
+            gameObject.SetActive(false);
+        
+        }
+
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -63,7 +79,7 @@ public class LevelTrap_Arrow : MonoBehaviour
         {
 
             player.TakeDamage(damage);
-        
+
         }
         if (tag == "Player" || tag == "Wall")
         {

@@ -5,6 +5,7 @@ using UnityEngine;
 public class LevelTrap_ArrowPortal : MonoBehaviour
 {
     // Start is called before the first frame update
+    public GameObject HitEffect;
     public GameObject ArrowPrefab;
     float WaitFire = 0.0f;
     public float FireRate;
@@ -83,7 +84,15 @@ public class LevelTrap_ArrowPortal : MonoBehaviour
         arrow.SetActive(false);
     }
 
-
-
-
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        Bullet bullet = collision.gameObject.GetComponent<Bullet>();
+        if (bullet)
+        {
+            bullet.gameObject.SetActive(false);
+            GameObject effect = Instantiate(HitEffect, transform.position, Quaternion.identity);
+            Destroy(effect, 0.5f);
+        
+        }
+    }
 }

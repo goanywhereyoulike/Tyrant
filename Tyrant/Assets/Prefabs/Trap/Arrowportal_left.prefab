@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3272311943511655260}
   - component: {fileID: 3272311943511655251}
   - component: {fileID: 3272311943511655250}
+  - component: {fileID: 2811352027560089177}
   m_Layer: 0
   m_Name: Arrowportal_left
   m_TagString: Untagged
@@ -95,6 +96,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 192ee11b9acef124596c114ad71af81d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  HitEffect: {fileID: 7931330404067809538, guid: 534af3420ac62484ea51891a1a6e7c06, type: 3}
   ArrowPrefab: {fileID: 1601992817835711718, guid: a6d0ecfc0c44b8c40aa3057be54b7fd6, type: 3}
   FireRate: 1
+  offsets: {x: 0, y: 0, z: 0}
   sprite: {fileID: 0}
+--- !u!61 &2811352027560089177
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3272311943511655249}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.055036545, y: -0.0036695004}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 2, y: 2}
+    newSize: {x: 0.16, y: 0.16}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.37825012, y: 1.0093398}
+  m_EdgeRadius: 0

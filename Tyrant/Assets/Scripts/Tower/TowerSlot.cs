@@ -12,7 +12,8 @@ public class TowerSlot : MonoBehaviour
     private bool Isshow = true;
     public bool IsShow { get => Isshow; set => Isshow = value; }
 
-    bool IsAbleToSet = false;
+    private bool Isabletoset = false;
+    public bool IsAbleToSet { get => Isabletoset; set => Isabletoset = value; }
 
 
     public GameObject PreTowerprefab;
@@ -59,10 +60,12 @@ public class TowerSlot : MonoBehaviour
         if (player.coin >= towerTemplate.price)
         {
             TowerCover.fillAmount = 1.0f;
+            Isabletoset = true;
         }
         else
         {
             TowerCover.fillAmount = (float)player.GetComponent<Player>().coin / (float)towerTemplate.price;
+            Isabletoset = false;
         }
 
 

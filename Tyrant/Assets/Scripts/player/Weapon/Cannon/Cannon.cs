@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -72,7 +73,7 @@ public class Cannon : Weapon
         }
         if (canFire && currentAmmo > 0)
         {
-
+            
             var bulletObject = ObjectPoolManager.Instance.GetPooledObject("ConnonBullet");
             if (bulletObject)
             {

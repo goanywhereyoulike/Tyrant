@@ -1,9 +1,11 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class Weapon : MonoBehaviour
 {
+    public event Action Fired = null;
     [SerializeField]
     protected WeaponStates weaponStates;
 
@@ -59,12 +61,13 @@ public abstract class Weapon : MonoBehaviour
         {
             nextFireTime = Time.time + weaponStates.ShootingDelayTime;
             canFire = true;
+            
         }
     }
 
     public virtual void UnFire()
     {
-
+        Fired?.Invoke();
     }
 
     public virtual void HoldingFire(float holdingTime)

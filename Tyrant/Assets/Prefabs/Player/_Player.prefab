@@ -8862,6 +8862,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7543873474f4ca74b973d796ee754328, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  interactButton: {fileID: 5361520750960409760}
   playerStates: {fileID: 11400000, guid: fb38b2de578a30845b20adece0381713, type: 2}
   dialogueUI: {fileID: 0}
   myInventory:
@@ -9789,26 +9790,22 @@ MonoBehaviour:
   weaponObjects:
   - weaponType: 0
     weaponObject: {fileID: 4021206477430153302}
-    weaponUI: {fileID: 0}
     ReloadUI: {fileID: 0}
     isUnlocked: 0
     weaponButton: {fileID: 0}
   - weaponType: 1
     weaponObject: {fileID: 6075498749480902814}
-    weaponUI: {fileID: 0}
     ReloadUI: {fileID: 0}
     isUnlocked: 0
     weaponButton: {fileID: 0}
   - weaponType: 2
     weaponObject: {fileID: 163575343012365060}
-    weaponUI: {fileID: 0}
     ReloadUI: {fileID: 0}
     isUnlocked: 0
     weaponButton: {fileID: 0}
   CurrentWeapon:
     weaponType: 0
     weaponObject: {fileID: 0}
-    weaponUI: {fileID: 0}
     ReloadUI: {fileID: 0}
     isUnlocked: 0
     weaponButton: {fileID: 0}
@@ -9908,6 +9905,11 @@ PrefabInstance:
 --- !u!224 &5361520750960409763 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5706039408164123851, guid: 6c7ca7080ebdb2040bac61c2ed245823, type: 3}
+  m_PrefabInstance: {fileID: 380587340539742312}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &5361520750960409760 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5706039408164123848, guid: 6c7ca7080ebdb2040bac61c2ed245823, type: 3}
   m_PrefabInstance: {fileID: 380587340539742312}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2677092776576931325
@@ -10081,13 +10083,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 476e87c07a5808b44a1bdc88bb4be5a5, type: 3}
---- !u!1 &3551717927414799091 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6577709662791187090, guid: 476e87c07a5808b44a1bdc88bb4be5a5, type: 3}
-  m_PrefabInstance: {fileID: 7638813833374507105}
-  m_PrefabAsset: {fileID: 0}
 --- !u!224 &3551717927414799100 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6577709662791187101, guid: 476e87c07a5808b44a1bdc88bb4be5a5, type: 3}
+  m_PrefabInstance: {fileID: 7638813833374507105}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &3551717927414799091 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6577709662791187090, guid: 476e87c07a5808b44a1bdc88bb4be5a5, type: 3}
   m_PrefabInstance: {fileID: 7638813833374507105}
   m_PrefabAsset: {fileID: 0}

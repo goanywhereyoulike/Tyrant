@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 
 public class WeaponUnlocker : PickUp
 {
@@ -10,15 +10,20 @@ public class WeaponUnlocker : PickUp
     private int weaponIndex;
     public void Interact(Player player)
     {
-        player.GetComponentInChildren<WeaponController>().UnlockWeapon(weaponIndex);
-        Destroy(gameObject);
+        player.GetComponentInChildren<WeaponController>().ChangeWeapon(weaponIndex);
+        //Destroy(gameObject);
     }
     protected override void Trigger2DEnter(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
             player = collision.gameObject.GetComponent<Player>();
+            player.InteractButton.GetComponent<Image>().enabled = true;
         }
+    }
+    protected override void Trigger2DExit(Collider2D collision)
+    {
+        player.InteractButton.GetComponent<Image>().enabled = false;
     }
     private void Update()
     {

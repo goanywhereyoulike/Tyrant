@@ -56,6 +56,12 @@ public class TestEnemy : Enemy
     // Update is called once per frame
     void Update()
     {
+        if (!isSpawn)
+        {
+            RegisterToLocator();
+            isSpawn = true;
+        }
+
         if (isChase)
         {
             mainTarget = GameObjectsLocator.Instance.Get<Player>();

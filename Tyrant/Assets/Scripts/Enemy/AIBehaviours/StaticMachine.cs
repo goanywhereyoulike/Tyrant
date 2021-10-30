@@ -25,9 +25,12 @@ public class StaticMachine : MonoBehaviour
 
     public void Update()
     {
-        for (int i = 0; i < behaviours.Length; i++)
+        if (behaviours != null)
         {
-            behaviours[i].update();
+            for (int i = 0; i < behaviours.Length; i++)
+            {
+                behaviours[i].update();
+            }
         }
     }
     public Vector3 ForceCalculate()

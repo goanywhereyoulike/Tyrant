@@ -9,6 +9,9 @@ public class PlayerShooting : MonoBehaviour
 
     private void Update()
     {
+        if (RoomManager.Instance.IsTutorial && RoomManager.Instance.CurrentRoomName != RoomManager.RoomName.WeaponRoom)
+            return;
+
         float holdingTime;
         if (InputManager.Instance.GetKey("Fire", out holdingTime))
         {

@@ -23,7 +23,7 @@ public class Arrive : AiBehaviours
             const double DecelWeater = 0.3;
             float speed = (float)dist / (float)DecelWeater;
             speed = Mathf.Min(speed, enemy.MoveSpeed);
-            Vector3 desiredVelocity = ToTarget * enemy.MoveSpeed * Time.deltaTime;
+            Vector3 desiredVelocity = ToTarget * enemy.EnemyState.MaxMoveSpeed * Time.deltaTime;
             return desiredVelocity - enemy.EnemyState.velocity;
         }
         return Vector3.zero;

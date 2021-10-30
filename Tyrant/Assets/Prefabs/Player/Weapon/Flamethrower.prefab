@@ -47,7 +47,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4286668168501483722
 Transform:
   m_ObjectHideFlags: 0
@@ -95,6 +95,8 @@ MonoBehaviour:
   - playerFacing: 7
     gameObject: {fileID: 1833754628872364242}
   flameParticle: {fileID: 729791433822682361}
+  ammoBar: {fileID: 0}
+  reloader: {fileID: 0}
 --- !u!114 &2325895958007221754
 MonoBehaviour:
   m_ObjectHideFlags: 0

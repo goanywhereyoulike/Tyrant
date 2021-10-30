@@ -31,8 +31,8 @@ public class RoomChanger : MonoBehaviour
             if (collision.tag == "Player")
             {
                 isEnter = true;
-                RoomManager.Instance.RoomId = roomId;
                 RoomManager.Instance.CurrentRoomName = room;
+                RoomManager.Instance.RoomId = roomId;
             }
             return;
         }

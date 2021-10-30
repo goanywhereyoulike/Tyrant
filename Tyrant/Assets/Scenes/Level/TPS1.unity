@@ -1150,11 +1150,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 410294411753979358, guid: 99fcf55255fe8ce42879e52685eaf368, type: 3}
   m_PrefabInstance: {fileID: 2015950687}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &716519993 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 569428693357809520, guid: fceab2b587375d542b368ec7426b0575, type: 3}
-  m_PrefabInstance: {fileID: 1126842265}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &727246734 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 170502556355076823, guid: a3e45492d60ce674d8109ffd514a452f, type: 3}
@@ -1670,7 +1665,7 @@ PrefabInstance:
     - target: {fileID: 848210383095309897, guid: fceab2b587375d542b368ec7426b0575, type: 3}
       propertyPath: Pointers.Array.data[3]
       value: 
-      objectReference: {fileID: 716519993}
+      objectReference: {fileID: 0}
     - target: {fileID: 848210383095309897, guid: fceab2b587375d542b368ec7426b0575, type: 3}
       propertyPath: Pointers.Array.data[4]
       value: 
@@ -4404,7 +4399,7 @@ PrefabInstance:
     - target: {fileID: 4488405804283684250, guid: e3065554a13e24320bd7ae7aeca6a670, type: 3}
       propertyPath: Pointers.Array.data[3]
       value: 
-      objectReference: {fileID: 716519993}
+      objectReference: {fileID: 0}
     - target: {fileID: 4488405804283684250, guid: e3065554a13e24320bd7ae7aeca6a670, type: 3}
       propertyPath: Pointers.Array.data[4]
       value: 

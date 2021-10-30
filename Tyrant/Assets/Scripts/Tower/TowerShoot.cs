@@ -5,10 +5,16 @@ using UnityEngine.UI;
 
 public class TowerShoot : MonoBehaviour
 {
+
+    public TowerTemplate towerData;
+
     [SerializeField]
     Slider ColdDown;
 
     bool IsCoolDown = false;
+
+    [SerializeField]
+    bool HasAnimation = true;
 
     private GameObject currentTarget = null;
     Tower tower;
@@ -39,6 +45,13 @@ public class TowerShoot : MonoBehaviour
         IsChainTower = false;
         IsCoolDown = false;
         Bulletnum = 0.0f;
+
+        BulletLimit = towerData.BulletLimit;
+        CoolDownSpeed = towerData.CoolDownSpeed;
+        DistanceToShoot = towerData.distanceToShoot;
+        FireRate = towerData.fireRate;
+        BulletForce = towerData.bulletForce;
+
         ColdDown.maxValue = BulletLimit;
         ColdDown.value = float.IsNaN(Bulletnum) ? 0f : Bulletnum;
         ColdDown.fillRect.transform.GetComponent<Image>().color = Color.yellow;
@@ -109,36 +122,47 @@ public class TowerShoot : MonoBehaviour
     void Fire()
     {
         Vector3 Direction = (currentTarget.transform.position - ShootPoint.position).normalized;
-        TowerDisplay towerInfo = gameObject.GetComponent<TowerDisplay>();
         GameObject bullet = ObjectPoolManager.Instance.GetPooledObject("TowerBullet");
-        if (towerInfo)
+        //if (towerInfo)
+        //{
+        if (towerData.type == "Basic" && bullet)
         {
-            if (towerInfo.tower.type == "Basic" && bullet)
+            bullet.GetComponent<TowerBullet>().bulletDamage = towerData.bulletDamage;
+        }
+        if (towerData.type == "CannonTower")
+        {
+            bullet = ObjectPoolManager.Instance.GetPooledObject("CannonTowerBullet");
+            if (bullet)
             {
-                bullet.GetComponent<TowerBullet>().bulletDamage = towerInfo.tower.bulletDamage;
-            }
-            if (towerInfo.tower.type == "CannonTower")
-            {
-                bullet = ObjectPoolManager.Instance.GetPooledObject("CannonTowerBullet");
-                if (bullet)
-                {
-                    bullet.GetComponent<CannonTowerBullet>().bulletDamage = towerInfo.tower.bulletDamage;
-                }
-
+                bullet.GetComponent<CannonTowerBullet>().bulletDamage = towerData.bulletDamage;
             }
 
-            if (towerInfo.tower.type == "ChainTower")
-            {
-                bullet = ObjectPoolManager.Instance.GetPooledObject("ChainTowerBullet");
-                if (bullet)
-                {
-                    bullet.GetComponentInChildren<ChainTowerBullet>().bulletDamage = towerInfo.tower.bulletDamage;
-                    IsChainTower = true;
-                }
-
-            }
         }
 
+        if (towerData.type == "ChainTower")
+        {
+            bullet = ObjectPoolManager.Instance.GetPooledObject("ChainTowerBullet");
+            if (bullet)
+            {
+                bullet.GetComponentInChildren<ChainTowerBullet>().bulletDamage = towerData.bulletDamage;
+                IsChainTower = true;
+            }
+
+        }
+        //if (towerData.type == "LightingTower")
+        //{
+        //    bullet = ObjectPoolManager.Instance.GetPooledObject("LightingTowerBullet");
+        //    if (bullet)
+        //    {
+        //        bullet.GetComponent<LightingTowerBullet>().bulletDamage = towerData.bulletDamage;
+        //        Vector3 offset=new Vector3(0.0f,0.5f,0.0f);
+
+        //        bullet.GetComponent<LightingTowerBullet>().SetTarget(transform.position+offset, currentTarget.transform);
+        //    }
+
+
+
+        //}
         if (bullet)
         {
             if (IsChainTower)
@@ -160,8 +184,11 @@ public class TowerShoot : MonoBehaviour
                 bullet.SetActive(true);
                 //GameObject bullet = Instantiate(BulletPrefab, ShootPoint.position + Direction, ShootPoint.rotation);
                 Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
+                if (rb)
+                {
+                    rb.AddForce(Direction * BulletForce, ForceMode2D.Impulse);
+                }
 
-                rb.AddForce(Direction * BulletForce, ForceMode2D.Impulse);
 
                 StartCoroutine(DestroyBullet(bullet));
 
@@ -222,7 +249,11 @@ public class TowerShoot : MonoBehaviour
                 if (Distance < DistanceToShoot * DistanceToShoot)
                 {
                     currentTarget = target;
-                    TowerToTarget(target.transform);
+                    if (HasAnimation)
+                    {
+                        TowerToTarget(target.transform);
+                    }
+
                 }
             }
             else

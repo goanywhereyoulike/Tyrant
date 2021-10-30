@@ -22,9 +22,7 @@ public class TrapTest : MonoBehaviour
 
             TrapManager TrapMngr = mangerSwitch.GetComponentInChildren<TrapManager>(true);
 
-            TrapMngr.AddClipTrap();
-            TrapMngr.AddBombTrap();
-            TrapMngr.AddBlackHoleTrap();
+            TrapMngr.AddTrap(0);
             Destroy(gameObject);
 
 

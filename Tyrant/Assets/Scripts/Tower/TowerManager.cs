@@ -5,10 +5,19 @@ using UnityEngine.UI;
 
 public class TowerManager : MonoBehaviour
 {
+
+
+    public List<GameObject> slots = new List<GameObject>();
+
     public TowerLimitTemplate towerroomInfos;
     PlayerMovement player;
     SpriteRenderer TowerSprite;
-    public List<TowerTemplate> Towers = new List<TowerTemplate>();
+    public List<TowerTemplate> TowerTemplates = new List<TowerTemplate>();
+
+    TowerSlot[] allslots;
+
+    [SerializeField]
+    GameObject TowerSlots;
 
     [SerializeField]
     private Animator TowerNumberWarning;
@@ -22,40 +31,81 @@ public class TowerManager : MonoBehaviour
     [SerializeField]
     private Image TowerPanel;
 
-    [SerializeField]
-    private Image Tower1Cover;
+    //[SerializeField]
+    //private Image Tower1Cover;
 
-    [SerializeField]
-    private Image Tower2Cover;
+    //[SerializeField]
+    //private Image Tower2Cover;
 
-    [SerializeField]
-    private Image Tower3Cover;
+    //[SerializeField]
+    //private Image Tower3Cover;
 
-    [SerializeField]
-    private Text Tower1Price;
+    //[SerializeField]
+    //private Image Tower4Cover;
 
-    [SerializeField]
-    private Text Tower2Price;
+    //[SerializeField]
+    //private Image Tower5Cover;
 
-    [SerializeField]
-    private Text Tower3Price;
+    //[SerializeField]
+    //private Text Tower1Price;
 
-    [SerializeField]
-    Image PreTowerSprite;
+    //[SerializeField]
+    //private Text Tower2Price;
 
-    [SerializeField]
-    Image PreCannonTowerSprite;
+    //[SerializeField]
+    //private Text Tower3Price;
 
-    [SerializeField]
-    Image PreChainTowerSprite;
+    //[SerializeField]
+    //private Text Tower4Price;
 
-    public GameObject Towerprefab;
-    public GameObject CannonTowerprefab;
-    public GameObject ChainTowerprefab;
+    //[SerializeField]
+    //private Text Tower5Price;
 
-    public GameObject PreTowerprefab;
-    public GameObject PreCannonTowerprefab;
-    public GameObject PreChainTowerprefab;
+    //[SerializeField]
+    //Image PreTowerSprite;
+
+    //[SerializeField]
+    //Image PreCannonTowerSprite;
+
+    //[SerializeField]
+    //Image PreChainTowerSprite;
+
+    //[SerializeField]
+    //Image PreLightingTowerSprite;
+
+    //[SerializeField]
+    //Image PreTauntTowerSprite;
+
+    ////Select choice for designer
+    //[SerializeField]
+    //private GameObject Select1Cover;
+
+    //[SerializeField]
+    //private GameObject Select2Cover;
+
+    //[SerializeField]
+    //private GameObject Select3Cover;
+
+    //[SerializeField]
+    //private GameObject Select4Cover;
+
+    //[SerializeField]
+    //private GameObject Select5Cover;
+
+
+
+
+    //public GameObject Towerprefab;
+    //public GameObject CannonTowerprefab;
+    //public GameObject ChainTowerprefab;
+    //public GameObject LightingTowerprefab;
+    //public GameObject TauntTowerprefab;
+
+    //public GameObject PreTowerprefab;
+    //public GameObject PreCannonTowerprefab;
+    //public GameObject PreChainTowerprefab;
+    //public GameObject PreLightingTowerprefab;
+    //public GameObject PreTauntTowerprefab;
 
     private GameObject PreTower;
 
@@ -64,6 +114,7 @@ public class TowerManager : MonoBehaviour
 
     private int TowerIndex = 0;
     private int TowerNumber = 0;
+    [SerializeField]
     private bool IsReachTowerNumberLimit = false;
 
     int roomNumber = 0;
@@ -71,37 +122,71 @@ public class TowerManager : MonoBehaviour
     private bool isRoomCheck;
     private int checkcount;
     private int lastroom;
+    [SerializeField]
+    List<bool> SelectAbleToSet = new List<bool>(5);
 
-    List<bool> IsAbleToSet = new List<bool>(3);
+    [SerializeField]
+    private List<bool> IsAbleToSet = new List<bool>(5);
     GameObject preTower;
     public bool IsPreTowerExist = false;
     // Start is called before the first frame update
     void Start()
     {
+        RoomManager.Instance.RoomChanged += RoomChange;
         TowerPanel.gameObject.SetActive(true);
-        RoomManager.Instance.RoomChanged += RoomChanged;
         ObjectPoolManager.Instance.InstantiateObjects("TowerBullet");
         ObjectPoolManager.Instance.InstantiateObjects("CannonTowerBullet");
         ObjectPoolManager.Instance.InstantiateObjects("ChainTowerBullet");
+        ObjectPoolManager.Instance.InstantiateObjects("LightingTowerBullet");
         player = FindObjectOfType<PlayerMovement>();
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < 5; i++)
         {
             IsAbleToSet.Add(false);
+            SelectAbleToSet.Add(false);
         }
-
-        Tower1Price.text = Towers[0].price.ToString();
-        Tower2Price.text = Towers[1].price.ToString();
-        Tower3Price.text = Towers[2].price.ToString();
-
-
 
         TowerNumberLimit = towerroomInfos.towerroomInfo[0].TowerNumber;
         //TowerNumlimit.text = TowerNumberLimit.ToString();
         TowerNumberText.text = SetTowerNumberUI(TowerNumber, TowerNumberLimit).ToString();
 
-
+        allslots = TowerSlots.GetComponentsInChildren<TowerSlot>();
         //towerroomInfos.towerroomInfo.Reverse(RoomManager.Instance.);
     }
+
+    void UpdateUI()
+    {
+        for (int i = 0; i < 5; ++i)
+        {
+            TowerSlot slot = slots[i].GetComponent<TowerSlot>();
+            if (!SelectAbleToSet[i])
+            {
+                slot.IsShow = false;
+                slot.gameObject.transform.SetAsLastSibling();
+
+            }
+            else
+            {
+                slot.IsShow = true;
+
+            }
+
+
+        }
+
+    }
+    public void DecreaseTowerlimit()
+    {
+        TowerNumber--;
+        if (TowerNumber < 0)
+        {
+            TowerNumber = 0;
+        }
+
+        TowerNumberText.text = SetTowerNumberUI(TowerNumber, TowerNumberLimit).ToString();
+
+        IsReachTowerNumberLimit = false;
+    }
+
 
     string SetTowerNumberUI(int towernumber, int towerlimit)
     {
@@ -175,21 +260,27 @@ public class TowerManager : MonoBehaviour
 
     }
 
-    private void RoomChanged(int changeId)
+    private void RoomChange(int changeId)
     {
         ClearAll();
         roomNumber = changeId;
         TowerNumberLimit = towerroomInfos.towerroomInfo[roomNumber].TowerNumber;
         TowerNumberText.text = SetTowerNumberUI(TowerNumber, TowerNumberLimit).ToString();
-
-
-
+        CheckSelection();
+        UpdateUI();
     }
 
     public void ResetTowerNumber()
     {
         TowerNumber = 0;
         IsReachTowerNumberLimit = false;
+        for (int i = 0; i < 5; ++i)
+        {
+            slots[i].gameObject.transform.SetSiblingIndex(i);
+
+            slots[i].GetComponent<TowerSlot>().IsShow = true;
+        }
+
     }
 
     void SetTowerLimit(int num)
@@ -215,82 +306,132 @@ public class TowerManager : MonoBehaviour
             for (int i = 0; i < IsAbleToSet.Count; ++i)
             {
                 IsAbleToSet[i] = false;
+                SelectAbleToSet[i] = true;
+                slots[i].GetComponent<TowerSlot>().LockUI();
 
             }
-            PreTowerSprite.color = Color.red;
-            PreCannonTowerSprite.color = Color.red;
-            PreChainTowerSprite.color = Color.red;
+
             IsReachTowerNumberLimit = true;
         }
 
+    }
 
+    void CheckSelection()
+    {
+        SelectAbleToSet[0] = towerroomInfos.towerroomInfo[roomNumber].BasicTower;
+        SelectAbleToSet[1] = towerroomInfos.towerroomInfo[roomNumber].CannonTower;
+        SelectAbleToSet[2] = towerroomInfos.towerroomInfo[roomNumber].ChainTower;
+        SelectAbleToSet[3] = towerroomInfos.towerroomInfo[roomNumber].LightingTower;
+        SelectAbleToSet[4] = towerroomInfos.towerroomInfo[roomNumber].TauntTower;
+
+        for (int i = 0; i < 5; ++i)
+        {
+            IsAbleToSet[i] = SelectAbleToSet[i];
+
+        }
+        //IsReachTowerNumberLimit = true;
     }
     void CheckCoin()
     {
+        allslots = TowerSlots.GetComponentsInChildren<TowerSlot>();
         if (IsReachTowerNumberLimit)
         {
             return;
         }
-        if (player.GetComponent<Player>().coin < Towers[0].price)
+
+        for (int i = 0; i < allslots.Length; ++i)
         {
-            PreTowerSprite.color = Color.red;
-            IsAbleToSet[0] = false;
-        }
-        if (player.GetComponent<Player>().coin < Towers[1].price)
-        {
-            PreCannonTowerSprite.color = Color.red;
-            IsAbleToSet[1] = false;
-        }
-        if (player.GetComponent<Player>().coin < Towers[2].price)
-        {
-            PreChainTowerSprite.color = Color.red;
-            IsAbleToSet[2] = false;
-        }
-        if (player.GetComponent<Player>().coin >= Towers[0].price)
-        {
-            PreTowerSprite.color = Color.white;
-            IsAbleToSet[0] = true;
-        }
-        if (player.GetComponent<Player>().coin >= Towers[1].price)
-        {
-            PreCannonTowerSprite.color = Color.white;
-            IsAbleToSet[1] = true;
-        }
-        if (player.GetComponent<Player>().coin >= Towers[2].price)
-        {
-            PreChainTowerSprite.color = Color.white;
-            IsAbleToSet[2] = true;
+
+            IsAbleToSet[i] = player.GetComponent<Player>().coin < allslots[i].gameObject.GetComponent<TowerSlot>().towerTemplate.price ? true : false;
+
+
         }
 
 
+
+        //if (player.GetComponent<Player>().coin < allslots[0].gameObject.GetComponent<TowerSlot>().towerTemplate.price)
+        //{
+        //    IsAbleToSet[0] = false;
+        //}
+        //if (player.GetComponent<Player>().coin < allslots[1].gameObject.GetComponent<TowerSlot>().towerTemplate.price)
+        //{
+
+        //    IsAbleToSet[1] = false;
+        //}
+        //if (player.GetComponent<Player>().coin < allslots[2].gameObject.GetComponent<TowerSlot>().towerTemplate.price)
+        //{
+
+        //    IsAbleToSet[2] = false;
+        //}
+        //if (player.GetComponent<Player>().coin < allslots[3].gameObject.GetComponent<TowerSlot>().towerTemplate.price)
+        //{
+
+        //    IsAbleToSet[3] = false;
+        //}
+        //if (player.GetComponent<Player>().coin < allslots[4].gameObject.GetComponent<TowerSlot>().towerTemplate.price)
+        //{
+
+        //    IsAbleToSet[4] = false;
+        //}
+        //if (player.GetComponent<Player>().coin >= TowerTemplates[0].price && SelectAbleToSet[0])
+        //{
+
+        //    IsAbleToSet[0] = true;
+        //}
+        //if (player.GetComponent<Player>().coin >= TowerTemplates[1].price && SelectAbleToSet[1])
+        //{
+
+        //    IsAbleToSet[1] = true;
+        //}
+        //if (player.GetComponent<Player>().coin >= TowerTemplates[2].price && SelectAbleToSet[2])
+        //{
+
+        //    IsAbleToSet[2] = true;
+        //}
+        //if (player.GetComponent<Player>().coin >= TowerTemplates[3].price && SelectAbleToSet[3])
+        //{
+
+        //    IsAbleToSet[3] = true;
+        //}
+        //if (player.GetComponent<Player>().coin >= TowerTemplates[4].price && SelectAbleToSet[4])
+        //{
+
+        //    IsAbleToSet[4] = true;
+        //}
 
     }
 
 
     void SetTower(Vector2 target)
     {
+        if (IsReachTowerNumberLimit)
+        {
+            return;
+        }
 
+        allslots = TowerSlots.GetComponentsInChildren<TowerSlot>();
         if (InputManager.Instance.GetKeyDown("PreBuildTower"))
         {
+
             ShowWarningUIForTowerNumber();
-            if (!IsPreTowerExist && IsAbleToSet[0])
+            if (!IsPreTowerExist && allslots[0].IsShow && allslots[0].IsAbleToSet)
             {
-                PreTower = Instantiate(PreTowerprefab, target, Quaternion.identity);
+                PreTower = Instantiate(allslots[0].PreTowerprefab, target, Quaternion.identity);
                 PreTower.transform.parent = player.transform;
                 IsPreTowerExist = true;
-                TowerIndex = 1;
+                TowerIndex = 0;
             }
         }
 
         if (InputManager.Instance.GetKeyDown("PreBuildCannonTower"))
         {
             ShowWarningUIForTowerNumber();
-            if (!IsPreTowerExist && IsAbleToSet[1])
+            if (!IsPreTowerExist && allslots[1].IsShow && allslots[1].IsAbleToSet)
             {
-                PreTower = Instantiate(PreCannonTowerprefab, target, Quaternion.identity);
+                PreTower = Instantiate(allslots[1].PreTowerprefab, target, Quaternion.identity);
                 PreTower.transform.parent = player.transform;
                 IsPreTowerExist = true;
-                TowerIndex = 2;
+                TowerIndex = 1;
             }
 
         }
@@ -298,12 +439,38 @@ public class TowerManager : MonoBehaviour
         if (InputManager.Instance.GetKeyDown("PreBuildChainTower"))
         {
             ShowWarningUIForTowerNumber();
-            if (!IsPreTowerExist && IsAbleToSet[2])
+            if (!IsPreTowerExist && allslots[2].IsShow && allslots[2].IsAbleToSet)
             {
-                PreTower = Instantiate(PreChainTowerprefab, target, Quaternion.identity);
+                PreTower = Instantiate(allslots[2].PreTowerprefab, target, Quaternion.identity);
+                PreTower.transform.parent = player.transform;
+                IsPreTowerExist = true;
+                TowerIndex = 2;
+            }
+
+        }
+
+        if (InputManager.Instance.GetKeyDown("PreBuildLightingTower"))
+        {
+            ShowWarningUIForTowerNumber();
+            if (!IsPreTowerExist && allslots[3].IsShow && allslots[3].IsAbleToSet)
+            {
+                PreTower = Instantiate(allslots[3].PreTowerprefab, target, Quaternion.identity);
                 PreTower.transform.parent = player.transform;
                 IsPreTowerExist = true;
                 TowerIndex = 3;
+            }
+
+        }
+
+        if (InputManager.Instance.GetKeyDown("PreBuildTauntTower"))
+        {
+            ShowWarningUIForTowerNumber();
+            if (!IsPreTowerExist && allslots[4].IsShow && allslots[4].IsAbleToSet)
+            {
+                PreTower = Instantiate(allslots[4].PreTowerprefab, target, Quaternion.identity);
+                PreTower.transform.parent = player.transform;
+                IsPreTowerExist = true;
+                TowerIndex = 4;
             }
 
         }
@@ -333,21 +500,8 @@ public class TowerManager : MonoBehaviour
                 TowerSprite.color = Color.green;
                 if (InputManager.Instance.GetKeyDown("BuildTower"))
                 {
-                    if (TowerIndex == 1)
-                    {
-                        Instantiate(Towerprefab, target, Quaternion.identity);
-                        player.GetComponent<Player>().coin -= 50;
-                    }
-                    if (TowerIndex == 2)
-                    {
-                        Instantiate(CannonTowerprefab, target, Quaternion.identity);
-                        player.GetComponent<Player>().coin -= 100;
-                    }
-                    if (TowerIndex == 3)
-                    {
-                        Instantiate(ChainTowerprefab, target, Quaternion.identity);
-                        player.GetComponent<Player>().coin -= 150;
-                    }
+                    Instantiate(allslots[TowerIndex].Towerprefab, target, Quaternion.identity);
+                    player.GetComponent<Player>().coin -= allslots[TowerIndex].towerTemplate.price;
 
                     Destroy(bluePrint.gameObject);
                     IsPreTowerExist = false;
@@ -388,45 +542,37 @@ public class TowerManager : MonoBehaviour
     {
         if (TowerNumber >= TowerNumberLimit)
         {
-            Tower1Cover.fillAmount = 0.0f;
-            Tower2Cover.fillAmount = 0.0f;
-            Tower3Cover.fillAmount = 0.0f;
+            foreach (var slot in slots)
+            {
+                slot.GetComponent<TowerSlot>().SetFill(0.0f);
+
+            }
             return;
         }
 
-        if (player.GetComponent<Player>().coin == Towers[0].price)
+        for (int i = 0; i < slots.Count; ++i)
         {
-            Tower1Cover.fillAmount = 1.0f;
-        }
-        if (player.GetComponent<Player>().coin == Towers[1].price)
-        {
-            Tower2Cover.fillAmount = 1.0f;
-        }
-        if (player.GetComponent<Player>().coin == Towers[2].price)
-        {
-            Tower2Cover.fillAmount = 1.0f;
-        }
+            TowerSlot slot = slots[i].GetComponent<TowerSlot>();
+            if (slot.IsShow)
+            {
+                slot.CheckCoin();
 
-        else
-        {
-            Tower1Cover.fillAmount = (float)player.GetComponent<Player>().coin / (float)Towers[0].price;
-            Tower2Cover.fillAmount = (float)player.GetComponent<Player>().coin / (float)Towers[1].price;
-            Tower3Cover.fillAmount = (float)player.GetComponent<Player>().coin / (float)Towers[2].price;
+            }
+
         }
-
-
-
 
     }
     // Update is called once per frame
     void Update()
     {
-
+        CheckSelection();
+        UpdateUI();
         //ChangePanel();
         //Coinnumber.text = player.GetComponent<Player>().coin.ToString();
         TowerNumberText.text = SetTowerNumberUI(TowerNumber, TowerNumberLimit).ToString();
-        ApplyUnlock();
         CheckNumberLimit();
+
+        ApplyUnlock();
         CheckCoin();
         Vector2 PlayerPos = player.transform.position + offset;
         SetTower(PlayerPos);

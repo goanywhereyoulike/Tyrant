@@ -14,13 +14,38 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   RoomNumber: 0
   towerroomInfo:
-  - RoomId: 0
+  - BasicTower: 1
+    CannonTower: 0
+    ChainTower: 0
+    LightingTower: 0
+    TauntTower: 1
+    RoomId: 0
     TowerNumber: 1
-  - RoomId: 1
+  - BasicTower: 1
+    CannonTower: 0
+    ChainTower: 1
+    LightingTower: 0
+    TauntTower: 0
+    RoomId: 1
     TowerNumber: 2
-  - RoomId: 2
+  - BasicTower: 0
+    CannonTower: 0
+    ChainTower: 0
+    LightingTower: 0
+    TauntTower: 0
+    RoomId: 2
     TowerNumber: 1
-  - RoomId: 3
+  - BasicTower: 0
+    CannonTower: 0
+    ChainTower: 0
+    LightingTower: 0
+    TauntTower: 0
+    RoomId: 3
     TowerNumber: 3
-  - RoomId: 4
+  - BasicTower: 0
+    CannonTower: 0
+    ChainTower: 0
+    LightingTower: 0
+    TauntTower: 0
+    RoomId: 4
     TowerNumber: 100000

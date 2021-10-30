@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Tyrant/Assets/Scripts/Quest.meta
 guid: 5f6fcc96d036f1b44baf0f826343928a
+=======
+guid: caa81d04d9cb65e438c9c7633907fe74
+>>>>>>> origin/Develop_ZhenFang:Tyrant/Assets/Scenes/Level/TPS1_Profiles.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

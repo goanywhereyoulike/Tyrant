@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Tyrant/Assets/Art/Sprites/Quest.meta
 guid: 2c442a7777acb4d4a82e76e8e546e4e9
+=======
+guid: fd5e6a4c563551246b65969c29d0b4ba
+>>>>>>> origin/Develop_ZhenFang:Tyrant/Assets/Prefabs/Tower/TowersData.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

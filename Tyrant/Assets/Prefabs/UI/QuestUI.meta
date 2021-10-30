@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Tyrant/Assets/Prefabs/UI/QuestUI.meta
 guid: 6e42ccd524f717b4ca4b6d5f1b3d6486
+=======
+guid: 12a8f240fb79df647a9019983d4fa8eb
+>>>>>>> origin/Develop_ZhenFang:Tyrant/Assets/Rendering.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

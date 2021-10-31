@@ -1103,6 +1103,10 @@ MonoBehaviour:
     objectToPool: {fileID: 6723065293706111440, guid: 4bde7f85894a9b147a452296632cc516, type: 3}
     amountToPool: 1
     shouldExpand: 1
+  - tagName: ConnonSplitBullet
+    objectToPool: {fileID: 6682998411512925883, guid: 17e12ce6939249d4f93f42af2695f0a7, type: 3}
+    amountToPool: 10
+    shouldExpand: 1
 --- !u!1 &7547892507710556570
 GameObject:
   m_ObjectHideFlags: 0
@@ -1439,7 +1443,7 @@ MonoBehaviour:
   - {fileID: 1183290170428821044}
   - {fileID: 1183290172101553416}
   - {fileID: 1183290170756159117}
-  - {fileID: 1183290171977695149}
+  - {fileID: 0}
   Pointers: []
   Doors:
   - {fileID: 0}
@@ -1973,16 +1977,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 99fcf55255fe8ce42879e52685eaf368, type: 3}
---- !u!1 &1183290171977695149 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 410294410804096891, guid: 99fcf55255fe8ce42879e52685eaf368, type: 3}
-  m_PrefabInstance: {fileID: 1574655354082332886}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1183290170756159117 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 410294409869870683, guid: 99fcf55255fe8ce42879e52685eaf368, type: 3}
-  m_PrefabInstance: {fileID: 1574655354082332886}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1183290172101553416 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 410294411753979358, guid: 99fcf55255fe8ce42879e52685eaf368, type: 3}
@@ -2001,5 +1995,10 @@ GameObject:
 --- !u!224 &1183290170701357986 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 410294409933042548, guid: 99fcf55255fe8ce42879e52685eaf368, type: 3}
+  m_PrefabInstance: {fileID: 1574655354082332886}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1183290170756159117 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 410294409869870683, guid: 99fcf55255fe8ce42879e52685eaf368, type: 3}
   m_PrefabInstance: {fileID: 1574655354082332886}
   m_PrefabAsset: {fileID: 0}

@@ -95,7 +95,6 @@ public class Enemy : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDam
         anim = GetComponent<Animator>();
         mMainTarget = mTarget;
         detectObject();
-        mainTarget = GameObjectsLocator.Instance.Get<Player>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
 
@@ -107,6 +106,7 @@ public class Enemy : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDam
         //GetComponent<Rigidbody2D>().Sleep();
         if (!isSpawn)
         {
+            mainTarget = GameObjectsLocator.Instance.Get<Player>();
             ReUse();
             RegisterToLocator();
             isSpawn = true;

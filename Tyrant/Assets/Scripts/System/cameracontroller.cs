@@ -5,23 +5,51 @@ using UnityEngine;
 public class cameracontroller : MonoBehaviour
 {
     public Transform target;
-    public float playerViewZone = 0.0f;
-    public float playerCamera { get { return playerViewZone; } set { playerViewZone = value; }  }
+    [SerializeField]
+    private float playerViewZone = 0.0f;
+    public float playerCamera { get { return PlayerViewZone; } set { PlayerViewZone = value; }  }
     //public CameraMoving cameraMoving = null;
+
+    public Vector2 LeftTopWorldPos { get { return Camera.main.ViewportToWorldPoint(new Vector3(0, 1, Camera.main.nearClipPlane)); } }
+    public Vector2 RightTopWorldPos { get { return Camera.main.ViewportToWorldPoint(new Vector3(1, 1, Camera.main.nearClipPlane)); } }
+    public Vector2 LeftBottomWorldPos { get { return Camera.main.ViewportToWorldPoint(new Vector3(0, 0, Camera.main.nearClipPlane)); } }
+    public Vector2 RightBottomWorldPos { get { return Camera.main.ViewportToWorldPoint(new Vector3(1, 0, Camera.main.nearClipPlane)); } }
+
+    [SerializeField]
+    private EdgeCollider2D camBox = null;
+
+    public float PlayerViewZone
+    {
+        get => playerViewZone;
+        set
+        {
+            playerViewZone = value;
+            Camera.main.orthographicSize = PlayerViewZone;
+
+            Vector2[] colliderPoints = new Vector2[5];
+
+            colliderPoints[0] = LeftTopWorldPos - new Vector2(transform.position.x, transform.position.y);
+            colliderPoints[1] = LeftBottomWorldPos - new Vector2(transform.position.x, transform.position.y);
+            colliderPoints[2] = RightBottomWorldPos - new Vector2(transform.position.x, transform.position.y);
+            colliderPoints[3] = RightTopWorldPos - new Vector2(transform.position.x, transform.position.y);
+            colliderPoints[4] = LeftTopWorldPos - new Vector2(transform.position.x, transform.position.y);
+
+            camBox.points = colliderPoints;
+        }
+    }
 
     private void Awake()
     {
-        playerViewZone = Camera.main.orthographicSize;
+        PlayerViewZone = Camera.main.orthographicSize;
     }
 
     void Update()
     {
         if (InputManager.Instance.GetKeyDown("CameraZoomIn"))
-            playerViewZone -= 0.2f;
+            PlayerViewZone -= 0.2f;
         else if (InputManager.Instance.GetKeyDown("CameraZoomOut"))
-            playerViewZone += 0.2f;
+            PlayerViewZone += 0.2f;
 
-        Camera.main.orthographicSize = playerViewZone;
         //for (int i = 0; i < RoomManager.Instance.Doors.Count; i++)
         //{
         //    if (RoomManager.Instance.Doors[i].roomID <= RoomManager.Instance.RoomId && SpawnManager.Instance.RoomClear)

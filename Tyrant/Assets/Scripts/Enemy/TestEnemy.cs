@@ -28,9 +28,10 @@ public class TestEnemy : Enemy
     {
         if (isChase)
         {
-            behaviours = gameObject.GetComponent<StaticMachine>();
-            behaviours.setEnemy(this);
-            behaviours.AllBehaviour();
+            base.Start();
+            //behaviours = gameObject.GetComponent<StaticMachine>();
+            //behaviours.setEnemy(this);
+            //behaviours.AllBehaviour();
         }
         enemyUi.MaxHealthChanged(EnemyState.MaxHealth);
         enemyUi.HealthChanged(EnemyState.MaxHealth);
@@ -54,23 +55,24 @@ public class TestEnemy : Enemy
     }
 
     // Update is called once per frame
-    void Update()
+    protected override void Update()
     {
-        if (!isSpawn)
-        {
-            RegisterToLocator();
-            isSpawn = true;
-        }
+        //if (!isSpawn)
+        //{
+        //    RegisterToLocator();
+        //    isSpawn = true;
+        //}
 
         if (isChase)
         {
-            mainTarget = GameObjectsLocator.Instance.Get<Player>();
-            mTarget = mainTarget[0].transform;
-            behaviours.Update();
-            EnemyState.force = behaviours.ForceCalculate();
-            EnemyState.acceleration = EnemyState.force / EnemyState.Mass;
-            EnemyState.velocity += EnemyState.acceleration;
-            transform.position = Vector2.MoveTowards(transform.position, mTarget.position, EnemyState.MaxMoveSpeed*Time.deltaTime);
+            //mainTarget = GameObjectsLocator.Instance.Get<Player>();
+            //mTarget = mainTarget[0].transform;
+            //behaviours.Update();
+            //EnemyState.force = behaviours.ForceCalculate();
+            //EnemyState.acceleration = EnemyState.force / EnemyState.Mass;
+            //EnemyState.velocity += EnemyState.acceleration;
+            //transform.position += EnemyState.velocity;
+            base.Update();
         }
 
         if (isTestTarget)

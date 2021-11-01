@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class TrapUnlock : MonoBehaviour
 {
+    public bool isInfinite = false;
     public int index = -1;
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -17,7 +18,10 @@ public class TrapUnlock : MonoBehaviour
 
             TrapMngr.AddTrap(index);
 
-            gameObject.SetActive(false);
+            if (!isInfinite)
+            {
+                gameObject.SetActive(false);
+            }
            // Destroy(gameObject);
 
         }

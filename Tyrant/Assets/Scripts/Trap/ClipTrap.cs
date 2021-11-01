@@ -73,7 +73,7 @@ public class ClipTrap : MonoBehaviour
                 IsCounting = true;
                 TrapNumber++;
                 StartCoroutine(Trap(enemy));
-                //enemy.GetComponent<Rigidbody2D>().Sleep();
+                enemy.GetComponent<Rigidbody2D>().Sleep();
             }
 
         }

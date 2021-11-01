@@ -70,7 +70,7 @@ public class TestEnemy : Enemy
             EnemyState.force = behaviours.ForceCalculate();
             EnemyState.acceleration = EnemyState.force / EnemyState.Mass;
             EnemyState.velocity += EnemyState.acceleration;
-            transform.position += EnemyState.velocity;
+            transform.position = Vector2.MoveTowards(transform.position, mTarget.position, EnemyState.MaxMoveSpeed*Time.deltaTime);
         }
 
         if (isTestTarget)

@@ -16,6 +16,7 @@ public class Quest : MonoBehaviour
     protected Sprite QuestUnifinishedIcon;
     [SerializeField]
     protected Image QuestCheckBox;
+    private bool isCompleted;
     // Start is called before the first frame update
     protected virtual void Start()
     {
@@ -23,11 +24,15 @@ public class Quest : MonoBehaviour
         QuestCheckBox.sprite = QuestUnifinishedIcon;
         
     }
-    
+
     public void FinishQuest()
     {
-        QuestCheckBox.sprite = QuestFinishedIcon;
-        QuestSystem.Instance.CurrentQuestSetCount--;
+        if (!isCompleted)
+        {
+            QuestCheckBox.sprite = QuestFinishedIcon;
+            QuestSystem.Instance.CurrentQuestSetCount--;
+            isCompleted = true;
+        }
         //StartCoroutine(WaitBeforeDisable());
     }
     // Update is called once per frame

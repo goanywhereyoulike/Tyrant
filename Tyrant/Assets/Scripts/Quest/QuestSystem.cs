@@ -10,6 +10,10 @@ public class QuestSystem : MonoBehaviour
     [SerializeField]
     private GameObject ShootQuestSet;
     [SerializeField]
+    private GameObject BuildQuestSet;
+    [SerializeField]
+    private GameObject TrapQuestSet;
+    [SerializeField]
     private GameObject board;
     private Animator animator;
     // Start is called before the first frame update
@@ -34,6 +38,16 @@ public class QuestSystem : MonoBehaviour
                     shootComplete = true;
                     StartCoroutine(WaitBeforeDisable(ShootQuestSet));
                 }
+                if (currentQuestSet == BuildQuestSet)
+                {
+                    buildComplete = true;
+                    StartCoroutine(WaitBeforeDisable(BuildQuestSet));
+                }
+                if (currentQuestSet == TrapQuestSet)
+                {
+                    trapComplete = true;
+                    StartCoroutine(WaitBeforeDisable(TrapQuestSet));
+                }
                 currentQuestSet = null;
             }
         } 
@@ -44,6 +58,7 @@ public class QuestSystem : MonoBehaviour
     private bool moveComplete=false;
     private bool shootComplete=false;
     private bool buildComplete=false;
+    private bool trapComplete = false;
     //private bool firstRun = true;
     /*public  int MoveQuestSetCount
     { 
@@ -118,9 +133,22 @@ public class QuestSystem : MonoBehaviour
     }
     void ActiveBuildQuest()
     {
-
+        if(!buildComplete)
+        {
+            BuildQuestSet.SetActive(true);
+            CurrentQuestSetCount = BuildQuestSet.transform.childCount;
+            currentQuestSet = BuildQuestSet;
+        }
     }
-
+     void ActiveTrapQuest()
+    {
+        if(!trapComplete)
+        {
+            TrapQuestSet.SetActive(true);
+            CurrentQuestSetCount = TrapQuestSet.transform.childCount;
+            currentQuestSet = TrapQuestSet;
+        }
+    }
     IEnumerator WaitBeforeDisable(GameObject obj)
     {
         //firstUpdate = true;
@@ -138,6 +166,16 @@ public class QuestSystem : MonoBehaviour
         if(RoomManager.Instance.CurrentRoomName == RoomManager.RoomName.WeaponRoom && !shootComplete)
         {
             ActiveShootQuest();
+            animator.SetTrigger("QuestBegin");
+        }
+        if (RoomManager.Instance.CurrentRoomName == RoomManager.RoomName.TowerRoom && !buildComplete)
+        {
+            ActiveBuildQuest();
+            animator.SetTrigger("QuestBegin");
+        }
+        if (RoomManager.Instance.CurrentRoomName == RoomManager.RoomName.TrapRoom && !trapComplete)
+        {
+            ActiveTrapQuest();
             animator.SetTrigger("QuestBegin");
         }
     }

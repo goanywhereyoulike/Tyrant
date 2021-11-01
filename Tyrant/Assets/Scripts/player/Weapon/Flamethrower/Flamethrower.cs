@@ -23,7 +23,7 @@ public class Flamethrower : Weapon
         }
         flamethrowerStates = weaponStates as FlamethrowerStates;
 
-        ammoBar.gameObject.SetActive(false);
+        //ammoBar.gameObject.SetActive(false);
 
         ammoBar.maxValue = flamethrowerStates.MaxAmmo;
         reloader.MaxAmmo = flamethrowerStates.MaxAmmo;

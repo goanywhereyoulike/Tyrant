@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3755791846287605393}
-  - component: {fileID: 3755791846287605407}
+  - component: {fileID: -4891132567532395794}
   m_Layer: 5
-  m_Name: MoveQuest
+  m_Name: BuildQuest
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -38,7 +38,7 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 438.36, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &3755791846287605407
+--- !u!114 &-4891132567532395794
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -47,15 +47,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 3755791846287605394}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 40ed00f2b7b37bb47b714d8eab4e401d, type: 3}
+  m_Script: {fileID: 11500000, guid: 21856fd776b146e4bbf6c5062316aeeb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  description: Press W to move up
+  description: 
   QuestDesText: {fileID: 3755791847986781749}
   QuestFinishedIcon: {fileID: 21300000, guid: c0b1660dbf9adae4a94dd2cea4da5f1e, type: 3}
   QuestUnifinishedIcon: {fileID: 21300000, guid: 0bb093f77a34dc14fa169b11b49660a3, type: 3}
   QuestCheckBox: {fileID: 3755791847839091414}
-  key: GoUp
+  targetTowerId: 0
 --- !u!1 &3755791847839091400
 GameObject:
   m_ObjectHideFlags: 0

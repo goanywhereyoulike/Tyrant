@@ -28,7 +28,7 @@ public class Laser : Weapon
             return;
         }
  
-        chargingBar.gameObject.SetActive(false);
+        //chargingBar.gameObject.SetActive(false);
         LaserStates = weaponStates as LaserStates;
 
         ObjectPoolManager.Instance.InstantiateObjects("LaserBullet");

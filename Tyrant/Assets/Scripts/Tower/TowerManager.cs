@@ -110,7 +110,7 @@ public class TowerManager : MonoBehaviour
     private GameObject PreTower;
 
     public Vector3 offset;
-
+    public event System.Action<int> TowerBuilt;
 
     private int TowerIndex = 0;
     private int TowerNumber = 0;
@@ -129,9 +129,22 @@ public class TowerManager : MonoBehaviour
     private List<bool> IsAbleToSet = new List<bool>(5);
     GameObject preTower;
     public bool IsPreTowerExist = false;
+
+    private static TowerManager instance = null;
+    public static TowerManager Instance { get => instance; }
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
+
+        if (instance == null)
+        {
+            //DontDestroyOnLoad(gameObject);
+            instance = this;
+        }
+        else if (instance != this)
+        {
+            Destroy(gameObject);
+        }
         RoomManager.Instance.RoomChanged += RoomChange;
         TowerPanel.gameObject.SetActive(true);
         ObjectPoolManager.Instance.InstantiateObjects("TowerBullet");
@@ -502,7 +515,7 @@ public class TowerManager : MonoBehaviour
                 {
                     Instantiate(allslots[TowerIndex].Towerprefab, target, Quaternion.identity);
                     player.GetComponent<Player>().coin -= allslots[TowerIndex].towerTemplate.price;
-
+                    TowerBuilt?.Invoke(TowerIndex);
                     Destroy(bluePrint.gameObject);
                     IsPreTowerExist = false;
                     TowerNumber++;

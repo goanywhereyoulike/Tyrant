@@ -76,14 +76,28 @@ public class TrapManager : MonoBehaviour
 
     public Vector3 offset;
 
+    public event System.Action<int> TrapBuilt;
+
     private int TrapIndex = -1;
     //private int TotalTrapNumber = 0;
     bool IsAbleToSet = true;
     GameObject preTrap;
     public bool IsPreTrapExist = false;
     // Start is called before the first frame update
+    private static TrapManager instance = null;
+    public static TrapManager Instance { get => instance; }
     void Start()
     {
+
+        if (instance == null)
+        {
+            //DontDestroyOnLoad(gameObject);
+            instance = this;
+        }
+        else if (instance != this)
+        {
+            Destroy(gameObject);
+        }
         player = FindObjectOfType<PlayerMovement>();
         Trapnumber.text = TrapNumber.ToString();
         RoomManager.Instance.RoomChanged += RoomChanged;
@@ -402,7 +416,7 @@ public class TrapManager : MonoBehaviour
                         TrapNumber--;
                         Trapnumber.text = TrapNumber.ToString();
                     }
-
+                    TrapBuilt?.Invoke(TrapIndex);
                     Destroy(bluePrint.gameObject);
                     IsPreTrapExist = false;
                 }

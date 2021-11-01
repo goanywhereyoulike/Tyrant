@@ -61,6 +61,7 @@ Transform:
   m_Children:
   - {fileID: 8821884757453372836}
   - {fileID: 1300769408685268863}
+  - {fileID: 2092930091522706039}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -96,7 +97,7 @@ MonoBehaviour:
     gameObject: {fileID: 1833754628872364242}
   flameParticle: {fileID: 729791433822682361}
   ammoBar: {fileID: 0}
-  reloader: {fileID: 0}
+  reloader: {fileID: 2761941865318208052}
 --- !u!114 &2325895958007221754
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -925,6 +926,49 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &7214535350040867762
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2092930091522706039}
+  - component: {fileID: 2761941865318208052}
+  m_Layer: 7
+  m_Name: FlameReloader
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2092930091522706039
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7214535350040867762}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4286668168501483722}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2761941865318208052
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7214535350040867762}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47fdd7bd4ffcd464f81f4c5e72a15c33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &9078294125966038421
 GameObject:
   m_ObjectHideFlags: 0

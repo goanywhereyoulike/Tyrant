@@ -26,6 +26,7 @@ MonoBehaviour:
   enemyUi: {fileID: 5066223580753101348}
   isChase: 0
   isTestTarget: 1
+  burningAnimator: {fileID: 1905720368300165393}
 --- !u!114 &8202705669717495037
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -127,3 +128,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80e429af57abcfc42a87a75aa0c2580c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &1905720368300165393 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 1237052331851572507, guid: 8b9f0df936cf54392b9c2877c62446d7, type: 3}
+  m_PrefabInstance: {fileID: 817577163943767050}
+  m_PrefabAsset: {fileID: 0}

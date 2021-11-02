@@ -11,6 +11,11 @@ public class TestEnemy : Enemy
     [SerializeField]
     private bool isTestTarget = false;
 
+    [SerializeField]
+    private Animator burningAnimator;
+
+    private bool armorEnemy = false;
+
     Vector3 lastPosition;
 
     StaticMachine behaviours = null;
@@ -33,10 +38,20 @@ public class TestEnemy : Enemy
             //behaviours.setEnemy(this);
             //behaviours.AllBehaviour();
         }
+        spriteRenderer = GetComponent<SpriteRenderer>();
         enemyUi.MaxHealthChanged(EnemyState.MaxHealth);
         enemyUi.HealthChanged(EnemyState.MaxHealth);
         currentHelath = EnemyState.MaxHealth;
         lastPosition = transform.position;
+        if (armorEnemy)
+        {
+            enemyUi.MaxArmorChanged(EnemyState.MaxArmor);
+            enemyUi.ArmorChanged(EnemyState.MaxArmor);
+        }
+        else
+        {
+            enemyUi.ShutdownArmorBar();
+        }
     }
 
     override public void TakeDamage(float damage)
@@ -47,6 +62,17 @@ public class TestEnemy : Enemy
             currentHelath = EnemyState.MaxHealth;
         }
         enemyUi.HealthChanged(currentHelath);
+    }
+
+    public override void BurnArmor(float buringDamge)
+    {
+        burningAnimator.gameObject.SetActive(true);
+        burningAnimator.SetBool("Burning", true);
+        if (!armorEnemy)
+            return;
+
+        armor -= buringDamge;
+        enemyUi.ArmorChanged(armor);
     }
 
     public void Reuse()

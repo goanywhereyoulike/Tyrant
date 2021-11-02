@@ -12,6 +12,11 @@ public class PlayerShooting : MonoBehaviour
         if (RoomManager.Instance.IsTutorial && RoomManager.Instance.CurrentRoomName != RoomManager.RoomName.WeaponRoom)
             return;
 
+        if (InputManager.Instance.GetKeyDown("Fire"))
+        {
+            weaponController.CurrentWeapon.weaponObject.PlayOneTimeFireSound();
+        }
+
         float holdingTime;
         if (InputManager.Instance.GetKey("Fire", out holdingTime))
         {
@@ -22,8 +27,6 @@ public class PlayerShooting : MonoBehaviour
         if (InputManager.Instance.GetKey("Fire"))
         {
             weaponController.CurrentWeapon.weaponObject.Fire();
-
-   
         }
         else if (InputManager.Instance.GetKeyUp("Fire"))
         {

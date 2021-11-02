@@ -31,6 +31,7 @@ public class TestEnemy : Enemy
     //}
     protected override void Start()
     {
+         GameObjectsLocator.Instance.Register<Enemy>(this);
         if (isChase)
         {
             base.Start();

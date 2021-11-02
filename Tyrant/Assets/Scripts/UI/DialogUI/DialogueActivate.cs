@@ -5,7 +5,6 @@ using UnityEngine.UI;
 public class DialogueActivate : MonoBehaviour,IInteractable
 {
     [SerializeField] private DialogueObject dialogueObject;
-    public Image tutorialButton;
 
     private bool isTriggered = false;
     private bool canTrigger;
@@ -17,7 +16,7 @@ public class DialogueActivate : MonoBehaviour,IInteractable
     }
     private void Update()
     {
-        if (canTrigger && InputManager.Instance.GetKeyDown("Interact"))
+        if (canTrigger && InputManager.Instance.GetKeyDown("Interact") )
         { 
             Time.timeScale = 0;
             Interact(player);
@@ -28,22 +27,21 @@ public class DialogueActivate : MonoBehaviour,IInteractable
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!isTriggered)
-        {
+       
             if (collision.CompareTag("Player") && collision.TryGetComponent(out Player players))
             {
                 player = players;
-                tutorialButton.enabled = true;
+                player.InteractButton.GetComponent<Image>().enabled = true;
                 canTrigger = true;
             }
-        }
+        
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.CompareTag("Player") && collision.TryGetComponent(out Player players))
         {
             //player = null;
-            tutorialButton.enabled = false;
+            player.InteractButton.GetComponent<Image>().enabled = false;
             canTrigger = false;
         }
     }
@@ -54,7 +52,7 @@ public class DialogueActivate : MonoBehaviour,IInteractable
         player.DialogueUI.ShowDialogue(dialogueObject);
         if (!startChecked)
         {
-            SpawnManager.Instance.StartLevel = true;
+            //SpawnManager.Instance.StartLevel = true;
             startChecked = true;
         }
     }

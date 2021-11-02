@@ -163,22 +163,22 @@ public class QuestSystem : MonoBehaviour
     }
     void OnRoomChanged(int id)
     {
-        if(RoomManager.Instance.CurrentRoomName == RoomManager.RoomName.MainRoom && !MoveComplete)
+        if(RoomManager.Instance.CurrentRoomName == RoomManager.RoomName.MainRoom && !MoveComplete && currentQuestSet == null)
         {
             ActiveMoveQuest();
             animator.SetTrigger("QuestBegin");
         }
-        if(RoomManager.Instance.CurrentRoomName == RoomManager.RoomName.WeaponRoom && !ShootComplete)
+        if(RoomManager.Instance.CurrentRoomName == RoomManager.RoomName.WeaponRoom && !ShootComplete && currentQuestSet == null)
         {
             ActiveShootQuest();
             animator.SetTrigger("QuestBegin");
         }
-        if (RoomManager.Instance.CurrentRoomName == RoomManager.RoomName.TowerRoom && !BuildComplete)
+        if (RoomManager.Instance.CurrentRoomName == RoomManager.RoomName.TowerRoom && !BuildComplete && currentQuestSet == null)
         {
             ActiveBuildQuest();
             animator.SetTrigger("QuestBegin");
         }
-        if (RoomManager.Instance.CurrentRoomName == RoomManager.RoomName.TrapRoom && !TrapComplete)
+        if (RoomManager.Instance.CurrentRoomName == RoomManager.RoomName.TrapRoom && !TrapComplete && currentQuestSet == null)
         {
             ActiveTrapQuest();
             animator.SetTrigger("QuestBegin");

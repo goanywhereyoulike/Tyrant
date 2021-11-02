@@ -123,11 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &5767107 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4707894364379951672, guid: e0342963580770d4bbbfa79b77e84777, type: 3}
-  m_PrefabInstance: {fileID: 1153356561}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &20294515
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -418,17 +413,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a3e45492d60ce674d8109ffd514a452f, type: 3}
---- !u!114 &74169459 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 484209897982530004, guid: e0342963580770d4bbbfa79b77e84777, type: 3}
-  m_PrefabInstance: {fileID: 1153356561}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 361554a1c6f51b747b96d46bb37bb7cc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &81204572
 GameObject:
   m_ObjectHideFlags: 0
@@ -623,7 +607,7 @@ PrefabInstance:
     - target: {fileID: 8838541486928496255, guid: f2b4d4a0dbc2ce34fa011ce300c72b5b, type: 3}
       propertyPath: tutorialButton
       value: 
-      objectReference: {fileID: 1532950629}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f2b4d4a0dbc2ce34fa011ce300c72b5b, type: 3}
 --- !u!4 &163339789 stripped
@@ -695,9 +679,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a84bd63c79ffe404ca11ffe47f605c8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 1068628303}
+  target: {fileID: 0}
   playerViewZone: 0
-  cameraMoving: {fileID: 275897704}
+  camBox: {fileID: 0}
 --- !u!81 &275897700
 AudioListener:
   m_ObjectHideFlags: 0
@@ -797,11 +781,6 @@ MonoBehaviour:
   cameraMovingSpeed: 10
   lerpPos:
   - {x: 0, y: 0, z: 0}
---- !u!1 &303306155 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4707894363968585239, guid: e0342963580770d4bbbfa79b77e84777, type: 3}
-  m_PrefabInstance: {fileID: 1153356561}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &313823395 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7972967071104439987, guid: 916e89dbb740f4d429f9ef0e872f3ed0, type: 3}
@@ -839,7 +818,7 @@ PrefabInstance:
     - target: {fileID: 2857336001148506896, guid: 47f6d6f6318d1f0428ec36d35e8b28c7, type: 3}
       propertyPath: tutorialButton
       value: 
-      objectReference: {fileID: 1532950629}
+      objectReference: {fileID: 0}
     - target: {fileID: 2857336001148506897, guid: 47f6d6f6318d1f0428ec36d35e8b28c7, type: 3}
       propertyPath: m_Name
       value: LootChest
@@ -1160,11 +1139,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7130684735778634845, guid: fb083abcc3b7b2844b31026d194bd151, type: 3}
   m_PrefabInstance: {fileID: 1631461403}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &761623007 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3551717927414799091, guid: e0342963580770d4bbbfa79b77e84777, type: 3}
-  m_PrefabInstance: {fileID: 1153356561}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &766306681
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1280,7 +1254,7 @@ PrefabInstance:
     - target: {fileID: 6481084721352610340, guid: 5dd867b65fdddf94f8b6614af12847eb, type: 3}
       propertyPath: tutorialButton
       value: 
-      objectReference: {fileID: 1532950629}
+      objectReference: {fileID: 0}
     - target: {fileID: 6481084721352610341, guid: 5dd867b65fdddf94f8b6614af12847eb, type: 3}
       propertyPath: m_Name
       value: WeaponChest
@@ -1392,11 +1366,6 @@ Transform:
   m_Father: {fileID: 1795981153}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &950451629 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4707894365519977955, guid: e0342963580770d4bbbfa79b77e84777, type: 3}
-  m_PrefabInstance: {fileID: 1153356561}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &951519496
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1523,7 +1492,7 @@ PrefabInstance:
     - target: {fileID: 6481084721352610340, guid: 5dd867b65fdddf94f8b6614af12847eb, type: 3}
       propertyPath: tutorialButton
       value: 
-      objectReference: {fileID: 1532950629}
+      objectReference: {fileID: 0}
     - target: {fileID: 6481084721352610341, guid: 5dd867b65fdddf94f8b6614af12847eb, type: 3}
       propertyPath: m_Name
       value: WeaponChest (1)
@@ -1574,11 +1543,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5dd867b65fdddf94f8b6614af12847eb, type: 3}
---- !u!4 &1068628303 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2702765690910339004, guid: e0342963580770d4bbbfa79b77e84777, type: 3}
-  m_PrefabInstance: {fileID: 1153356561}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1126842265
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1589,7 +1553,7 @@ PrefabInstance:
     - target: {fileID: 569428693357809523, guid: fceab2b587375d542b368ec7426b0575, type: 3}
       propertyPath: Targets
       value: 
-      objectReference: {fileID: 1673802757}
+      objectReference: {fileID: 0}
     - target: {fileID: 848210381473633888, guid: fceab2b587375d542b368ec7426b0575, type: 3}
       propertyPath: m_RootOrder
       value: 17
@@ -1641,7 +1605,7 @@ PrefabInstance:
     - target: {fileID: 848210381594519093, guid: fceab2b587375d542b368ec7426b0575, type: 3}
       propertyPath: Targets
       value: 
-      objectReference: {fileID: 1673802757}
+      objectReference: {fileID: 0}
     - target: {fileID: 848210381594519094, guid: fceab2b587375d542b368ec7426b0575, type: 3}
       propertyPath: m_Icon
       value: 
@@ -1673,7 +1637,7 @@ PrefabInstance:
     - target: {fileID: 2021306929822274348, guid: fceab2b587375d542b368ec7426b0575, type: 3}
       propertyPath: Targets
       value: 
-      objectReference: {fileID: 1673802757}
+      objectReference: {fileID: 0}
     - target: {fileID: 4224540917808445545, guid: fceab2b587375d542b368ec7426b0575, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -1681,11 +1645,11 @@ PrefabInstance:
     - target: {fileID: 4224540917808445546, guid: fceab2b587375d542b368ec7426b0575, type: 3}
       propertyPath: Targets
       value: 
-      objectReference: {fileID: 1673802757}
+      objectReference: {fileID: 0}
     - target: {fileID: 6062463267174622121, guid: fceab2b587375d542b368ec7426b0575, type: 3}
       propertyPath: Targets
       value: 
-      objectReference: {fileID: 1673802757}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fceab2b587375d542b368ec7426b0575, type: 3}
 --- !u!1 &1148322090 stripped
@@ -1703,15 +1667,15 @@ PrefabInstance:
     - target: {fileID: 484209897982530004, guid: e0342963580770d4bbbfa79b77e84777, type: 3}
       propertyPath: weaponObjects.Array.data[0].weaponUI
       value: 
-      objectReference: {fileID: 5767107}
+      objectReference: {fileID: 0}
     - target: {fileID: 484209897982530004, guid: e0342963580770d4bbbfa79b77e84777, type: 3}
       propertyPath: weaponObjects.Array.data[1].weaponUI
       value: 
-      objectReference: {fileID: 303306155}
+      objectReference: {fileID: 0}
     - target: {fileID: 484209897982530004, guid: e0342963580770d4bbbfa79b77e84777, type: 3}
       propertyPath: weaponObjects.Array.data[2].weaponUI
       value: 
-      objectReference: {fileID: 950451629}
+      objectReference: {fileID: 0}
     - target: {fileID: 484209897982530004, guid: e0342963580770d4bbbfa79b77e84777, type: 3}
       propertyPath: weaponObjects.Array.data[0].isUnlocked
       value: 1
@@ -1756,6 +1720,14 @@ PrefabInstance:
       propertyPath: dialogueUI
       value: 
       objectReference: {fileID: 638438242}
+    - target: {fileID: 2241604241413753760, guid: e0342963580770d4bbbfa79b77e84777, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2241604241413753760, guid: e0342963580770d4bbbfa79b77e84777, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2702765690356643225, guid: e0342963580770d4bbbfa79b77e84777, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -1787,7 +1759,7 @@ PrefabInstance:
     - target: {fileID: 4021206477430153302, guid: e0342963580770d4bbbfa79b77e84777, type: 3}
       propertyPath: reloadUI
       value: 
-      objectReference: {fileID: 761623007}
+      objectReference: {fileID: 0}
     - target: {fileID: 4707894364111908586, guid: e0342963580770d4bbbfa79b77e84777, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -1806,11 +1778,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4707894365722169238, guid: e0342963580770d4bbbfa79b77e84777, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.66
+      value: 27.29
       objectReference: {fileID: 0}
     - target: {fileID: 4707894365722169238, guid: e0342963580770d4bbbfa79b77e84777, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 27.31
+      value: 6.15
       objectReference: {fileID: 0}
     - target: {fileID: 4707894365722169238, guid: e0342963580770d4bbbfa79b77e84777, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2647,17 +2619,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4183dd508eef714c9dea8f0853d215c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1532950629 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5361520750960409761, guid: e0342963580770d4bbbfa79b77e84777, type: 3}
-  m_PrefabInstance: {fileID: 1153356561}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1550662944
 GameObject:
   m_ObjectHideFlags: 0
@@ -3185,7 +3146,7 @@ PrefabInstance:
     - target: {fileID: 8838541486928496255, guid: f2b4d4a0dbc2ce34fa011ce300c72b5b, type: 3}
       propertyPath: tutorialButton
       value: 
-      objectReference: {fileID: 1532950629}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f2b4d4a0dbc2ce34fa011ce300c72b5b, type: 3}
 --- !u!4 &1640335555 stripped
@@ -3208,11 +3169,6 @@ MonoBehaviour:
 Transform:
   m_CorrespondingSourceObject: {fileID: 4488405804283684253, guid: e3065554a13e24320bd7ae7aeca6a670, type: 3}
   m_PrefabInstance: {fileID: 4488405802921715070}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1673802757 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6319640480331110739, guid: e0342963580770d4bbbfa79b77e84777, type: 3}
-  m_PrefabInstance: {fileID: 1153356561}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1687375462
 GameObject:
@@ -3520,7 +3476,7 @@ PrefabInstance:
     - target: {fileID: 8838541486928496255, guid: f2b4d4a0dbc2ce34fa011ce300c72b5b, type: 3}
       propertyPath: tutorialButton
       value: 
-      objectReference: {fileID: 1532950629}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f2b4d4a0dbc2ce34fa011ce300c72b5b, type: 3}
 --- !u!4 &1761484228 stripped
@@ -3885,7 +3841,7 @@ PrefabInstance:
     - target: {fileID: 6423018489069567569, guid: 5189b018b71bda0489617b6e3002fa93, type: 3}
       propertyPath: weaponController
       value: 
-      objectReference: {fileID: 74169459}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5189b018b71bda0489617b6e3002fa93, type: 3}
 --- !u!114 &2002061529 stripped

@@ -2210,10 +2210,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cannon
       objectReference: {fileID: 0}
-    - target: {fileID: 6413046912221962545, guid: dd30cbcad3dabfa46a95330c115d4c53, type: 3}
-      propertyPath: reloadUI
-      value: 
-      objectReference: {fileID: 2878031537007976050}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dd30cbcad3dabfa46a95330c115d4c53, type: 3}
 --- !u!4 &4878579567148733947 stripped

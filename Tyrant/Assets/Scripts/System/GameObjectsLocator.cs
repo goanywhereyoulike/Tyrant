@@ -15,6 +15,7 @@ public class GameObjectsLocator : MonoBehaviour
     private static GameObjectsLocator instance = null;
     public static GameObjectsLocator Instance { get => instance; }
 
+    [SerializeField]
     private readonly Dictionary<string, List<IGameObjectRegister>> gameObjects = new Dictionary<string, List<IGameObjectRegister>>();
 
     private void Awake()

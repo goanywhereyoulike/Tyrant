@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class TowerManager : MonoBehaviour
 {
 
 
+    PlayerAnimation playFace;
     public List<GameObject> slots = new List<GameObject>();
 
     public TowerLimitTemplate towerroomInfos;
@@ -108,7 +110,8 @@ public class TowerManager : MonoBehaviour
     //public GameObject PreTauntTowerprefab;
 
     private GameObject PreTower;
-
+    [SerializeField]
+    private List<Vector3> pretowerOffsets = new List<Vector3>();
     public Vector3 offset;
     public event System.Action<int> TowerBuilt;
 
@@ -151,7 +154,9 @@ public class TowerManager : MonoBehaviour
         ObjectPoolManager.Instance.InstantiateObjects("CannonTowerBullet");
         ObjectPoolManager.Instance.InstantiateObjects("ChainTowerBullet");
         ObjectPoolManager.Instance.InstantiateObjects("LightingTowerBullet");
+        ObjectPoolManager.Instance.InstantiateObjects("testtarget");
         player = FindObjectOfType<PlayerMovement>();
+        playFace = player.gameObject.GetComponent<PlayerAnimation>();
         for (int i = 0; i < 5; i++)
         {
             IsAbleToSet.Add(false);
@@ -164,6 +169,7 @@ public class TowerManager : MonoBehaviour
 
         allslots = TowerSlots.GetComponentsInChildren<TowerSlot>();
         //towerroomInfos.towerroomInfo.Reverse(RoomManager.Instance.);
+
     }
 
     void UpdateUI()
@@ -360,63 +366,39 @@ public class TowerManager : MonoBehaviour
 
         }
 
+    }
+
+    void CheckPreTowerLocation()
+    {
+        if (playFace.CurrentFacing == PlayerFacing.Right)
+        {
+
+            offset = pretowerOffsets[0];
+
+        }
+        else if (playFace.CurrentFacing == PlayerFacing.Left)
+        {
+
+            offset = pretowerOffsets[1];
+        }
+        else if (playFace.CurrentFacing == PlayerFacing.Up)
+        {
+
+            offset = pretowerOffsets[2];
+        }
+        else if (playFace.CurrentFacing == PlayerFacing.Down)
+        {
+
+            offset = pretowerOffsets[3];
+        }
 
 
-        //if (player.GetComponent<Player>().coin < allslots[0].gameObject.GetComponent<TowerSlot>().towerTemplate.price)
-        //{
-        //    IsAbleToSet[0] = false;
-        //}
-        //if (player.GetComponent<Player>().coin < allslots[1].gameObject.GetComponent<TowerSlot>().towerTemplate.price)
-        //{
-
-        //    IsAbleToSet[1] = false;
-        //}
-        //if (player.GetComponent<Player>().coin < allslots[2].gameObject.GetComponent<TowerSlot>().towerTemplate.price)
-        //{
-
-        //    IsAbleToSet[2] = false;
-        //}
-        //if (player.GetComponent<Player>().coin < allslots[3].gameObject.GetComponent<TowerSlot>().towerTemplate.price)
-        //{
-
-        //    IsAbleToSet[3] = false;
-        //}
-        //if (player.GetComponent<Player>().coin < allslots[4].gameObject.GetComponent<TowerSlot>().towerTemplate.price)
-        //{
-
-        //    IsAbleToSet[4] = false;
-        //}
-        //if (player.GetComponent<Player>().coin >= TowerTemplates[0].price && SelectAbleToSet[0])
-        //{
-
-        //    IsAbleToSet[0] = true;
-        //}
-        //if (player.GetComponent<Player>().coin >= TowerTemplates[1].price && SelectAbleToSet[1])
-        //{
-
-        //    IsAbleToSet[1] = true;
-        //}
-        //if (player.GetComponent<Player>().coin >= TowerTemplates[2].price && SelectAbleToSet[2])
-        //{
-
-        //    IsAbleToSet[2] = true;
-        //}
-        //if (player.GetComponent<Player>().coin >= TowerTemplates[3].price && SelectAbleToSet[3])
-        //{
-
-        //    IsAbleToSet[3] = true;
-        //}
-        //if (player.GetComponent<Player>().coin >= TowerTemplates[4].price && SelectAbleToSet[4])
-        //{
-
-        //    IsAbleToSet[4] = true;
-        //}
 
     }
 
-
     void SetTower(Vector2 target)
     {
+        string sceneName = SceneManager.GetActiveScene().name;
         if (IsReachTowerNumberLimit)
         {
             return;
@@ -513,12 +495,13 @@ public class TowerManager : MonoBehaviour
                 TowerSprite.color = Color.green;
                 if (InputManager.Instance.GetKeyDown("BuildTower"))
                 {
-                    Instantiate(allslots[TowerIndex].Towerprefab, target, Quaternion.identity);
+                    GameObject realtower = Instantiate(allslots[TowerIndex].Towerprefab, target, Quaternion.identity);
                     player.GetComponent<Player>().coin -= allslots[TowerIndex].towerTemplate.price;
                     TowerBuilt?.Invoke(TowerIndex);
                     Destroy(bluePrint.gameObject);
                     IsPreTowerExist = false;
                     TowerNumber++;
+                    SpawnEnemyInTutorial(sceneName, realtower);
                 }
             }
             else if (bluePrint && !bluePrint.IsAbleToSet)
@@ -531,6 +514,23 @@ public class TowerManager : MonoBehaviour
 
     }
 
+
+    void SpawnEnemyInTutorial(string scenename, GameObject tower)
+    {
+
+        if (scenename == "TutorialScene")
+        {
+
+            Vector2 offset = Vector2.up * 2.0f;
+
+            GameObject enemyObject = ObjectPoolManager.Instance.GetPooledObject("testtarget");
+            Vector2 spawnPosition = tower.transform.position;
+            enemyObject.transform.position = spawnPosition + offset;
+            enemyObject.SetActive(true);
+
+        }
+
+    }
     //void ChangePanel()
     //{
 
@@ -588,6 +588,7 @@ public class TowerManager : MonoBehaviour
         ApplyUnlock();
         CheckCoin();
         Vector2 PlayerPos = player.transform.position + offset;
+        CheckPreTowerLocation();
         SetTower(PlayerPos);
 
         if (PreTower)

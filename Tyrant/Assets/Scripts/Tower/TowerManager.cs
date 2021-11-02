@@ -8,6 +8,7 @@ public class TowerManager : MonoBehaviour
 {
 
 
+    PlayerAnimation playFace;
     public List<GameObject> slots = new List<GameObject>();
 
     public TowerLimitTemplate towerroomInfos;
@@ -109,7 +110,8 @@ public class TowerManager : MonoBehaviour
     //public GameObject PreTauntTowerprefab;
 
     private GameObject PreTower;
-
+    [SerializeField]
+    private List<Vector3> pretowerOffsets = new List<Vector3>();
     public Vector3 offset;
     public event System.Action<int> TowerBuilt;
 
@@ -154,6 +156,7 @@ public class TowerManager : MonoBehaviour
         ObjectPoolManager.Instance.InstantiateObjects("LightingTowerBullet");
         ObjectPoolManager.Instance.InstantiateObjects("testtarget");
         player = FindObjectOfType<PlayerMovement>();
+        playFace = player.gameObject.GetComponent<PlayerAnimation>();
         for (int i = 0; i < 5; i++)
         {
             IsAbleToSet.Add(false);
@@ -166,7 +169,7 @@ public class TowerManager : MonoBehaviour
 
         allslots = TowerSlots.GetComponentsInChildren<TowerSlot>();
         //towerroomInfos.towerroomInfo.Reverse(RoomManager.Instance.);
-       
+
     }
 
     void UpdateUI()
@@ -365,6 +368,33 @@ public class TowerManager : MonoBehaviour
 
     }
 
+    void CheckPreTowerLocation()
+    {
+        if (playFace.CurrentFacing == PlayerFacing.Right)
+        {
+
+            offset = pretowerOffsets[0];
+
+        }
+        else if (playFace.CurrentFacing == PlayerFacing.Left)
+        {
+
+            offset = pretowerOffsets[1];
+        }
+        else if (playFace.CurrentFacing == PlayerFacing.Up)
+        {
+
+            offset = pretowerOffsets[2];
+        }
+        else if (playFace.CurrentFacing == PlayerFacing.Down)
+        {
+
+            offset = pretowerOffsets[3];
+        }
+
+
+
+    }
 
     void SetTower(Vector2 target)
     {
@@ -485,20 +515,21 @@ public class TowerManager : MonoBehaviour
     }
 
 
-    void SpawnEnemyInTutorial(string scenename,GameObject tower)
+    void SpawnEnemyInTutorial(string scenename, GameObject tower)
     {
 
         if (scenename == "TutorialScene")
         {
-            Vector2 offset = Vector2.up;
-            
+
+            Vector2 offset = Vector2.up * 2.0f;
+
             GameObject enemyObject = ObjectPoolManager.Instance.GetPooledObject("testtarget");
             Vector2 spawnPosition = tower.transform.position;
             enemyObject.transform.position = spawnPosition + offset;
             enemyObject.SetActive(true);
 
         }
-    
+
     }
     //void ChangePanel()
     //{
@@ -557,6 +588,7 @@ public class TowerManager : MonoBehaviour
         ApplyUnlock();
         CheckCoin();
         Vector2 PlayerPos = player.transform.position + offset;
+        CheckPreTowerLocation();
         SetTower(PlayerPos);
 
         if (PreTower)

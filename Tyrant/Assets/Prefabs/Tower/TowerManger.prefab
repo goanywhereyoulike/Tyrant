@@ -516,6 +516,11 @@ MonoBehaviour:
   TowerNumberWarning: {fileID: 8138113493169396453}
   TowerNumberText: {fileID: 760990013602949663}
   TowerPanel: {fileID: 5555223572794265363}
+  pretowerOffsets:
+  - {x: 0.8, y: 0.3, z: 0}
+  - {x: -0.8, y: 0.3, z: 0}
+  - {x: 0, y: 0.8, z: 0}
+  - {x: 0, y: -0.8, z: 0}
   offset: {x: 0.8, y: 0.3, z: 0}
   IsReachTowerNumberLimit: 0
   SelectAbleToSet: 

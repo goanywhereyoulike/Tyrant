@@ -6,8 +6,6 @@ using UnityEngine.UI;
 
 public class TowerManager : MonoBehaviour
 {
-
-
     PlayerAnimation playFace;
     public List<GameObject> slots = new List<GameObject>();
 
@@ -232,6 +230,7 @@ public class TowerManager : MonoBehaviour
                 if (hit.collider.gameObject.tag == "Tower")
                 {
                     Destroy(hit.collider.gameObject.transform.parent.gameObject);
+                    DecreaseTowerlimit();
 
                 }
             }
@@ -527,6 +526,7 @@ public class TowerManager : MonoBehaviour
             Vector2 spawnPosition = tower.transform.position;
             enemyObject.transform.position = spawnPosition + offset;
             enemyObject.SetActive(true);
+            RoomManager.Instance.testRooms[2].enemy.Add(enemyObject);
 
         }
 

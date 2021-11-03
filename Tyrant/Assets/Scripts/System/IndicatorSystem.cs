@@ -9,7 +9,7 @@ public class IndicatorSystem : MonoBehaviour
 
     private void Update()
     {
-        if (GameObjectsLocator.Instance.Get<Indicator>().Count == 0)
+        if (GameObjectsLocator.Instance.Get<Indicator>() == null)
             return;
 
         foreach (var indicator in GameObjectsLocator.Instance.Get<Indicator>())

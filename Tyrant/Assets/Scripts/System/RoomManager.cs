@@ -10,7 +10,8 @@ public class RoomManager : MonoBehaviour
         BossRoom,
         TowerRoom,
         WeaponRoom,
-        TrapRoom
+        TrapRoom,
+        none
     }
 
     public System.Action<int> RoomChanged = null;
@@ -106,13 +107,18 @@ public class RoomManager : MonoBehaviour
         //}
         if (!IsTutorial)
         {
+            if (FogOfWar != null && RoomId!=0)
+            {
+                FogOfWar[RoomId - 1].gameObject.SetActive(false);
+            }
+
             for (int i = 0; i < Doors.Count; ++i)
             {
                 if (SpawnManager.Instance.RoomClear)
                 {
                     Doors[i].Animator.SetBool("IsClose", true);
                     //Doors[i].gameObject.transform.position = Vector3.Lerp(Camera.main.transform.position, Doors[i].gameObject.transform.position, 2.0f * Time.deltaTime);
-                    FogOfWar[roomId].SetActive(false);
+                    //FogOfWar[roomId].SetActive(false);
                     /*if (!PointerEnabled)
                     {
                         Pointers[roomId].SetActive(true);
@@ -151,6 +157,7 @@ public class RoomManager : MonoBehaviour
                 else if (RoomId != 0)
                 {
                     Doors[i].gameObject.SetActive(true);
+                   
 
                     if (RoomId - 1 == Doors[i].roomID)
                     {
@@ -159,6 +166,7 @@ public class RoomManager : MonoBehaviour
                         Doors[i].Animator.SetBool("IsClose", false);
                     }
                 }
+
             }
         }
         else // tutorial part

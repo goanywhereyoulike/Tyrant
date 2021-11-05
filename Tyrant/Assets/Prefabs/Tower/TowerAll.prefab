@@ -317,11 +317,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7c909743a547c343894858d9a4314d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  towertype: 0
   towerData: {fileID: 11400000, guid: c1e9d70b0a7a7e24da738d0a8bac8e44, type: 2}
   DestroyedTower: {fileID: 5777696799881548026, guid: 72bed82f7d1faef4582f13d9bc8a8a19, type: 3}
-  health: 50
   Healthbar: {fileID: 7878463339341565912}
-  towerMngr: {fileID: 666673663090152462, guid: ca6a03c1d14e54040af2cd8bcf59be72, type: 3}
   animator: {fileID: 127691142856124412}
 --- !u!114 &6641549557017462864
 MonoBehaviour:
@@ -337,6 +336,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   towerData: {fileID: 11400000, guid: c1e9d70b0a7a7e24da738d0a8bac8e44, type: 2}
   ColdDown: {fileID: 3587298568180322875}
+  HasAnimation: 1
   ShootPoint: {fileID: 127691142698151683}
   BulletPrefab: {fileID: 6184636059906868256, guid: f7ff6dcf1deb55b43be766a0f2d27798, type: 3}
   TargetPos: {fileID: 0}

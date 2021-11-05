@@ -6,7 +6,11 @@ using UnityEngine.UI;
 public class TowerShoot : MonoBehaviour
 {
 
+    public enum TowerFace {Right,RightUp,RightDown,Left,LeftUp,LeftDown,Up,Down };
     public TowerTemplate towerData;
+
+    [SerializeField]
+    Material DissolveMaterial;
 
     [SerializeField]
     Slider ColdDown;
@@ -35,6 +39,7 @@ public class TowerShoot : MonoBehaviour
     public float BulletForce = 20.0f;
     public float FireRate;
     float WaitFire = 0.0f;
+    public TowerFace towerface;
 
     public Animator animator;
     private Vector3 direction;

@@ -7,7 +7,7 @@ public class BossSpawn : Action
     List<GameObject> enemies;
 
 
-    public List<SpawnArea> roomSpawns;
+    List<SpawnArea> roomSpawns;
     
     //public List<room> rooms = new List<room>();
 

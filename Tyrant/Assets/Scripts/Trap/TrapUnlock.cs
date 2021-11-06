@@ -14,9 +14,9 @@ public class TrapUnlock : MonoBehaviour
         {
            // ManagerSwitch mangerSwitch = FindObjectOfType<ManagerSwitch>();
 
-            TrapManager TrapMngr = FindObjectOfType<TrapManager>();
+            //TrapManager TrapMngr = FindObjectOfType<TrapManager>();
 
-            TrapMngr.AddTrap(index);
+            TrapManager.Instance.AddTrap(index);
 
             if (!isInfinite)
             {

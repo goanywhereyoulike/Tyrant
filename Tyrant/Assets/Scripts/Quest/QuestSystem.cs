@@ -53,6 +53,11 @@ public class QuestSystem : MonoBehaviour
         } 
     }
 
+    public bool MoveComplete { get => moveComplete; }
+    public bool ShootComplete { get => shootComplete; }
+    public bool BuildComplete { get => buildComplete; }
+    public bool TrapComplete { get => trapComplete; }
+
     private int currentQuestSetCount = 0;
     //public  int moveQuestSetCount;
     private bool moveComplete=false;
@@ -113,7 +118,7 @@ public class QuestSystem : MonoBehaviour
     //bool firstUpdate=false;
     void ActiveMoveQuest()
     {
-        if(!moveComplete)
+        if(!MoveComplete)
         {
             MoveQuestSet.SetActive(true);
             CurrentQuestSetCount = MoveQuestSet.transform.childCount;
@@ -123,7 +128,7 @@ public class QuestSystem : MonoBehaviour
     }
     void ActiveShootQuest()
     {
-        if (!shootComplete)
+        if (!ShootComplete)
         {
             ShootQuestSet.SetActive(true);
             CurrentQuestSetCount = ShootQuestSet.transform.childCount;
@@ -133,7 +138,7 @@ public class QuestSystem : MonoBehaviour
     }
     void ActiveBuildQuest()
     {
-        if(!buildComplete)
+        if(!BuildComplete)
         {
             BuildQuestSet.SetActive(true);
             CurrentQuestSetCount = BuildQuestSet.transform.childCount;
@@ -142,7 +147,7 @@ public class QuestSystem : MonoBehaviour
     }
      void ActiveTrapQuest()
     {
-        if(!trapComplete)
+        if(!TrapComplete)
         {
             TrapQuestSet.SetActive(true);
             CurrentQuestSetCount = TrapQuestSet.transform.childCount;
@@ -158,22 +163,22 @@ public class QuestSystem : MonoBehaviour
     }
     void OnRoomChanged(int id)
     {
-        if(RoomManager.Instance.CurrentRoomName == RoomManager.RoomName.MainRoom && !moveComplete)
+        if(RoomManager.Instance.CurrentRoomName == RoomManager.RoomName.MainRoom && !MoveComplete && currentQuestSet == null)
         {
             ActiveMoveQuest();
             animator.SetTrigger("QuestBegin");
         }
-        if(RoomManager.Instance.CurrentRoomName == RoomManager.RoomName.WeaponRoom && !shootComplete)
+        if(RoomManager.Instance.CurrentRoomName == RoomManager.RoomName.WeaponRoom && !ShootComplete && currentQuestSet == null)
         {
             ActiveShootQuest();
             animator.SetTrigger("QuestBegin");
         }
-        if (RoomManager.Instance.CurrentRoomName == RoomManager.RoomName.TowerRoom && !buildComplete)
+        if (RoomManager.Instance.CurrentRoomName == RoomManager.RoomName.TowerRoom && !BuildComplete && currentQuestSet == null)
         {
             ActiveBuildQuest();
             animator.SetTrigger("QuestBegin");
         }
-        if (RoomManager.Instance.CurrentRoomName == RoomManager.RoomName.TrapRoom && !trapComplete)
+        if (RoomManager.Instance.CurrentRoomName == RoomManager.RoomName.TrapRoom && !TrapComplete && currentQuestSet == null)
         {
             ActiveTrapQuest();
             animator.SetTrigger("QuestBegin");

@@ -56,6 +56,8 @@ public class RoomManager : MonoBehaviour
 
     private bool Isallclear;
 
+    private bool Isaudio;
+
     private bool isMain;
 
     private bool isFirstUpdate;
@@ -116,7 +118,17 @@ public class RoomManager : MonoBehaviour
             {
                 if (SpawnManager.Instance.RoomClear)
                 {
+                    
+                    
+                    if(!Isaudio)
+                    {
+                        AudioManager.instance.PlaySFX(18);
+                        Isaudio = true;
+                    }
+
                     Doors[i].Animator.SetBool("IsClose", true);
+
+
                     //Doors[i].gameObject.transform.position = Vector3.Lerp(Camera.main.transform.position, Doors[i].gameObject.transform.position, 2.0f * Time.deltaTime);
                     //FogOfWar[roomId].SetActive(false);
                     /*if (!PointerEnabled)
@@ -156,6 +168,7 @@ public class RoomManager : MonoBehaviour
                 }
                 else if (RoomId != 0)
                 {
+                    Isaudio = false;
                     Doors[i].gameObject.SetActive(true);
                    
 

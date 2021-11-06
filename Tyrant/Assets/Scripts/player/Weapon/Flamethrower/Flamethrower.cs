@@ -58,6 +58,8 @@ public class Flamethrower : Weapon
         }
         else if (reloader.CurrentAmmo <= 0)
             flameParticle.Stop();
+        AudioManager.instance.PlaySFX(17);
+
 
         reloader.FirstStart = false;
         reloader.CurrentAmmo--;

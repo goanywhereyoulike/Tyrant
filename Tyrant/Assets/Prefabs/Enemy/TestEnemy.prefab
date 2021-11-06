@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyState:
-    maxHealth: 0
+    maxHealth: 10
     maxDamage: 0
-    maxMoveSpeed: 0
+    maxMoveSpeed: 2
     mass: 0
     timeBetweenAttacks: 0
     stopDistance: 0
@@ -34,6 +34,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4136874122364066178, guid: 8b9f0df936cf54392b9c2877c62446d7, type: 3}
+      propertyPath: m_AngularDrag
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 4179336317843623627, guid: 8b9f0df936cf54392b9c2877c62446d7, type: 3}
       propertyPath: m_RootOrder
       value: 0

@@ -364,6 +364,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: TestEnemy
       objectReference: {fileID: 0}
+    - target: {fileID: 5293889718066618393, guid: c1c3e04f6d1ec9e448ab4d0051119ec0, type: 3}
+      propertyPath: isChase
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5293889718066618393, guid: c1c3e04f6d1ec9e448ab4d0051119ec0, type: 3}
+      propertyPath: mTarget
+      value: 
+      objectReference: {fileID: 1289173397}
     - target: {fileID: 5852445557789303735, guid: c1c3e04f6d1ec9e448ab4d0051119ec0, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -1824,6 +1832,10 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 982881651}
+    - target: {fileID: 2121050594634451932, guid: e3065554a13e24320bd7ae7aeca6a670, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4488405803428632958, guid: e3065554a13e24320bd7ae7aeca6a670, type: 3}
       propertyPath: m_RootOrder
       value: 7
@@ -2125,11 +2137,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4707894365722169238, guid: e0342963580770d4bbbfa79b77e84777, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 54.73
+      value: -28.1
       objectReference: {fileID: 0}
     - target: {fileID: 4707894365722169238, guid: e0342963580770d4bbbfa79b77e84777, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.01
+      value: 4.3
       objectReference: {fileID: 0}
     - target: {fileID: 4707894365722169238, guid: e0342963580770d4bbbfa79b77e84777, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2166,6 +2178,10 @@ PrefabInstance:
     - target: {fileID: 5536364702767573680, guid: e0342963580770d4bbbfa79b77e84777, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8774515593442148775, guid: e0342963580770d4bbbfa79b77e84777, type: 3}
+      propertyPath: coin
+      value: 99999
       objectReference: {fileID: 0}
     - target: {fileID: 8774515593442148775, guid: e0342963580770d4bbbfa79b77e84777, type: 3}
       propertyPath: dialogueUI
@@ -2312,10 +2328,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2974921023735034898, guid: df40cfccb2316a145ac15593c1a28626, type: 3}
       propertyPath: m_AnimatedTiles.Array.data[4].second.m_AnimationSpeed
-      value: 3.0000002
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2974921023735034898, guid: df40cfccb2316a145ac15593c1a28626, type: 3}
       propertyPath: m_AnimatedTiles.Array.data[6].second.m_AnimationSpeed
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2974921023735034898, guid: df40cfccb2316a145ac15593c1a28626, type: 3}
+      propertyPath: m_AnimatedTiles.Array.data[16].second.m_AnimationSpeed
+      value: 3.0000002
+      objectReference: {fileID: 0}
+    - target: {fileID: 2974921023735034898, guid: df40cfccb2316a145ac15593c1a28626, type: 3}
+      propertyPath: m_AnimatedTiles.Array.data[17].second.m_AnimationSpeed
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3745724296524930268, guid: df40cfccb2316a145ac15593c1a28626, type: 3}
@@ -9649,6 +9673,10 @@ PrefabInstance:
     - target: {fileID: 4614489845783246768, guid: df40cfccb2316a145ac15593c1a28626, type: 3}
       propertyPath: m_Name
       value: tutorialLevel
+      objectReference: {fileID: 0}
+    - target: {fileID: 7972967071086724677, guid: df40cfccb2316a145ac15593c1a28626, type: 3}
+      propertyPath: m_AnimatedTiles.Array.data[10].second.m_AnimationSpeed
+      value: 3.0000002
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: df40cfccb2316a145ac15593c1a28626, type: 3}

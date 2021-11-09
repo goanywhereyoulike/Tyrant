@@ -87,6 +87,10 @@ public class Enemy : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDam
         }
     }
 
+    public bool IsLighting = false;
+    public int LightingIndex = -1;
+    public int LightingTowerIndex = -1;
+
     protected virtual void Start()
     {
         ReUse();

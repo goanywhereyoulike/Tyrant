@@ -150,6 +150,7 @@ public class TowerShoot : MonoBehaviour
             bullet = ObjectPoolManager.Instance.GetPooledObject("ChainTowerBullet");
             if (bullet)
             {
+                bullet.transform.parent = transform;
                 bullet.GetComponentInChildren<ChainTowerBullet>().bulletDamage = towerData.bulletDamage;
                 IsChainTower = true;
             }
@@ -337,44 +338,51 @@ public class TowerShoot : MonoBehaviour
         if ((angle < -160.0f && angle >= -180.0f) || (angle > 160.0f && angle <= 180.0f))
         {
             animator.SetFloat("Direction", 0.05f);
+            towerface = TowerFace.Left;
         }
         //Left Up
         if (angle <= 160.0f && angle >= 100.0f)
         {
             animator.SetFloat("Direction", 0.2f);
-
+            towerface = TowerFace.LeftUp;
         }
         //Up
         if (angle < 100.0f && angle > 80.0f)
         {
             animator.SetFloat("Direction", 0.3f);
+            towerface = TowerFace.Up;
 
         }
         //Right Up
         if (angle <= 80.0f && angle >= 10.0f)
         {
             animator.SetFloat("Direction", 0.5f);
+            towerface = TowerFace.RightUp;
         }
         //Right
         if (angle < 10.0f && angle > -10.0f)
         {
             animator.SetFloat("Direction", 0.6f);
+            towerface = TowerFace.Right;
         }
         //Right Down
         if (angle <= -10.0f && angle >= -80.0f)
         {
             animator.SetFloat("Direction", 0.72f);
+            towerface = TowerFace.RightDown;
         }
         //Down
         if (angle < -80.0f && angle > -100.0f)
         {
             animator.SetFloat("Direction", 0.9f);
+            towerface = TowerFace.Down;
 
         }
         //Left Down
         if (angle <= -100.0f && angle >= -160.0f)
         {
             animator.SetFloat("Direction", 1.0f);
+            towerface = TowerFace.LeftDown;
 
         }
 

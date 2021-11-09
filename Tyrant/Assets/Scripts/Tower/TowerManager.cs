@@ -146,13 +146,8 @@ public class TowerManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        RoomManager.Instance.RoomChanged += RoomChange;
+       
         TowerPanel.gameObject.SetActive(true);
-        ObjectPoolManager.Instance.InstantiateObjects("TowerBullet");
-        ObjectPoolManager.Instance.InstantiateObjects("CannonTowerBullet");
-        ObjectPoolManager.Instance.InstantiateObjects("ChainTowerBullet");
-        ObjectPoolManager.Instance.InstantiateObjects("LightingTowerBullet");
-        ObjectPoolManager.Instance.InstantiateObjects("testtarget");
         player = FindObjectOfType<PlayerMovement>();
         playFace = player.gameObject.GetComponent<PlayerAnimation>();
         for (int i = 0; i < 5; i++)
@@ -169,7 +164,15 @@ public class TowerManager : MonoBehaviour
         //towerroomInfos.towerroomInfo.Reverse(RoomManager.Instance.);
 
     }
-
+    private void Start()
+    {
+        RoomManager.Instance.RoomChanged += RoomChange;
+        ObjectPoolManager.Instance.InstantiateObjects("TowerBullet");
+        ObjectPoolManager.Instance.InstantiateObjects("CannonTowerBullet");
+        ObjectPoolManager.Instance.InstantiateObjects("ChainTowerBullet");
+        ObjectPoolManager.Instance.InstantiateObjects("LightingTowerBullet");
+        ObjectPoolManager.Instance.InstantiateObjects("testtarget");
+    }
     void UpdateUI()
     {
         for (int i = 0; i < 5; ++i)

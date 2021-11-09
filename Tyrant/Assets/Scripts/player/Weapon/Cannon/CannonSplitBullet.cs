@@ -32,7 +32,14 @@ public class CannonSplitBullet : Bullet
     {
         base.OnHit(Enemy);
 
-        Enemy.GetComponent<Enemy>().TakeDamage(Damage);
+        if (Enemy.tag == "Boss")
+        {
+            Enemy.GetComponent<PSC>().TakeDamage(Damage);
+        }
+        else
+        {
+            Enemy.GetComponent<Enemy>().TakeDamage(Damage);
+        }
         //IPushable hitObject = Enemy.GetComponent<IPushable>();
     }
 
@@ -56,8 +63,8 @@ public class CannonSplitBullet : Bullet
 
         if (collision.gameObject.tag == "Boss")
         {
-            //Debug.Log(damage);
-            //gameObject.SetActive(false);
+            OnHit(collision.gameObject);
+            gameObject.SetActive(false);
         }
     }
 

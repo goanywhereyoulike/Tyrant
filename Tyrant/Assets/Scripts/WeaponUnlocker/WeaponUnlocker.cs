@@ -23,7 +23,10 @@ public class WeaponUnlocker : PickUp
     }
     protected override void Trigger2DExit(Collider2D collision)
     {
-        player.InteractButton.GetComponent<Image>().enabled = false;
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            player.InteractButton.GetComponent<Image>().enabled = false;
+        }
     }
     private void Update()
     {

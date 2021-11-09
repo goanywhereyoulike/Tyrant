@@ -74,10 +74,8 @@ public class SpawnManager : MonoBehaviour
 
     void Update()
     {
-        if (StartLevel)
-        {
-
-
+        //if (StartLevel)
+        //{
             if (!isRoomCheck)
                 CheckRoomSpawn();
 
@@ -158,7 +156,7 @@ public class SpawnManager : MonoBehaviour
                     }
                 }
             }
-        }
+        //}
 
     }
 

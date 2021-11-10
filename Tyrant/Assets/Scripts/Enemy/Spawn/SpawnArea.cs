@@ -12,6 +12,9 @@ public class SpawnArea : MonoBehaviour, GameObjectsLocator.IGameObjectRegister
     private float waveDelay;
 
     [SerializeField]
+    private float spawnDelay;
+
+    [SerializeField]
     private Wave wave;
 
     [SerializeField]
@@ -22,10 +25,14 @@ public class SpawnArea : MonoBehaviour, GameObjectsLocator.IGameObjectRegister
     private int spawnCount;
     private int currentWave;
     private float delayTime;
+    private float spawnDelayTime;
     private bool spawnClear;
     private int itemDropCount;
     private int chooseEnemyDrop;
     private int totalEnemies;
+    private int totalWaveSpawn;
+    private bool isWaveClear;
+    private bool isFirstSpawn = true;
 
     public int spWidth;
     public int spHeight;
@@ -45,6 +52,7 @@ public class SpawnArea : MonoBehaviour, GameObjectsLocator.IGameObjectRegister
     public int ItemDropCount { get => itemDropCount; set => itemDropCount = value; }
     public int ItemDropNum { get => itemDropNum; set => itemDropNum = value; }
     public float DelayTime { get => delayTime; set => delayTime = value; }
+    public float SpawnDelayTime { get => spawnDelayTime; set => spawnDelayTime = value; }
     public List<int> DropNumber { get => dropNumber; set => dropNumber = value; }
     public List<GameObject> Enemies { get => enemies; set => enemies = value; }
     public Wave Wave { get => wave; }
@@ -52,7 +60,10 @@ public class SpawnArea : MonoBehaviour, GameObjectsLocator.IGameObjectRegister
     public bool WaveDelayTurnOn { get => waveDelayTurnOn; }
     public int ChooseEnemyDrop { get => chooseEnemyDrop; set => chooseEnemyDrop = value; }
     public int TotalEnemies { get => totalEnemies; set => totalEnemies = value; }
-
+    public float SpawnDelay { get => spawnDelay; }
+    public bool IsWaveClear { get => isWaveClear; set => isWaveClear = value; }
+    public int TotalWaveSpawn { get => totalWaveSpawn; set => totalWaveSpawn = value; }
+    public bool IsFirstSpawn { get => isFirstSpawn; set => isFirstSpawn = value; }
 
     //  public string[] enemyType = { "normalenemy", "rangeEnemy" };
     //

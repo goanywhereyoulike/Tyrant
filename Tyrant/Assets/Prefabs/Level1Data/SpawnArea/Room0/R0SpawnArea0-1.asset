@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waveData:
   - enemytype: 0
-    spawnNumber: 1
+    spawnNumber: 2

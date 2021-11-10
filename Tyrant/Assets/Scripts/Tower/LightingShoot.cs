@@ -82,6 +82,7 @@ public class LightingShoot : MonoBehaviour
             }
             foreach (var enemy in enemies)
             {
+                //TODO : Add tower index check
                 LightingTowerBullet bullet = enemy.GetComponentInChildren<LightingTowerBullet>();
                 if (bullet)
                 {
@@ -362,7 +363,7 @@ public class LightingShoot : MonoBehaviour
 
                         Targets.Remove(enemy.gameObject);
                     }
-                    if (!IsCoolDown)
+                    if (!IsCoolDown && Targets.Count > i)
                     {
                         Vector3 offset = new Vector3(0.0f, 0.5f, 0.0f);
                         GameObject bullet = ObjectPoolManager.Instance.GetPooledObject("LightingTowerBullet");
@@ -382,7 +383,7 @@ public class LightingShoot : MonoBehaviour
 
                         }
 
-                        if (bullet && (attacknumber < firenumber) && AbleToAttack)
+                        if (bullet && (attacknumber < firenumber) && AbleToAttack && Targets.Count > i)
                         {
                             bullet.transform.parent = Targets[i].transform;
                             bullet.GetComponent<LightingTowerBullet>().SetTarget(transform.position + offset, Targets[i].gameObject.transform);

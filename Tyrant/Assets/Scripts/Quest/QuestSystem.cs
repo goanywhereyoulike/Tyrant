@@ -49,6 +49,7 @@ public class QuestSystem : MonoBehaviour
                     StartCoroutine(WaitBeforeDisable(TrapQuestSet));
                 }
                 currentQuestSet = null;
+                RoomManager.Instance.OpenCurrentDoor();
             }
         } 
     }

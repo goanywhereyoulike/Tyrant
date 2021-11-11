@@ -86,7 +86,13 @@ public class RoomManager : MonoBehaviour
 
         
     }
-
+    public void OpenCurrentDoor()
+    {
+        if (Doors[roomId])
+        {
+            Doors[roomId].gameObject.SetActive(false);
+        }
+    }
     private void Update()
     {
         //for (int i = 0; i < Doors.Count; ++i)
@@ -202,6 +208,8 @@ public class RoomManager : MonoBehaviour
                     for (int j = 0; j < testRooms[roomId - 1].enemy.Count; j++)
                     {
                         testRooms[roomId - 1].enemy[j].SetActive(true);
+                        Doors[roomId].gameObject.SetActive(true);
+
                     }
                 }
                 isMain = false;
@@ -214,6 +222,7 @@ public class RoomManager : MonoBehaviour
                     for (int j = 0; j < testRooms[roomId - 1].enemy.Count; j++)
                     {
                         testRooms[roomId - 1].enemy[j].SetActive(true);
+                        Doors[roomId].gameObject.SetActive(true);
                     }
                 }
                 isMain = false;
@@ -226,6 +235,8 @@ public class RoomManager : MonoBehaviour
                     for (int j = 0; j < testRooms[roomId - 1].enemy.Count; j++)
                     {
                         testRooms[roomId - 1].enemy[j].SetActive(true);
+                        Doors[roomId].gameObject.SetActive(true);
+
                     }
                 }
                 isMain = false;

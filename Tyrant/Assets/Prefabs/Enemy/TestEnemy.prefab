@@ -23,6 +23,7 @@ MonoBehaviour:
     detectRange: 0
     maxArmor: 0
   mTarget: {fileID: 0}
+  wDetectRange: 2
   enemyUi: {fileID: 5066223580753101348}
   isChase: 0
   isTestTarget: 0

@@ -23,6 +23,7 @@ MonoBehaviour:
     detectRange: 6
     maxArmor: 0
   mTarget: {fileID: 0}
+  wDetectRange: 1
   enemyUi: {fileID: 4649238561573281817}
 --- !u!1001 &978161066279587383
 PrefabInstance:

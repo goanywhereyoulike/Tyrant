@@ -14,7 +14,10 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/Level/TPS1.unity
     guid: db6299b0c430041a4bf5d910e0c68010
-  - enabled: 0
+  - enabled: 1
+    path: Assets/Scenes/Level/Level1.unity
+    guid: 583cc5048c7fd6740bf3107490094bf9
+  - enabled: 1
     path: Assets/Scenes/GameOverScene.unity
     guid: b997edc70956070468598ff7146158ff
   - enabled: 0

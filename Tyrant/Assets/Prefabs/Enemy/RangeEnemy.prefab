@@ -23,6 +23,7 @@ MonoBehaviour:
     detectRange: 5
     maxArmor: 0
   mTarget: {fileID: 0}
+  wDetectRange: 1
   healthBar: {fileID: 6909745919963387940}
 --- !u!1001 &1365172150062200330
 PrefabInstance:

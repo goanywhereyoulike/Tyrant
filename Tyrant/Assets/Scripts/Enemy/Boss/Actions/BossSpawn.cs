@@ -7,7 +7,7 @@ public class BossSpawn : Action
     List<GameObject> enemies;
 
 
-    public List<SpawnArea> roomSpawns;
+    List<SpawnArea> roomSpawns;
     
     //public List<room> rooms = new List<room>();
 
@@ -24,12 +24,18 @@ public class BossSpawn : Action
     [SerializeField]
     private int roomNumber;
 
+    [SerializeField]
+    private int Delay=5;
+
     private bool roomClear;
     private bool isSpawn;
     private bool isRoomCheck;
+    private bool canSpawn;
 
     private int checkcount;
     private int enemyDrop;
+
+    private float DelayTime = 0.0f;
 
     private PSC psc;
 
@@ -84,8 +90,17 @@ public class BossSpawn : Action
                     }
                     else
                     {
-                        SpawnWave(i);
-
+                        if (DelayTime <= 0.0f)
+                        {
+                            canSpawn = true;
+                            DelayTime = Delay;
+                        }
+                        DelayTime -= Time.deltaTime;
+                        if (canSpawn)
+                        {
+                            SpawnWave(i);
+                            canSpawn = false;
+                        }
                     }
 
                     //check how many enemy can drop item

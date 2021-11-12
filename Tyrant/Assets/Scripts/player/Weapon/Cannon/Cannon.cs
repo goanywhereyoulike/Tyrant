@@ -39,7 +39,9 @@ public class Cannon : Weapon
     {
         if (currentAmmo <= 4 && InputManager.Instance.GetKeyDown("Reload"))
         {
+            AudioManager.instance.PlaySFX(12);
             StartCoroutine(Reload());
+           
             return;
         }
     }
@@ -60,7 +62,7 @@ public class Cannon : Weapon
         currentAmmo = connonStates.MaxAmmo;
         reloadUI.SetActive(false);
         isReloading = false;
-
+     
         //canFire = true;
         //}
     }
@@ -94,4 +96,12 @@ public class Cannon : Weapon
             //currentAmmo--;
         }
     }
+
+   public override void PlayOneTimeFireSound()
+   {
+        if(currentAmmo <= 0)
+        {
+            AudioManager.instance.PlaySFX(11);
+        }
+   }
 }

@@ -19,6 +19,10 @@ public class RangeEnemy : Enemy
     // Update is called once per frame
     protected override void Update()
     {
+        if (isDead)
+        {
+            healthBar.HealthChanged(EnemyState.MaxHealth);
+        }
         base.Update();
     }
 

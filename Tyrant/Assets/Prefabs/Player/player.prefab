@@ -1196,7 +1196,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.02059555, y: -0.023879528}
+  m_Offset: {x: -0.02059555, y: -0.0073925257}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -1207,7 +1207,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.76613617, y: 0.70491695}
+  m_Size: {x: 1.0738907, y: 1.221504}
   m_EdgeRadius: 0
 --- !u!50 &5363795658911054765
 Rigidbody2D:
@@ -1808,7 +1808,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 4
   m_TargetDisplay: 0
 --- !u!114 &1528974039715099116
 MonoBehaviour:
@@ -2211,9 +2211,25 @@ PrefabInstance:
       value: Cannon
       objectReference: {fileID: 0}
     - target: {fileID: 6413046912221962545, guid: dd30cbcad3dabfa46a95330c115d4c53, type: 3}
-      propertyPath: reloadUI
+      propertyPath: ammoImages.Array.data[0]
       value: 
-      objectReference: {fileID: 2878031537007976050}
+      objectReference: {fileID: 2878031537005190525}
+    - target: {fileID: 6413046912221962545, guid: dd30cbcad3dabfa46a95330c115d4c53, type: 3}
+      propertyPath: ammoImages.Array.data[1]
+      value: 
+      objectReference: {fileID: 2878031537241677422}
+    - target: {fileID: 6413046912221962545, guid: dd30cbcad3dabfa46a95330c115d4c53, type: 3}
+      propertyPath: ammoImages.Array.data[2]
+      value: 
+      objectReference: {fileID: 2878031536226468748}
+    - target: {fileID: 6413046912221962545, guid: dd30cbcad3dabfa46a95330c115d4c53, type: 3}
+      propertyPath: ammoImages.Array.data[3]
+      value: 
+      objectReference: {fileID: 2878031536479947352}
+    - target: {fileID: 6413046912221962545, guid: dd30cbcad3dabfa46a95330c115d4c53, type: 3}
+      propertyPath: ammoImages.Array.data[4]
+      value: 
+      objectReference: {fileID: 2878031537188948768}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dd30cbcad3dabfa46a95330c115d4c53, type: 3}
 --- !u!4 &4878579567148733947 stripped

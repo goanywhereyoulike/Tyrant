@@ -74,4 +74,14 @@ public abstract class Weapon : MonoBehaviour
     {
 
     }
+
+    public virtual void PlayOneTimeFireSound()
+    {
+
+    }
+
+    public virtual void PlayFireHoldSound()
+    {
+
+    }
 }

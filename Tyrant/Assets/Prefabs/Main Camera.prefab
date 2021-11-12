@@ -130,7 +130,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a84bd63c79ffe404ca11ffe47f605c8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
+  target: {fileID: 4838899578202194934, guid: 8ab263c65ab00f84b9cd63c229090e39, type: 3}
   playerViewZone: 7
   camBox: {fileID: 7074737380202238844}
 --- !u!1 &7074737380202238846

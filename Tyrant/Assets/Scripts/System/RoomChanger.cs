@@ -17,7 +17,7 @@ public class RoomChanger : MonoBehaviour
     //[SerializeField]
     //private bool isMainRoom;
     [SerializeField]
-    RoomManager.RoomName room = RoomManager.RoomName.MainRoom;
+    RoomManager.RoomName room = RoomManager.RoomName.none;
 
     private bool isEnter;
 

@@ -7,12 +7,12 @@ public class SceneTransfer : MonoBehaviour
 {
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(QuestSystem.Instance.MoveComplete &&
+        if (QuestSystem.Instance.MoveComplete  &&
             QuestSystem.Instance.ShootComplete &&
             QuestSystem.Instance.BuildComplete &&
-            QuestSystem.Instance.TrapComplete )
+            QuestSystem.Instance.TrapComplete)
         {
-            if(collision.gameObject.CompareTag("Player"))
+            if (collision.gameObject.CompareTag("Player"))
             {
                 SceneManager.LoadScene("Level1");
             }
@@ -21,12 +21,12 @@ public class SceneTransfer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 }

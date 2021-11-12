@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
-public class DialogueActivate : MonoBehaviour,IInteractable
+public class DialogueActivate : MonoBehaviour, IInteractable
 {
     [SerializeField] private DialogueObject dialogueObject;
 
@@ -10,31 +10,34 @@ public class DialogueActivate : MonoBehaviour,IInteractable
     private bool canTrigger;
     private Player player;
     private bool startChecked;
+    [SerializeField]
+    private bool autoPlayOnce;
     private void Start()
     {
         isTriggered = false;
     }
     private void Update()
     {
-        if (canTrigger && InputManager.Instance.GetKeyDown("Interact") )
-        { 
+        if ((canTrigger && InputManager.Instance.GetKeyDown("Interact")) || (canTrigger && autoPlayOnce))
+        {
             Time.timeScale = 0;
             Interact(player);
             isTriggered = true;
             canTrigger = false;
+            autoPlayOnce = false;
         }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-       
-            if (collision.CompareTag("Player") && collision.TryGetComponent(out Player players))
-            {
-                player = players;
-                player.InteractButton.GetComponent<Image>().enabled = true;
-                canTrigger = true;
-            }
-        
+
+        if (collision.CompareTag("Player") && collision.TryGetComponent(out Player players))
+        {
+            player = players;
+            player.InteractButton.GetComponent<Image>().enabled = true;
+            canTrigger = true;
+        }
+
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
@@ -45,7 +48,7 @@ public class DialogueActivate : MonoBehaviour,IInteractable
             canTrigger = false;
         }
     }
-    
+
     public void Interact(Player player)
     {
         isTriggered = true;
@@ -56,7 +59,7 @@ public class DialogueActivate : MonoBehaviour,IInteractable
             startChecked = true;
         }
     }
-   
-     
+
+
 }
 

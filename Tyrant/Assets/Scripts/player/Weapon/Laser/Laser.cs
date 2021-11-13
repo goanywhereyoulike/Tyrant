@@ -7,6 +7,8 @@ public class Laser : Weapon
 {
     [SerializeField]
     private Animator animator;
+    [SerializeField]
+    private Animator laserCompleteAnimator;
 
     private LaserStates laserStates = null;
 
@@ -69,6 +71,7 @@ public class Laser : Weapon
                 bulletObject.SetActive(true);
             }
             charged = false;
+            laserCompleteAnimator.SetBool("charged", charged);
         }
     }
 
@@ -81,12 +84,14 @@ public class Laser : Weapon
         if (holdingTime >= chargeTime)
         {
             charged = true;
+            laserCompleteAnimator.SetBool("charged", charged);
         }
 
         chargingBar.value = holdingTime;
         Vector3 vecDir = InputManager.Instance.MouseWorldPosition - transform.position;
         animator.gameObject.transform.eulerAngles = new Vector3(0.0f, 0.0f, 180.0f - Mathf.Atan2(-vecDir.y, vecDir.x) * Mathf.Rad2Deg);
         animator.gameObject.transform.position = startShootingPointDict[Facing].transform.position;
+        laserCompleteAnimator.gameObject.transform.position = startShootingPointDict[Facing].transform.position;
 
         charging = true;
         animator.SetBool("Charging", charging);

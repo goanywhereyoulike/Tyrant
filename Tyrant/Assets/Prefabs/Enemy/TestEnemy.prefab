@@ -23,7 +23,9 @@ MonoBehaviour:
     detectRange: 0
     maxArmor: 0
   mTarget: {fileID: 0}
-  wDetectRange: 2
+  IsLighting: 0
+  LightingIndex: -1
+  LightingTowerIndex: -1
   enemyUi: {fileID: 5066223580753101348}
   isChase: 0
   isTestTarget: 0
@@ -35,6 +37,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1411366688870396581, guid: 8b9f0df936cf54392b9c2877c62446d7, type: 3}
+      propertyPath: m_Name
+      value: MinimapIcon
+      objectReference: {fileID: 0}
     - target: {fileID: 4136874122364066178, guid: 8b9f0df936cf54392b9c2877c62446d7, type: 3}
       propertyPath: m_AngularDrag
       value: 0.1
@@ -98,10 +104,6 @@ PrefabInstance:
     - target: {fileID: 5020135133521000170, guid: 8b9f0df936cf54392b9c2877c62446d7, type: 3}
       propertyPath: m_IsActive
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5540847118511990634, guid: 8b9f0df936cf54392b9c2877c62446d7, type: 3}
-      propertyPath: m_RootOrder
-      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6512361344200527805, guid: 8b9f0df936cf54392b9c2877c62446d7, type: 3}
       propertyPath: m_AnchorMax.x

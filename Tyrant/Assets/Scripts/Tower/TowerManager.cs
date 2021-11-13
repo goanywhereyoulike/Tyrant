@@ -106,7 +106,7 @@ public class TowerManager : MonoBehaviour
     //public GameObject PreChainTowerprefab;
     //public GameObject PreLightingTowerprefab;
     //public GameObject PreTauntTowerprefab;
-
+    int index = 0;
     private GameObject PreTower;
     [SerializeField]
     private List<Vector3> pretowerOffsets = new List<Vector3>();
@@ -497,6 +497,7 @@ public class TowerManager : MonoBehaviour
                 TowerSprite.color = Color.green;
                 if (InputManager.Instance.GetKeyDown("BuildTower"))
                 {
+                    
                     GameObject realtower = Instantiate(allslots[TowerIndex].Towerprefab, target, Quaternion.identity);
                     player.GetComponent<Player>().coin -= allslots[TowerIndex].towerTemplate.price;
                     TowerBuilt?.Invoke(TowerIndex);
@@ -504,6 +505,14 @@ public class TowerManager : MonoBehaviour
                     IsPreTowerExist = false;
                     TowerNumber++;
                     SpawnEnemyInTutorial(sceneName, realtower);
+
+                    if (realtower.GetComponentInChildren<LightingShoot>())
+                    {
+                        realtower.GetComponentInChildren<LightingShoot>().index = index;
+                        index++;
+                    }
+
+
                 }
             }
             else if (bluePrint && !bluePrint.IsAbleToSet)

@@ -82,17 +82,22 @@ public class LightingShoot : MonoBehaviour
             }
             foreach (var enemy in enemies)
             {
-                //TODO : Add tower index check
-                LightingTowerBullet bullet = enemy.GetComponentInChildren<LightingTowerBullet>();
-                if (bullet)
+
+                LightingTowerBullet[] bullets = enemy.GetComponentsInChildren<LightingTowerBullet>();
+
+                foreach (var bullet in bullets)
                 {
-
-                    //bullet.gameObject.transform.DetachChildren();
-                    bullet.gameObject.transform.parent = null;
-                    attacknumber--;
-                    bullet.gameObject.SetActive(false);
+                    if (bullet && bullet.TowerIndex == index)
+                    {
 
 
+                        //bullet.gameObject.transform.DetachChildren();
+                        bullet.gameObject.transform.parent = null;
+                        attacknumber--;
+                        bullet.gameObject.SetActive(false);
+
+
+                    }
                 }
             }
 

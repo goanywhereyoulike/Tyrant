@@ -14,6 +14,9 @@ public class TestEnemy : Enemy
     [SerializeField]
     private Animator burningAnimator;
 
+    [SerializeField]
+    private bool canDead;
+
     private bool armorEnemy = false;
 
     Vector3 lastPosition;
@@ -58,9 +61,19 @@ public class TestEnemy : Enemy
     override public void TakeDamage(float damage)
     {
         currentHelath -= damage;
-        if (currentHelath <= 0.0f)
+        if (!canDead)
+        { 
+            if (currentHelath <= 0.0f)
+            {
+                currentHelath = EnemyState.MaxHealth;
+            } 
+        }
+        else
         {
-            currentHelath = EnemyState.MaxHealth;
+            if (currentHelath <= 0.0f)
+            {
+                gameObject.SetActive(false);
+            }
         }
         enemyUi.HealthChanged(currentHelath);
     }

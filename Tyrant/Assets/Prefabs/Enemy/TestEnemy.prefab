@@ -31,6 +31,7 @@ MonoBehaviour:
   isChase: 0
   isTestTarget: 0
   burningAnimator: {fileID: 1905720368300165393}
+  canDead: 1
 --- !u!1001 &817577163943767050
 PrefabInstance:
   m_ObjectHideFlags: 0

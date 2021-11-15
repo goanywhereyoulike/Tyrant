@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: TrapInstruction
   m_EditorClassIdentifier: 
   dialogue:
-  - Press [T] to activate trap and press [Space] to set trap
+  - "Press [T] to activate trap \npress [Space] to set trap"

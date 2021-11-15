@@ -5,6 +5,7 @@ using UnityEngine;
 public class LightingTowerBullet : MonoBehaviour
 {
     // Start is called before the first frame update
+    public int TowerIndex = -1;
     public float bulletDamage = 5.0f;
     [SerializeField]
     private Texture[] textures;

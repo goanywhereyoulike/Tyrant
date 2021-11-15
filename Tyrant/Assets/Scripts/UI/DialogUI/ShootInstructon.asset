@@ -13,6 +13,9 @@ MonoBehaviour:
   m_Name: ShootInstructon
   m_EditorClassIdentifier: 
   dialogue:
-  - 'Press [1] [2] [3] [4] [5] to activate tower
+  - 'This is the weapon room
 
-    Press [Space] to build tower'
+    Press F to pick up a weapon
+
+    Press Left Mouse
+    button to fire'

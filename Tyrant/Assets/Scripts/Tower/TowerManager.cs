@@ -106,7 +106,7 @@ public class TowerManager : MonoBehaviour
     //public GameObject PreChainTowerprefab;
     //public GameObject PreLightingTowerprefab;
     //public GameObject PreTauntTowerprefab;
-
+    int index = 0;
     private GameObject PreTower;
     [SerializeField]
     private List<Vector3> pretowerOffsets = new List<Vector3>();
@@ -146,13 +146,8 @@ public class TowerManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        RoomManager.Instance.RoomChanged += RoomChange;
+       
         TowerPanel.gameObject.SetActive(true);
-        ObjectPoolManager.Instance.InstantiateObjects("TowerBullet");
-        ObjectPoolManager.Instance.InstantiateObjects("CannonTowerBullet");
-        ObjectPoolManager.Instance.InstantiateObjects("ChainTowerBullet");
-        ObjectPoolManager.Instance.InstantiateObjects("LightingTowerBullet");
-        ObjectPoolManager.Instance.InstantiateObjects("testtarget");
         player = FindObjectOfType<PlayerMovement>();
         playFace = player.gameObject.GetComponent<PlayerAnimation>();
         for (int i = 0; i < 5; i++)
@@ -169,7 +164,15 @@ public class TowerManager : MonoBehaviour
         //towerroomInfos.towerroomInfo.Reverse(RoomManager.Instance.);
 
     }
-
+    private void Start()
+    {
+        RoomManager.Instance.RoomChanged += RoomChange;
+        ObjectPoolManager.Instance.InstantiateObjects("TowerBullet");
+        ObjectPoolManager.Instance.InstantiateObjects("CannonTowerBullet");
+        ObjectPoolManager.Instance.InstantiateObjects("ChainTowerBullet");
+        ObjectPoolManager.Instance.InstantiateObjects("LightingTowerBullet");
+        ObjectPoolManager.Instance.InstantiateObjects("testtarget");
+    }
     void UpdateUI()
     {
         for (int i = 0; i < 5; ++i)
@@ -494,6 +497,7 @@ public class TowerManager : MonoBehaviour
                 TowerSprite.color = Color.green;
                 if (InputManager.Instance.GetKeyDown("BuildTower"))
                 {
+                    
                     GameObject realtower = Instantiate(allslots[TowerIndex].Towerprefab, target, Quaternion.identity);
                     player.GetComponent<Player>().coin -= allslots[TowerIndex].towerTemplate.price;
                     TowerBuilt?.Invoke(TowerIndex);
@@ -501,6 +505,14 @@ public class TowerManager : MonoBehaviour
                     IsPreTowerExist = false;
                     TowerNumber++;
                     SpawnEnemyInTutorial(sceneName, realtower);
+
+                    if (realtower.GetComponentInChildren<LightingShoot>())
+                    {
+                        realtower.GetComponentInChildren<LightingShoot>().index = index;
+                        index++;
+                    }
+
+
                 }
             }
             else if (bluePrint && !bluePrint.IsAbleToSet)

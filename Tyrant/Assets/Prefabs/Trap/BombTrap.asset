@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: BombTrap
   m_EditorClassIdentifier: 
   type: BombTrap
-  distanceToShoot: 10
+  distanceToShoot: 13
   TrapDamage: 10
   price: 100
   CoolDownSpeed: 0.5

@@ -8,12 +8,16 @@ using UnityEngine.UI;
 public class TrapManager : MonoBehaviour
 {
     PlayerMovement player;
+    PlayerAnimation playFace;
     SpriteRenderer TrapSprite;
     [SerializeField]
     TrapLimitTemplate traptemplate;
     int LevelNumber = 0;
     int RoomNumber = 0;
     TrapRoomInfo.TrapType trapType;
+
+    [SerializeField]
+    private List<Vector3> pretowerOffsets = new List<Vector3>();
 
     [SerializeField]
     List<Image> TrapImages = new List<Image>();
@@ -99,6 +103,7 @@ public class TrapManager : MonoBehaviour
             Destroy(gameObject);
         }
         player = FindObjectOfType<PlayerMovement>();
+        playFace = player.gameObject.GetComponent<PlayerAnimation>();
         Trapnumber.text = TrapNumber.ToString();
         RoomManager.Instance.RoomChanged += RoomChanged;
         LevelNumber = SceneManager.GetActiveScene().buildIndex;
@@ -337,7 +342,33 @@ public class TrapManager : MonoBehaviour
 
     }
 
+    void CheckPreTowerLocation()
+    {
+        if (playFace.CurrentFacing == PlayerFacing.Right)
+        {
 
+            offset = pretowerOffsets[0];
+
+        }
+        else if (playFace.CurrentFacing == PlayerFacing.Left)
+        {
+
+            offset = pretowerOffsets[1];
+        }
+        else if (playFace.CurrentFacing == PlayerFacing.Up)
+        {
+
+            offset = pretowerOffsets[2];
+        }
+        else if (playFace.CurrentFacing == PlayerFacing.Down)
+        {
+
+            offset = pretowerOffsets[3];
+        }
+
+
+
+    }
     void SetTrap(Vector2 target)
     {
         if (InputManager.Instance.GetKeyDown("PreBuildTrap"))
@@ -437,6 +468,7 @@ public class TrapManager : MonoBehaviour
         CheckTrapnumber();
         CheckUI();
         Vector2 PlayerPos = player.transform.position + offset;
+        CheckPreTowerLocation();
         SetTrap(PlayerPos);
         SetTrapImage(trapType);
         if (PreTrap)

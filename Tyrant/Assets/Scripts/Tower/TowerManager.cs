@@ -276,6 +276,25 @@ public class TowerManager : MonoBehaviour
 
             }
         }
+        List<Enemy> enemies = GameObjectsLocator.Instance.Get<Enemy>();
+        if (enemies.Count == 0)
+        {
+            return;
+        }
+        foreach (var enemy in enemies)
+        {
+
+            LightingTowerBullet[] bullets = enemy.GetComponentsInChildren<LightingTowerBullet>();
+
+            foreach (var bullet in bullets)
+            {
+                if (bullet)
+                {
+                    bullet.gameObject.transform.parent = null;
+                    bullet.gameObject.SetActive(false);
+                }
+            }
+        }
 
 
 

@@ -34,14 +34,14 @@ public class TestEnemy : Enemy
     //}
     protected override void Start()
     {
-         GameObjectsLocator.Instance.Register<Enemy>(this);
-        if (isChase)
-        {
-            base.Start();
-            //behaviours = gameObject.GetComponent<StaticMachine>();
-            //behaviours.setEnemy(this);
-            //behaviours.AllBehaviour();
-        }
+        GameObjectsLocator.Instance.Register<Enemy>(this);
+        base.Start();
+        //if (isChase)
+        //{
+        //    //behaviours = gameObject.GetComponent<StaticMachine>();
+        //    //behaviours.setEnemy(this);
+        //    //behaviours.AllBehaviour();
+        //}
         spriteRenderer = GetComponent<SpriteRenderer>();
         enemyUi.MaxHealthChanged(EnemyState.MaxHealth);
         enemyUi.HealthChanged(EnemyState.MaxHealth);
@@ -72,6 +72,7 @@ public class TestEnemy : Enemy
         {
             if (currentHelath <= 0.0f)
             {
+                currentHelath = EnemyState.MaxHealth;
                 gameObject.SetActive(false);
             }
         }

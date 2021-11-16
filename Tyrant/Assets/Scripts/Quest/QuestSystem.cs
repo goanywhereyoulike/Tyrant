@@ -92,6 +92,8 @@ public class QuestSystem : MonoBehaviour
         
         RoomManager.Instance.RoomChanged += this.OnRoomChanged;
         ActiveMoveQuest();
+
+
         
     }
 

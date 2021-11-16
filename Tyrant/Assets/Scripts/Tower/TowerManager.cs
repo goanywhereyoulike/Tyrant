@@ -551,7 +551,7 @@ public class TowerManager : MonoBehaviour
         if (scenename == "TutorialScene")
         {
 
-            Vector2 offset = Vector2.up * 2.0f;
+            Vector2 offset = Vector2.up * 3.0f;
 
             GameObject enemyObject = ObjectPoolManager.Instance.GetPooledObject("testtarget");
             Vector2 spawnPosition = tower.transform.position;

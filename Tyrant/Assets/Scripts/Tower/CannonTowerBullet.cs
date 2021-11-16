@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class CannonTowerBullet : MonoBehaviour
 {
+    public float PushForce = 10.0f;
     public float bulletDamage = 5.0f;
     public GameObject hitEffect;
     public int AllHittime = 3;
@@ -17,7 +18,11 @@ public class CannonTowerBullet : MonoBehaviour
         realHittime = 0;
     }
 
-    private void Update()
+    //private void Update()
+    //{
+    //    lastVelocity = rb.velocity;
+    //}
+    private void LateUpdate()
     {
         lastVelocity = rb.velocity;
     }
@@ -37,11 +42,29 @@ public class CannonTowerBullet : MonoBehaviour
         string tag = collision.gameObject.tag;
         Enemy enemy = collision.gameObject.GetComponent<Enemy>();
         PSC levelBoss = collision.gameObject.GetComponent<PSC>();
+        if (tag == "Player" || tag == "Wall" || tag == "Base" || tag == "Enemy")
+        {
+            Vector2 reflexAngle = Vector2.Reflect(lastVelocity, collision.contacts[0].normal);
+            if (rb)
+            {
+                rb.velocity = reflexAngle.normalized * lastVelocity.magnitude * 0.5f;
+            }
+            Rigidbody2D crb = collision.gameObject.GetComponent<Rigidbody2D>();
+            if (crb)
+            {
+                crb.velocity = new Vector2(0, 0);
+            }
 
-        realHittime++;
+            realHittime++;
+        }
+
         if (enemy)
         {
             enemy.TakeDamage(bulletDamage);
+            Vector3 direction = (collision.gameObject.transform.position - transform.position).normalized;
+            Vector3 force = direction * PushForce;
+            IPushable hitObject = enemy.GetComponent<IPushable>();
+            hitObject.BePushed(force);
         }
         if (levelBoss)
         {
@@ -54,6 +77,7 @@ public class CannonTowerBullet : MonoBehaviour
             gameObject.SetActive(false);
             realHittime = 0;
         }
+
         //Destroy(gameObject)
     }
 }

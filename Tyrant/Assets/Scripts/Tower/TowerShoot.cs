@@ -142,6 +142,7 @@ public class TowerShoot : MonoBehaviour
             {
                 AudioManager.instance.PlaySFX(15);
                 bullet.GetComponent<CannonTowerBullet>().bulletDamage = towerData.bulletDamage;
+              
             }
 
         }
@@ -154,6 +155,7 @@ public class TowerShoot : MonoBehaviour
                 bullet.transform.parent = transform;
                 bullet.GetComponentInChildren<ChainTowerBullet>().bulletDamage = towerData.bulletDamage;
                 IsChainTower = true;
+                bullet.GetComponent<DistanceJoint2D>().connectedAnchor = transform.position;
             }
 
         }

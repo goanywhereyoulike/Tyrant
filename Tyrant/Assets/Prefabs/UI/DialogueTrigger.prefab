@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5530381508138953769}
   - component: {fileID: 4461273821105631677}
   - component: {fileID: 8838541486928496255}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: DialogueTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -124,6 +124,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogueObject: {fileID: 11400000, guid: e92cc885291be3141a2d83e33e98c903, type: 2}
+  autoPlayOnce: 0
 --- !u!1001 &1849387095368596674
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -97,6 +97,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0188105924a63bb45ad43b770dc2dab0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bulletDamage: 0.5
   hitEffect: {fileID: 5013557089531781484, guid: c2b1901f87b33da499a56505b1035b44, type: 3}
 --- !u!50 &515904847167377696
 Rigidbody2D:

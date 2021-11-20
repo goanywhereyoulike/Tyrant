@@ -277,7 +277,7 @@ public class TowerManager : MonoBehaviour
             }
         }
         List<Enemy> enemies = GameObjectsLocator.Instance.Get<Enemy>();
-        if (enemies.Count == 0)
+        if (enemies== null)
         {
             return;
         }

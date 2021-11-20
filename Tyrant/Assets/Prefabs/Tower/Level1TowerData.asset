@@ -35,3 +35,10 @@ MonoBehaviour:
     TauntTower: 0
     RoomId: 2
     TowerNumber: 4
+  - BasicTower: 1
+    CannonTower: 1
+    ChainTower: 0
+    LightingTower: 1
+    TauntTower: 0
+    RoomId: 3
+    TowerNumber: 4

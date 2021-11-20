@@ -25,6 +25,7 @@ public class DialogueActivate : MonoBehaviour, IInteractable
             isTriggered = true;
             canTrigger = false;
             autoPlayOnce = false;
+            IndicatorSystem.DisableIndicator(this.gameObject);
         }
     }
 

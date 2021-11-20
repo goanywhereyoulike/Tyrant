@@ -7,6 +7,15 @@ public class IndicatorSystem : MonoBehaviour
     [SerializeField]
     private GameObject target = null;
 
+    public static void DisableIndicator(GameObject obj)
+    {
+        Indicator indicator = obj.GetComponentInChildren<Indicator>();
+        if (indicator)
+        {
+            indicator.gameObject.SetActive(false);
+        }
+    }
+
     private void Update()
     {
         if (GameObjectsLocator.Instance.Get<Indicator>() == null)

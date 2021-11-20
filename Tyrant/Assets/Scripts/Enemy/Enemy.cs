@@ -135,6 +135,11 @@ public class Enemy : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDam
         //{
         //    SlowDown(1.5f);
         //}
+        //if (!RoomManager.Instance.IsTutorial)
+        //{
+        //    if (targets != null)
+        //        targets.Clear();
+        //}
 
         if (targets != null)
             targets.Clear();

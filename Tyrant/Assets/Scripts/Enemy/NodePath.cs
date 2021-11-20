@@ -25,7 +25,7 @@ public class NodePath : GameObjectsLocator.IGameObjectRegister
     public Node FindNode(int x, int y)
     {
         var Nodes = GameObjectsLocator.Instance.Get<Block>();
-        {
+        
             foreach (var node in Nodes)
             {
                 for (int position = 0; position < node.worldPosition.Count; ++position)
@@ -36,7 +36,6 @@ public class NodePath : GameObjectsLocator.IGameObjectRegister
                     }
                 }
             }
-        }
 		return mNodes[0];
 	}
 

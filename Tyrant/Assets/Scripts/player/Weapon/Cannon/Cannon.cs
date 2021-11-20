@@ -41,7 +41,6 @@ public class Cannon : Weapon
         {
             AudioManager.instance.PlaySFX(12);
             StartCoroutine(Reload());
-           
             return;
         }
     }

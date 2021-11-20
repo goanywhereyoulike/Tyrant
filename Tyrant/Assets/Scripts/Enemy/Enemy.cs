@@ -264,6 +264,7 @@ public class Enemy : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDam
             var to = new Vector3(mPath[i + 1].r, mPath[i + 1].c);
             Debug.DrawLine(from, to, Color.green);
         }
+
     }
 
     void FixedUpdate()
@@ -271,36 +272,57 @@ public class Enemy : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDam
         RaycastHit2D upHit = Physics2D.Raycast(transform.position, Vector2.up, wDetectRange);
         if (upHit.collider != null && upHit.collider.tag == "Wall")
         {
+            if (rb)
+            {
+                rb.velocity = Vector3.zero;
+                rb.angularVelocity = 0.0f;
+            }
             Vector2 Position = transform.position;
             Position.y = transform.position.y - 1;
             transform.position = Position;
         }
-        Debug.DrawRay(transform.position, Vector2.up, Color.green, 2);
+        //Debug.DrawRay(transform.position, Vector2.up, Color.green, 2);
 
         RaycastHit2D downHit = Physics2D.Raycast(transform.position, Vector2.down, wDetectRange);
         if (downHit.collider != null && downHit.collider.tag == "Wall")
         {
+            if (rb)
+            {
+                rb.velocity = Vector3.zero;
+                rb.angularVelocity = 0.0f;
+            }
             Vector2 Position = transform.position;
             Position.y = transform.position.y + 1;
             transform.position = Position;
         }
-        Debug.DrawRay(transform.position, Vector2.down, Color.green, 2);
+        //Debug.DrawRay(transform.position, Vector2.down, Color.green, 2);
         RaycastHit2D rightHit = Physics2D.Raycast(transform.position, Vector2.right, wDetectRange);
         if (rightHit.collider != null && rightHit.collider.tag == "Wall")
         {
+            if (rb)
+            {
+                rb.velocity = Vector3.zero;
+                rb.angularVelocity = 0.0f;
+            }
             Vector2 Position = transform.position;
             Position.x = transform.position.x - 1;
             transform.position = Position;
         }
-        Debug.DrawRay(transform.position, Vector2.left, Color.green, 2);
+        //Debug.DrawRay(transform.position, Vector2.left, Color.green, 2);
         RaycastHit2D leftHit = Physics2D.Raycast(transform.position, Vector2.left, wDetectRange);
         if (leftHit.collider != null && leftHit.collider.tag == "Wall")
         {
+            if (rb)
+            {
+                rb.velocity = Vector3.zero;
+                rb.angularVelocity = 0.0f;
+            }
             Vector2 Position = transform.position;
             Position.x = transform.position.x + 1;
             transform.position = Position;
         }
-        Debug.DrawRay(transform.position, Vector2.right, Color.green, 2);
+        // Debug.DrawRay(transform.position, Vector2.right, Color.green, 2);
+
     }
     //------------------attck animation------------------------
     //IEnumerator Attack()

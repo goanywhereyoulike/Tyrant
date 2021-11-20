@@ -134,6 +134,8 @@ MonoBehaviour:
     keyCode: 53
   - name: PreBuildTrap
     keyCode: 116
+  - name: MiniMap
+    keyCode: 109
   axesLibrary:
   - name: Horizontal
     positiveButton: 100

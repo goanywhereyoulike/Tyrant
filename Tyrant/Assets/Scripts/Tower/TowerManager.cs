@@ -276,6 +276,25 @@ public class TowerManager : MonoBehaviour
 
             }
         }
+        List<Enemy> enemies = GameObjectsLocator.Instance.Get<Enemy>();
+        if (enemies.Count == 0)
+        {
+            return;
+        }
+        foreach (var enemy in enemies)
+        {
+
+            LightingTowerBullet[] bullets = enemy.GetComponentsInChildren<LightingTowerBullet>();
+
+            foreach (var bullet in bullets)
+            {
+                if (bullet)
+                {
+                    bullet.gameObject.transform.parent = null;
+                    bullet.gameObject.SetActive(false);
+                }
+            }
+        }
 
 
 
@@ -532,7 +551,7 @@ public class TowerManager : MonoBehaviour
         if (scenename == "TutorialScene")
         {
 
-            Vector2 offset = Vector2.up * 2.0f;
+            Vector2 offset = Vector2.up * 3.0f;
 
             GameObject enemyObject = ObjectPoolManager.Instance.GetPooledObject("testtarget");
             Vector2 spawnPosition = tower.transform.position;

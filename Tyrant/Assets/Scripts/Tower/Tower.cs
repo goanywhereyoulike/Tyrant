@@ -83,12 +83,16 @@ public class Tower : MonoBehaviour, IDamageable, GameObjectsLocator.IGameObjectR
             List<Enemy> enemies = GameObjectsLocator.Instance.Get<Enemy>();
             foreach (var enemy in enemies)
             {
-                LightingTowerBullet bullet = enemy.GetComponentInChildren<LightingTowerBullet>();
-                if (bullet)
-                {
-                    bullet.gameObject.transform.parent = null;
-                    bullet.gameObject.SetActive(false);
+                LightingTowerBullet[] bullets = enemy.GetComponentsInChildren<LightingTowerBullet>();
 
+                foreach (var bullet in bullets)
+                {
+                    if (bullet)
+                    {
+                        bullet.gameObject.transform.parent = null;
+                        bullet.gameObject.SetActive(false);
+
+                    }
                 }
             }
 

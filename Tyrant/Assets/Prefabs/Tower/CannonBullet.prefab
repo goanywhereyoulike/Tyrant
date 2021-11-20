@@ -101,7 +101,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
-  m_Material: {fileID: 6200000, guid: 6fb6187a2eafd924abb17a40b4650cc8, type: 2}
+  m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1
@@ -115,7 +115,7 @@ CircleCollider2D:
   m_GameObject: {fileID: 2381738358933340234}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 6200000, guid: 6fb6187a2eafd924abb17a40b4650cc8, type: 2}
+  m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -134,6 +134,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1dc37d020e67124eaec521a63757a03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PushForce: 0.8
   bulletDamage: 5
   hitEffect: {fileID: 5013557089531781484, guid: c2b1901f87b33da499a56505b1035b44, type: 3}
   AllHittime: 3

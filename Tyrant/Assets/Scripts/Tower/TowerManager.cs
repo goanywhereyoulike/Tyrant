@@ -537,6 +537,12 @@ public class TowerManager : MonoBehaviour
             GameObject enemyObject = ObjectPoolManager.Instance.GetPooledObject("testtarget");
             Vector2 spawnPosition = tower.transform.position;
             enemyObject.transform.position = spawnPosition + offset;
+            if(tower.GetComponentInChildren<TauntTowerEffect>())
+            {
+                var enemy = enemyObject.GetComponent<TestEnemy>();
+                enemy.IsChase = true;
+                enemy.IsTestTarget = false;
+            }
             enemyObject.SetActive(true);
             RoomManager.Instance.testRooms[2].enemy.Add(enemyObject);
 

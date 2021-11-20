@@ -25,6 +25,9 @@ public class TestEnemy : Enemy
 
     private float currentHelath;
 
+    public bool IsChase { get => isChase; set => isChase = value; }
+    public bool IsTestTarget { get => isTestTarget; set => isTestTarget = value; }
+
     // Start is called before the first frame update
 
     //private void Awake()
@@ -104,7 +107,7 @@ public class TestEnemy : Enemy
         //    isSpawn = true;
         //}
 
-        if (isChase)
+        if (IsChase)
         {
             //mainTarget = GameObjectsLocator.Instance.Get<Player>();
             //mTarget = mainTarget[0].transform;
@@ -116,7 +119,7 @@ public class TestEnemy : Enemy
             base.Update();
         }
 
-        if (isTestTarget)
+        if (IsTestTarget)
         {
             Reuse();
         }

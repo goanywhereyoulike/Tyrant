@@ -20,7 +20,6 @@ public class RoomChanger : MonoBehaviour
     RoomManager.RoomName room = RoomManager.RoomName.none;
 
     private bool isEnter;
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (room == RoomManager.RoomName.MainRoom ||
@@ -48,4 +47,5 @@ public class RoomChanger : MonoBehaviour
         }
 
     }
+   
 }

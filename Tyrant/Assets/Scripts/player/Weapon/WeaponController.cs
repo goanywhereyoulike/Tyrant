@@ -55,18 +55,27 @@ public class WeaponController : MonoBehaviour
         //weaponObjects[0].isUnlocked = true;
     }
 
-    void Awake()
+    void Start()
     {
         //CurrentWeapon.weaponObject = weaponObjects[0].weaponObject;
         
         //CurrentWeapon.weaponUI = weaponObjects[0].weaponUI;
        
         CurrentWeapon = weaponObjects[0];
+        RoomManager.Instance.RoomChanged += DisableWeaponUI;
         //CurrentWeapon.weaponUI.gameObject.SetActive(true);
 
     }
-
+    void DisableWeaponUI(int id)
+    {
+        if (RoomManager.Instance.RoomId != 1)
+        {
+            CurrentWeapon.ReloadUI.SetActive(false);
+        }
+    }
     void Update()
     {
     }
+    
+    
 }

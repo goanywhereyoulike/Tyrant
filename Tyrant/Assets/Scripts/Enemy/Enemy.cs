@@ -270,6 +270,7 @@ public class Enemy : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDam
             Debug.DrawLine(from, to, Color.green);
         }
 
+        spriteRenderer.flipX = transform.position.x > mTarget.position.x;
     }
 
     void FixedUpdate()

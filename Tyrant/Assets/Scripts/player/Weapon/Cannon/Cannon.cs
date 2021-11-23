@@ -37,7 +37,7 @@ public class Cannon : Weapon
     }
     private void Update()
     {
-        if (currentAmmo <= 4 && InputManager.Instance.GetKeyDown("Reload"))
+        if (!isReloading && (currentAmmo <= 4 && InputManager.Instance.GetKeyDown("Reload") || currentAmmo == 0))
         {
             AudioManager.instance.PlaySFX(12);
             StartCoroutine(Reload());

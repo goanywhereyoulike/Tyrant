@@ -24,6 +24,9 @@ MonoBehaviour:
     maxArmor: 0
   mTarget: {fileID: 0}
   wDetectRange: 2
+  IsLighting: 0
+  LightingIndex: -1
+  LightingTowerIndex: -1
   enemyUi: {fileID: 8255566193368347821}
 --- !u!1001 &4577874038266288771
 PrefabInstance:
@@ -76,6 +79,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4179336317843623668, guid: 8b9f0df936cf54392b9c2877c62446d7, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 33e85b65ea6f344a49fda342597449d7, type: 3}
+    - target: {fileID: 4179336317843623670, guid: 8b9f0df936cf54392b9c2877c62446d7, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 8a7da0aeb96a241519b28dd1e2f6be11, type: 2}
     - target: {fileID: 4179336317843623671, guid: 8b9f0df936cf54392b9c2877c62446d7, type: 3}
       propertyPath: m_Name
       value: xRangeEnemy

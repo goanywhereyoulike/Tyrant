@@ -76,7 +76,7 @@ public class LightingShoot : MonoBehaviour
         if (IsCoolDown)
         {
             List<Enemy> enemies = GameObjectsLocator.Instance.Get<Enemy>();
-            if (enemies.Count == 0)
+            if (enemies == null)
             {
                 return;
             }
@@ -229,7 +229,7 @@ public class LightingShoot : MonoBehaviour
         if (GameObjectsLocator.Instance.Get<PSC>() != null)
         {
             List<PSC> level1boss = GameObjectsLocator.Instance.Get<PSC>();
-            if (level1boss.Count != 0)
+            if (level1boss != null)
             {
                 GameObject targetboss = level1boss[0].gameObject;
                 float Distance = (targetboss.transform.position - transform.position).sqrMagnitude;
@@ -342,7 +342,10 @@ public class LightingShoot : MonoBehaviour
                         }
 
                     }
-
+                    else 
+                    {
+                        return;
+                    }
 
                     if (enemy.IsDead)
                     {

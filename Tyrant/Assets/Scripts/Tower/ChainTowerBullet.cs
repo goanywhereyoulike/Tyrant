@@ -22,14 +22,20 @@ public class ChainTowerBullet : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         string tag = collision.gameObject.tag;
-        if ( tag == "Enemy")
+        if (tag == "Enemy")
         {
-            GameObject effect = Instantiate(hitEffect, transform.position, Quaternion.identity);
-            Destroy(effect, 0.3f);
-            gameObject.SetActive(false);
-            IsFired = false;
+            Enemy enemy = collision.gameObject.GetComponent<Enemy>();
+            if (enemy)
+            {
+                GameObject effect = Instantiate(hitEffect, transform.position, Quaternion.identity);
+                Destroy(effect, 0.3f);
+                gameObject.SetActive(false);
+                IsFired = false;
+                enemy.TakeDamage(bulletDamage);
+            }
+
         }
-        if(tag == "Boss")
+        if (tag == "Boss")
         {
             PSC levelBoss = collision.gameObject.GetComponent<PSC>();
             levelBoss.TakeDamage(bulletDamage);
@@ -40,18 +46,18 @@ public class ChainTowerBullet : MonoBehaviour
     {
         string tag = collision.gameObject.tag;
         Enemy enemy = collision.gameObject.GetComponent<Enemy>();
-        
+
 
         if (enemy)
         {
             enemy.TakeDamage(bulletDamage);
         }
 
-        if (tag != "Chain" && tag != "Tower" )
+        if (tag != "Chain" && tag != "Tower")
         {
             GameObject effect = Instantiate(hitEffect, transform.position, Quaternion.identity);
             Destroy(effect, 0.3f);
-           // gameObject.SetActive(false);
+            // gameObject.SetActive(false);
             gameObject.transform.parent.gameObject.SetActive(false);
             IsFired = false;
         }

@@ -20,7 +20,33 @@ public class CannonTowerBullet : MonoBehaviour
 
     //private void Update()
     //{
-    //    lastVelocity = rb.velocity;
+
+    //    RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.forward);
+    //    Debug.DrawLine(Vector2.zero, hit.point, Color.yellow, 10.0f);
+    //    PSC levelBoss = hit.collider.gameObject.GetComponent<PSC>();
+    //    if (levelBoss)
+    //    {
+
+    //        //if (levelBoss && hit.distance < 0.01f)
+    //        //{
+    //        //    levelBoss.TakeDamage(bulletDamage);
+    //        //    Vector2 reflexAngle = Vector2.Reflect(lastVelocity, hit.normal);
+    //        //    if (rb)
+    //        //    {
+    //        //        rb.velocity = reflexAngle.normalized * lastVelocity.magnitude * 0.5f;
+    //        //    }
+    //        //    realHittime++;
+
+    //        //}
+
+    //    }
+    //    if (realHittime >= AllHittime)
+    //    {
+    //        GameObject effect = Instantiate(hitEffect, transform.position, Quaternion.identity);
+    //        Destroy(effect, 0.3f);
+    //        gameObject.SetActive(false);
+    //        realHittime = 0;
+    //    }
     //}
     private void LateUpdate()
     {
@@ -29,11 +55,25 @@ public class CannonTowerBullet : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         string tag = collision.gameObject.tag;
-        if (tag == "Player" || tag == "Wall" || tag == "Tower" || tag == "Base" || tag == "Enemy")
+        PSC levelBoss = collision.gameObject.GetComponent<PSC>();
+        if (levelBoss)
+        {
+            levelBoss.TakeDamage(bulletDamage);
+            //if (hit.collider.gameObject.GetComponent<PSC>())
+            //{
+            if (rb)
+            {
+                rb.velocity = lastVelocity * (-0.5f);
+            }
+            //}
+            realHittime++;
+        }
+        if (realHittime >= AllHittime)
         {
             GameObject effect = Instantiate(hitEffect, transform.position, Quaternion.identity);
             Destroy(effect, 0.3f);
             gameObject.SetActive(false);
+            realHittime = 0;
         }
 
     }

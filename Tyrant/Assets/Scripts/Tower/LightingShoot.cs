@@ -75,28 +75,47 @@ public class LightingShoot : MonoBehaviour
 
         if (IsCoolDown)
         {
+            List<PSC> levelbosses = GameObjectsLocator.Instance.Get<PSC>();
             List<Enemy> enemies = GameObjectsLocator.Instance.Get<Enemy>();
-            if (enemies.Count == 0)
+            if (enemies == null && levelbosses == null)
             {
                 return;
             }
-            foreach (var enemy in enemies)
+            if (levelbosses != null)
             {
-
-                LightingTowerBullet[] bullets = enemy.GetComponentsInChildren<LightingTowerBullet>();
-
-                foreach (var bullet in bullets)
+                foreach (var boss in levelbosses)
                 {
-                    if (bullet && bullet.TowerIndex == index)
+
+                    LightingTowerBullet[] bullets = boss.GetComponentsInChildren<LightingTowerBullet>();
+
+                    foreach (var bullet in bullets)
                     {
+                        if (bullet && bullet.TowerIndex == index)
+                        {
 
+                            bullet.gameObject.transform.parent = null;
+                            attacknumber--;
+                            bullet.gameObject.SetActive(false);
 
-                        //bullet.gameObject.transform.DetachChildren();
-                        bullet.gameObject.transform.parent = null;
-                        attacknumber--;
-                        bullet.gameObject.SetActive(false);
+                        }
+                    }
+                }
+            }
+            if (enemies != null)
+            {
+                foreach (var enemy in enemies)
+                {
 
+                    LightingTowerBullet[] bullets = enemy.GetComponentsInChildren<LightingTowerBullet>();
 
+                    foreach (var bullet in bullets)
+                    {
+                        if (bullet && bullet.TowerIndex == index)
+                        {
+                            bullet.gameObject.transform.parent = null;
+                            attacknumber--;
+                            bullet.gameObject.SetActive(false);
+                        }
                     }
                 }
             }
@@ -229,7 +248,7 @@ public class LightingShoot : MonoBehaviour
         if (GameObjectsLocator.Instance.Get<PSC>() != null)
         {
             List<PSC> level1boss = GameObjectsLocator.Instance.Get<PSC>();
-            if (level1boss.Count != 0)
+            if (level1boss != null)
             {
                 GameObject targetboss = level1boss[0].gameObject;
                 float Distance = (targetboss.transform.position - transform.position).sqrMagnitude;
@@ -306,7 +325,11 @@ public class LightingShoot : MonoBehaviour
                 if (Targets.Count > i)
                 {
                     Enemy enemy = Targets[i].GetComponent<Enemy>();
-                    enemy.TakeDamage(towerData.bulletDamage * Time.deltaTime);
+                    if (enemy)
+                    {
+                        enemy.TakeDamage(towerData.bulletDamage * Time.deltaTime);
+                    }
+
                 }
 
 
@@ -329,9 +352,8 @@ public class LightingShoot : MonoBehaviour
                 if (Targets[i] != null)
                 {
                     Enemy enemy = Targets[i].GetComponent<Enemy>();
-
-
-                    if (enemy)
+                    PSC levelBoss = Targets[i].GetComponent<PSC>();
+                    if (enemy || levelBoss)
                     {
                         Bulletnum += Time.deltaTime * 0.5f;
                         ColdDown.value = Bulletnum;
@@ -342,9 +364,31 @@ public class LightingShoot : MonoBehaviour
                         }
 
                     }
+                    if (levelBoss && levelBoss.IsDead)
+                    {
+                        LightingTowerBullet[] bullets = levelBoss.GetComponentsInChildren<LightingTowerBullet>();
 
+                        foreach (var bullet in bullets)
+                        {
+                            if (bullet && bullet.TowerIndex == index)
+                            {
 
-                    if (enemy.IsDead)
+                                //bullet.gameObject.transform.DetachChildren();
+                                bullet.gameObject.transform.parent = null;
+                                attacknumber--;
+                                if (attacknumber <= 0)
+                                {
+                                    attacknumber = 0;
+                                }
+                                bullet.gameObject.SetActive(false);
+                                Bullets.Remove(bullet.gameObject);
+
+                            }
+                        }
+
+                        Targets.Remove(levelBoss.gameObject);
+                    }
+                    if (enemy && enemy.IsDead)
                     {
                         LightingTowerBullet[] bullets = enemy.GetComponentsInChildren<LightingTowerBullet>();
 

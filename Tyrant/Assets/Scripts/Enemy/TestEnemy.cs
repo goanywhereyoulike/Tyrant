@@ -14,6 +14,9 @@ public class TestEnemy : Enemy
     [SerializeField]
     private Animator burningAnimator;
 
+    [SerializeField]
+    private bool canDead;
+
     private bool armorEnemy = false;
 
     Vector3 lastPosition;
@@ -21,6 +24,9 @@ public class TestEnemy : Enemy
     StaticMachine behaviours = null;
 
     private float currentHelath;
+
+    public bool IsChase { get => isChase; set => isChase = value; }
+    public bool IsTestTarget { get => isTestTarget; set => isTestTarget = value; }
 
     // Start is called before the first frame update
 
@@ -31,14 +37,14 @@ public class TestEnemy : Enemy
     //}
     protected override void Start()
     {
-         GameObjectsLocator.Instance.Register<Enemy>(this);
-        if (isChase)
-        {
-            base.Start();
-            //behaviours = gameObject.GetComponent<StaticMachine>();
-            //behaviours.setEnemy(this);
-            //behaviours.AllBehaviour();
-        }
+        GameObjectsLocator.Instance.Register<Enemy>(this);
+        base.Start();
+        //if (isChase)
+        //{
+        //    //behaviours = gameObject.GetComponent<StaticMachine>();
+        //    //behaviours.setEnemy(this);
+        //    //behaviours.AllBehaviour();
+        //}
         spriteRenderer = GetComponent<SpriteRenderer>();
         enemyUi.MaxHealthChanged(EnemyState.MaxHealth);
         enemyUi.HealthChanged(EnemyState.MaxHealth);
@@ -58,9 +64,20 @@ public class TestEnemy : Enemy
     override public void TakeDamage(float damage)
     {
         currentHelath -= damage;
-        if (currentHelath <= 0.0f)
+        if (!canDead)
+        { 
+            if (currentHelath <= 0.0f)
+            {
+                currentHelath = EnemyState.MaxHealth;
+            } 
+        }
+        else
         {
-            currentHelath = EnemyState.MaxHealth;
+            if (currentHelath <= 0.0f)
+            {
+                currentHelath = EnemyState.MaxHealth;
+                gameObject.SetActive(false);
+            }
         }
         enemyUi.HealthChanged(currentHelath);
     }
@@ -90,7 +107,7 @@ public class TestEnemy : Enemy
         //    isSpawn = true;
         //}
 
-        if (isChase)
+        if (IsChase)
         {
             //mainTarget = GameObjectsLocator.Instance.Get<Player>();
             //mTarget = mainTarget[0].transform;
@@ -102,7 +119,7 @@ public class TestEnemy : Enemy
             base.Update();
         }
 
-        if (isTestTarget)
+        if (IsTestTarget)
         {
             Reuse();
         }

@@ -224,7 +224,7 @@ public class RoomManager : MonoBehaviour
             if (CurrentRoomName == RoomName.TowerRoom)
             {
                 //close other item only tower can be use
-                if (isMain)
+                if (isMain && !QuestSystem.Instance.BuildComplete)
                 {
                     for (int j = 0; j < testRooms[roomId - 1].enemy.Count; j++)
                     {
@@ -238,7 +238,7 @@ public class RoomManager : MonoBehaviour
             if (CurrentRoomName == RoomName.TrapRoom)
             {
                 //close other item only trap can be use
-                if (isMain)
+                if (isMain && !QuestSystem.Instance.TrapComplete)
                 {
                     for (int j = 0; j < testRooms[roomId - 1].enemy.Count; j++)
                     {
@@ -251,7 +251,7 @@ public class RoomManager : MonoBehaviour
             if (CurrentRoomName == RoomName.WeaponRoom)
             {
                 //close other item only weapon can be use
-                if (isMain)
+                if (isMain && !QuestSystem.Instance.ShootComplete)
                 {
                     for (int j = 0; j < testRooms[roomId - 1].enemy.Count; j++)
                     {

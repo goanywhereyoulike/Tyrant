@@ -22,22 +22,22 @@ public class CannonTowerBullet : MonoBehaviour
     //{
 
     //    RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.forward);
-
-        
-    //    if (hit.collider)
+    //    Debug.DrawLine(Vector2.zero, hit.point, Color.yellow, 10.0f);
+    //    PSC levelBoss = hit.collider.gameObject.GetComponent<PSC>();
+    //    if (levelBoss)
     //    {
-    //        PSC levelBoss = hit.collider.gameObject.GetComponentInChildren<PSC>();
-    //        if (levelBoss && hit.distance<0.01f)
-    //        {
-    //            levelBoss.TakeDamage(bulletDamage);
-    //            Vector2 reflexAngle = Vector2.Reflect(lastVelocity, hit.normal);
-    //            if (rb)
-    //            {
-    //                rb.velocity = reflexAngle.normalized * lastVelocity.magnitude * 0.5f;
-    //            }
-    //            realHittime++;
 
-    //        }
+    //        //if (levelBoss && hit.distance < 0.01f)
+    //        //{
+    //        //    levelBoss.TakeDamage(bulletDamage);
+    //        //    Vector2 reflexAngle = Vector2.Reflect(lastVelocity, hit.normal);
+    //        //    if (rb)
+    //        //    {
+    //        //        rb.velocity = reflexAngle.normalized * lastVelocity.magnitude * 0.5f;
+    //        //    }
+    //        //    realHittime++;
+
+    //        //}
 
     //    }
     //    if (realHittime >= AllHittime)
@@ -59,17 +59,12 @@ public class CannonTowerBullet : MonoBehaviour
         if (levelBoss)
         {
             levelBoss.TakeDamage(bulletDamage);
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.forward);
-            Debug.DrawLine(Vector2.zero, hit.point, Color.yellow, 10.0f);
             //if (hit.collider.gameObject.GetComponent<PSC>())
             //{
-            //    Vector2 reflexAngle = Vector2.Reflect(lastVelocity, hit.normal);
-            //    if (rb)
-            //    {
-            //        rb.velocity = reflexAngle.normalized * lastVelocity.magnitude * 0.5f;
-            //    }
-
-                
+            if (rb)
+            {
+                rb.velocity = lastVelocity * (-0.5f);
+            }
             //}
             realHittime++;
         }

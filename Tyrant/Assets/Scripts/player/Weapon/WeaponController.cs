@@ -68,9 +68,13 @@ public class WeaponController : MonoBehaviour
     }
     void DisableWeaponUI(int id)
     {
-        if (RoomManager.Instance.RoomId != 1)
+        if (RoomManager.Instance.CurrentRoomName != RoomManager.RoomName.WeaponRoom)
         {
             CurrentWeapon.ReloadUI.SetActive(false);
+        }
+        else
+        {
+            CurrentWeapon.ReloadUI.SetActive(true);
         }
     }
     void Update()

@@ -43,6 +43,8 @@ public class BossSpawn : Action
 
     private SpriteRenderer spr;
 
+    public bool IsSpawn { get => isSpawn; set => isSpawn = value; }
+
     // Start is called before the first frame update
     public override void OnStart()
     {
@@ -61,7 +63,7 @@ public class BossSpawn : Action
     // Update is called once per frame
     public override TaskStatus OnUpdate()
     {
-        if (!isSpawn)
+        if (!IsSpawn)
         {
             if (!roomClear)
             {
@@ -160,7 +162,7 @@ public class BossSpawn : Action
             if (roomClear)
            {
                 m_Collider.enabled = true;
-                isSpawn = true;
+                IsSpawn = true;
                 spr.material.color = Color.white;
                 return TaskStatus.Success;
             }

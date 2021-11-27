@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   reloadTime: 10
   shootingDelayTime: 0.5
-  bulletShootingSpeed: 10
+  bulletShootingSpeed: 15
   damage: 0.5
   maxBulletCount: 10
   maxBulletPerClipCount: 10

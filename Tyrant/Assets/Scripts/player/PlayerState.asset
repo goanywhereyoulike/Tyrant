@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: PlayerState
   m_EditorClassIdentifier: 
   maxHealth: 80
-  moveSpeed: 10
+  moveSpeed: 9

@@ -271,9 +271,10 @@ public class Enemy : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDam
         }
 
         spriteRenderer.flipX = transform.position.x > mTarget.position.x;
+        CheckWall();
     }
 
-    void FixedUpdate()
+    void CheckWall()
     {
         RaycastHit2D upHit = Physics2D.Raycast(transform.position, Vector2.up, wDetectRange);
         if (upHit.collider != null && upHit.collider.tag == "Wall")

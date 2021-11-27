@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class CannonTowerBullet : MonoBehaviour
 {
+    [SerializeField]
+    private float wDetectRange;
     public float PushForce = 10.0f;
     public float bulletDamage = 5.0f;
     public GameObject hitEffect;
@@ -104,7 +106,13 @@ public class CannonTowerBullet : MonoBehaviour
             Vector3 direction = (collision.gameObject.transform.position - transform.position).normalized;
             Vector3 force = direction * PushForce;
             IPushable hitObject = enemy.GetComponent<IPushable>();
-            hitObject.BePushed(force);
+            if (!checkWall(enemy))
+            {
+                hitObject.BePushed(force);
+
+            }
+           
+            
         }
         if (levelBoss)
         {
@@ -120,4 +128,39 @@ public class CannonTowerBullet : MonoBehaviour
 
         //Destroy(gameObject)
     }
+
+    bool checkWall(Enemy enemy)
+    {
+        var erb = enemy.GetComponent<Rigidbody2D>();
+        var etrans = enemy.gameObject.transform;
+
+        RaycastHit2D upHit = Physics2D.Raycast(etrans.position, Vector2.up, wDetectRange);
+        if (upHit.collider != null && upHit.collider.tag == "Wall")
+        {
+            return true;
+        }
+        //Debug.DrawRay(transform.position, Vector2.up, Color.green, 2);
+
+        RaycastHit2D downHit = Physics2D.Raycast(etrans.position, Vector2.down, wDetectRange);
+        if (downHit.collider != null && downHit.collider.tag == "Wall")
+        {
+            return true;
+        }
+        //Debug.DrawRay(transform.position, Vector2.down, Color.green, 2);
+        RaycastHit2D rightHit = Physics2D.Raycast(etrans.position, Vector2.right, wDetectRange);
+        if (rightHit.collider != null && rightHit.collider.tag == "Wall")
+        {
+            return true;
+        }
+        //Debug.DrawRay(transform.position, Vector2.left, Color.green, 2);
+        RaycastHit2D leftHit = Physics2D.Raycast(etrans.position, Vector2.left, wDetectRange);
+        if (leftHit.collider != null && leftHit.collider.tag == "Wall")
+        {
+            return true;
+        }
+
+        return false;
+    }
+
+
 }

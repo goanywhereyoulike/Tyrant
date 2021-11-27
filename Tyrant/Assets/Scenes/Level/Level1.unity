@@ -318,7 +318,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 431285810, guid: b05cfbd022f831d4699471cf7d654ad9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.099998474
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 431285810, guid: b05cfbd022f831d4699471cf7d654ad9, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2367,7 +2367,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8774515593442148775, guid: e0342963580770d4bbbfa79b77e84777, type: 3}
       propertyPath: coin
-      value: 99999
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 9210997505482373715, guid: e0342963580770d4bbbfa79b77e84777, type: 3}
       propertyPath: m_AnchorMax.x

@@ -134,6 +134,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1dc37d020e67124eaec521a63757a03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  wDetectRange: 2
   PushForce: 0.8
   bulletDamage: 5
   hitEffect: {fileID: 5013557089531781484, guid: c2b1901f87b33da499a56505b1035b44, type: 3}

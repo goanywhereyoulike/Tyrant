@@ -23,7 +23,7 @@ MonoBehaviour:
     detectRange: 0
     maxArmor: 0
   mTarget: {fileID: 0}
-  wDetectRange: 1
+  wDetectRange: 2
   IsLighting: 0
   LightingIndex: -1
   LightingTowerIndex: -1

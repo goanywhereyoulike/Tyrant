@@ -13,4 +13,7 @@ MonoBehaviour:
   m_Name: DevelopingArea
   m_EditorClassIdentifier: 
   dialogue:
-  - Under Construction
+  - 'Under Construction
+
+
+    Press[Space] to continue'

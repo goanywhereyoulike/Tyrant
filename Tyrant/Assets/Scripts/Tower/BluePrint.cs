@@ -28,14 +28,14 @@ public class BluePrint : MonoBehaviour,GameObjectsLocator.IGameObjectRegister
     private void OnTriggerEnter2D(Collider2D collision)
     {
 
-        if (collision.gameObject.tag == "TowerBlockArea" || collision.gameObject.tag == "Tower" || collision.gameObject.tag == "Trap")
+        if (collision.gameObject.tag == "TowerBlockArea" || collision.gameObject.tag == "Tower" || collision.gameObject.tag == "Trap" || collision.gameObject.tag == "Wall")
         {
             IsAbleToSet = false;
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "TowerBlockArea" || collision.gameObject.tag == "Tower" || collision.gameObject.tag == "Trap")
+        if (collision.gameObject.tag == "TowerBlockArea" || collision.gameObject.tag == "Tower" || collision.gameObject.tag == "Trap" || collision.gameObject.tag == "Wall")
         {
             IsAbleToSet = true;
         }
@@ -43,14 +43,14 @@ public class BluePrint : MonoBehaviour,GameObjectsLocator.IGameObjectRegister
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "TowerBlockArea" || collision.gameObject.tag == "Tower" || collision.gameObject.tag == "Trap")
+        if (collision.gameObject.tag == "TowerBlockArea" || collision.gameObject.tag == "Tower" || collision.gameObject.tag == "Trap" || collision.gameObject.tag == "Wall")
         {
             IsAbleToSet = false;
         }
     }
     private void OnCollisionExit2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "TowerBlockArea" || collision.gameObject.tag == "Tower" || collision.gameObject.tag == "Trap")
+        if (collision.gameObject.tag == "TowerBlockArea" || collision.gameObject.tag == "Tower" || collision.gameObject.tag == "Trap" || collision.gameObject.tag == "Wall")
         {
             IsAbleToSet = true;
         }

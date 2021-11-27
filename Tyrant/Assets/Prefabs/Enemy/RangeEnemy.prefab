@@ -24,6 +24,9 @@ MonoBehaviour:
     maxArmor: 0
   mTarget: {fileID: 0}
   wDetectRange: 1
+  IsLighting: 0
+  LightingIndex: -1
+  LightingTowerIndex: -1
   healthBar: {fileID: 6909745919963387940}
 --- !u!1001 &1365172150062200330
 PrefabInstance:
@@ -108,6 +111,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4179336317843623668, guid: 8b9f0df936cf54392b9c2877c62446d7, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: c90180e3d975056429277431f4588757, type: 3}
+    - target: {fileID: 4179336317843623670, guid: 8b9f0df936cf54392b9c2877c62446d7, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: c16413743f0c91d4997c3e2923741998, type: 2}
     - target: {fileID: 4179336317843623671, guid: 8b9f0df936cf54392b9c2877c62446d7, type: 3}
       propertyPath: m_Name
       value: RangeEnemy
@@ -122,6 +133,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5020135133521000170, guid: 8b9f0df936cf54392b9c2877c62446d7, type: 3}
       propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6512361344200527805, guid: 8b9f0df936cf54392b9c2877c62446d7, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6512361344200527805, guid: 8b9f0df936cf54392b9c2877c62446d7, type: 3}
+      propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:

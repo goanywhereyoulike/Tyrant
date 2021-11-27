@@ -41,6 +41,7 @@ public class cameracontroller : MonoBehaviour
     private void Awake()
     {
         PlayerViewZone = Camera.main.orthographicSize;
+        transform.rotation = Quaternion.identity;
     }
 
     void Update()

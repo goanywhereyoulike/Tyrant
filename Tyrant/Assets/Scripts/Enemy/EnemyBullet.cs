@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemyBullet : MonoBehaviour
 {
     // Start is called before the first frame update
+    private Animator animator;
     public float bulletSpeed;
     int damage;
     float a;
@@ -23,6 +24,7 @@ public class EnemyBullet : MonoBehaviour
     private void Start()
     {
         shootPosition = transform.position;
+        animator = GetComponent<Animator>();
     }
     // Update is called once per frame
     void Update()
@@ -48,13 +50,20 @@ public class EnemyBullet : MonoBehaviour
                 Targets = collider.gameObject.GetComponentInChildren<IDamageable>();
             }
             Targets.TakeDamage(Damage);
-            gameObject.SetActive(false);
+            //gameObject.SetActive(false);
+            animator.SetBool("End", true);
             Debug.Log("attack");
         }
 
         if (collider.gameObject.tag == "Wall")
         {
-            gameObject.SetActive(false);
+            DisableBullet();
         }
+    }
+
+    public void DisableBullet()
+    {
+        animator.SetBool("End", false);
+        gameObject.SetActive(false);
     }
 }

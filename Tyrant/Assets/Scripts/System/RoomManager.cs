@@ -29,8 +29,8 @@ public class RoomManager : MonoBehaviour
     
     private bool isBossRoom;
 
-    public GameObject[] FogOfWar;
-    public GameObject[] Pointers;
+    //public GameObject[] FogOfWar;
+    //public GameObject[] Pointers;
     private bool PointerEnabled;
     private SpawnManager spawnManager;
     private static RoomManager instance = null;
@@ -115,10 +115,10 @@ public class RoomManager : MonoBehaviour
         //}
         if (!IsTutorial)
         {
-            if (FogOfWar != null && RoomId!=0)
-            {
-                FogOfWar[RoomId - 1].gameObject.SetActive(false);
-            }
+            //    if (FogOfWar != null && RoomId!=0)
+            //    {
+            //        FogOfWar[RoomId - 1].gameObject.SetActive(false);
+            //    }
 
             for (int i = 0; i < Doors.Count; ++i)
             {

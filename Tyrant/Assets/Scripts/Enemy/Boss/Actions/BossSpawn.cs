@@ -41,6 +41,10 @@ public class BossSpawn : Action
 
     private GameObject enemyObject;
 
+    private SpriteRenderer spr;
+
+    public bool IsSpawn { get => isSpawn; set => isSpawn = value; }
+
     // Start is called before the first frame update
     public override void OnStart()
     {
@@ -53,16 +57,19 @@ public class BossSpawn : Action
         roomSpawns = new List<SpawnArea>();
         m_Collider = GetComponent<Collider2D>();
         psc = GetComponent<PSC>();
+        spr = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
     public override TaskStatus OnUpdate()
     {
-        if (!isSpawn)
+        if (!IsSpawn)
         {
-            if(!roomClear)
+            if (!roomClear)
+            {
                 m_Collider.enabled = false;
-
+                spr.material.color = Color.yellow;
+            }
             if (!isRoomCheck)
                 CheckRoomSpawn();
 
@@ -155,7 +162,8 @@ public class BossSpawn : Action
             if (roomClear)
            {
                 m_Collider.enabled = true;
-                isSpawn = true;
+                IsSpawn = true;
+                spr.material.color = Color.white;
                 return TaskStatus.Success;
             }
             return TaskStatus.Running;

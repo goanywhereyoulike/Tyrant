@@ -2,11 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using BehaviorDesigner.Runtime;
 
 public class TowerShoot : MonoBehaviour
 {
 
-    public enum TowerFace {Right,RightUp,RightDown,Left,LeftUp,LeftDown,Up,Down };
+    public enum TowerFace { Right, RightUp, RightDown, Left, LeftUp, LeftDown, Up, Down };
     public TowerTemplate towerData;
 
     [SerializeField]
@@ -142,7 +143,7 @@ public class TowerShoot : MonoBehaviour
             {
                 AudioManager.instance.PlaySFX(15);
                 bullet.GetComponent<CannonTowerBullet>().bulletDamage = towerData.bulletDamage;
-              
+
             }
 
         }
@@ -239,6 +240,12 @@ public class TowerShoot : MonoBehaviour
                 }
             }
             else
+            {
+                aimtoBoss = false;
+                currentTarget = null;
+            }
+            var bossSpawn = targetboss.GetComponent<BehaviorTree>().FindTask<BossSpawn>();
+            if (!bossSpawn.IsSpawn)
             {
                 aimtoBoss = false;
                 currentTarget = null;

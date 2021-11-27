@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using BehaviorDesigner.Runtime;
 
 public class LightingShoot : MonoBehaviour
 {
@@ -251,29 +252,65 @@ public class LightingShoot : MonoBehaviour
             if (level1boss != null)
             {
                 GameObject targetboss = level1boss[0].gameObject;
-                float Distance = (targetboss.transform.position - transform.position).sqrMagnitude;
-                if (Distance < DistanceToShoot * DistanceToShoot)
-                {
-                    aimtoBoss = true;
-                    if (!Targets.Contains(targetboss))
-                    {
-                        Targets.Add(targetboss);
-                    }
-
-                }
-                else
+                var bossSpawn = targetboss.GetComponent<BehaviorTree>().FindTask<BossSpawn>();
+                if (!bossSpawn.IsSpawn)
                 {
                     if (Targets.Contains(targetboss))
                     {
+                        LightingTowerBullet bullet = targetboss.GetComponentInChildren<LightingTowerBullet>();
+                        if (bullet)
+                        {
+                            //bullet.gameObject.transform.DetachChildren();
+                            bullet.gameObject.transform.parent = null;
+                            attacknumber--;
+                            bullet.gameObject.SetActive(false);
+                            Bullets.Remove(bullet.gameObject);
+
+                        }
                         Targets.Remove(targetboss);
                     }
                     aimtoBoss = false;
                 }
+                else
+                {
+                    float Distance = (targetboss.transform.position - transform.position).sqrMagnitude;
+                    if (Distance < DistanceToShoot * DistanceToShoot)
+                    {
+                        aimtoBoss = true;
+                        if (!Targets.Contains(targetboss))
+                        {
+                            Targets.Add(targetboss);
+                        }
+
+                    }
+                    else
+                    {
+                        if (Targets.Contains(targetboss))
+                        {
+
+                            LightingTowerBullet bullet = targetboss.GetComponentInChildren<LightingTowerBullet>();
+                            if (bullet)
+                            {
+                                //bullet.gameObject.transform.DetachChildren();
+                                bullet.gameObject.transform.parent = null;
+                                attacknumber--;
+                                bullet.gameObject.SetActive(false);
+                                Bullets.Remove(bullet.gameObject);
+
+                            }
+                            Targets.Remove(targetboss);
+                        }
+                        aimtoBoss = false;
+                    }
+                }
+
             }
             else
             {
                 aimtoBoss = false;
             }
+
+
         }
         if (!aimtoBoss)
         {

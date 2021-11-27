@@ -146,7 +146,7 @@ public class TowerManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-       
+
         TowerPanel.gameObject.SetActive(true);
         player = FindObjectOfType<PlayerMovement>();
         playFace = player.gameObject.GetComponent<PlayerAnimation>();
@@ -248,6 +248,7 @@ public class TowerManager : MonoBehaviour
         ResetTowerNumber();
         var dtowers = GameObjectsLocator.Instance.Get<DestroyedTower>();
         var towers = GameObjectsLocator.Instance.Get<Tower>();
+        var pretowers = GameObjectsLocator.Instance.Get<BluePrint>();
         if (towers != null)
         {
             foreach (var tower in towers)
@@ -257,6 +258,20 @@ public class TowerManager : MonoBehaviour
                     Destroy(tower.transform.parent.gameObject);
                     tower.UnRegisterToLocator();
 
+                }
+
+
+            }
+        }
+        if (pretowers != null)
+        {
+            foreach (var pretower in pretowers)
+            {
+                if (pretower)
+                {
+                    Destroy(pretower.gameObject);
+                    pretower.UnRegisterToLocator();
+                    
                 }
 
 
@@ -277,7 +292,7 @@ public class TowerManager : MonoBehaviour
             }
         }
         List<Enemy> enemies = GameObjectsLocator.Instance.Get<Enemy>();
-        if (enemies== null)
+        if (enemies == null)
         {
             return;
         }
@@ -314,6 +329,7 @@ public class TowerManager : MonoBehaviour
     {
         TowerNumber = 0;
         IsReachTowerNumberLimit = false;
+        IsPreTowerExist = false;
         for (int i = 0; i < 5; ++i)
         {
             slots[i].gameObject.transform.SetSiblingIndex(i);
@@ -518,12 +534,13 @@ public class TowerManager : MonoBehaviour
                 {
                     
                     GameObject realtower = Instantiate(allslots[TowerIndex].Towerprefab, target, Quaternion.identity);
+                    SpawnEnemyInTutorial(sceneName, realtower);
                     player.GetComponent<Player>().coin -= allslots[TowerIndex].towerTemplate.price;
                     TowerBuilt?.Invoke(TowerIndex);
                     Destroy(bluePrint.gameObject);
                     IsPreTowerExist = false;
                     TowerNumber++;
-                    SpawnEnemyInTutorial(sceneName, realtower);
+                   
 
                     if (realtower.GetComponentInChildren<LightingShoot>())
                     {
@@ -551,12 +568,12 @@ public class TowerManager : MonoBehaviour
         if (scenename == "TutorialScene")
         {
 
-            Vector2 offset = Vector2.up * 3.0f;
+            Vector2 offset = Vector2.up * 2.5f;
 
             GameObject enemyObject = ObjectPoolManager.Instance.GetPooledObject("testtarget");
             Vector2 spawnPosition = tower.transform.position;
             enemyObject.transform.position = spawnPosition + offset;
-            if(tower.GetComponentInChildren<TauntTowerEffect>())
+            if (tower.GetComponentInChildren<TauntTowerEffect>())
             {
                 var enemy = enemyObject.GetComponent<TestEnemy>();
                 enemy.IsChase = true;

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class BluePrint : MonoBehaviour
+public class BluePrint : MonoBehaviour,GameObjectsLocator.IGameObjectRegister
 {
     [SerializeField]
     Image TowerRangeUI;
@@ -11,6 +11,10 @@ public class BluePrint : MonoBehaviour
     public bool IsAbleToSet;
     public TowerTemplate tower;
     public bool IsTower = true;
+    private void Awake()
+    {
+        RegisterToLocator();
+    }
     private void Start()
     {
         if (IsTower)
@@ -52,4 +56,13 @@ public class BluePrint : MonoBehaviour
         }
     }
 
+    public void RegisterToLocator()
+    {
+        GameObjectsLocator.Instance.Register<BluePrint>(this);
+    }
+
+    public void UnRegisterToLocator()
+    {
+        GameObjectsLocator.Instance.Unregister<BluePrint>(this);
+    }
 }

@@ -288,6 +288,21 @@ public class TrapManager : MonoBehaviour
     {
         TrapNumber = 0;
         Trapnumber.text = TrapNumber.ToString();
+        var pretraps = GameObjectsLocator.Instance.Get<BluePrint>();
+        if (pretraps != null)
+        {
+            foreach (var pretrap in pretraps)
+            {
+                if (pretrap)
+                {
+                    Destroy(pretrap.gameObject);
+                    pretrap.UnRegisterToLocator();
+                    IsPreTrapExist = false;
+                }
+
+
+            }
+        }
     }
     public void AddTrap(int index)
     {

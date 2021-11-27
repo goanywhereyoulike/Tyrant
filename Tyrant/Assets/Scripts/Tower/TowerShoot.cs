@@ -74,7 +74,6 @@ public class TowerShoot : MonoBehaviour
     void Update()
     {
         ColdDown.maxValue = BulletLimit;
-        UpdateTarget();
         WaitFire += Time.deltaTime;
         if (IsCoolDown)
         {
@@ -93,7 +92,8 @@ public class TowerShoot : MonoBehaviour
 
 
         }
-        if (currentTarget && currentTarget.gameObject.activeSelf)
+        UpdateTarget();
+        if (currentTarget && currentTarget.gameObject.activeInHierarchy)
         {
 
             float Distance = (currentTarget.transform.position - transform.position).sqrMagnitude;
@@ -305,7 +305,7 @@ public class TowerShoot : MonoBehaviour
         GameObject retEnemy = null;
         for (int i = 0; i < enemies.Count; ++i)
         {
-            if (!enemies[i].IsDead)
+            if (!enemies[i].IsDead && enemies[i].gameObject.activeInHierarchy)
             {
                 if (retEnemy == null)
                 {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class BluePrint : MonoBehaviour
+public class BluePrint : MonoBehaviour,GameObjectsLocator.IGameObjectRegister
 {
     [SerializeField]
     Image TowerRangeUI;
@@ -11,6 +11,10 @@ public class BluePrint : MonoBehaviour
     public bool IsAbleToSet;
     public TowerTemplate tower;
     public bool IsTower = true;
+    private void Awake()
+    {
+        RegisterToLocator();
+    }
     private void Start()
     {
         if (IsTower)
@@ -24,14 +28,14 @@ public class BluePrint : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
 
-        if (collision.gameObject.tag == "TowerBlockArea" || collision.gameObject.tag == "Tower" || collision.gameObject.tag == "Trap")
+        if (collision.gameObject.tag == "TowerBlockArea" || collision.gameObject.tag == "Tower" || collision.gameObject.tag == "Trap" || collision.gameObject.tag == "Wall")
         {
             IsAbleToSet = false;
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "TowerBlockArea" || collision.gameObject.tag == "Tower" || collision.gameObject.tag == "Trap")
+        if (collision.gameObject.tag == "TowerBlockArea" || collision.gameObject.tag == "Tower" || collision.gameObject.tag == "Trap" || collision.gameObject.tag == "Wall")
         {
             IsAbleToSet = true;
         }
@@ -39,17 +43,26 @@ public class BluePrint : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "TowerBlockArea" || collision.gameObject.tag == "Tower" || collision.gameObject.tag == "Trap")
+        if (collision.gameObject.tag == "TowerBlockArea" || collision.gameObject.tag == "Tower" || collision.gameObject.tag == "Trap" || collision.gameObject.tag == "Wall")
         {
             IsAbleToSet = false;
         }
     }
     private void OnCollisionExit2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "TowerBlockArea" || collision.gameObject.tag == "Tower" || collision.gameObject.tag == "Trap")
+        if (collision.gameObject.tag == "TowerBlockArea" || collision.gameObject.tag == "Tower" || collision.gameObject.tag == "Trap" || collision.gameObject.tag == "Wall")
         {
             IsAbleToSet = true;
         }
     }
 
+    public void RegisterToLocator()
+    {
+        GameObjectsLocator.Instance.Register<BluePrint>(this);
+    }
+
+    public void UnRegisterToLocator()
+    {
+        GameObjectsLocator.Instance.Unregister<BluePrint>(this);
+    }
 }

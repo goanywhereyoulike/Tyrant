@@ -479,6 +479,46 @@ PrefabInstance:
       propertyPath: m_Name
       value: Main Camera Variant_2021-11-12
       objectReference: {fileID: 0}
+    - target: {fileID: 2579680174649897523, guid: b05cfbd022f831d4699471cf7d654ad9, type: 3}
+      propertyPath: m_Points.Array.data[0].x
+      value: 12.724478
+      objectReference: {fileID: 0}
+    - target: {fileID: 2579680174649897523, guid: b05cfbd022f831d4699471cf7d654ad9, type: 3}
+      propertyPath: m_Points.Array.data[0].y
+      value: 6.0122747
+      objectReference: {fileID: 0}
+    - target: {fileID: 2579680174649897523, guid: b05cfbd022f831d4699471cf7d654ad9, type: 3}
+      propertyPath: m_Points.Array.data[1].x
+      value: 12.764733
+      objectReference: {fileID: 0}
+    - target: {fileID: 2579680174649897523, guid: b05cfbd022f831d4699471cf7d654ad9, type: 3}
+      propertyPath: m_Points.Array.data[1].y
+      value: -6.0232954
+      objectReference: {fileID: 0}
+    - target: {fileID: 2579680174649897523, guid: b05cfbd022f831d4699471cf7d654ad9, type: 3}
+      propertyPath: m_Points.Array.data[2].x
+      value: -12.734013
+      objectReference: {fileID: 0}
+    - target: {fileID: 2579680174649897523, guid: b05cfbd022f831d4699471cf7d654ad9, type: 3}
+      propertyPath: m_Points.Array.data[2].y
+      value: -5.9911304
+      objectReference: {fileID: 0}
+    - target: {fileID: 2579680174649897523, guid: b05cfbd022f831d4699471cf7d654ad9, type: 3}
+      propertyPath: m_Points.Array.data[3].x
+      value: -12.768375
+      objectReference: {fileID: 0}
+    - target: {fileID: 2579680174649897523, guid: b05cfbd022f831d4699471cf7d654ad9, type: 3}
+      propertyPath: m_Points.Array.data[3].y
+      value: 5.988695
+      objectReference: {fileID: 0}
+    - target: {fileID: 2579680174649897523, guid: b05cfbd022f831d4699471cf7d654ad9, type: 3}
+      propertyPath: m_Points.Array.data[4].x
+      value: 12.721216
+      objectReference: {fileID: 0}
+    - target: {fileID: 2579680174649897523, guid: b05cfbd022f831d4699471cf7d654ad9, type: 3}
+      propertyPath: m_Points.Array.data[4].y
+      value: 6.028877
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b05cfbd022f831d4699471cf7d654ad9, type: 3}
 --- !u!1001 &214902126
@@ -2295,11 +2335,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2974921023735034898, guid: df40cfccb2316a145ac15593c1a28626, type: 3}
       propertyPath: m_AnimatedTiles.Array.data[6].second.m_AnimationSpeed
-      value: 3.0000002
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2974921023735034898, guid: df40cfccb2316a145ac15593c1a28626, type: 3}
       propertyPath: m_AnimatedTiles.Array.data[7].second.m_AnimationSpeed
-      value: 3
+      value: 3.0000002
       objectReference: {fileID: 0}
     - target: {fileID: 2974921023735034898, guid: df40cfccb2316a145ac15593c1a28626, type: 3}
       propertyPath: m_AnimatedTiles.Array.data[8].second.m_AnimationSpeed
@@ -2311,7 +2351,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2974921023735034898, guid: df40cfccb2316a145ac15593c1a28626, type: 3}
       propertyPath: m_AnimatedTiles.Array.data[14].second.m_AnimationSpeed
-      value: 3.0000002
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2974921023735034898, guid: df40cfccb2316a145ac15593c1a28626, type: 3}
       propertyPath: m_AnimatedTiles.Array.data[15].second.m_AnimationSpeed
@@ -2327,7 +2367,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2974921023735034898, guid: df40cfccb2316a145ac15593c1a28626, type: 3}
       propertyPath: m_AnimatedTiles.Array.data[18].second.m_AnimationSpeed
-      value: 3
+      value: 3.0000002
       objectReference: {fileID: 0}
     - target: {fileID: 2974921023735034898, guid: df40cfccb2316a145ac15593c1a28626, type: 3}
       propertyPath: m_AnimatedTiles.Array.data[19].second.m_AnimationSpeed

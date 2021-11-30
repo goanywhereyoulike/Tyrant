@@ -21,6 +21,11 @@ public abstract class Weapon : MonoBehaviour
 
     protected bool weaponInit = false;
 
+    [HideInInspector]
+    public int durability = 0;
+
+    public virtual void ResetGun() { }
+
     protected virtual void Start()
     {
         if (weaponInit)

@@ -12,9 +12,6 @@ public class TestEnemy : Enemy
     private bool isTestTarget = false;
 
     [SerializeField]
-    private Animator burningAnimator;
-
-    [SerializeField]
     private bool canDead;
 
     private bool armorEnemy = false;
@@ -84,13 +81,13 @@ public class TestEnemy : Enemy
 
     public override void BurnArmor(float buringDamge)
     {
-        burningAnimator.gameObject.SetActive(true);
-        burningAnimator.SetBool("Burning", true);
-        if (!armorEnemy)
-            return;
+        //burningAnimator.gameObject.SetActive(true);
+        //burningAnimator.SetBool("Burning", true);
+        //if (!armorEnemy)
+        //    return;
 
-        armor -= buringDamge;
-        enemyUi.ArmorChanged(armor);
+        //armor -= buringDamge;
+        //enemyUi.ArmorChanged(armor);
     }
 
     public void Reuse()

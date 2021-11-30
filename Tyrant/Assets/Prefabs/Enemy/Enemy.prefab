@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 8373940327516935678}
   - component: {fileID: 880412604915084971}
   - component: {fileID: 1237052331851572507}
-  - component: {fileID: 455552462941062128}
   m_Layer: 8
   m_Name: BurningEffect
   m_TagString: Untagged
@@ -103,18 +102,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &455552462941062128
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 288411563665890760}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64dc4f869461a3c43ac05de635de8d44, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1241324963151753104
 GameObject:
   m_ObjectHideFlags: 0

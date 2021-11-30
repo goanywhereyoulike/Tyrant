@@ -24,3 +24,4 @@ MonoBehaviour:
   holdingTime: 1
   frozenTime: 2
   frozenSpeed: 0
+  maxDurability: 5

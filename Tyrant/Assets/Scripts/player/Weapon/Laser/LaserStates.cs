@@ -15,10 +15,14 @@ public class LaserStates : WeaponStates
     private float frozenTime = 0.0f;
     [SerializeField]
     private float frozenSpeed = 0.0f;
+    [SerializeField]
+    private int maxDurability = 0;
+
 
     public float ChargingTime { get => chargingTime; set => chargingTime = value; }
     public float ShootingRange { get => shootingRange; set => shootingRange = value; }
     public float HoldingTime { get => holdingTime; set => holdingTime = value; }
     public float FrozenTime { get => frozenTime; set => frozenTime = value; }
     public float FrozenSpeed { get => frozenSpeed; set => frozenSpeed = value; }
+    public int MaxDurability { get => maxDurability; set => maxDurability = value; }
 }

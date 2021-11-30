@@ -16,4 +16,4 @@ MonoBehaviour:
   - enemytype: 1
     spawnNumber: 2
   - enemytype: 0
-    spawnNumber: 2
+    spawnNumber: 1

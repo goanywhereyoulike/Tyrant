@@ -1724,7 +1724,7 @@ PrefabInstance:
     - target: {fileID: 170502556355076822, guid: a3e45492d60ce674d8109ffd514a452f, type: 3}
       propertyPath: wave
       value: 
-      objectReference: {fileID: 11400000, guid: e944d4dc7e8c8a34990f0db2c331e116, type: 2}
+      objectReference: {fileID: 11400000, guid: fcfafbb18c3c0aa44831986920187df0, type: 2}
     - target: {fileID: 170502556355076822, guid: a3e45492d60ce674d8109ffd514a452f, type: 3}
       propertyPath: waveDelay
       value: 0
@@ -1818,7 +1818,7 @@ PrefabInstance:
     - target: {fileID: 170502556355076822, guid: a3e45492d60ce674d8109ffd514a452f, type: 3}
       propertyPath: wave
       value: 
-      objectReference: {fileID: 11400000, guid: e944d4dc7e8c8a34990f0db2c331e116, type: 2}
+      objectReference: {fileID: 11400000, guid: fcfafbb18c3c0aa44831986920187df0, type: 2}
     - target: {fileID: 170502556355076822, guid: a3e45492d60ce674d8109ffd514a452f, type: 3}
       propertyPath: waveDelay
       value: 0
@@ -2141,7 +2141,7 @@ PrefabInstance:
     - target: {fileID: 170502556355076822, guid: a3e45492d60ce674d8109ffd514a452f, type: 3}
       propertyPath: wave
       value: 
-      objectReference: {fileID: 11400000, guid: e944d4dc7e8c8a34990f0db2c331e116, type: 2}
+      objectReference: {fileID: 11400000, guid: fcfafbb18c3c0aa44831986920187df0, type: 2}
     - target: {fileID: 170502556355076822, guid: a3e45492d60ce674d8109ffd514a452f, type: 3}
       propertyPath: waveDelay
       value: 0

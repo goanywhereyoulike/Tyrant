@@ -8,6 +8,9 @@ public class Enemy : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDam
     [SerializeField]
     EnemyState enemyState = new EnemyState();
 
+    [SerializeField]
+    private Animator burningAnimator;
+
     protected Rigidbody2D rb;
 
     protected SpriteRenderer spriteRenderer;
@@ -92,6 +95,17 @@ public class Enemy : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDam
         }
     }
 
+    public bool IsBurning
+    {
+        get => isBurning;
+        set
+        {
+            isBurning = value;
+            spriteRenderer.material.color = isBurning ? new Color(255f, 0f, 0f) : Color.white;
+        }
+    }
+
+    private bool isBurning = false;
     public bool IsLighting = false;
     public int LightingIndex = -1;
     public int LightingTowerIndex = -1;
@@ -466,6 +480,25 @@ public class Enemy : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDam
         {
             IsDead = true;
         }
+    }
+
+    public void Burn(float burnDamage, float damage, float burnTime)
+    {
+        if (IsBurning)
+            return;
+        IsBurning = true;
+        burningAnimator.gameObject.SetActive(IsBurning);
+        burningAnimator.SetBool("Burning", IsBurning);
+        StartCoroutine(StartBurn(burnDamage, damage, burnTime));
+    }
+
+    IEnumerator StartBurn(float burnDamage, float damage, float burnTime)
+    {
+        TakeDamage(damage);
+        BurnArmor(burnDamage);
+        yield return new WaitForSeconds(burnTime);
+        IsBurning = false;
+        burningAnimator.SetBool("Burning", IsBurning);
     }
 
     public virtual void TakeDamage(float damage)

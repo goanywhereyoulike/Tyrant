@@ -122,6 +122,7 @@ MonoBehaviour:
     gameObject: {fileID: 494163912907916419}
   - playerFacing: 7
     gameObject: {fileID: 1833754628872364242}
+  durability: 0
   animator: {fileID: 8326297612040699219}
   laserCompleteAnimator: {fileID: 841383488005874115}
   chargingBar: {fileID: 0}

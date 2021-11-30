@@ -54,15 +54,15 @@ public class FlamethrowerBullet : Bullet
     //}
 
     public float BurnDamage { get; set; }
-
+    [SerializeField]
+    private float burningTime = 3.0f;
     private void OnParticleCollision(GameObject other)
     {
 
         if (other.tag == "Enemy")
         {
             var enemy = other.GetComponent<Enemy>();
-            enemy.BurnArmor(BurnDamage);
-            enemy.TakeDamage(Damage);
+            enemy.Burn(BurnDamage, Damage, burningTime);
         }
     }
 }

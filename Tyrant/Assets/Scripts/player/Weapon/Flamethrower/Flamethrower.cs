@@ -28,6 +28,7 @@ public class Flamethrower : Weapon
         ammoBar.maxValue = flamethrowerStates.MaxAmmo;
         reloader.MaxAmmo = flamethrowerStates.MaxAmmo;
         reloader.CurrentAmmo = flamethrowerStates.MaxAmmo;
+        durability = (int)reloader.CurrentAmmo;
         ammoBar.value = flamethrowerStates.MaxAmmo;
 
         
@@ -36,6 +37,20 @@ public class Flamethrower : Weapon
         flameParticle.gameObject.GetComponent<FlamethrowerBullet>().Damage = flamethrowerStates.Damage;
         weaponInit = true;
     }
+
+    public override void ResetGun()
+    {
+        base.ResetGun();
+        flamethrowerStates = weaponStates as FlamethrowerStates;
+        ammoBar.maxValue = flamethrowerStates.MaxAmmo;
+        reloader.MaxAmmo = flamethrowerStates.MaxAmmo;
+        reloader.CurrentAmmo = flamethrowerStates.MaxAmmo;
+        durability = (int)reloader.CurrentAmmo;
+        ammoBar.value = flamethrowerStates.MaxAmmo;
+
+        flameParticle.Stop();
+    }
+
     private void OnEnable()
     {
         flameParticle.Stop();
@@ -64,6 +79,8 @@ public class Flamethrower : Weapon
         reloader.FirstStart = false;
         reloader.CurrentAmmo--;
         reloader.CurrentAmmo = Mathf.Clamp(reloader.CurrentAmmo, -1f, flamethrowerStates.MaxAmmo);
+
+        durability = (int)reloader.CurrentAmmo;
     }
 
     float AngleBetweenPoints(Vector2 a, Vector2 b)

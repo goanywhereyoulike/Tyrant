@@ -22,6 +22,7 @@ MonoBehaviour:
     attackSpeed: 1
     detectRange: 1
     maxArmor: 0
+  burningAnimator: {fileID: 661433285204766010}
   mTarget: {fileID: 4707894365722169238, guid: e0342963580770d4bbbfa79b77e84777, type: 3}
   wDetectRange: 0
   IsLighting: 0
@@ -324,5 +325,10 @@ MonoBehaviour:
 --- !u!4 &6116466103738462027 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5540847118511990634, guid: 8b9f0df936cf54392b9c2877c62446d7, type: 3}
+  m_PrefabInstance: {fileID: 1731359845336680481}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &661433285204766010 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 1237052331851572507, guid: 8b9f0df936cf54392b9c2877c62446d7, type: 3}
   m_PrefabInstance: {fileID: 1731359845336680481}
   m_PrefabAsset: {fileID: 0}

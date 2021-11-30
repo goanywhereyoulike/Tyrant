@@ -132,8 +132,7 @@ public class RoomManager : MonoBehaviour
                         Isaudio = true;
                     }
 
-                    Doors[i].Animator.SetBool("IsClose", true);
-
+                    //Doors[i].Animator.SetBool("IsClose", true);
 
                     //Doors[i].gameObject.transform.position = Vector3.Lerp(Camera.main.transform.position, Doors[i].gameObject.transform.position, 2.0f * Time.deltaTime);
                     //FogOfWar[roomId].SetActive(false);
@@ -146,6 +145,7 @@ public class RoomManager : MonoBehaviour
                     if (!Doors[i].IsBossDoor)
                     {
                         Doors[i].Animator.SetBool("IsClose", true);
+                        Doors[i].gameObject.SetActive(false);
                     }
 
                     for (int r = 0; r < SpawnManager.Instance.rooms.Count; r++)

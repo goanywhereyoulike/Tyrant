@@ -143,7 +143,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TowerIndex: -1
-  bulletDamage: 0.8
+  bulletDamage: 5
   textures:
   - {fileID: 2800000, guid: 68ac238c72bdf1940938301a586b1cc4, type: 3}
   - {fileID: 2800000, guid: b8518a33d8293d54eb8c95e036bae5ed, type: 3}

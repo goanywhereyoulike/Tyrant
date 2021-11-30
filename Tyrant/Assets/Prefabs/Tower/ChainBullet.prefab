@@ -576,7 +576,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4c11981a3292234bb2f07d82d097049, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletDamage: 5
+  bulletDamage: 6
   hitEffect: {fileID: 5013557089531781484, guid: c2b1901f87b33da499a56505b1035b44, type: 3}
   IsFired: 0
 --- !u!50 &8767566497819699731

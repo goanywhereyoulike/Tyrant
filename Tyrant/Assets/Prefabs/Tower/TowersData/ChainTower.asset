@@ -19,5 +19,5 @@ MonoBehaviour:
   bulletForce: 20
   bulletDamage: 5
   price: 150
-  BulletLimit: 1
+  BulletLimit: 5
   CoolDownSpeed: 0.5

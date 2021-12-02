@@ -2404,8 +2404,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isTutorial: 0
-  FogOfWar: []
-  Pointers: []
   Doors:
   - {fileID: 0}
   - {fileID: 0}

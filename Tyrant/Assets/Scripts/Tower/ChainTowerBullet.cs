@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ChainTowerBullet : MonoBehaviour
 {
+    ChainTowerShoot ts;
     public float bulletDamage = 5.0f;
     public GameObject hitEffect;
     private Rigidbody2D rb;
@@ -12,6 +13,7 @@ public class ChainTowerBullet : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        ts = GetComponentInParent<ChainTowerShoot>();
         IsFired = false;
     }
 
@@ -19,6 +21,14 @@ public class ChainTowerBullet : MonoBehaviour
     {
         lastVelocity = rb.velocity;
     }
+
+    void FixedUpdate()
+    {
+        Vector3 fp = ts.gameObject.transform.position - transform.position;
+        fp = fp.normalized * rb.mass * 10.0f;  
+        rb.AddForce(fp, ForceMode2D.Force);
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         string tag = collision.gameObject.tag;
@@ -32,6 +42,7 @@ public class ChainTowerBullet : MonoBehaviour
                 gameObject.SetActive(false);
                 IsFired = false;
                 enemy.TakeDamage(bulletDamage);
+                ts.TotalBulletDecrease();
             }
 
         }
@@ -39,6 +50,7 @@ public class ChainTowerBullet : MonoBehaviour
         {
             PSC levelBoss = collision.gameObject.GetComponent<PSC>();
             levelBoss.TakeDamage(bulletDamage);
+            ts.TotalBulletDecrease();
         }
 
     }
@@ -52,11 +64,17 @@ public class ChainTowerBullet : MonoBehaviour
         {
             enemy.TakeDamage(bulletDamage);
         }
+        if (tag == "Boss")
+        {
+            PSC levelBoss = collision.gameObject.GetComponent<PSC>();
+
+        }
 
         if (tag != "Chain" && tag != "Tower")
         {
             GameObject effect = Instantiate(hitEffect, transform.position, Quaternion.identity);
             Destroy(effect, 0.3f);
+            ts.TotalBulletDecrease();
             // gameObject.SetActive(false);
             gameObject.transform.parent.gameObject.SetActive(false);
             IsFired = false;

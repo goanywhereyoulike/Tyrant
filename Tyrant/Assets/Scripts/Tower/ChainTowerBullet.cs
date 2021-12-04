@@ -24,9 +24,13 @@ public class ChainTowerBullet : MonoBehaviour
 
     void FixedUpdate()
     {
-        Vector3 fp = ts.gameObject.transform.position - transform.position;
-        fp = fp.normalized * rb.mass * 10.0f;  
-        rb.AddForce(fp, ForceMode2D.Force);
+        if (ts && rb)
+        {
+            Vector3 fp = ts.gameObject.transform.position - transform.position;
+            fp = fp.normalized * rb.mass * 1.0f;
+            rb.AddForce(fp, ForceMode2D.Force);
+        }
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

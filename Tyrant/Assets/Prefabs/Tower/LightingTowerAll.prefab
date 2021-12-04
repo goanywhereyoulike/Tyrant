@@ -1306,9 +1306,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7c909743a547c343894858d9a4314d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  towertype: 3
   towerData: {fileID: 11400000, guid: 1f5ad5d0b026eb04c80838db0f735cb2, type: 2}
   DestroyedTower: {fileID: 2745175979899232012, guid: c6bd003e8f7fa02428a76aa6fe37c2db, type: 3}
-  health: 100
   Healthbar: {fileID: 2209546859560633030}
   animator: {fileID: 0}
 --- !u!114 &8230796615564290795
@@ -1323,6 +1323,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a0ab2637f9eb5740b272d13533735c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  index: -1
   towerData: {fileID: 11400000, guid: 1f5ad5d0b026eb04c80838db0f735cb2, type: 2}
   Targets: []
   Bullets: []

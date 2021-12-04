@@ -926,7 +926,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7c909743a547c343894858d9a4314d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  towertype: 0
+  towertype: 2
   towerData: {fileID: 11400000, guid: b98cf827f1f74b045a6fe86a23c139a9, type: 2}
   DestroyedTower: {fileID: 726300743984907434, guid: 7265db8221c77dd439f1dd70a04cba12, type: 3}
   Healthbar: {fileID: 4526928092737472423}
@@ -976,6 +976,7 @@ MonoBehaviour:
   ShootPoint: {fileID: 5927489025907779452}
   BulletPrefab: {fileID: 6251904807959551005, guid: 0d0e4d67fc628e648821dea768c628f1, type: 3}
   TargetPos: {fileID: 0}
+  totalBulletNum: 0
   towerface: 0
 --- !u!1 &5927489026485993041
 GameObject:

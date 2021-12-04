@@ -71,6 +71,20 @@ public class Tower : MonoBehaviour, IDamageable, GameObjectsLocator.IGameObjectR
 
     void Die()
     {
+        if (towertype == TowerType.Chain)
+        {
+            ChainTowerBullet[] bullets =GetComponentsInChildren<ChainTowerBullet>(true);
+
+            foreach (var bullet in bullets)
+            {
+                if (bullet)
+                {
+                    bullet.gameObject.transform.parent = null;
+                    bullet.gameObject.SetActive(false);
+                }
+            }
+        }
+
         Destroy(gameObject.transform.parent.gameObject);
         Instantiate(DestroyedTower, transform.position, transform.rotation);
         if (towerMngr)

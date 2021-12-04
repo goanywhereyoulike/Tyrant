@@ -232,6 +232,20 @@ public class TowerManager : MonoBehaviour
             {
                 if (hit.collider.gameObject.tag == "Tower")
                 {
+                    Tower tower = hit.collider.gameObject.GetComponent<Tower>();
+                    if (tower.towertype ==Tower.TowerType.Chain)
+                    {
+                        ChainTowerBullet[] bullets = tower.GetComponentsInChildren<ChainTowerBullet>();
+
+                        foreach (var bullet in bullets)
+                        {
+                            if (bullet)
+                            {
+                                bullet.gameObject.transform.parent.transform.parent = null;
+                                bullet.gameObject.transform.parent.gameObject.SetActive(false);
+                            }
+                        }
+                    }
                     Destroy(hit.collider.gameObject.transform.parent.gameObject);
                     DecreaseTowerlimit();
 

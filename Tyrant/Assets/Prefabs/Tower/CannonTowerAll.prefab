@@ -266,11 +266,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7c909743a547c343894858d9a4314d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  towertype: 1
   towerData: {fileID: 11400000, guid: 6a6993094d51d564e829ba77253d06f2, type: 2}
   DestroyedTower: {fileID: 7210653859842090583, guid: 5d05c266a885cb248a3786f8e6cdc689, type: 3}
-  health: 25
   Healthbar: {fileID: 8175864840137596784}
-  towerMngr: {fileID: 666673663090152462, guid: ca6a03c1d14e54040af2cd8bcf59be72, type: 3}
   animator: {fileID: 2154632679574910804}
 --- !u!114 &8916406395599377104
 MonoBehaviour:
@@ -285,7 +284,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   towerData: {fileID: 11400000, guid: 6a6993094d51d564e829ba77253d06f2, type: 2}
+  DissolveMaterial: {fileID: 0}
   ColdDown: {fileID: 8448113959771406045}
+  HasAnimation: 1
   ShootPoint: {fileID: 2154632679383449515}
   BulletPrefab: {fileID: 6184636059906868256, guid: f7ff6dcf1deb55b43be766a0f2d27798, type: 3}
   TargetPos: {fileID: 0}
@@ -294,6 +295,7 @@ MonoBehaviour:
   DistanceToShoot: 0
   BulletForce: 20
   FireRate: 0
+  towerface: 0
   animator: {fileID: 2154632679574910804}
 --- !u!1 &2154632680586423536
 GameObject:

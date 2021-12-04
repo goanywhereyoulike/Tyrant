@@ -246,6 +246,53 @@ public class TowerManager : MonoBehaviour
                             }
                         }
                     }
+                    else if (tower.towertype == Tower.TowerType.Lighting)
+                    {
+                        LightingShoot ls = tower.GetComponent<LightingShoot>();
+                        if (ls)
+                        {
+                            List<Enemy> enemies = GameObjectsLocator.Instance.Get<Enemy>();
+                            List<PSC> levelbosses = GameObjectsLocator.Instance.Get<PSC>();
+                            if (enemies != null)
+                            {
+                                foreach (var enemy in enemies)
+                                {
+                                    LightingTowerBullet[] bullets = enemy.GetComponentsInChildren<LightingTowerBullet>();
+
+                                    foreach (var bullet in bullets)
+                                    {
+                                        if (bullet)
+                                        {
+                                            bullet.gameObject.transform.parent = null;
+                                            bullet.gameObject.SetActive(false);
+
+                                        }
+                                    }
+                                }
+                            }
+
+                            if (levelbosses != null)
+                            {
+                                foreach (var boss in levelbosses)
+                                {
+                                    LightingTowerBullet[] bullets = boss.GetComponentsInChildren<LightingTowerBullet>();
+
+                                    foreach (var bullet in bullets)
+                                    {
+                                        if (bullet)
+                                        {
+                                            bullet.gameObject.transform.parent = null;
+                                            bullet.gameObject.SetActive(false);
+
+                                        }
+                                    }
+                                }
+
+                            }
+
+                        }
+                    }
+
                     Destroy(hit.collider.gameObject.transform.parent.gameObject);
                     DecreaseTowerlimit();
 

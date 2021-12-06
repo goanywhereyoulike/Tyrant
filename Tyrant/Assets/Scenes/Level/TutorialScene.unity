@@ -596,6 +596,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1471247469}
     m_Modifications:
+    - target: {fileID: 8393831113966174433, guid: f468b38471a7318438df198599511b61, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: d41d5f373b0b9124cba55102b9521023, type: 3}
+    - target: {fileID: 8393831113966174433, guid: f468b38471a7318438df198599511b61, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8393831113966174433, guid: f468b38471a7318438df198599511b61, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8393831113966174433, guid: f468b38471a7318438df198599511b61, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8393831113966174434, guid: f468b38471a7318438df198599511b61, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -717,6 +733,18 @@ PrefabInstance:
     - target: {fileID: 3369548949255067539, guid: e3d9c6fcc43ce294dbe87583d2371666, type: 3}
       propertyPath: m_Name
       value: BombTrapUnlock
+      objectReference: {fileID: 0}
+    - target: {fileID: 3369548949255067540, guid: e3d9c6fcc43ce294dbe87583d2371666, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: e1feaba53175eb947b98794197459bda, type: 3}
+    - target: {fileID: 3369548949255067541, guid: e3d9c6fcc43ce294dbe87583d2371666, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 0.6666667
+      objectReference: {fileID: 0}
+    - target: {fileID: 3369548949255067541, guid: e3d9c6fcc43ce294dbe87583d2371666, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 0.6666667
       objectReference: {fileID: 0}
     - target: {fileID: 3369548949255067543, guid: e3d9c6fcc43ce294dbe87583d2371666, type: 3}
       propertyPath: m_RootOrder
@@ -2267,7 +2295,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2974921023735034898, guid: df40cfccb2316a145ac15593c1a28626, type: 3}
       propertyPath: m_AnimatedTiles.Array.data[0].second.m_AnimationSpeed
-      value: 3.0000002
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2974921023735034898, guid: df40cfccb2316a145ac15593c1a28626, type: 3}
       propertyPath: m_AnimatedTiles.Array.data[1].second.m_AnimationSpeed
@@ -2287,6 +2315,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2974921023735034898, guid: df40cfccb2316a145ac15593c1a28626, type: 3}
       propertyPath: m_AnimatedTiles.Array.data[5].second.m_AnimationSpeed
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2974921023735034898, guid: df40cfccb2316a145ac15593c1a28626, type: 3}
+      propertyPath: m_AnimatedTiles.Array.data[6].second.m_AnimationSpeed
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2974921023735034898, guid: df40cfccb2316a145ac15593c1a28626, type: 3}
@@ -2319,11 +2351,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2974921023735034898, guid: df40cfccb2316a145ac15593c1a28626, type: 3}
       propertyPath: m_AnimatedTiles.Array.data[19].second.m_AnimationSpeed
-      value: 3
+      value: 3.0000002
       objectReference: {fileID: 0}
     - target: {fileID: 4614489845783246768, guid: df40cfccb2316a145ac15593c1a28626, type: 3}
       propertyPath: m_Name
       value: tutorialLevel
+      objectReference: {fileID: 0}
+    - target: {fileID: 7972967071086724677, guid: df40cfccb2316a145ac15593c1a28626, type: 3}
+      propertyPath: m_AnimatedTiles.Array.data[10].second.m_AnimationSpeed
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: df40cfccb2316a145ac15593c1a28626, type: 3}

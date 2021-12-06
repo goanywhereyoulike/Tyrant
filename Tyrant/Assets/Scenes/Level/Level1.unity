@@ -607,7 +607,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 456694337596038534, guid: 04681e9ece83d3e42bc559c6ce30f265, type: 3}
       propertyPath: m_Name
-      value: Door_Front3
+      value: Door_Front3_0
       objectReference: {fileID: 0}
     - target: {fileID: 3259286181787683839, guid: 04681e9ece83d3e42bc559c6ce30f265, type: 3}
       propertyPath: m_Sprite
@@ -675,7 +675,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7085868114162668025, guid: 04681e9ece83d3e42bc559c6ce30f265, type: 3}
       propertyPath: roomID
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7085868114162668025, guid: 04681e9ece83d3e42bc559c6ce30f265, type: 3}
       propertyPath: isBossDoor
@@ -1800,6 +1800,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4183dd508eef714c9dea8f0853d215c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &848029183 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7085868114162668025, guid: 04681e9ece83d3e42bc559c6ce30f265, type: 3}
+  m_PrefabInstance: {fileID: 198114162}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93844ae72ff40a643b9c38ff30eef1d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &935193405 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2121050595215859412, guid: e3065554a13e24320bd7ae7aeca6a670, type: 3}
@@ -2805,6 +2816,10 @@ PrefabInstance:
       value: 0.875
       objectReference: {fileID: 0}
     - target: {fileID: 4488405804283684250, guid: e3065554a13e24320bd7ae7aeca6a670, type: 3}
+      propertyPath: Isallclear
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4488405804283684250, guid: e3065554a13e24320bd7ae7aeca6a670, type: 3}
       propertyPath: Doors.Array.size
       value: 7
       objectReference: {fileID: 0}
@@ -2831,7 +2846,7 @@ PrefabInstance:
     - target: {fileID: 4488405804283684250, guid: e3065554a13e24320bd7ae7aeca6a670, type: 3}
       propertyPath: Doors.Array.data[5]
       value: 
-      objectReference: {fileID: 1786289143}
+      objectReference: {fileID: 848029183}
     - target: {fileID: 4488405804283684250, guid: e3065554a13e24320bd7ae7aeca6a670, type: 3}
       propertyPath: Doors.Array.data[6]
       value: 
@@ -48833,7 +48848,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 456694337596038534, guid: 04681e9ece83d3e42bc559c6ce30f265, type: 3}
       propertyPath: m_Name
-      value: Door_Front3
+      value: Door_Front3_1
       objectReference: {fileID: 0}
     - target: {fileID: 3259286181787683839, guid: 04681e9ece83d3e42bc559c6ce30f265, type: 3}
       propertyPath: m_Sprite
@@ -48901,7 +48916,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7085868114162668025, guid: 04681e9ece83d3e42bc559c6ce30f265, type: 3}
       propertyPath: roomID
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7085868114162668025, guid: 04681e9ece83d3e42bc559c6ce30f265, type: 3}
       propertyPath: isBossDoor

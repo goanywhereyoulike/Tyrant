@@ -7,7 +7,7 @@ public class RoomManager : MonoBehaviour
     public enum RoomName
     {
         MainRoom,
-        BossRoom,
+       // BossRoom,
         TowerRoom,
         WeaponRoom,
         TrapRoom,
@@ -27,7 +27,7 @@ public class RoomManager : MonoBehaviour
     //private bool isWeaponTestRoom;
     //private bool isTrapTestRoom;
     
-    private bool isBossRoom;
+    //private bool isBossRoom;
 
     //public GameObject[] FogOfWar;
     //public GameObject[] Pointers;
@@ -46,14 +46,14 @@ public class RoomManager : MonoBehaviour
     }
 
     public RoomName CurrentRoomName { get; set; }
-    public bool IsBossRoom { get => isBossRoom; set => isBossRoom = value; }
+    //public bool IsBossRoom { get => isBossRoom; set => isBossRoom = value; }
     public bool IsTutorial { get => isTutorial; set => isTutorial = value; }
 
     //public bool IsTrapTestRoom { get => isTrapTestRoom; set => isTrapTestRoom = value; }
     //public bool IsWeaponTestRoom { get => isWeaponTestRoom; set => isWeaponTestRoom = value; }
     //public bool IsTowerTestRoom { get => isTowerTestRoom; set => isTowerTestRoom = value; }
     //public bool IsMainRoom { get => isMainRoom; set => isMainRoom = value; }
-
+    [SerializeField]
     private bool Isallclear;
 
     private bool Isaudio;
@@ -124,9 +124,8 @@ public class RoomManager : MonoBehaviour
             {
                 if (SpawnManager.Instance.RoomClear)
                 {
-                    
-                    
-                    if(!Isaudio)
+
+                    if (!Isaudio)
                     {
                         AudioManager.instance.PlaySFX(18);
                         Isaudio = true;
@@ -163,29 +162,32 @@ public class RoomManager : MonoBehaviour
                             }
                         }
                     }
-
-                    if (Isallclear)
+                }
+                else
+                {
+                    if (RoomId != 0)
                     {
-                        if (Doors[i].IsBossDoor)
+                        Isaudio = false;
+                        Doors[i].gameObject.SetActive(true);
+
+
+                        if (RoomId - 1 == Doors[i].roomID)
                         {
-                            Doors[i].Animator.SetBool("IsClose", true);
+                            /* PointerEnabled = false;*/
+                            Doors[i].gameObject.SetActive(true);
+                            Doors[i].Animator.SetBool("IsClose", false);
                         }
                     }
                 }
-                else if (RoomId != 0)
-                {
-                    Isaudio = false;
-                    Doors[i].gameObject.SetActive(true);
-                   
 
-                    if (RoomId - 1 == Doors[i].roomID)
+                if (Isallclear)
+                {
+                    if (Doors[i].IsBossDoor)
                     {
-                        /* PointerEnabled = false;*/
-                        Doors[i].gameObject.SetActive(true);
-                        Doors[i].Animator.SetBool("IsClose", false);
+                        //Doors[i].Animator.SetBool("IsClose", true);
+                        Doors[i].gameObject.SetActive(false);
                     }
                 }
-
             }
         }
         else // tutorial part

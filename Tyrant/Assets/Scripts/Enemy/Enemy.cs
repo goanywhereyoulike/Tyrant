@@ -298,7 +298,7 @@ public class Enemy : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDam
                 rb.velocity = Vector3.zero;
                 rb.angularVelocity = 0.0f;
             }
-            Vector2 Position = transform.position;
+           Vector2 Position = transform.position;
             Position.y = transform.position.y - 1;
             transform.position = Position;
         }

@@ -144,6 +144,7 @@ public class LightingShoot : MonoBehaviour
                 return;
             }
             AddTarget();
+            CheckTarget();
             Attack();
             ApplyDamage();
 
@@ -241,6 +242,33 @@ public class LightingShoot : MonoBehaviour
 
 
     //}
+    void CheckTarget()
+    {
+        for (int i = 0; i < Targets.Count; ++i)
+        {
+            if (Targets.Count > i)
+            {
+                if (Targets[i] != null)
+                {
+                    if (!Targets[i].gameObject.activeInHierarchy)
+                    {
+                        if (Targets.Contains(Targets[i].gameObject))
+                        {
+                            Targets.Remove(Targets[i].gameObject);
+                        }
+                    }
+                    float Distance = (Targets[i].transform.position - transform.position).sqrMagnitude;
+                    if (Distance >= DistanceToShoot * DistanceToShoot)
+                    {
+                        if (Targets.Contains(Targets[i].gameObject))
+                        {
+                            Targets.Remove(Targets[i].gameObject);
+                        }
+                    }
+                }
+            }
+        }
+    }
 
     void AddTarget()
     {
@@ -362,18 +390,19 @@ public class LightingShoot : MonoBehaviour
                 if (Targets.Count > i)
                 {
                     Enemy enemy = Targets[i].GetComponent<Enemy>();
+                    PSC boss = Targets[i].GetComponent<PSC>();
                     if (enemy)
                     {
                         enemy.TakeDamage(towerData.bulletDamage * Time.deltaTime);
                     }
+                    if (boss)
+                    {
+                        boss.TakeDamage(towerData.bulletDamage * Time.deltaTime);
 
+                    }
                 }
-
-
             }
         }
-
-
     }
     void Attack()
     {

@@ -437,11 +437,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2579680173754891764, guid: b05cfbd022f831d4699471cf7d654ad9, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 70
+      value: 69.9
       objectReference: {fileID: 0}
     - target: {fileID: 2579680173754891764, guid: b05cfbd022f831d4699471cf7d654ad9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 9.7
+      value: 13.4
       objectReference: {fileID: 0}
     - target: {fileID: 2579680173754891764, guid: b05cfbd022f831d4699471cf7d654ad9, type: 3}
       propertyPath: m_LocalPosition.z
@@ -636,22 +636,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1471247469}
     m_Modifications:
-    - target: {fileID: 8393831113966174433, guid: f468b38471a7318438df198599511b61, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: d41d5f373b0b9124cba55102b9521023, type: 3}
-    - target: {fileID: 8393831113966174433, guid: f468b38471a7318438df198599511b61, type: 3}
-      propertyPath: m_Color.b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8393831113966174433, guid: f468b38471a7318438df198599511b61, type: 3}
-      propertyPath: m_Color.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8393831113966174433, guid: f468b38471a7318438df198599511b61, type: 3}
-      propertyPath: m_Color.r
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8393831113966174434, guid: f468b38471a7318438df198599511b61, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -774,17 +758,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: BombTrapUnlock
       objectReference: {fileID: 0}
-    - target: {fileID: 3369548949255067540, guid: e3d9c6fcc43ce294dbe87583d2371666, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: e1feaba53175eb947b98794197459bda, type: 3}
     - target: {fileID: 3369548949255067541, guid: e3d9c6fcc43ce294dbe87583d2371666, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
-      value: 0.6666667
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3369548949255067541, guid: e3d9c6fcc43ce294dbe87583d2371666, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.y
-      value: 0.6666667
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3369548949255067543, guid: e3d9c6fcc43ce294dbe87583d2371666, type: 3}
       propertyPath: m_RootOrder
@@ -1074,7 +1054,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6302774489476007329, guid: 468ce44dfafb546448f8cdcaef32096f, type: 3}
       propertyPath: room
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6302774489476007329, guid: 468ce44dfafb546448f8cdcaef32096f, type: 3}
       propertyPath: roomId
@@ -1464,7 +1444,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6302774489476007329, guid: 468ce44dfafb546448f8cdcaef32096f, type: 3}
       propertyPath: room
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6302774489476007329, guid: 468ce44dfafb546448f8cdcaef32096f, type: 3}
       propertyPath: roomId
@@ -2279,7 +2259,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 954454008223893852, guid: df40cfccb2316a145ac15593c1a28626, type: 3}
       propertyPath: m_AnimatedTiles.Array.data[12].second.m_AnimationSpeed
-      value: 3.0000002
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2297418207161895329, guid: df40cfccb2316a145ac15593c1a28626, type: 3}
       propertyPath: m_RootOrder
@@ -2604,11 +2584,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4707894365722169238, guid: e0342963580770d4bbbfa79b77e84777, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 70
+      value: 69.9
       objectReference: {fileID: 0}
     - target: {fileID: 4707894365722169238, guid: e0342963580770d4bbbfa79b77e84777, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 9.7
+      value: 13.4
       objectReference: {fileID: 0}
     - target: {fileID: 4707894365722169238, guid: e0342963580770d4bbbfa79b77e84777, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2940,7 +2920,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6302774489476007329, guid: 468ce44dfafb546448f8cdcaef32096f, type: 3}
       propertyPath: room
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6302774489476007330, guid: 468ce44dfafb546448f8cdcaef32096f, type: 3}
       propertyPath: m_Size.x

@@ -41,6 +41,10 @@ public class RoomManager : MonoBehaviour
         {
             roomId = value;
             RoomChanged?.Invoke(roomId);
+            if(roomId>0)
+            {
+                indicators[roomId - 1].SetActive(false);
+            }
         }
     }
 
@@ -62,6 +66,9 @@ public class RoomManager : MonoBehaviour
     private bool isFirstUpdate;
 
     public List<Door> Doors = new List<Door>();
+
+    [SerializeField]
+    private List<GameObject> indicators = new List<GameObject>();
 
     [System.Serializable]
     public class TestRooms
@@ -153,6 +160,10 @@ public class RoomManager : MonoBehaviour
                             {
                                 if (SpawnManager.Instance.rooms[r].clear)
                                 {
+                                   /* if (r > 0)
+                                    {
+                                        indicators[r-1].SetActive(false);
+                                    }*/
                                     Isallclear = true;
                                 }
                                 else

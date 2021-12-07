@@ -144,7 +144,7 @@ public class LightingShoot : MonoBehaviour
                 return;
             }
             AddTarget();
-            CheckTarget();
+            //CheckTarget();
             Attack();
             ApplyDamage();
 
@@ -305,7 +305,7 @@ public class LightingShoot : MonoBehaviour
                     if (Distance < DistanceToShoot * DistanceToShoot)
                     {
                         aimtoBoss = true;
-                        if (!Targets.Contains(targetboss))
+                        if (!Targets.Contains(targetboss) && targetboss.activeInHierarchy)
                         {
                             Targets.Add(targetboss);
                         }
@@ -353,7 +353,7 @@ public class LightingShoot : MonoBehaviour
                 float Distance = (enemy.transform.position - transform.position).sqrMagnitude;
                 if (Distance < DistanceToShoot * DistanceToShoot)
                 {
-                    if (!Targets.Contains(enemy.gameObject) && (attacknumber < firenumber))
+                    if (!Targets.Contains(enemy.gameObject) && (attacknumber < firenumber) && enemy.gameObject.activeInHierarchy)
                     {
 
                         Targets.Add(enemy.gameObject);

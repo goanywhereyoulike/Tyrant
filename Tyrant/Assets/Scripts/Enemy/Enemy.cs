@@ -213,6 +213,10 @@ public class Enemy : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDam
                     transform.position = Vector2.MoveTowards(transform.position, position, speed);
                     if ((Vector2)transform.position == position)
                     {
+                        if (rb)
+                        {
+                            rb.velocity = Vector3.zero;
+                        }
                         pathcount++;
                     }
                 }
@@ -250,6 +254,10 @@ public class Enemy : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDam
                         transform.position = Vector2.MoveTowards(transform.position, position, speed);
                         if ((Vector2)transform.position == position)
                         {
+                            if(rb)
+                            {
+                                rb.velocity = Vector3.zero;
+                            }
                             pathcount++;
                         }
                     }
@@ -295,7 +303,7 @@ public class Enemy : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDam
         {
             if (rb)
             {
-                rb.velocity = Vector3.zero;
+                rb.velocity = Vector3.down;
                 rb.angularVelocity = 0.0f;
             }
            Vector2 Position = transform.position;
@@ -309,7 +317,7 @@ public class Enemy : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDam
         {
             if (rb)
             {
-                rb.velocity = Vector3.zero;
+                rb.velocity = Vector3.up;
                 rb.angularVelocity = 0.0f;
             }
             Vector2 Position = transform.position;
@@ -322,7 +330,7 @@ public class Enemy : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDam
         {
             if (rb)
             {
-                rb.velocity = Vector3.zero;
+                rb.velocity = Vector3.left;
                 rb.angularVelocity = 0.0f;
             }
             Vector2 Position = transform.position;
@@ -335,7 +343,7 @@ public class Enemy : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDam
         {
             if (rb)
             {
-                rb.velocity = Vector3.zero;
+                rb.velocity = Vector3.right;
                 rb.angularVelocity = 0.0f;
             }
             Vector2 Position = transform.position;
@@ -343,7 +351,6 @@ public class Enemy : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDam
             transform.position = Position;
         }
         // Debug.DrawRay(transform.position, Vector2.right, Color.green, 2);
-
     }
     //------------------attck animation------------------------
     //IEnumerator Attack()

@@ -1,13 +1,12 @@
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class RoomManager : MonoBehaviour
 {
     public enum RoomName
     {
         MainRoom,
-       // BossRoom,
+        // BossRoom,
         TowerRoom,
         WeaponRoom,
         TrapRoom,
@@ -26,7 +25,7 @@ public class RoomManager : MonoBehaviour
     //private bool isTowerTestRoom;
     //private bool isWeaponTestRoom;
     //private bool isTrapTestRoom;
-    
+
     //private bool isBossRoom;
 
     //public GameObject[] FogOfWar;
@@ -53,7 +52,7 @@ public class RoomManager : MonoBehaviour
     //public bool IsWeaponTestRoom { get => isWeaponTestRoom; set => isWeaponTestRoom = value; }
     //public bool IsTowerTestRoom { get => isTowerTestRoom; set => isTowerTestRoom = value; }
     //public bool IsMainRoom { get => isMainRoom; set => isMainRoom = value; }
-    [SerializeField]
+
     private bool Isallclear;
 
     private bool Isaudio;
@@ -87,7 +86,7 @@ public class RoomManager : MonoBehaviour
         }
         //spawnManager = SpawnManager.Instance;
 
-        
+
     }
     public void OpenCurrentDoor()
     {
@@ -146,19 +145,21 @@ public class RoomManager : MonoBehaviour
                         Doors[i].Animator.SetBool("IsClose", true);
                         Doors[i].gameObject.SetActive(false);
                     }
-
-                    for (int r = 0; r < SpawnManager.Instance.rooms.Count; r++)
+                    if (!Isallclear)
                     {
-                        if (!SpawnManager.Instance.rooms[r].isBossRoom)
+                        for (int r = 0; r < SpawnManager.Instance.rooms.Count; r++)
                         {
-                            if (SpawnManager.Instance.rooms[r].clear)
+                            if (!SpawnManager.Instance.rooms[r].isBossRoom)
                             {
-                                Isallclear = true;
-                            }
-                            else
-                            {
-                                Isallclear = false;
-                                break;
+                                if (SpawnManager.Instance.rooms[r].clear)
+                                {
+                                    Isallclear = true;
+                                }
+                                else
+                                {
+                                    Isallclear = false;
+                                    break;
+                                }
                             }
                         }
                     }

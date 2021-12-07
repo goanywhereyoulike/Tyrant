@@ -30,7 +30,7 @@ public class Block : MonoBehaviour, GameObjectsLocator.IGameObjectRegister
                 //worldPosition.Add(new Vector2(wPosition.x + 0.5f, wPosition.y + 0.5f));
 
                 // Debug.Log("boundx:" + wPosition.x + " bounds:" + wPosition.y);
-                gridPosition.Add(new Vector2(x,y));
+                //gridPosition.Add(new Vector2(x,y));
                 // x + y * bounds.size.x to know the tile position in array
                 TileBase tile = tiles[x + y * bounds.size.x];
                 if (tile != null)

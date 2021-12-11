@@ -73,7 +73,6 @@ public class LightingShoot : MonoBehaviour
 
     void Update()
     {
-
         if (IsCoolDown)
         {
             List<PSC> levelbosses = GameObjectsLocator.Instance.Get<PSC>();
@@ -244,29 +243,43 @@ public class LightingShoot : MonoBehaviour
     //}
     void CheckTarget()
     {
-        for (int i = 0; i < Targets.Count; ++i)
+        if (Targets == null || Targets.Count == 0)
         {
-            if (Targets.Count > i)
+            List<Enemy> enemies = GameObjectsLocator.Instance.Get<Enemy>();
+            foreach (Enemy enemy in enemies)
             {
-                if (Targets[i] != null)
+                LightingTowerBullet[] bullets = enemy.GetComponentsInChildren<LightingTowerBullet>();
+                foreach (var bullet in bullets)
                 {
-                    if (!Targets[i].gameObject.activeInHierarchy)
+                    if (bullet&& bullet.TowerIndex == index)
                     {
-                        if (Targets.Contains(Targets[i].gameObject))
-                        {
-                            Targets.Remove(Targets[i].gameObject);
-                        }
-                    }
-                    float Distance = (Targets[i].transform.position - transform.position).sqrMagnitude;
-                    if (Distance >= DistanceToShoot * DistanceToShoot)
-                    {
-                        if (Targets.Contains(Targets[i].gameObject))
-                        {
-                            Targets.Remove(Targets[i].gameObject);
-                        }
+                        //bullet.gameObject.transform.DetachChildren();
+                        bullet.gameObject.transform.parent = null;
+                        attacknumber--;
+                        bullet.gameObject.SetActive(false);
+                        Bullets.Remove(bullet.gameObject);
+
                     }
                 }
+
             }
+            return;
+        }
+        foreach (GameObject target in Targets.ToArray())
+        {
+            if (target != null)
+            {
+                if (!target.activeInHierarchy)
+                {
+                    Targets.Remove(target.gameObject);
+                }
+                float Distance = (target.transform.position - transform.position).sqrMagnitude;
+                if (Distance > DistanceToShoot * DistanceToShoot)
+                {
+                    Targets.Remove(target.gameObject);
+                }
+            }
+
         }
     }
 
@@ -305,7 +318,7 @@ public class LightingShoot : MonoBehaviour
                     if (Distance < DistanceToShoot * DistanceToShoot)
                     {
                         aimtoBoss = true;
-                        if (!Targets.Contains(targetboss))
+                        if (!Targets.Contains(targetboss) && targetboss.activeInHierarchy)
                         {
                             Targets.Add(targetboss);
                         }
@@ -353,7 +366,7 @@ public class LightingShoot : MonoBehaviour
                 float Distance = (enemy.transform.position - transform.position).sqrMagnitude;
                 if (Distance < DistanceToShoot * DistanceToShoot)
                 {
-                    if (!Targets.Contains(enemy.gameObject) && (attacknumber < firenumber))
+                    if (!Targets.Contains(enemy.gameObject) && (attacknumber < firenumber) && enemy.gameObject.activeInHierarchy)
                     {
 
                         Targets.Add(enemy.gameObject);
@@ -381,144 +394,151 @@ public class LightingShoot : MonoBehaviour
         }
     }
 
+
+
     void ApplyDamage()
     {
+        if (Targets == null || Targets.Count == 0)
+        {
+            return;
+        }
         if (!IsCoolDown && attacknumber <= firenumber)
         {
-            for (int i = 0; i < attacknumber; ++i)
+            foreach (GameObject target in Targets)
             {
-                if (Targets.Count > i)
+                Enemy enemy = target.GetComponent<Enemy>();
+                PSC boss = target.GetComponent<PSC>();
+                if (enemy)
                 {
-                    Enemy enemy = Targets[i].GetComponent<Enemy>();
-                    PSC boss = Targets[i].GetComponent<PSC>();
-                    if (enemy)
-                    {
-                        enemy.TakeDamage(towerData.bulletDamage * Time.deltaTime);
-                    }
-                    if (boss)
-                    {
-                        boss.TakeDamage(towerData.bulletDamage * Time.deltaTime);
-
-                    }
+                    enemy.TakeDamage(towerData.bulletDamage * Time.deltaTime);
                 }
+                if (boss)
+                {
+                    boss.TakeDamage(towerData.bulletDamage * Time.deltaTime);
+
+                }
+
             }
         }
     }
     void Attack()
     {
-        for (int i = 0; i < Targets.Count; ++i)
+        if (Targets == null || Targets.Count == 0)
+        {
+            return;
+        }
+        foreach (GameObject target in Targets.ToArray())
         {
             if (attacknumber > firenumber)
             {
                 continue;
             }
-            if (Targets.Count > i)
+            if (target != null)
             {
-
-                if (Targets[i] != null)
+                Enemy enemy = target.GetComponent<Enemy>();
+                PSC levelBoss = target.GetComponent<PSC>();
+                if (enemy || levelBoss)
                 {
-                    Enemy enemy = Targets[i].GetComponent<Enemy>();
-                    PSC levelBoss = Targets[i].GetComponent<PSC>();
-                    if (enemy || levelBoss)
+                    Bulletnum += Time.deltaTime * 0.5f;
+                    ColdDown.value = Bulletnum;
+
+                    if (Bulletnum >= BulletLimit)
                     {
-                        Bulletnum += Time.deltaTime * 0.5f;
-                        ColdDown.value = Bulletnum;
-
-                        if (Bulletnum >= BulletLimit)
-                        {
-                            IsCoolDown = true;
-                        }
-
+                        IsCoolDown = true;
                     }
-                    if (levelBoss && levelBoss.IsDead)
-                    {
-                        LightingTowerBullet[] bullets = levelBoss.GetComponentsInChildren<LightingTowerBullet>();
-
-                        foreach (var bullet in bullets)
-                        {
-                            if (bullet && bullet.TowerIndex == index)
-                            {
-
-                                //bullet.gameObject.transform.DetachChildren();
-                                bullet.gameObject.transform.parent = null;
-                                attacknumber--;
-                                if (attacknumber <= 0)
-                                {
-                                    attacknumber = 0;
-                                }
-                                bullet.gameObject.SetActive(false);
-                                Bullets.Remove(bullet.gameObject);
-
-                            }
-                        }
-
-                        Targets.Remove(levelBoss.gameObject);
-                    }
-                    if (enemy && enemy.IsDead)
-                    {
-                        LightingTowerBullet[] bullets = enemy.GetComponentsInChildren<LightingTowerBullet>();
-
-                        foreach (var bullet in bullets)
-                        {
-                            if (bullet && bullet.TowerIndex == index)
-                            {
-
-                                //bullet.gameObject.transform.DetachChildren();
-                                bullet.gameObject.transform.parent = null;
-                                attacknumber--;
-                                if (attacknumber <= 0)
-                                {
-                                    attacknumber = 0;
-                                }
-                                bullet.gameObject.SetActive(false);
-                                Bullets.Remove(bullet.gameObject);
-
-                            }
-                        }
-
-                        Targets.Remove(enemy.gameObject);
-                    }
-                    if (!IsCoolDown && Targets.Count > i)
-                    {
-                        Vector3 offset = new Vector3(0.0f, 0.5f, 0.0f);
-                        GameObject bullet = ObjectPoolManager.Instance.GetPooledObject("LightingTowerBullet");
-                        bool AbleToAttack = true;
-                        LightingTowerBullet[] lightingbullets = Targets[i].GetComponentsInChildren<LightingTowerBullet>();
-                        if (lightingbullets.Length != 0)
-                        {
-                            foreach (var Lbullet in lightingbullets)
-                            {
-                                if (Lbullet.TowerIndex == index)
-                                {
-                                    AbleToAttack = false;
-                                }
-
-                            }
-
-
-                        }
-
-                        if (bullet && (attacknumber < firenumber) && AbleToAttack && Targets.Count > i)
-                        {
-                            bullet.transform.parent = Targets[i].transform;
-                            bullet.GetComponent<LightingTowerBullet>().SetTarget(transform.position + offset, Targets[i].gameObject.transform);
-                            bullet.SetActive(true);
-                            bullet.GetComponent<LightingTowerBullet>().TowerIndex = index;
-                            Bullets.Add(bullet);
-                            attacknumber++;
-                        }
-                    }
-
-                    //if (attacknumber <= firenumber)
-                    //{
-                    //    enemy.TakeDamage(towerData.bulletDamage * Time.deltaTime);
-                    //    attacknumber++;
-                    //}
-
-
-
 
                 }
+                if (levelBoss && levelBoss.IsDead)
+                {
+                    LightingTowerBullet[] bullets = levelBoss.GetComponentsInChildren<LightingTowerBullet>();
+
+                    foreach (var bullet in bullets)
+                    {
+                        if (bullet && bullet.TowerIndex == index)
+                        {
+                            //bullet.gameObject.transform.DetachChildren();
+                            bullet.gameObject.transform.parent = null;
+                            attacknumber--;
+                            if (attacknumber <= 0)
+                            {
+                                attacknumber = 0;
+                            }
+                            bullet.gameObject.SetActive(false);
+                            Bullets.Remove(bullet.gameObject);
+
+                        }
+                    }
+
+                    Targets.Remove(levelBoss.gameObject);
+                }
+                if (enemy && enemy.IsDead)
+                {
+                    LightingTowerBullet[] bullets = enemy.GetComponentsInChildren<LightingTowerBullet>();
+
+                    foreach (var bullet in bullets)
+                    {
+                        if (bullet && bullet.TowerIndex == index)
+                        {
+
+                            //bullet.gameObject.transform.DetachChildren();
+                            bullet.gameObject.transform.parent = null;
+                            attacknumber--;
+                            if (attacknumber <= 0)
+                            {
+                                attacknumber = 0;
+                            }
+                            bullet.gameObject.SetActive(false);
+                            Bullets.Remove(bullet.gameObject);
+
+                        }
+                    }
+
+                    Targets.Remove(enemy.gameObject);
+                }
+                if (!IsCoolDown)
+                {
+                    Vector3 offset = new Vector3(0.0f, 0.5f, 0.0f);
+                    GameObject bullet = ObjectPoolManager.Instance.GetPooledObject("LightingTowerBullet");
+                    bool AbleToAttack = true;
+                    LightingTowerBullet[] lightingbullets = target.GetComponentsInChildren<LightingTowerBullet>();
+                    if (lightingbullets.Length != 0)
+                    {
+                        foreach (var Lbullet in lightingbullets)
+                        {
+                            if (Lbullet.TowerIndex == index)
+                            {
+                                AbleToAttack = false;
+                            }
+
+                        }
+
+
+                    }
+                    float Distance = (target.transform.position - transform.position).sqrMagnitude;
+                    if (Distance > DistanceToShoot * DistanceToShoot)
+                    {
+                        AbleToAttack = false;
+                    }
+                    if (bullet && (attacknumber < firenumber) && AbleToAttack)
+                    {
+                        bullet.GetComponent<LightingTowerBullet>().TowerIndex = index;
+                        bullet.transform.parent = target.transform;
+                        bullet.GetComponent<LightingTowerBullet>().SetTarget(transform.position + offset, target.gameObject.transform);
+                        bullet.SetActive(true);
+                        Bullets.Add(bullet);
+                        attacknumber++;
+                    }
+                }
+
+                //if (attacknumber <= firenumber)
+                //{
+                //    enemy.TakeDamage(towerData.bulletDamage * Time.deltaTime);
+                //    attacknumber++;
+                //}
+
+
+
+
             }
 
         }

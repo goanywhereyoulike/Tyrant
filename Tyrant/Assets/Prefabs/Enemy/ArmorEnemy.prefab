@@ -22,10 +22,13 @@ MonoBehaviour:
     attackSpeed: 1
     detectRange: 4
     maxArmor: 3
-  mTarget: {fileID: 0}
-  wDetectRange: 1
-  enemyUi: {fileID: 6129767443431876111}
   burningAnimator: {fileID: 661433285204766010}
+  mTarget: {fileID: 0}
+  wDetectRange: 0.5
+  IsLighting: 0
+  LightingIndex: -1
+  LightingTowerIndex: -1
+  enemyUi: {fileID: 6129767443431876111}
 --- !u!1001 &1731359845336680481
 PrefabInstance:
   m_ObjectHideFlags: 0

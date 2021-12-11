@@ -18,6 +18,7 @@ public class Laser : Weapon
     private bool charging = true;
 
     public Slider chargingBar;
+    public Slider durabilityBar;
 
     private float chargeTime;
     public float ChargeTime { get => chargeTime; set => chargeTime = value; }
@@ -39,6 +40,30 @@ public class Laser : Weapon
 
         chargeTime = LaserStates.HoldingTime;
         chargingBar.maxValue = chargeTime;
+        durability = laserStates.MaxDurability;
+        durabilityBar.maxValue = laserStates.MaxDurability;
+        durabilityBar.value = durability;
+    }
+
+    public override void ResetGun()
+    {
+        base.ResetGun();
+        LaserStates = weaponStates as LaserStates;
+        chargeTime = LaserStates.HoldingTime;
+        chargingBar.maxValue = chargeTime;
+        durability = laserStates.MaxDurability;
+        durabilityBar.maxValue = laserStates.MaxDurability;
+        durabilityBar.value = durability;
+        animator.SetBool("Charging", false);
+        laserCompleteAnimator.SetBool("charged", false);
+
+        animator.enabled = true;
+        laserCompleteAnimator.enabled = true;
+        animator.gameObject.GetComponent<SpriteRenderer>().sprite = null;
+        laserCompleteAnimator.gameObject.GetComponent<SpriteRenderer>().sprite = null;
+
+        gameObject.SetActive(false);
+        gameObject.SetActive(true);
     }
 
     public override void UnFire()
@@ -72,6 +97,14 @@ public class Laser : Weapon
             }
             charged = false;
             laserCompleteAnimator.SetBool("charged", charged);
+            durability--;
+            durabilityBar.value = durability;
+
+            if (durability <= 0)
+            {
+                animator.enabled = false;
+                laserCompleteAnimator.enabled = false;
+            }
         }
     }
 

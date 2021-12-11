@@ -424,6 +424,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7c909743a547c343894858d9a4314d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  towertype: 4
   towerData: {fileID: 11400000, guid: 43bcf4cdc341adf4bb19617f20027202, type: 2}
   DestroyedTower: {fileID: 4397225641146993440, guid: 5224d4b89213c9745aadbbbf4be9179e, type: 3}
   Healthbar: {fileID: 8869766743394064824}

@@ -22,15 +22,15 @@ MonoBehaviour:
     attackSpeed: 0
     detectRange: 0
     maxArmor: 0
+  burningAnimator: {fileID: 1905720368300165393}
   mTarget: {fileID: 0}
-  wDetectRange: 2
+  wDetectRange: 3
   IsLighting: 0
   LightingIndex: -1
   LightingTowerIndex: -1
   enemyUi: {fileID: 5066223580753101348}
   isChase: 0
   isTestTarget: 0
-  burningAnimator: {fileID: 1905720368300165393}
   canDead: 1
 --- !u!1001 &817577163943767050
 PrefabInstance:

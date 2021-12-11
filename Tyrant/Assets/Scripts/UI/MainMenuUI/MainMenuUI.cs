@@ -6,6 +6,8 @@ public class MainMenuUI : MonoBehaviour
 {
     [SerializeField]
     private GameObject settingMenu;
+    [SerializeField]
+    private GameObject modeSelect;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,7 +22,8 @@ public class MainMenuUI : MonoBehaviour
 
     public void onCLickStart()
     {
-        SceneManager.LoadScene("TPS1");
+        modeSelect.gameObject.SetActive(true);
+        gameObject.SetActive(false);
     }
     public void onClickSetting()
     {

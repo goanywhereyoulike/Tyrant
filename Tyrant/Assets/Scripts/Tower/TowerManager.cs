@@ -232,6 +232,67 @@ public class TowerManager : MonoBehaviour
             {
                 if (hit.collider.gameObject.tag == "Tower")
                 {
+                    Tower tower = hit.collider.gameObject.GetComponent<Tower>();
+                    if (tower.towertype ==Tower.TowerType.Chain)
+                    {
+                        ChainTowerBullet[] bullets = tower.GetComponentsInChildren<ChainTowerBullet>();
+
+                        foreach (var bullet in bullets)
+                        {
+                            if (bullet)
+                            {
+                                bullet.gameObject.transform.parent.transform.parent = null;
+                                bullet.gameObject.transform.parent.gameObject.SetActive(false);
+                            }
+                        }
+                    }
+                    else if (tower.towertype == Tower.TowerType.Lighting)
+                    {
+                        LightingShoot ls = tower.GetComponent<LightingShoot>();
+                        if (ls)
+                        {
+                            List<Enemy> enemies = GameObjectsLocator.Instance.Get<Enemy>();
+                            List<PSC> levelbosses = GameObjectsLocator.Instance.Get<PSC>();
+                            if (enemies != null)
+                            {
+                                foreach (var enemy in enemies)
+                                {
+                                    LightingTowerBullet[] bullets = enemy.GetComponentsInChildren<LightingTowerBullet>();
+
+                                    foreach (var bullet in bullets)
+                                    {
+                                        if (bullet)
+                                        {
+                                            bullet.gameObject.transform.parent = null;
+                                            bullet.gameObject.SetActive(false);
+
+                                        }
+                                    }
+                                }
+                            }
+
+                            if (levelbosses != null)
+                            {
+                                foreach (var boss in levelbosses)
+                                {
+                                    LightingTowerBullet[] bullets = boss.GetComponentsInChildren<LightingTowerBullet>();
+
+                                    foreach (var bullet in bullets)
+                                    {
+                                        if (bullet)
+                                        {
+                                            bullet.gameObject.transform.parent = null;
+                                            bullet.gameObject.SetActive(false);
+
+                                        }
+                                    }
+                                }
+
+                            }
+
+                        }
+                    }
+
                     Destroy(hit.collider.gameObject.transform.parent.gameObject);
                     DecreaseTowerlimit();
 

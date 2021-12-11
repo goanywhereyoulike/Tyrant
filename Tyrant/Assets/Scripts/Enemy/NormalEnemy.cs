@@ -6,9 +6,6 @@ public class NormalEnemy : Enemy
     [SerializeField]
     private EnemyUI enemyUi = null;
 
-    [SerializeField]
-    private Animator burningAnimator;
-
     private bool armorEnemy = false;
 
     // Start is called before the first frame update
@@ -51,13 +48,13 @@ public class NormalEnemy : Enemy
 
     public override void BurnArmor(float buringDamge)
     {
-        burningAnimator.gameObject.SetActive(true);
-        burningAnimator.SetBool("Burning", true);
-        if (!armorEnemy)
-            return;
+        //burningAnimator.gameObject.SetActive(true);
+        //burningAnimator.SetBool("Burning", true);
+        //if (!armorEnemy)
+        //    return;
 
-        armor -= buringDamge;
-        enemyUi.ArmorChanged(armor);
+        //armor -= buringDamge;
+        //enemyUi.ArmorChanged(armor);
     }
 
     //------------------attck animation------------------------

@@ -8,6 +8,9 @@ public class Enemy : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDam
     [SerializeField]
     EnemyState enemyState = new EnemyState();
 
+    [SerializeField]
+    private Animator burningAnimator;
+
     protected Rigidbody2D rb;
 
     protected SpriteRenderer spriteRenderer;
@@ -92,6 +95,17 @@ public class Enemy : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDam
         }
     }
 
+    public bool IsBurning
+    {
+        get => isBurning;
+        set
+        {
+            isBurning = value;
+            spriteRenderer.material.color = isBurning ? new Color(255f, 0f, 0f) : Color.white;
+        }
+    }
+
+    private bool isBurning = false;
     public bool IsLighting = false;
     public int LightingIndex = -1;
     public int LightingTowerIndex = -1;
@@ -146,6 +160,8 @@ public class Enemy : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDam
 
         IsEnemyDead();
         detectObject();
+        CheckWall(wDetectRange);
+
         //behaviours.Update();
 
         if (IsDead)
@@ -199,6 +215,10 @@ public class Enemy : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDam
                     transform.position = Vector2.MoveTowards(transform.position, position, speed);
                     if ((Vector2)transform.position == position)
                     {
+                        if (rb)
+                        {
+                            rb.velocity = Vector3.zero;
+                        }
                         pathcount++;
                     }
                 }
@@ -236,6 +256,10 @@ public class Enemy : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDam
                         transform.position = Vector2.MoveTowards(transform.position, position, speed);
                         if ((Vector2)transform.position == position)
                         {
+                            if(rb)
+                            {
+                                rb.velocity = Vector3.zero;
+                            }
                             pathcount++;
                         }
                     }
@@ -271,44 +295,43 @@ public class Enemy : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDam
         }
 
         spriteRenderer.flipX = transform.position.x > mTarget.position.x;
-        CheckWall();
     }
 
-    void CheckWall()
+    protected void CheckWall(float wDetectRange)
     {
         RaycastHit2D upHit = Physics2D.Raycast(transform.position, Vector2.up, wDetectRange);
         if (upHit.collider != null && upHit.collider.tag == "Wall")
         {
             if (rb)
             {
-                rb.velocity = Vector3.zero;
+                rb.velocity = Vector3.down;
                 rb.angularVelocity = 0.0f;
             }
-            Vector2 Position = transform.position;
+           Vector2 Position = transform.position;
             Position.y = transform.position.y - 1;
             transform.position = Position;
         }
-        //Debug.DrawRay(transform.position, Vector2.up, Color.green, 2);
+       Debug.DrawRay(transform.position, Vector2.up, Color.green, wDetectRange);
 
-        RaycastHit2D downHit = Physics2D.Raycast(transform.position, Vector2.down, wDetectRange);
+        RaycastHit2D downHit = Physics2D.Raycast(transform.position, Vector2.down, wDetectRange+1);
         if (downHit.collider != null && downHit.collider.tag == "Wall")
         {
             if (rb)
             {
-                rb.velocity = Vector3.zero;
+                rb.velocity = Vector3.up;
                 rb.angularVelocity = 0.0f;
             }
             Vector2 Position = transform.position;
             Position.y = transform.position.y + 1;
             transform.position = Position;
         }
-        //Debug.DrawRay(transform.position, Vector2.down, Color.green, 2);
+        //Debug.DrawRay(transform.position, Vector2.down, Color.green, wDetectRange);
         RaycastHit2D rightHit = Physics2D.Raycast(transform.position, Vector2.right, wDetectRange);
         if (rightHit.collider != null && rightHit.collider.tag == "Wall")
         {
             if (rb)
             {
-                rb.velocity = Vector3.zero;
+                rb.velocity = Vector3.left;
                 rb.angularVelocity = 0.0f;
             }
             Vector2 Position = transform.position;
@@ -321,7 +344,7 @@ public class Enemy : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDam
         {
             if (rb)
             {
-                rb.velocity = Vector3.zero;
+                rb.velocity = Vector3.right;
                 rb.angularVelocity = 0.0f;
             }
             Vector2 Position = transform.position;
@@ -329,7 +352,6 @@ public class Enemy : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDam
             transform.position = Position;
         }
         // Debug.DrawRay(transform.position, Vector2.right, Color.green, 2);
-
     }
     //------------------attck animation------------------------
     //IEnumerator Attack()
@@ -466,6 +488,25 @@ public class Enemy : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDam
         {
             IsDead = true;
         }
+    }
+
+    public void Burn(float burnDamage, float damage, float burnTime)
+    {
+        if (IsBurning)
+            return;
+        IsBurning = true;
+        burningAnimator.gameObject.SetActive(IsBurning);
+        burningAnimator.SetBool("Burning", IsBurning);
+        StartCoroutine(StartBurn(burnDamage, damage, burnTime));
+    }
+
+    IEnumerator StartBurn(float burnDamage, float damage, float burnTime)
+    {
+        TakeDamage(damage);
+        BurnArmor(burnDamage);
+        yield return new WaitForSeconds(burnTime);
+        IsBurning = false;
+        burningAnimator.SetBool("Burning", IsBurning);
     }
 
     public virtual void TakeDamage(float damage)

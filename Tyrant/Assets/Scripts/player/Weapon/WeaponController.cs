@@ -37,12 +37,16 @@ public class WeaponController : MonoBehaviour
 
     public void ChangeWeapon(int weaponIndex)
     {
-
+        //if (weaponIndex != 0)
+        //    CurrentWeapon.weaponObject.ResetGun();
         CurrentWeapon.ReloadUI.gameObject.SetActive(false);
         CurrentWeapon.weaponObject.gameObject.SetActive(false);
         CurrentWeapon = weaponObjects[weaponIndex];
         CurrentWeapon.weaponObject.gameObject.SetActive(true);
         CurrentWeapon.ReloadUI.gameObject.SetActive(true);
+
+        if (weaponIndex != 0)
+            CurrentWeapon.weaponObject.ResetGun();
 
         //CurrentWeapon.weaponUI.gameObject.SetActive(true);
 
@@ -79,6 +83,10 @@ public class WeaponController : MonoBehaviour
     }
     void Update()
     {
+        if (CurrentWeapon.weaponObject.durability <= 0)
+        {
+            ChangeWeapon(0);
+        }
     }
     
     

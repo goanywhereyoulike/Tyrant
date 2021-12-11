@@ -19,7 +19,7 @@ public class BossBullet : MonoBehaviour
     float speed;
     Vector2 shootPosition;
     Vector2 targetPosition;
-    Vector2 direction;
+    Vector3 direction;
     public Vector2 Position { get => targetPosition; set => targetPosition = value; }
     public Vector3 Direction { get => direction; set => direction = value; }
     public float Damage { get => damage; set => damage = value; }
@@ -41,6 +41,7 @@ public class BossBullet : MonoBehaviour
         }
         speed = bulletSpeed * Time.deltaTime;
         transform.position = Vector2.MoveTowards(transform.position, Position, speed);
+        //transform.position += direction * speed;
     }
 
     private void OnTriggerEnter2D(Collider2D collider)

@@ -15,7 +15,7 @@ public class FlameThrowerReloader : MonoBehaviour
 
     private void Start()
     {
-        StartCoroutine(RegenAmmo());
+        //StartCoroutine(RegenAmmo());
     }
 
     private IEnumerator RegenAmmo()

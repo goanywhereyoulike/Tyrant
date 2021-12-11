@@ -13,7 +13,8 @@ public class BombTrap : MonoBehaviour
     float shake = 0.0f;
     bool hasExploded = false;
 
-    
+    [SerializeField]
+    private float damage;
     [SerializeField]
     private Material matWhite;
     private Material matDefault;
@@ -72,7 +73,7 @@ public class BombTrap : MonoBehaviour
 
             if (ib!=null)
             {
-                ib.TakeDamage(10.0f);
+                ib.TakeDamage(damage);
             }
             //if (rb)
             //{

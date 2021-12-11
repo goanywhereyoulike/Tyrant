@@ -34,6 +34,8 @@ public class Cannon : Weapon
         weaponInit = true;
 
         currentAmmo = connonStates.MaxAmmo;
+
+        durability = int.MaxValue;
     }
     private void Update()
     {

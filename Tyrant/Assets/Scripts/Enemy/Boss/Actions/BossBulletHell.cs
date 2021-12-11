@@ -7,11 +7,14 @@ public class BossBulletHell : Action
     public int bulletMoveSpeed = 0;
     public float bulletDelayTime = 0;
     public bool inverseAngle = false;
+    public float bulletDelayTimeChange = 0;
 
     private float timeCheck = 0;
     private float angle = 0f;
     private int count = 0;
     private PSC psc;
+    private Vector3 direction = Vector3.up;
+    
 
     public override void OnStart()
     {
@@ -40,20 +43,27 @@ public class BossBulletHell : Action
             var bullet = ObjectPoolManager.Instance.GetPooledObject("BossBullet");
             var bulletClass = bullet.GetComponent<BossBullet>();
 
-            float bulDirX = transform.position.x + Mathf.Sin((angle * Mathf.PI) / 180f);
-            float bulDirY = transform.position.y + Mathf.Cos((angle * Mathf.PI) / 180f);
+            float x = Mathf.Cos(angle * Mathf.Deg2Rad) * direction.x - Mathf.Sin(angle * Mathf.Deg2Rad) * direction.y;
+            float y = Mathf.Sin(angle * Mathf.Deg2Rad) * direction.x + Mathf.Cos(angle * Mathf.Deg2Rad) * direction.y;
+            //float bulDirX = transform.position.x + Mathf.Sin((angle * Mathf.PI) / 180f);
+            //float bulDirY = transform.position.y + Mathf.Cos((angle * Mathf.PI) / 180f);
 
-            Vector3 bulMoveVector = new Vector3(bulDirX, bulDirY, 0f);
-            Vector3 bulDir = (bulMoveVector - transform.position).normalized;
+            // Vector3 bulMoveVector = new Vector3(bulDirX, bulDirY, 0f);
+            //Vector3 bulMoveVector = Quaternion.AngleAxis(angle, Vector3.up) * transform.position;
+            //Vector3 bulDir = (bulMoveVector - transform.position).normalized;
+            Vector3 bulDir = new Vector3(x, y, 0).normalized;
 
-            bulletClass.Position = bulDir * 100.0f;
+            bulletClass.Position = transform.position + bulDir * 100.0f;
             bulletClass.transform.position = transform.position;
             bulletClass.bulletSpeed = bulletMoveSpeed;
+            //bulletClass.Direction = bulDir;
             bullet.SetActive(true);
             count--;
-            angle = inverseAngle? angle - 10f : angle + 10f;
+            direction = bulDir;
+           // angle = inverseAngle? angle - 10f : angle + 10f;
+            angle = inverseAngle?  - 10f :  + 10f;
 
-            return TaskStatus.Running;
+           return TaskStatus.Running;
         }
 
         count = bulletCount;

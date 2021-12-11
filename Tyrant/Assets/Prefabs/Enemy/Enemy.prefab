@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 8373940327516935678}
   - component: {fileID: 880412604915084971}
   - component: {fileID: 1237052331851572507}
-  - component: {fileID: 455552462941062128}
   m_Layer: 8
   m_Name: BurningEffect
   m_TagString: Untagged
@@ -103,18 +102,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &455552462941062128
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 288411563665890760}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64dc4f869461a3c43ac05de635de8d44, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1241324963151753104
 GameObject:
   m_ObjectHideFlags: 0
@@ -389,6 +376,7 @@ GameObject:
   - component: {fileID: 4179336317843623669}
   - component: {fileID: -7198696103068060942}
   - component: {fileID: 4712891771183281011}
+  - component: {fileID: 3569394163614388009}
   m_Layer: 8
   m_Name: Enemy
   m_TagString: Enemy
@@ -538,7 +526,7 @@ CapsuleCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4179336317843623671}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -559,6 +547,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73a125ca5a3bdd94ca2fa60e911a62cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!61 &3569394163614388009
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4179336317843623671}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1.5}
+    newSize: {x: 1, y: 1.5}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1.5}
+  m_EdgeRadius: 0
 --- !u!1 &4464181873617685239
 GameObject:
   m_ObjectHideFlags: 0

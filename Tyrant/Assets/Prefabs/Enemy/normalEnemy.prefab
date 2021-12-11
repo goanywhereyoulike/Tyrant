@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyState:
     maxHealth: 4
-    maxDamage: 5
+    maxDamage: 4
     maxMoveSpeed: 3
     mass: 0
     timeBetweenAttacks: 2

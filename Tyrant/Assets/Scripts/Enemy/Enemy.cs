@@ -160,6 +160,8 @@ public class Enemy : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDam
 
         IsEnemyDead();
         detectObject();
+        CheckWall();
+
         //behaviours.Update();
 
         if (IsDead)
@@ -293,7 +295,6 @@ public class Enemy : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDam
         }
 
         spriteRenderer.flipX = transform.position.x > mTarget.position.x;
-        CheckWall();
     }
 
     void CheckWall()
@@ -310,9 +311,9 @@ public class Enemy : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDam
             Position.y = transform.position.y - 1;
             transform.position = Position;
         }
-        //Debug.DrawRay(transform.position, Vector2.up, Color.green, 2);
+       Debug.DrawRay(transform.position, Vector2.up, Color.green, wDetectRange);
 
-        RaycastHit2D downHit = Physics2D.Raycast(transform.position, Vector2.down, wDetectRange);
+        RaycastHit2D downHit = Physics2D.Raycast(transform.position, Vector2.down, wDetectRange+1);
         if (downHit.collider != null && downHit.collider.tag == "Wall")
         {
             if (rb)
@@ -324,7 +325,7 @@ public class Enemy : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDam
             Position.y = transform.position.y + 1;
             transform.position = Position;
         }
-        //Debug.DrawRay(transform.position, Vector2.down, Color.green, 2);
+        //Debug.DrawRay(transform.position, Vector2.down, Color.green, wDetectRange);
         RaycastHit2D rightHit = Physics2D.Raycast(transform.position, Vector2.right, wDetectRange);
         if (rightHit.collider != null && rightHit.collider.tag == "Wall")
         {

@@ -160,7 +160,7 @@ public class Enemy : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDam
 
         IsEnemyDead();
         detectObject();
-        CheckWall();
+        CheckWall(wDetectRange);
 
         //behaviours.Update();
 
@@ -297,7 +297,7 @@ public class Enemy : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDam
         spriteRenderer.flipX = transform.position.x > mTarget.position.x;
     }
 
-    void CheckWall()
+    protected void CheckWall(float wDetectRange)
     {
         RaycastHit2D upHit = Physics2D.Raycast(transform.position, Vector2.up, wDetectRange);
         if (upHit.collider != null && upHit.collider.tag == "Wall")

@@ -116,6 +116,8 @@ public class TestEnemy : Enemy
             base.Update();
         }
 
+        CheckWall(wDetectRange);
+        
         if (IsTestTarget)
         {
             Reuse();

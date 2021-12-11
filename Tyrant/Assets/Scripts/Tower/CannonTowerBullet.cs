@@ -6,7 +6,7 @@ public class CannonTowerBullet : MonoBehaviour
 {
     [SerializeField]
     private float wDetectRange;
-    public float PushForce = 10.0f;
+    public float PushForce = 8.0f;
     public float bulletDamage = 5.0f;
     public GameObject hitEffect;
     public int AllHittime = 3;
@@ -106,12 +106,12 @@ public class CannonTowerBullet : MonoBehaviour
             Vector3 direction = (collision.gameObject.transform.position - transform.position).normalized;
             Vector3 force = direction * PushForce;
             IPushable hitObject = enemy.GetComponent<IPushable>();
-            if (!checkWall(enemy))
+            /*if (!checkWall(enemy))
             {
-                hitObject.BePushed(force);
+               
 
-            }
-           
+            }*/
+            hitObject.BePushed(force);
             
         }
         if (levelBoss)
@@ -129,7 +129,7 @@ public class CannonTowerBullet : MonoBehaviour
         //Destroy(gameObject)
     }
 
-    bool checkWall(Enemy enemy)
+    /*bool checkWall(Enemy enemy)
     {
         var erb = enemy.GetComponent<Rigidbody2D>();
         var etrans = enemy.gameObject.transform;
@@ -160,7 +160,7 @@ public class CannonTowerBullet : MonoBehaviour
         }
 
         return false;
-    }
+    }*/
 
 
 }

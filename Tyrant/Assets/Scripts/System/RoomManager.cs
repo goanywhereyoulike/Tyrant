@@ -41,7 +41,7 @@ public class RoomManager : MonoBehaviour
         {
             roomId = value;
             RoomChanged?.Invoke(roomId);
-            if(roomId>0)
+            if(roomId>0 && !isTutorial)
             {
                 indicators[roomId - 1].SetActive(false);
             }

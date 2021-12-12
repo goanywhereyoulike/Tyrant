@@ -80,6 +80,7 @@ public class ChainTowerBullet : MonoBehaviour
             Destroy(effect, 0.3f);
             ts.TotalBulletDecrease();
             // gameObject.SetActive(false);
+            gameObject.transform.parent.gameObject.transform.parent = null;
             gameObject.transform.parent.gameObject.SetActive(false);
             IsFired = false;
         }

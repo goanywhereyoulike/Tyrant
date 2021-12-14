@@ -1193,6 +1193,7 @@ GameObject:
   - component: {fileID: 8230796615564290797}
   - component: {fileID: 8230796615564290787}
   - component: {fileID: 8230796615564290795}
+  - component: {fileID: 2293435078760116794}
   m_Layer: 6
   m_Name: Tower
   m_TagString: Tower
@@ -1318,7 +1319,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8230796615564290798}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0a0ab2637f9eb5740b272d13533735c2, type: 3}
   m_Name: 
@@ -1328,6 +1329,31 @@ MonoBehaviour:
   Targets: []
   Bullets: []
   ColdDown: {fileID: 2519869271833373027}
+  ShootPoint: {fileID: 8230796615454679581}
+  BulletPrefab: {fileID: 1852333693292672983, guid: 9c5f79227f90b8f4d969999b19b465b7, type: 3}
+  TargetPos: {fileID: 0}
+  BulletLimit: 10
+  CoolDownSpeed: 0
+  DistanceToShoot: 0
+  BulletForce: 20
+  firenumber: 0
+  attacknumber: 0
+--- !u!114 &2293435078760116794
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8230796615564290798}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e56a0a048fe2cb448a5e2f45aac9f1a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  index: -1
+  towerData: {fileID: 11400000, guid: 1f5ad5d0b026eb04c80838db0f735cb2, type: 2}
+  ColdDown: {fileID: 2519869271833373027}
+  Targets: []
   ShootPoint: {fileID: 8230796615454679581}
   BulletPrefab: {fileID: 1852333693292672983, guid: 9c5f79227f90b8f4d969999b19b465b7, type: 3}
   TargetPos: {fileID: 0}

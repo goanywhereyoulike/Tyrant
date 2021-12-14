@@ -124,8 +124,17 @@ public class Enemy : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDam
         oMoveSpeed = moveSpeed;
     }
 
+    private float selfBurningDamage = 0;
+    private float selfBurningArmoDamage = 0;
+
     protected virtual void Update()
     {
+        if (isBurning)
+        {
+            TakeDamage(selfBurningDamage);
+            BurnArmor(selfBurningArmoDamage);
+        }
+
         //GetComponent<Rigidbody2D>().Sleep();
         if (!isSpawn)
         {
@@ -497,19 +506,16 @@ public class Enemy : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDam
         IsBurning = true;
         burningAnimator.gameObject.SetActive(IsBurning);
         burningAnimator.SetBool("Burning", IsBurning);
+        selfBurningDamage = damage;
+        selfBurningArmoDamage = burnDamage;
         StartCoroutine(StartBurn(burnDamage, damage, burnTime));
     }
 
     IEnumerator StartBurn(float burnDamage, float damage, float burnTime)
     {
-        while (true)
-        {
-            TakeDamage(damage);
-            BurnArmor(burnDamage);
-            yield return new WaitForSeconds(burnTime);
-            IsBurning = false;
-            burningAnimator.SetBool("Burning", IsBurning);
-        }
+        yield return new WaitForSeconds(burnTime);
+        IsBurning = false;
+        burningAnimator.SetBool("Burning", IsBurning);
     }
 
     public virtual void TakeDamage(float damage)

@@ -502,11 +502,14 @@ public class Enemy : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDam
 
     IEnumerator StartBurn(float burnDamage, float damage, float burnTime)
     {
-        TakeDamage(damage);
-        BurnArmor(burnDamage);
-        yield return new WaitForSeconds(burnTime);
-        IsBurning = false;
-        burningAnimator.SetBool("Burning", IsBurning);
+        while (true)
+        {
+            TakeDamage(damage);
+            BurnArmor(burnDamage);
+            yield return new WaitForSeconds(burnTime);
+            IsBurning = false;
+            burningAnimator.SetBool("Burning", IsBurning);
+        }
     }
 
     public virtual void TakeDamage(float damage)

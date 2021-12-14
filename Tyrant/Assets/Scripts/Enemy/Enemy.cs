@@ -78,7 +78,7 @@ public class Enemy : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDam
                 gameObject.SetActive(false);
                 isSpawn = false;
                 IsSlow = false;
-                UnRegisterToLocator();
+                //UnRegisterToLocator();
             }
         }
     }
@@ -120,7 +120,7 @@ public class Enemy : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDam
         detectObject();
         spriteRenderer = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
-
+        RegisterToLocator();
         oMoveSpeed = moveSpeed;
     }
 
@@ -129,19 +129,19 @@ public class Enemy : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDam
 
     protected virtual void Update()
     {
-        if (isBurning)
-        {
-            TakeDamage(selfBurningDamage);
-            BurnArmor(selfBurningArmoDamage);
-        }
-
         //GetComponent<Rigidbody2D>().Sleep();
         if (!isSpawn)
         {
             mainTarget = GameObjectsLocator.Instance.Get<Player>();
             ReUse();
-            RegisterToLocator();
+           
             isSpawn = true;
+        }
+
+        if (isBurning)
+        {
+            TakeDamage(selfBurningDamage);
+            BurnArmor(selfBurningArmoDamage);
         }
 
         if (!isGetBlock)
@@ -476,6 +476,7 @@ public class Enemy : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDam
     protected virtual void ReUse()
     {
         canFind = false;
+        isBurning = false;
         mTarget = null;
         mPath.Clear();
         findPath = false;
@@ -490,6 +491,7 @@ public class Enemy : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDam
         stopDistance = enemyState.StopDistance;
         detectRange = enemyState.DetectRange;
         armor = enemyState.MaxArmor;
+        burningAnimator.gameObject.SetActive(IsBurning);
     }
     protected void IsEnemyDead()
     {

@@ -105,7 +105,7 @@ public class TrapManager : MonoBehaviour
         player = FindObjectOfType<PlayerMovement>();
         playFace = player.gameObject.GetComponent<PlayerAnimation>();
         Trapnumber.text = TrapNumber.ToString();
-        RoomManager.Instance.RoomChanged += RoomChanged;
+        //RoomManager.Instance.RoomChanged += RoomChanged;
         LevelNumber = SceneManager.GetActiveScene().buildIndex;
         //if (traptemplate.traproominfo[LevelNumber - 1].level == LevelNumber)
         //{

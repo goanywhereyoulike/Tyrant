@@ -126,7 +126,6 @@ public class ChainTowerShoot : MonoBehaviour
 
     void Fire()
     {
-
         GameObject bullet = ObjectPoolManager.Instance.GetPooledObject("ChainTowerBullet");
         if (bullet)
         {

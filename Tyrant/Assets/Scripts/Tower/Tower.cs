@@ -79,8 +79,8 @@ public class Tower : MonoBehaviour, IDamageable, GameObjectsLocator.IGameObjectR
             {
                 if (bullet)
                 {
-                    bullet.gameObject.transform.parent = null;
-                    bullet.gameObject.SetActive(false);
+                    bullet.gameObject.transform.parent.transform.parent = null;
+                    bullet.gameObject.transform.parent.gameObject.SetActive(false);
                 }
             }
         }
@@ -91,51 +91,47 @@ public class Tower : MonoBehaviour, IDamageable, GameObjectsLocator.IGameObjectR
         {
             towerMngr.DecreaseTowerlimit();
         }
-        LightingShoot ls = GetComponent<LightingShoot>();
-        if (ls)
+        if (towertype == TowerType.Lighting)
         {
-            List<Enemy> enemies = GameObjectsLocator.Instance.Get<Enemy>();
-            List<PSC> levelbosses = GameObjectsLocator.Instance.Get<PSC>();
-            if (enemies != null)
+            LightingTowerShoot ls = GetComponent<LightingTowerShoot>();
+            if (ls)
             {
-                foreach (var enemy in enemies)
+                List<Enemy> enemies = GameObjectsLocator.Instance.Get<Enemy>();
+                List<PSC> levelbosses = GameObjectsLocator.Instance.Get<PSC>();
+                if (enemies != null)
                 {
-                    LightingTowerBullet[] bullets = enemy.GetComponentsInChildren<LightingTowerBullet>();
-
-                    foreach (var bullet in bullets)
+                    foreach (var enemy in enemies)
                     {
-                        if (bullet)
+                        LightingTowerBullet[] bullets = enemy.GetComponentsInChildren<LightingTowerBullet>();
+                        foreach (var bullet in bullets)
                         {
-                            bullet.gameObject.transform.parent = null;
-                            bullet.gameObject.SetActive(false);
-
-                        }
-                    }
-                }
-            }
-
-            if (levelbosses != null)
-            {
-                foreach (var boss in levelbosses)
-                {
-                    LightingTowerBullet[] bullets = boss.GetComponentsInChildren<LightingTowerBullet>();
-
-                    foreach (var bullet in bullets)
-                    {
-                        if (bullet)
-                        {
-                            bullet.gameObject.transform.parent = null;
-                            bullet.gameObject.SetActive(false);
-
+                            if (bullet)
+                            {
+                                bullet.gameObject.transform.parent = null;
+                                bullet.gameObject.SetActive(false);
+                            }
                         }
                     }
                 }
 
-            }
+                if (levelbosses != null)
+                {
+                    foreach (var boss in levelbosses)
+                    {
+                        LightingTowerBullet[] bullets = boss.GetComponentsInChildren<LightingTowerBullet>();
 
+                        foreach (var bullet in bullets)
+                        {
+                            if (bullet)
+                            {
+                                bullet.gameObject.transform.parent = null;
+                                bullet.gameObject.SetActive(false);
+                            }
+                        }
+                    }
+                }
+            }
         }
-
-
     }
 
     public void TakeDamage(float damage)

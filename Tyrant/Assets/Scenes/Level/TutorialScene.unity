@@ -1674,6 +1674,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: LaserUnlocker
       objectReference: {fileID: 0}
+    - target: {fileID: 3985837113073938254, guid: 4b3fd7ba49e15ab45bb68c1d1e397f69, type: 3}
+      propertyPath: isUnlimited
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4b3fd7ba49e15ab45bb68c1d1e397f69, type: 3}
 --- !u!4 &780604401 stripped
@@ -1850,6 +1854,10 @@ PrefabInstance:
     - target: {fileID: 3985837113073938250, guid: 6900cf36828bda9489fe3ef3afc1a943, type: 3}
       propertyPath: m_Name
       value: FlameUnlocker
+      objectReference: {fileID: 0}
+    - target: {fileID: 3985837113073938254, guid: 6900cf36828bda9489fe3ef3afc1a943, type: 3}
+      propertyPath: isUnlimited
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6900cf36828bda9489fe3ef3afc1a943, type: 3}
@@ -2379,7 +2387,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 954454008223893852, guid: df40cfccb2316a145ac15593c1a28626, type: 3}
       propertyPath: m_AnimatedTiles.Array.data[12].second.m_AnimationSpeed
-      value: 3.0000002
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2297418207161895329, guid: df40cfccb2316a145ac15593c1a28626, type: 3}
       propertyPath: m_RootOrder
@@ -2431,11 +2439,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2974921023735034898, guid: df40cfccb2316a145ac15593c1a28626, type: 3}
       propertyPath: m_AnimatedTiles.Array.data[1].second.m_AnimationSpeed
-      value: 3.0000002
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2974921023735034898, guid: df40cfccb2316a145ac15593c1a28626, type: 3}
       propertyPath: m_AnimatedTiles.Array.data[2].second.m_AnimationSpeed
-      value: 3
+      value: 3.0000002
       objectReference: {fileID: 0}
     - target: {fileID: 2974921023735034898, guid: df40cfccb2316a145ac15593c1a28626, type: 3}
       propertyPath: m_AnimatedTiles.Array.data[3].second.m_AnimationSpeed
@@ -20334,6 +20342,10 @@ PrefabInstance:
     - target: {fileID: 3985837113073938250, guid: 7e91aea21adc23e44abd4546abcd08ee, type: 3}
       propertyPath: m_Name
       value: CanonUnlocker
+      objectReference: {fileID: 0}
+    - target: {fileID: 3985837113073938254, guid: 7e91aea21adc23e44abd4546abcd08ee, type: 3}
+      propertyPath: isUnlimited
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7e91aea21adc23e44abd4546abcd08ee, type: 3}

@@ -605,7 +605,7 @@ public class TowerManager : MonoBehaviour
 
                     if (realtower.GetComponentInChildren<LightingShoot>())
                     {
-                        realtower.GetComponentInChildren<LightingShoot>().index = index;
+                        realtower.GetComponentInChildren<LightingTowerShoot>().index = index;
                         index++;
                     }
 

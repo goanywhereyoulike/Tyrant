@@ -8,10 +8,13 @@ public class WeaponUnlocker : PickUp
     private Player player;
     [SerializeField]
     private int weaponIndex;
+    [SerializeField]
+    private bool isUnlimited;
     public void Interact(Player player)
     {
         player.GetComponentInChildren<WeaponController>().ChangeWeapon(weaponIndex);
-        //Destroy(gameObject);
+        if (!isUnlimited)
+            Destroy(gameObject);
     }
     protected override void Trigger2DEnter(Collider2D collision)
     {

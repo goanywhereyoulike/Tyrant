@@ -127,7 +127,7 @@ MonoBehaviour:
     name: health potion
     category: 0
     description: 
-  addHealth: 5
+  addHealth: 50
 --- !u!50 &4369142151728487496
 Rigidbody2D:
   serializedVersion: 4

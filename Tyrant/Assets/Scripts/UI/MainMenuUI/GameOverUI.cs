@@ -17,6 +17,10 @@ public class GameOverUI : MonoBehaviour
     {
         Application.Quit();
     }
+    public void onRetryClicked()
+    {
+        SceneManager.LoadScene("Level1");
+    }
     // Start is called before the first frame update
     void Start()
     {

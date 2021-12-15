@@ -98,4 +98,5 @@ MonoBehaviour:
   explosionEffect: {fileID: 5542131774870671034, guid: 580ad9c82fab2b446bf6dca952bba155, type: 3}
   duration: 0.5
   radius: 3
+  damage: 5
   matWhite: {fileID: 2100000, guid: 19a132be31f0392488748e2192bd1f44, type: 2}

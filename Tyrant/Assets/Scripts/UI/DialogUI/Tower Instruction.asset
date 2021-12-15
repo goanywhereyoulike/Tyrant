@@ -17,6 +17,10 @@ MonoBehaviour:
 
     Press [Space] to build tower
 
+    Press[Q]
+    to cancel build tower
+
+    Press[Right Mouse] on a tower to destroy it
 
     Press[Space]
     to continue'

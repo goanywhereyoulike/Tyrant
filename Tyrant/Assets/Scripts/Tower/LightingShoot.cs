@@ -143,7 +143,7 @@ public class LightingShoot : MonoBehaviour
                 return;
             }
             AddTarget();
-            CheckTarget();
+            //CheckTarget();
             Attack();
             ApplyDamage();
 

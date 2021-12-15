@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(PlayerMovement))]
-public class Player : MonoBehaviour , IDamageable, GameObjectsLocator.IGameObjectRegister
+public class Player : MonoBehaviour, IDamageable, GameObjectsLocator.IGameObjectRegister
 {
     [SerializeField]
     private GameObject interactButton;
@@ -31,7 +31,7 @@ public class Player : MonoBehaviour , IDamageable, GameObjectsLocator.IGameObjec
         }
     }
     private bool isInvulnerbale = false;
-    public bool IsInvulnerbale { get=>isInvulnerbale; set => isInvulnerbale=value; }
+    public bool IsInvulnerbale { get => isInvulnerbale; set => isInvulnerbale = value; }
     private PlayerMovement playerMovement = null;
 
     public DialogueUI DialogueUI => dialogueUI;
@@ -40,6 +40,9 @@ public class Player : MonoBehaviour , IDamageable, GameObjectsLocator.IGameObjec
 
     [SerializeField]
     private PlayerUI playerUI = null;
+
+    [SerializeField]
+    private RetryUi retryUI = null;
 
     [SerializeField]
     private Cannon bulletUI = null;
@@ -103,7 +106,15 @@ public class Player : MonoBehaviour , IDamageable, GameObjectsLocator.IGameObjec
             {
                 Health = 0;
                 AudioManager.instance.PlaySFX(4);
-                SceneManager.LoadScene("GameOverScene");
+                if (GameSetting.Instance.isDemoMode)
+                {
+                    retryUI.gameObject.SetActive(true);
+                    Time.timeScale = 0.0f;
+                }
+                else
+                {
+                    SceneManager.LoadScene("GameOverScene");
+                }
             }
         }
     }
@@ -125,6 +136,11 @@ public class Player : MonoBehaviour , IDamageable, GameObjectsLocator.IGameObjec
     public void UnRegisterToLocator()
     {
         GameObjectsLocator.Instance.Unregister<Player>(this);
+    }
+
+    public void ResetHealth()
+    {
+        Health = playerStates.MaxHealth;
     }
     //private void OnCollisionEnter2D(Collision2D collision)
     //{

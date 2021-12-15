@@ -6,8 +6,8 @@ public class RoomChanger : MonoBehaviour
     [SerializeField]
     private int roomId;
 
-    [SerializeField]
-    private bool isBossRoom;
+    //[SerializeField]
+    //private bool isBossRoom;
     //[SerializeField]
     //private bool isTowerTestRoom;
     //[SerializeField]
@@ -43,7 +43,7 @@ public class RoomChanger : MonoBehaviour
         {
             isEnter = true;
             RoomManager.Instance.RoomId = roomId;
-            RoomManager.Instance.IsBossRoom = isBossRoom;
+           // RoomManager.Instance.IsBossRoom = isBossRoom;
         }
 
     }

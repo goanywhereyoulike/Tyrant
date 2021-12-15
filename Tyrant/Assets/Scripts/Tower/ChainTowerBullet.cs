@@ -71,6 +71,7 @@ public class ChainTowerBullet : MonoBehaviour
         if (tag == "Boss")
         {
             PSC levelBoss = collision.gameObject.GetComponent<PSC>();
+            levelBoss.TakeDamage(bulletDamage);
 
         }
 

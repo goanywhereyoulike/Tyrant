@@ -171,4 +171,5 @@ public class Tower : MonoBehaviour, IDamageable, GameObjectsLocator.IGameObjectR
     {
         GameObjectsLocator.Instance.Unregister<Tower>(this);
     }
+
 }

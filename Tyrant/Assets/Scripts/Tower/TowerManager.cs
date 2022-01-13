@@ -223,8 +223,9 @@ public class TowerManager : MonoBehaviour
 
     void DestroyTower()
     {
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        RaycastHit2D hit = Physics2D.Raycast(ray.origin, Vector2.down);
+        Vector2 mousePosition = InputManager.Instance.MouseWorldPosition;
+        RaycastHit2D hit = Physics2D.Raycast(mousePosition, Vector2.zero);
+        Debug.DrawLine(Camera.main.transform.position, hit.point);
         if (hit.collider != null)
         {
             if (InputManager.Instance.GetKeyDown("DestroyTower"))

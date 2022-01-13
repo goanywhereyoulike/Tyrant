@@ -789,10 +789,8 @@ GameObject:
   m_Component:
   - component: {fileID: 5927489026001596302}
   - component: {fileID: 5927489026001596301}
-  - component: {fileID: 5927489026001596291}
   - component: {fileID: 5927489026001596300}
   - component: {fileID: 5927489026001596290}
-  - component: {fileID: 8435642582495110383}
   - component: {fileID: 1992357388331890635}
   m_Layer: 6
   m_Name: Tower
@@ -844,25 +842,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.78167725, y: 0.7116872}
   m_EdgeRadius: 0
---- !u!95 &5927489026001596291
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5927489026001596303}
-  m_Enabled: 0
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 07c6b4c71c211774d95f35058a781cf3, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!212 &5927489026001596300
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -930,33 +909,7 @@ MonoBehaviour:
   towerData: {fileID: 11400000, guid: b98cf827f1f74b045a6fe86a23c139a9, type: 2}
   DestroyedTower: {fileID: 726300743984907434, guid: 7265db8221c77dd439f1dd70a04cba12, type: 3}
   Healthbar: {fileID: 4526928092737472423}
-  animator: {fileID: 5927489026001596291}
---- !u!114 &8435642582495110383
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5927489026001596303}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 81d4d30aa72c61b458197b166bfe8b83, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  towerData: {fileID: 11400000, guid: b98cf827f1f74b045a6fe86a23c139a9, type: 2}
-  DissolveMaterial: {fileID: 0}
-  ColdDown: {fileID: 181091715160435714}
-  HasAnimation: 1
-  ShootPoint: {fileID: 5927489025907779452}
-  BulletPrefab: {fileID: 6251904807959551005, guid: 0d0e4d67fc628e648821dea768c628f1, type: 3}
-  TargetPos: {fileID: 0}
-  BulletLimit: 0
-  CoolDownSpeed: 0
-  DistanceToShoot: 0
-  BulletForce: 20
-  FireRate: 0.1
-  towerface: 0
-  animator: {fileID: 5927489026001596291}
+  animator: {fileID: 0}
 --- !u!114 &1992357388331890635
 MonoBehaviour:
   m_ObjectHideFlags: 0

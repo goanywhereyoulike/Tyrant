@@ -73,7 +73,7 @@ public class Tower : MonoBehaviour, IDamageable, GameObjectsLocator.IGameObjectR
     {
         if (towertype == TowerType.Chain)
         {
-            ChainTowerBullet[] bullets =GetComponentsInChildren<ChainTowerBullet>(true);
+            ChainTowerBullet[] bullets = GetComponentsInChildren<ChainTowerBullet>(true);
 
             foreach (var bullet in bullets)
             {

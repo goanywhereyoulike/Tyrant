@@ -223,9 +223,8 @@ public class TowerManager : MonoBehaviour
 
     void DestroyTower()
     {
-        Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        RaycastHit2D hit = Physics2D.Raycast(mousePosition, Vector2.zero);
-
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit2D hit = Physics2D.Raycast(ray.origin, Vector2.down);
         if (hit.collider != null)
         {
             if (InputManager.Instance.GetKeyDown("DestroyTower"))
@@ -233,7 +232,7 @@ public class TowerManager : MonoBehaviour
                 if (hit.collider.gameObject.tag == "Tower")
                 {
                     Tower tower = hit.collider.gameObject.GetComponent<Tower>();
-                    if (tower.towertype ==Tower.TowerType.Chain)
+                    if (tower.towertype == Tower.TowerType.Chain)
                     {
                         ChainTowerBullet[] bullets = tower.GetComponentsInChildren<ChainTowerBullet>();
 
@@ -248,60 +247,46 @@ public class TowerManager : MonoBehaviour
                     }
                     else if (tower.towertype == Tower.TowerType.Lighting)
                     {
-                        LightingShoot ls = tower.GetComponent<LightingShoot>();
-                        if (ls)
+                        List<Enemy> enemies = GameObjectsLocator.Instance.Get<Enemy>();
+                        List<PSC> levelbosses = GameObjectsLocator.Instance.Get<PSC>();
+                        if (enemies != null)
                         {
-                            List<Enemy> enemies = GameObjectsLocator.Instance.Get<Enemy>();
-                            List<PSC> levelbosses = GameObjectsLocator.Instance.Get<PSC>();
-                            if (enemies != null)
+                            foreach (var enemy in enemies)
                             {
-                                foreach (var enemy in enemies)
+                                LightingTowerBullet[] bullets = enemy.GetComponentsInChildren<LightingTowerBullet>();
+
+                                foreach (var bullet in bullets)
                                 {
-                                    LightingTowerBullet[] bullets = enemy.GetComponentsInChildren<LightingTowerBullet>();
-
-                                    foreach (var bullet in bullets)
+                                    if (bullet)
                                     {
-                                        if (bullet)
-                                        {
-                                            bullet.gameObject.transform.parent = null;
-                                            bullet.gameObject.SetActive(false);
-
-                                        }
+                                        bullet.gameObject.transform.parent = null;
+                                        bullet.gameObject.SetActive(false);
                                     }
                                 }
                             }
-
-                            if (levelbosses != null)
+                        }
+                        if (levelbosses != null)
+                        {
+                            foreach (var boss in levelbosses)
                             {
-                                foreach (var boss in levelbosses)
+                                LightingTowerBullet[] bullets = boss.GetComponentsInChildren<LightingTowerBullet>();
+
+                                foreach (var bullet in bullets)
                                 {
-                                    LightingTowerBullet[] bullets = boss.GetComponentsInChildren<LightingTowerBullet>();
-
-                                    foreach (var bullet in bullets)
+                                    if (bullet)
                                     {
-                                        if (bullet)
-                                        {
-                                            bullet.gameObject.transform.parent = null;
-                                            bullet.gameObject.SetActive(false);
-
-                                        }
+                                        bullet.gameObject.transform.parent = null;
+                                        bullet.gameObject.SetActive(false);
                                     }
                                 }
-
                             }
-
                         }
                     }
-
                     Destroy(hit.collider.gameObject.transform.parent.gameObject);
                     DecreaseTowerlimit();
-
                 }
             }
-
-
         }
-
     }
 
     void ClearAll()
@@ -332,7 +317,7 @@ public class TowerManager : MonoBehaviour
                 {
                     Destroy(pretower.gameObject);
                     pretower.UnRegisterToLocator();
-                    
+
                 }
 
 
@@ -593,7 +578,7 @@ public class TowerManager : MonoBehaviour
                 TowerSprite.color = Color.green;
                 if (InputManager.Instance.GetKeyDown("BuildTower"))
                 {
-                    
+
                     GameObject realtower = Instantiate(allslots[TowerIndex].Towerprefab, target, Quaternion.identity);
                     SpawnEnemyInTutorial(sceneName, realtower);
                     player.GetComponent<Player>().coin -= allslots[TowerIndex].towerTemplate.price;
@@ -601,7 +586,7 @@ public class TowerManager : MonoBehaviour
                     Destroy(bluePrint.gameObject);
                     IsPreTowerExist = false;
                     TowerNumber++;
-                   
+
 
                     if (realtower.GetComponentInChildren<LightingShoot>())
                     {

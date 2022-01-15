@@ -31,7 +31,7 @@ public class BombEnemy : Enemy
     {
         if (isDead)
         {
-            AudioManager.instance.PlaySFX(16);
+            //AudioManager.instance.PlaySFX(16);
             enemyUi.HealthChanged(EnemyState.MaxHealth);
         }
 

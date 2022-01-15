@@ -69,11 +69,11 @@ public class Flamethrower : Weapon
             flameParticle.gameObject.transform.position = startShootingPointDict[Facing].transform.position;
             flameParticle.Play();
             ammoBar.value = reloader.CurrentAmmo;
-            AudioManager.instance.PlaySFX(2);
+            //AudioManager.instance.PlaySFX(2);
         }
         else if (reloader.CurrentAmmo <= 0)
             flameParticle.Stop();
-        AudioManager.instance.PlaySFX(17);
+        //AudioManager.instance.PlaySFX(17);
 
 
         reloader.FirstStart = false;

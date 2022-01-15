@@ -133,7 +133,7 @@ public class RoomManager : MonoBehaviour
 
                     if (!Isaudio)
                     {
-                        AudioManager.instance.PlaySFX(18);
+                        //AudioManager.instance.PlaySFX(18);
                         Isaudio = true;
                     }
 

@@ -92,7 +92,7 @@ public class Laser : Weapon
                 bulletObject.transform.position = bullet.StartPosition;
                 Vector3 vecDir = InputManager.Instance.MouseWorldPosition - transform.position;
                 bulletObject.transform.eulerAngles = new Vector3(0.0f, 0.0f, 180.0f - Mathf.Atan2(-vecDir.y, vecDir.x) * Mathf.Rad2Deg);
-                AudioManager.instance.PlaySFX(1);
+                //AudioManager.instance.PlaySFX(1);
                 bulletObject.SetActive(true);
             }
             charged = false;
@@ -105,6 +105,7 @@ public class Laser : Weapon
                 animator.enabled = false;
                 laserCompleteAnimator.enabled = false;
             }
+            CinemachineShaker.Instance.ShakeCamera(5f, 0.3f);
         }
     }
 

@@ -133,7 +133,7 @@ public class TowerShoot : MonoBehaviour
         //{
         if (towerData.type == "Basic" && bullet)
         {
-            AudioManager.instance.PlaySFX(14);
+            //AudioManager.instance.PlaySFX(14);
             bullet.GetComponent<TowerBullet>().bulletDamage = towerData.bulletDamage;
         }
         if (towerData.type == "CannonTower")
@@ -141,7 +141,7 @@ public class TowerShoot : MonoBehaviour
             bullet = ObjectPoolManager.Instance.GetPooledObject("CannonTowerBullet");
             if (bullet)
             {
-                AudioManager.instance.PlaySFX(15);
+                //AudioManager.instance.PlaySFX(15);
                 bullet.GetComponent<CannonTowerBullet>().bulletDamage = towerData.bulletDamage;
 
             }

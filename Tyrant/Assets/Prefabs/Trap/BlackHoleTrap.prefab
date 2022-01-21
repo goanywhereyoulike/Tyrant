@@ -44,10 +44,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31060c07c8c89f34b96e0c6ec4bb05a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  TrapData: {fileID: 11400000, guid: 36d0e0f1d995f1445a20161c5304af27, type: 2}
   GravityEffect: {fileID: 4862142306489124203, guid: ead6d95432083d547a821bd02be63a01, type: 3}
-  radius: 3
-  forcemagnitude: 10
-  duration: 10
 --- !u!212 &3124416122216975887
 SpriteRenderer:
   m_ObjectHideFlags: 0

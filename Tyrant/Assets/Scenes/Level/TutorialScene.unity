@@ -437,11 +437,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2579680173754891764, guid: b05cfbd022f831d4699471cf7d654ad9, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -28.6
+      value: 69.4
       objectReference: {fileID: 0}
     - target: {fileID: 2579680173754891764, guid: b05cfbd022f831d4699471cf7d654ad9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.6
+      value: 15.3
       objectReference: {fileID: 0}
     - target: {fileID: 2579680173754891764, guid: b05cfbd022f831d4699471cf7d654ad9, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2435,7 +2435,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2974921023735034898, guid: df40cfccb2316a145ac15593c1a28626, type: 3}
       propertyPath: m_AnimatedTiles.Array.data[0].second.m_AnimationSpeed
-      value: 3.0000002
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2974921023735034898, guid: df40cfccb2316a145ac15593c1a28626, type: 3}
       propertyPath: m_AnimatedTiles.Array.data[1].second.m_AnimationSpeed
@@ -2443,7 +2443,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2974921023735034898, guid: df40cfccb2316a145ac15593c1a28626, type: 3}
       propertyPath: m_AnimatedTiles.Array.data[2].second.m_AnimationSpeed
-      value: 3
+      value: 3.0000002
       objectReference: {fileID: 0}
     - target: {fileID: 2974921023735034898, guid: df40cfccb2316a145ac15593c1a28626, type: 3}
       propertyPath: m_AnimatedTiles.Array.data[3].second.m_AnimationSpeed
@@ -2451,11 +2451,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2974921023735034898, guid: df40cfccb2316a145ac15593c1a28626, type: 3}
       propertyPath: m_AnimatedTiles.Array.data[4].second.m_AnimationSpeed
-      value: 3
+      value: 3.0000002
       objectReference: {fileID: 0}
     - target: {fileID: 2974921023735034898, guid: df40cfccb2316a145ac15593c1a28626, type: 3}
       propertyPath: m_AnimatedTiles.Array.data[5].second.m_AnimationSpeed
-      value: 3.0000002
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2974921023735034898, guid: df40cfccb2316a145ac15593c1a28626, type: 3}
       propertyPath: m_AnimatedTiles.Array.data[6].second.m_AnimationSpeed
@@ -2463,11 +2463,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2974921023735034898, guid: df40cfccb2316a145ac15593c1a28626, type: 3}
       propertyPath: m_AnimatedTiles.Array.data[7].second.m_AnimationSpeed
-      value: 3.0000002
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2974921023735034898, guid: df40cfccb2316a145ac15593c1a28626, type: 3}
       propertyPath: m_AnimatedTiles.Array.data[8].second.m_AnimationSpeed
-      value: 3.0000002
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2974921023735034898, guid: df40cfccb2316a145ac15593c1a28626, type: 3}
       propertyPath: m_AnimatedTiles.Array.data[13].second.m_AnimationSpeed
@@ -19766,6 +19766,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: TrapManager
       objectReference: {fileID: 0}
+    - target: {fileID: 4199241346227778097, guid: cb741bea892f5de47ad2e815862d15bb, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4199241346227778097, guid: cb741bea892f5de47ad2e815862d15bb, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cb741bea892f5de47ad2e815862d15bb, type: 3}
 --- !u!1 &1471247468
@@ -19912,11 +19920,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4707894365722169238, guid: e0342963580770d4bbbfa79b77e84777, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -28.6
+      value: 69.4
       objectReference: {fileID: 0}
     - target: {fileID: 4707894365722169238, guid: e0342963580770d4bbbfa79b77e84777, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.6
+      value: 15.3
       objectReference: {fileID: 0}
     - target: {fileID: 4707894365722169238, guid: e0342963580770d4bbbfa79b77e84777, type: 3}
       propertyPath: m_LocalPosition.z

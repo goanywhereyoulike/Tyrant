@@ -13,7 +13,6 @@ MonoBehaviour:
   m_Name: ClipTrap
   m_EditorClassIdentifier: 
   type: ClipTrap
-  distanceToShoot: 5
-  TrapDamage: 5
-  price: 50
-  CoolDownSpeed: 0.3
+  Range: 0
+  TrapDamage: 0
+  Duration: 10

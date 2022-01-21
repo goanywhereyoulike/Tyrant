@@ -10,10 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b35af33cb91d6214db957ed8a18bb5fb, type: 3}
-  m_Name: OtherTrap
+  m_Name: BlackHoleTrap
   m_EditorClassIdentifier: 
-  type: OtherTrap
-  distanceToShoot: 10
-  TrapDamage: 10
-  price: 150
-  CoolDownSpeed: 0.5
+  type: BlackHoleTrap
+  Range: 4
+  TrapDamage: 50
+  Duration: 10

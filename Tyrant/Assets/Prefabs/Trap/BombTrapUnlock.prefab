@@ -122,5 +122,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b31fb9d862c95247a92a8b8894cadb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  AnimatePos: {x: 1000, y: 1000}
   isInfinite: 1
   index: 2

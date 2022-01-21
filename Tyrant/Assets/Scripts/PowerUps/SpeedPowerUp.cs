@@ -12,7 +12,7 @@ public class SpeedPowerUp : PowerUps
     protected override void activeEffect()
     {
         isTriggered = true;
-        gameObject.GetComponent<SpriteRenderer>().enabled = false;
+        //gameObject.GetComponent<SpriteRenderer>().enabled = false;
         playerMovement = player.gameObject.GetComponent<PlayerMovement>();
         //originalSpeed = playerMovement.MoveSpeed;
         playerMovement.MoveSpeed += increaseSpeed;

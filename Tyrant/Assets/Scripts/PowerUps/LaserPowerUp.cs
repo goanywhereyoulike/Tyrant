@@ -22,7 +22,7 @@ public class LaserPowerUp : PowerUps
         if (weaponController.CurrentWeapon.weaponType == WeaponController.WeaponType.Laser)
         {
             isTriggered = true;
-            gameObject.GetComponent<SpriteRenderer>().enabled = false;
+            //gameObject.GetComponent<SpriteRenderer>().enabled = false;
             laser = weaponController.CurrentWeapon.weaponObject.GetComponent<Laser>();
             originalHold = laser.ChargeTime;
             laser.ChargeTime -= reduceHold;

@@ -5,7 +5,6 @@ using DG.Tweening;
 
 public class TrapUnlock : MonoBehaviour
 {
-    public Vector2 AnimatePos;
     public bool isInfinite = false;
     public int index = -1;
     private void OnTriggerEnter2D(Collider2D collision)
@@ -19,11 +18,17 @@ public class TrapUnlock : MonoBehaviour
             //TrapManager TrapMngr = FindObjectOfType<TrapManager>();
 
             TrapManager.Instance.AddTrap(index);
-            gameObject.transform.DOShakeScale(0.8f).OnComplete(()=> { transform.DORewind(); });
+
 
             if (!isInfinite)
             {
-                gameObject.SetActive(false);
+                gameObject.transform.DOScale(Vector3.zero,0.5f).OnComplete(() => { gameObject.SetActive(false); });
+              
+            }
+            else
+            {
+                gameObject.transform.DOShakeScale(0.8f).OnComplete(() => { transform.DORewind(); });
+
             }
             // Destroy(gameObject);
 

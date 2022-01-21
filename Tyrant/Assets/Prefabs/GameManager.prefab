@@ -2411,6 +2411,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  indicators: []
   testRooms: []
 --- !u!1 &4488405804293594933
 GameObject:
@@ -2855,6 +2856,10 @@ MonoBehaviour:
     shouldExpand: 1
   - tagName: testtarget
     objectToPool: {fileID: 3649993937225229053, guid: c1c3e04f6d1ec9e448ab4d0051119ec0, type: 3}
+    amountToPool: 5
+    shouldExpand: 1
+  - tagName: Coin
+    objectToPool: {fileID: 7749296485119699822, guid: b451ecc373e528345bd4b107739222c7, type: 3}
     amountToPool: 5
     shouldExpand: 1
 --- !u!1 &4925202351171300084

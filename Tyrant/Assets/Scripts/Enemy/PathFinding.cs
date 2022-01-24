@@ -31,7 +31,7 @@ public class Pathfinding
         var blocks = GameObjectsLocator.Instance.Get<Block>();
         foreach (var objects in blocks)
         {
-            foreach (var block in objects.blockObject)
+            foreach (var block in objects.BlockObject)
             {
                 if (row == block.x && column == block.y)
                 {

@@ -12,8 +12,7 @@ public class Block : MonoBehaviour, GameObjectsLocator.IGameObjectRegister
     int sizeY;
     public List<Vector2> worldPosition;
     //public List<Vector2> gridPosition;
-    private List<List<Vector2>> collectBlock = new List<List<Vector2>>();
-    public List<Vector2> blockObject = new List<Vector2>();
+    private List<Vector2> blockObject = new List<Vector2>();
 
     public int SizeX { get => sizeX; }
     public int SizeY { get => sizeY; }
@@ -26,10 +25,14 @@ public class Block : MonoBehaviour, GameObjectsLocator.IGameObjectRegister
             GetTiles(tilemaps[i], i);
             GetTileSize(i);
         }
-        AddList();
+       
         RegisterToLocator();
     }
-
+    //USE FOR DEBUG TILE
+    //private void Update()
+    //{
+    //    drawBlock();
+    //}
     void GetTileSize(int i)
     {
         if (i + 1< tilemaps.Count)
@@ -67,33 +70,27 @@ public class Block : MonoBehaviour, GameObjectsLocator.IGameObjectRegister
                 if (i == 1)
                 {
                     worldPosition.Add(wPosition);
-                }//worldPosition.Add(new Vector2(wPosition.x + 0.5f, wPosition.y));
-                //worldPosition.Add(new Vector2(wPosition.x, wPosition.y + 0.5f));
-                //worldPosition.Add(new Vector2(wPosition.x + 0.5f, wPosition.y + 0.5f));
-
-                // Debug.Log("boundx:" + wPosition.x + " bounds:" + wPosition.y);
-                //gridPosition.Add(new Vector2(x,y));
+                }
                 // x + y * bounds.size.x to know the tile position in array
                 TileBase tile = tiles[x + y * bounds.size.x];
                 if (tile != null)
                 {
-                    //blockObject.Add(new Vector2(wPosition.x, wPosition.y));
                     blockObject.Add(new Vector2(wPosition.x, wPosition.y));
-                    //Debug.Log("x:" + wPosition.x + " y:" + wPosition.y + " tile:" + tile.name);
                 }
             }
-            // Debug.Log("boundx:" + bounds.size.x + " bounds:" + bounds.size.y);
         }
-        //collectBlock.Add(block);
     }
 
-    void AddList()
-    {
-        //foreach (List<Vector2> Blocks in collectBlock)
-        //{
-        //    blockObject.AddRange(Blocks);
-        //}
-    }
+    //void drawBlock()
+    //{
+    //    for(int i =0;i<blockObject.Count;i++)
+    //    {
+    //        Debug.DrawRay(blockObject[i], Vector2.up, Color.red, 0.5f);
+    //        Debug.DrawRay(blockObject[i], Vector2.left, Color.red, 0.5f);
+    //        Debug.DrawRay(blockObject[i], Vector2.right, Color.red, 0.5f);
+    //        Debug.DrawRay(blockObject[i], Vector2.down, Color.red, 0.5f);
+    //    }
+    //}
     public void RegisterToLocator()
     {
         GameObjectsLocator.Instance.Register<Block>(this);

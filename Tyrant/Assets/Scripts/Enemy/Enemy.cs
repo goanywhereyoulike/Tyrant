@@ -326,7 +326,7 @@ public class Enemy : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDam
         }
        Debug.DrawRay(transform.position, Vector2.up, Color.green, wDetectRange);
 
-        RaycastHit2D downHit = Physics2D.Raycast(transform.position, Vector2.down, wDetectRange+1, LayerMask.GetMask("Wall"));
+        RaycastHit2D downHit = Physics2D.Raycast(transform.position, Vector2.down, wDetectRange, LayerMask.GetMask("Wall"));
         if (downHit.collider != null && downHit.collider.tag == "Wall")
         {
             if (rb)

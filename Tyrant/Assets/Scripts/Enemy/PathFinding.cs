@@ -46,6 +46,7 @@ public class Pathfinding
 
     public bool Search(Vector2 startposition, Vector2 endposition)
     {
+        float F = 0.0f;
         found = false;
         openList = new List<NodePath.Node>();
         closeList = new List<NodePath.Node>();
@@ -54,17 +55,17 @@ public class Pathfinding
         closeList.Clear();
 
         nodePath.ResetPath();
-        if (isBlock(Mathf.FloorToInt(startposition.x), Mathf.FloorToInt(startposition.y)))
-        {
-            if (startposition.x > (int)startposition.x)
-            {
-                startposition.x += 1;
-            }
-            if (startposition.y > (int)startposition.y)
-            {
-                startposition.y += 1;
-            }
-        }
+        //if (isBlock(Mathf.FloorToInt(startposition.x), Mathf.FloorToInt(startposition.y)))
+        //{
+        //    if (startposition.x > (int)startposition.x)
+        //    {
+        //        startposition.x += 1;
+        //    }
+        //    if (startposition.y > (int)startposition.y)
+        //    {
+        //        startposition.y += 1;
+        //    }
+        //}
 
         var node = nodePath.FindNode(Mathf.FloorToInt(startposition.x), Mathf.FloorToInt(startposition.y));
 
@@ -73,14 +74,14 @@ public class Pathfinding
 
         var end = nodePath.FindNode(Mathf.FloorToInt(endposition.x), Mathf.FloorToInt(endposition.y));
 
-        if (isBlock(end.r, end.c))
-        {
-            end = lastend;
-        }
-        else
-        {
-            lastend = end;
-        }
+        //if (isBlock(end.r, end.c))
+        //{
+        //    end = lastend;
+        //}
+        //else
+        //{
+        //    lastend = end;
+        //}
 
         while (!found && OpenList.Count != 0)
         {
@@ -99,14 +100,19 @@ public class Pathfinding
                     {
                         if (current.neighbors[i] != null)
                         {
+                            var G = current.neighbors[i].g;
+                          
                             if (isBlock(current.neighbors[i].r, current.neighbors[i].c))
                             {
-                                continue;
+                                current.neighbors[i].h = GetHCost(current.neighbors[i].r, current.neighbors[i].c, end.r, end.c);
+                                G += GetGCost();
+                                F = G + current.neighbors[i].h;
                             }
-
-                            current.neighbors[i].h = GetHCost(current.neighbors[i].r, current.neighbors[i].c, end.r, end.c);
-                            var G = current.neighbors[i].g + GetGCost();
-                            float F = G + current.neighbors[i].h;
+                            else
+                            {
+                                current.neighbors[i].h = GetHCost(current.neighbors[i].r, current.neighbors[i].c, end.r, end.c);
+                                F = G + current.neighbors[i].h;
+                            }
 
                             if (!current.neighbors[i].opened)
                             {

@@ -35,7 +35,7 @@ TagManager:
   - Indicator
   - CamBox
   - PreTower
-  - 
+  - UIParticle
   - 
   - 
   - 
@@ -55,4 +55,7 @@ TagManager:
     locked: 0
   - name: player
     uniqueID: 2630510271
+    locked: 0
+  - name: UI
+    uniqueID: 1553683165
     locked: 0

@@ -11,6 +11,8 @@ public class TrapManager : MonoBehaviour
     PlayerMovement player;
     PlayerAnimation playFace;
     SpriteRenderer TrapSprite;
+    UIParticleEffect UIP;
+
     [SerializeField]
     TrapLimitTemplate traptemplate;
     int LevelNumber = 0;
@@ -62,6 +64,7 @@ public class TrapManager : MonoBehaviour
     //[SerializeField]
     //Image PreBlackHoleSprite;
 
+
     public GameObject Clipprefab;
     public GameObject Bombprefab;
     public GameObject BlackHoleprefab;
@@ -104,6 +107,7 @@ public class TrapManager : MonoBehaviour
             Destroy(gameObject);
         }
         player = FindObjectOfType<PlayerMovement>();
+        UIP = FindObjectOfType<UIParticleEffect>();
         playFace = player.gameObject.GetComponent<PlayerAnimation>();
         Trapnumber.text = TrapNumber.ToString();
         //RoomManager.Instance.RoomChanged += RoomChanged;
@@ -307,6 +311,11 @@ public class TrapManager : MonoBehaviour
     }
     public void AddTrap(int index)
     {
+        if (UIP.ps)
+        {
+            UIP.ps.Play();
+        }
+
         switch (index)
         {
             case 1:

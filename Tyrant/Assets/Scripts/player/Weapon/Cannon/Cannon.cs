@@ -41,7 +41,7 @@ public class Cannon : Weapon
     {
         if (!isReloading && (currentAmmo <= 4 && InputManager.Instance.GetKeyDown("Reload") || currentAmmo == 0))
         {
-            //AudioManager.instance.PlaySFX(12);
+            //AudioManager.Instance.Play("Reload");
             StartCoroutine(Reload());
             return;
         }
@@ -90,7 +90,7 @@ public class Cannon : Weapon
                 bullet.Damage = connonStates.Damage;
                 bulletObject.transform.position = bullet.StartPosition;
                 bulletObject.SetActive(true);
-                AudioManager.Instance.Play("Cannon_Shooting");
+                //AudioManager.Instance.Play("Cannon_Shooting");
             }
             currentAmmo -= 1;
             ammoImages[currentAmmo].gameObject.SetActive(false);
@@ -102,7 +102,7 @@ public class Cannon : Weapon
    {
         if(currentAmmo <= 0)
         {
-            //AudioManager.instance.PlaySFX(11);
+            //AudioManager.Instance.Play("NoCannonBullet");
         }
-   }
+    }
 }

@@ -32,6 +32,11 @@ public class AudioManager : MonoBehaviour
             s.source.volume = s.volume;
             s.source.pitch = s.pitch;
             s.source.loop = s.loop;
+            if (s.playOnAwake)
+            {
+                s.source.Play();
+            }
+            s.source.enabled = false;
         }
     }
 
@@ -48,6 +53,19 @@ public class AudioManager : MonoBehaviour
             Debug.LogWarning($"AudioManager -- Can't find {name} sound!");
             return;
         }
+        s.source.enabled = true;
         s.source.Play();
+    }
+
+    public void Stop(string name)
+    {
+        Sound s = Array.Find(sounds, sound => sound.name == name);
+        if (s == null)
+        {
+            Debug.LogWarning($"AudioManager -- Can't find {name} sound!");
+            return;
+        }
+        s.source.Stop();
+        s.source.enabled = false;
     }
 }

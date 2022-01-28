@@ -59,7 +59,7 @@ public class Player : MonoBehaviour, IDamageable, GameObjectsLocator.IGameObject
         healthChanged.Invoke();
         playerStates.MaxHealthChanged += () => playerUI.MaxHealthChanged(playerStates.MaxHealth);
         playerStates.MaxHealthChanged.Invoke();
-        StartCoroutine(Coin());
+        //StartCoroutine(Coin());
 
         Health = playerStates.MaxHealth;
 

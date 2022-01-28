@@ -90,7 +90,7 @@ public class Cannon : Weapon
                 bullet.Damage = connonStates.Damage;
                 bulletObject.transform.position = bullet.StartPosition;
                 bulletObject.SetActive(true);
-                //AudioManager.instance.PlaySFX(0);
+                AudioManager.Instance.Play("Cannon_Shooting");
             }
             currentAmmo -= 1;
             ammoImages[currentAmmo].gameObject.SetActive(false);

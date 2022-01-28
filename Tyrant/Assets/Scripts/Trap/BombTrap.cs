@@ -10,7 +10,7 @@ public class BombTrap : MonoBehaviour
 
     public GameObject explosionEffect;
     float countdown;
-    private float delay = 0.0f;
+    public float delay = 3.0f;
     private float duration = 0.0f;
     private float radius = 0.0f;
     float shake = 0.0f;

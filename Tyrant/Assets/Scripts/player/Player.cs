@@ -101,11 +101,11 @@ public class Player : MonoBehaviour, IDamageable, GameObjectsLocator.IGameObject
         if (!isInvulnerbale)
         {
             Health -= damage;
-            //AudioManager.instance.PlaySFX(3);
+            AudioManager.Instance.Play("Player_Hurt");
             if (Health < 0)
             {
                 Health = 0;
-                //AudioManager.instance.PlaySFX(4);
+                AudioManager.Instance.Play("Player_Die");
                 if (GameSetting.Instance.isDemoMode)
                 {
                     retryUI.gameObject.SetActive(true);

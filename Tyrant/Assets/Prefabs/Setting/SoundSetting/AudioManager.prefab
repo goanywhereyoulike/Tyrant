@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &5451405231655449272
+--- !u!1 &3561576697700446235
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,8 +8,8 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 7252189825920662321}
-  - component: {fileID: 6640254169399858713}
+  - component: {fileID: 2192970680340511122}
+  - component: {fileID: 2804863999481189562}
   m_Layer: 0
   m_Name: AudioManager
   m_TagString: Untagged
@@ -17,27 +17,27 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &7252189825920662321
+--- !u!4 &2192970680340511122
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5451405231655449272}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -28.6, y: 3.6, z: 0}
+  m_GameObject: {fileID: 3561576697700446235}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6640254169399858713
+--- !u!114 &2804863999481189562
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5451405231655449272}
+  m_GameObject: {fileID: 3561576697700446235}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 27bc51fe902e04cbf9ea2d75e5ac09bc, type: 3}
@@ -186,6 +186,48 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: Warp_Out
     clip: {fileID: 8300000, guid: 63620f10efbc0e5429fce79111a3dbcb, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+  - name: Level_1
+    clip: {fileID: 8300000, guid: 6c5929346a8e1ff459d0e8b9be12323a, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 1
+    playOnAwake: 0
+    source: {fileID: 0}
+  - name: Reload
+    clip: {fileID: 8300000, guid: 8c311a927f2bbcb4788947e24fc58965, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+  - name: NoCannonBullet
+    clip: {fileID: 8300000, guid: 04dbd28e9f8cb1c41b39e00d91ca675d, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+  - name: Laser_Charging
+    clip: {fileID: 8300000, guid: cc465769227e87d44b7753cd8912aab0, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 1
+    playOnAwake: 0
+    source: {fileID: 0}
+  - name: Tower1
+    clip: {fileID: 8300000, guid: b2ddf2f7abc288b4bb3e45f6ecfe164e, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+  - name: Tower2
+    clip: {fileID: 8300000, guid: 4c9b3cbb730fbc440802494fda4516bf, type: 3}
     volume: 1
     pitch: 1
     loop: 0

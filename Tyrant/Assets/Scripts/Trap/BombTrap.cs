@@ -81,7 +81,8 @@ public class BombTrap : MonoBehaviour
             //}
 
         }
-        
+        AudioManager.Instance.Play("Explosion");
+        CinemachineShaker.Instance.ShakeCamera(10f, 0.3f);
 
         Destroy(gameObject);
     }

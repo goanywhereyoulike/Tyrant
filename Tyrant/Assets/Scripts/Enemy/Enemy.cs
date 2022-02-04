@@ -74,7 +74,7 @@ public class Enemy : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDam
             isDead = value;
             if (isDead)
             {
-                //AudioManager.Instance.PlaySFX(6);
+                AudioManager.Instance.Play("Enemy_Death");
                 gameObject.SetActive(false);
                 isSpawn = false;
                 IsSlow = false;
@@ -523,7 +523,7 @@ public class Enemy : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDam
     public virtual void TakeDamage(float damage)
     {
         Health -= damage;
-        //AudioManager.instance.PlaySFX(5);
+        AudioManager.Instance.Play("Enemy_Hurt");
     }
 
     public virtual void BurnArmor(float buringDamge)

@@ -31,7 +31,8 @@ public class BombEnemy : Enemy
     {
         if (isDead)
         {
-            //AudioManager.instance.PlaySFX(16);
+            AudioManager.Instance.Play("Explosion");
+            CinemachineShaker.Instance.ShakeCamera(10f, 0.3f);
             enemyUi.HealthChanged(EnemyState.MaxHealth);
         }
 

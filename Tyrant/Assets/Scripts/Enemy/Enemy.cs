@@ -6,6 +6,12 @@ using UnityEngine;
 public class Enemy : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDamageable, IPushable
 {
     [SerializeField]
+    GameObject BloodEffect;
+
+    [SerializeField]
+    GameObject BloodStain;
+
+    [SerializeField]
     EnemyState enemyState = new EnemyState();
 
     [SerializeField]
@@ -78,6 +84,9 @@ public class Enemy : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDam
                 gameObject.SetActive(false);
                 isSpawn = false;
                 IsSlow = false;
+                GameObject bloodEffect = Instantiate(BloodEffect, transform.position,Quaternion.identity);
+                GameObject bloodStain = Instantiate(BloodStain, transform.position, Quaternion.identity);
+                Destroy(bloodEffect, 0.5f);
                 //UnRegisterToLocator();
             }
         }

@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 369036d0769297146ab1257c4969fd04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BloodEffect: {fileID: 4257150012013758392, guid: 01e072f7671dbb94d830cd2f16e7cc8c, type: 3}
+  BloodStain: {fileID: 9119466850895969769, guid: 6fca3a6f7f498334c99fee87d4451b61, type: 3}
   enemyState:
     maxHealth: 3
     maxDamage: 4
@@ -55,6 +57,10 @@ PrefabInstance:
     - target: {fileID: 3002693670958593652, guid: 8b9f0df936cf54392b9c2877c62446d7, type: 3}
       propertyPath: m_LocalPosition.y
       value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3569394163614388009, guid: 8b9f0df936cf54392b9c2877c62446d7, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 1.25
       objectReference: {fileID: 0}
     - target: {fileID: 4136874122364066178, guid: 8b9f0df936cf54392b9c2877c62446d7, type: 3}
       propertyPath: m_BodyType

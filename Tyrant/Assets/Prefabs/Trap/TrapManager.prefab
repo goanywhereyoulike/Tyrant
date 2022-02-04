@@ -439,7 +439,7 @@ Canvas:
   m_GameObject: {fileID: 647695401917680446}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 1
+  m_RenderMode: 0
   m_Camera: {fileID: 2218094182124898613}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
@@ -572,7 +572,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c40384f6c20e924cae905bfaf7ad53a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UIParticleEffect: {fileID: 3707947088337471604, guid: be8b35459e1aa34468c50faa5bcabbf5, type: 3}
   traptemplate: {fileID: 11400000, guid: fc26c19043c33614ab8e116719d48b9f, type: 2}
   pretowerOffsets:
   - {x: 0.8, y: 0.3, z: 0}

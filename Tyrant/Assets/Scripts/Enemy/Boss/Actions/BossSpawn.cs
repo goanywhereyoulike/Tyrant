@@ -198,20 +198,24 @@ public class BossSpawn : Action
     void CheckRoomSpawn()
     {
         var Spawns = GameObjectsLocator.Instance.Get<SpawnArea>();
-        for(int s=0;s<Spawns.Count;s++)
+        if (Spawns != null)
         {
-            if (Spawns[s].roomNumber == roomNumber && Spawns[s].name != "BossSpawnArea")
-                roomSpawns.Add(Spawns[s]);
-        }
-      
-        for (int i = 0; i < roomSpawns.Count; ++i)
-        {
-            for (int s = 0; s < roomSpawns[i].Wave.waveData.Count; ++s)
+            for (int s = 0; s < Spawns.Count; s++)
             {
-                roomSpawns[i].TotalEnemies += roomSpawns[i].Wave.waveData[s].spawnNumber;
+                if (Spawns[s].roomNumber == roomNumber && Spawns[s].name != "BossSpawnArea")
+                    roomSpawns.Add(Spawns[s]);
             }
+
+            for (int i = 0; i < roomSpawns.Count; ++i)
+            {
+                for (int s = 0; s < roomSpawns[i].Wave.waveData.Count; ++s)
+                {
+                    roomSpawns[i].TotalEnemies += roomSpawns[i].Wave.waveData[s].spawnNumber;
+                }
+            }
+            isRoomCheck = true;
+
         }
-        isRoomCheck = true;
     }
 
     void SpawnWave(int count)

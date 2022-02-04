@@ -414,8 +414,8 @@ MonoBehaviour:
         byteData: 
         byteDataArray: 
       Version: 1.6.8
-  gizmoViewMode: 2
-  showBehaviorDesignerGizmo: 1
+  gizmoViewMode: 0
+  showBehaviorDesignerGizmo: 0
 --- !u!114 &399871459117369948
 MonoBehaviour:
   m_ObjectHideFlags: 0

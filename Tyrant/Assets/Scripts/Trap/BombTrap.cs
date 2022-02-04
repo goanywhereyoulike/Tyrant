@@ -5,16 +5,15 @@ using UnityEngine;
 public class BombTrap : MonoBehaviour
 {
     // Start is called before the first frame update
-    [SerializeField]
-    TrapTemplate TrapData;
-
     public GameObject explosionEffect;
     float countdown;
-    private float delay = 0.0f;
-    private float duration = 0.0f;
-    private float radius = 0.0f;
+    private float delay = 3.0f;
+    public float duration = 0.5f;
+    public float radius = 3.0f;
     float shake = 0.0f;
     bool hasExploded = false;
+
+    [SerializeField]
     private float damage;
     [SerializeField]
     private Material matWhite;
@@ -25,9 +24,6 @@ public class BombTrap : MonoBehaviour
         countdown = delay;
         sr = GetComponent<SpriteRenderer>();
         matDefault = sr.material;
-        duration = TrapData.Duration;
-        radius = TrapData.Range;
-        damage = TrapData.TrapDamage;
     }
 
     void flash()
@@ -75,7 +71,7 @@ public class BombTrap : MonoBehaviour
             IDamageable ib = co.GetComponent<IDamageable>();
             Rigidbody2D rb = co.GetComponent<Rigidbody2D>();
 
-            if (ib != null)
+            if (ib!=null)
             {
                 ib.TakeDamage(damage);
             }
@@ -85,7 +81,8 @@ public class BombTrap : MonoBehaviour
             //}
 
         }
-
+        AudioManager.Instance.Play("Explosion");
+        CinemachineShaker.Instance.ShakeCamera(10f, 0.3f);
 
         Destroy(gameObject);
     }
@@ -96,7 +93,7 @@ public class BombTrap : MonoBehaviour
         {
             flash();
         }
-
+        
         countdown -= Time.deltaTime;
         if (countdown <= 0.0f && !hasExploded)
         {

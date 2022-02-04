@@ -42,7 +42,7 @@ public class RangeEnemy : Enemy
 
     protected override void AttackBehavior()
     {
-        base.AttackBehavior();
+       // base.AttackBehavior();
         if (mTarget != null)
         {
             Vector3 direction = mTarget.position - transform.position;

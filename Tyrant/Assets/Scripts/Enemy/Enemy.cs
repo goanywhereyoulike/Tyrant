@@ -24,7 +24,7 @@ public class Enemy : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDam
     protected List<NodePath.Node> mPath = new List<NodePath.Node>();
     protected List<GameObject> targets = new List<GameObject>();
     protected List<Vector3> nextNodes = new List<Vector3>();
-
+    
     public Transform mTarget;
     protected Transform mMainTarget;
 
@@ -149,9 +149,13 @@ public class Enemy : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDam
             if (GameObjectsLocator.Instance.Get<Block>() != null)
             {
                 var tilemap = GameObjectsLocator.Instance.Get<Block>();
-                nodePath.init(tilemap[0].tilemap.cellBounds.size.x, tilemap[0].tilemap.cellBounds.size.y);
+                nodePath.init(tilemap[0].SizeX, tilemap[0].SizeY);
                 isGetBlock = true;
             }
+            //else
+            //{
+            //    return;
+            //}
         }
 
         //if(isSlow)
@@ -308,7 +312,7 @@ public class Enemy : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDam
 
     protected void CheckWall(float wDetectRange)
     {
-        RaycastHit2D upHit = Physics2D.Raycast(transform.position, Vector2.up, wDetectRange);
+        RaycastHit2D upHit = Physics2D.Raycast(transform.position, Vector2.up, wDetectRange, LayerMask.GetMask("Wall"));
         if (upHit.collider != null && upHit.collider.tag == "Wall")
         {
             if (rb)
@@ -322,7 +326,7 @@ public class Enemy : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDam
         }
        Debug.DrawRay(transform.position, Vector2.up, Color.green, wDetectRange);
 
-        RaycastHit2D downHit = Physics2D.Raycast(transform.position, Vector2.down, wDetectRange+1);
+        RaycastHit2D downHit = Physics2D.Raycast(transform.position, Vector2.down, wDetectRange, LayerMask.GetMask("Wall"));
         if (downHit.collider != null && downHit.collider.tag == "Wall")
         {
             if (rb)
@@ -334,8 +338,8 @@ public class Enemy : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDam
             Position.y = transform.position.y + 1;
             transform.position = Position;
         }
-        //Debug.DrawRay(transform.position, Vector2.down, Color.green, wDetectRange);
-        RaycastHit2D rightHit = Physics2D.Raycast(transform.position, Vector2.right, wDetectRange);
+        Debug.DrawRay(transform.position, Vector2.down, Color.green, wDetectRange);
+        RaycastHit2D rightHit = Physics2D.Raycast(transform.position, Vector2.right, wDetectRange, LayerMask.GetMask("Wall"));
         if (rightHit.collider != null && rightHit.collider.tag == "Wall")
         {
             if (rb)
@@ -347,8 +351,8 @@ public class Enemy : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDam
             Position.x = transform.position.x - 1;
             transform.position = Position;
         }
-        //Debug.DrawRay(transform.position, Vector2.left, Color.green, 2);
-        RaycastHit2D leftHit = Physics2D.Raycast(transform.position, Vector2.left, wDetectRange);
+        Debug.DrawRay(transform.position, Vector2.left, Color.green, 2);
+        RaycastHit2D leftHit = Physics2D.Raycast(transform.position, Vector2.left, wDetectRange, LayerMask.GetMask("Wall"));
         if (leftHit.collider != null && leftHit.collider.tag == "Wall")
         {
             if (rb)
@@ -360,7 +364,7 @@ public class Enemy : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDam
             Position.x = transform.position.x + 1;
             transform.position = Position;
         }
-        // Debug.DrawRay(transform.position, Vector2.right, Color.green, 2);
+        Debug.DrawRay(transform.position, Vector2.right, Color.green, 2);
     }
     //------------------attck animation------------------------
     //IEnumerator Attack()
@@ -415,10 +419,8 @@ public class Enemy : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDam
 
     protected void detectObject()
     {
-        foreach (GameObject target in GameObject.FindGameObjectsWithTag("Player"))
-        {
-            targets.Add(target);
-        }
+        var Player = GameObjectsLocator.Instance.Get<Player>();
+        targets.Add(Player[0].gameObject);
         foreach (GameObject target in GameObject.FindGameObjectsWithTag("Tower"))
         {
             targets.Add(target);

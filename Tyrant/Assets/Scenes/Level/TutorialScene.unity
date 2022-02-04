@@ -709,6 +709,18 @@ PrefabInstance:
       propertyPath: tilemap
       value: 
       objectReference: {fileID: 68768455}
+    - target: {fileID: 6790985345719129142, guid: ef3f980805d5933409e6efc072f2ff2b, type: 3}
+      propertyPath: tilemaps.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6790985345719129142, guid: ef3f980805d5933409e6efc072f2ff2b, type: 3}
+      propertyPath: tilemaps.Array.data[0]
+      value: 
+      objectReference: {fileID: 68768455}
+    - target: {fileID: 6790985345719129142, guid: ef3f980805d5933409e6efc072f2ff2b, type: 3}
+      propertyPath: tilemaps.Array.data[1]
+      value: 
+      objectReference: {fileID: 1411911018}
     - target: {fileID: 6790985345719129143, guid: ef3f980805d5933409e6efc072f2ff2b, type: 3}
       propertyPath: m_Name
       value: tilemapReader
@@ -2425,6 +2437,14 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 954454008223893852, guid: df40cfccb2316a145ac15593c1a28626, type: 3}
+      propertyPath: m_TileAnchor.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 954454008223893852, guid: df40cfccb2316a145ac15593c1a28626, type: 3}
+      propertyPath: m_TileAnchor.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 954454008223893852, guid: df40cfccb2316a145ac15593c1a28626, type: 3}
       propertyPath: m_TileSpriteArray.Array.data[135].m_Data
       value: 
       objectReference: {fileID: 0}
@@ -2593,6 +2613,14 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2974921023735034898, guid: df40cfccb2316a145ac15593c1a28626, type: 3}
+      propertyPath: m_TileAnchor.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2974921023735034898, guid: df40cfccb2316a145ac15593c1a28626, type: 3}
+      propertyPath: m_TileAnchor.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2974921023735034898, guid: df40cfccb2316a145ac15593c1a28626, type: 3}
       propertyPath: m_AnimatedTiles.Array.data[0].second.m_AnimationSpeed
       value: 3
       objectReference: {fileID: 0}
@@ -2646,7 +2674,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2974921023735034898, guid: df40cfccb2316a145ac15593c1a28626, type: 3}
       propertyPath: m_AnimatedTiles.Array.data[17].second.m_AnimationSpeed
-      value: 3
+      value: 3.0000002
       objectReference: {fileID: 0}
     - target: {fileID: 2974921023735034898, guid: df40cfccb2316a145ac15593c1a28626, type: 3}
       propertyPath: m_AnimatedTiles.Array.data[18].second.m_AnimationSpeed
@@ -19860,12 +19888,41 @@ PrefabInstance:
       propertyPath: m_Name
       value: tutorialLevel
       objectReference: {fileID: 0}
+    - target: {fileID: 5062884480547419452, guid: df40cfccb2316a145ac15593c1a28626, type: 3}
+      propertyPath: m_TileAnchor.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5062884480547419452, guid: df40cfccb2316a145ac15593c1a28626, type: 3}
+      propertyPath: m_TileAnchor.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5168823575090204209, guid: df40cfccb2316a145ac15593c1a28626, type: 3}
+      propertyPath: m_TileAnchor.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5168823575090204209, guid: df40cfccb2316a145ac15593c1a28626, type: 3}
+      propertyPath: m_TileAnchor.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7972967071086724677, guid: df40cfccb2316a145ac15593c1a28626, type: 3}
+      propertyPath: m_TileAnchor.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7972967071086724677, guid: df40cfccb2316a145ac15593c1a28626, type: 3}
+      propertyPath: m_TileAnchor.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7972967071086724677, guid: df40cfccb2316a145ac15593c1a28626, type: 3}
       propertyPath: m_AnimatedTiles.Array.data[10].second.m_AnimationSpeed
       value: 3.0000002
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: df40cfccb2316a145ac15593c1a28626, type: 3}
+--- !u!1839735485 &1411911018 stripped
+Tilemap:
+  m_CorrespondingSourceObject: {fileID: 954454008223893852, guid: df40cfccb2316a145ac15593c1a28626, type: 3}
+  m_PrefabInstance: {fileID: 1411911017}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1444774688
 PrefabInstance:
   m_ObjectHideFlags: 0

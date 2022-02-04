@@ -1,49 +1,71 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
-    public static AudioManager instance;
+    private static AudioManager instance;
+    public static AudioManager Instance { get { return instance; } }
 
-    public AudioSource levelMusic, gameOverMusic, winMusic;
-
-    public AudioSource[] sfx;
+    [SerializeField]
+    private Sound[] sounds;
 
     private void Awake()
     {
-        instance = this;
+        if (instance != null && instance != this)
+        {
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            instance = this;
+        }
+
+        DontDestroyOnLoad(gameObject);
+
+        foreach (var s in sounds)
+        {
+            s.source = gameObject.AddComponent<AudioSource>();
+            s.source.clip = s.clip;
+
+            s.source.volume = s.volume;
+            s.source.pitch = s.pitch;
+            s.source.loop = s.loop;
+            if (s.playOnAwake)
+            {
+                s.source.Play();
+            }
+            s.source.enabled = false;
+        }
     }
 
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
 
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Play(string name)
     {
-
+        Sound s = Array.Find(sounds, sound => sound.name == name);
+        if (s == null)
+        {
+            Debug.LogWarning($"AudioManager -- Can't find {name} sound!");
+            return;
+        }
+        s.source.enabled = true;
+        s.source.Play();
     }
 
-    public void PlayGameOver()
+    public void Stop(string name)
     {
-        levelMusic.Stop();
-
-        gameOverMusic.Play();
-    }
-
-    public void PlayLevelWin()
-    {
-        levelMusic.Stop();
-
-        winMusic.Play();
-    }
-
-    public void PlaySFX(int sfxToPlay)
-    {
-        sfx[sfxToPlay].Stop();
-        sfx[sfxToPlay].Play();
+        Sound s = Array.Find(sounds, sound => sound.name == name);
+        if (s == null)
+        {
+            Debug.LogWarning($"AudioManager -- Can't find {name} sound!");
+            return;
+        }
+        s.source.Stop();
+        s.source.enabled = false;
     }
 }

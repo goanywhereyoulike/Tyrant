@@ -1450,7 +1450,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4488405803428632958}
-  - component: {fileID: 4488405803428634241}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1475,41 +1474,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4488405803428634241
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4488405803428634240}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 27bc51fe902e04cbf9ea2d75e5ac09bc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  levelMusic: {fileID: 0}
-  gameOverMusic: {fileID: 0}
-  winMusic: {fileID: 0}
-  sfx:
-  - {fileID: 4488405803256324603}
-  - {fileID: 4488405803271091234}
-  - {fileID: 4488405802633250357}
-  - {fileID: 4488405803544218078}
-  - {fileID: 4488405804436793133}
-  - {fileID: 4488405804193893899}
-  - {fileID: 4488405803988807597}
-  - {fileID: 4488405803594502330}
-  - {fileID: 4488405802903733140}
-  - {fileID: 4488405803487238918}
-  - {fileID: 4488405804293594930}
-  - {fileID: 6081757066661140193}
-  - {fileID: 2614732350494240186}
-  - {fileID: 8222416075516259569}
-  - {fileID: 3370034208441395427}
-  - {fileID: 7469374656138103143}
-  - {fileID: 3216826257107575541}
-  - {fileID: 8222416075516259569}
-  - {fileID: 196077430517510921}
 --- !u!1 &4488405803487238920
 GameObject:
   m_ObjectHideFlags: 0

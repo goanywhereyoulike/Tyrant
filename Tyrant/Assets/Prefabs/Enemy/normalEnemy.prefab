@@ -30,6 +30,7 @@ MonoBehaviour:
   IsLighting: 0
   LightingIndex: -1
   LightingTowerIndex: -1
+  flashMaterial: {fileID: 2100000, guid: de64e845ecaa558459a431e66a1d5c61, type: 2}
   enemyUi: {fileID: 6129767443431876111}
 --- !u!1001 &1731359845336680481
 PrefabInstance:

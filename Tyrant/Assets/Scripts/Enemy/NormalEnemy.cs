@@ -38,6 +38,7 @@ public class NormalEnemy : Enemy
     {
         if(isDead)
         {
+            GetComponent<SpriteRenderer>().material = originalMaterial;
             enemyUi.HealthChanged(EnemyState.MaxHealth);
         }
 

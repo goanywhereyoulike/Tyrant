@@ -233,7 +233,7 @@ public class TowerManager : MonoBehaviour
                 if (hit.collider.gameObject.tag == "Tower")
                 {
                     Tower tower = hit.collider.gameObject.GetComponent<Tower>();
-                    if (tower.towertype == Tower.TowerType.Chain)
+                    if (tower.towertype == Tower.TowerType.Chain && tower)
                     {
                         ChainTowerBullet[] bullets = tower.GetComponentsInChildren<ChainTowerBullet>();
 

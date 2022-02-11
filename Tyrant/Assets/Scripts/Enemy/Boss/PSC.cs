@@ -30,11 +30,15 @@ public class PSC : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDamag
     }
 
     public float Health { get => health; set => health = value; }
+    public Animator Animator { get => animator; private set => animator = value; }
 
+    [SerializeField]
+    private Animator animator;
     private void Start()
     {
         healthSilder.maxValue = EnemyState.MaxHealth;
         spriteRenderer = GetComponent<SpriteRenderer>();
+        animator = GetComponent<Animator>();
         Health = EnemyState.MaxHealth;
         RegisterToLocator();
     }

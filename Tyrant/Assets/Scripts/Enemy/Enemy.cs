@@ -333,7 +333,7 @@ public class Enemy : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDam
             Position.y = transform.position.y - 1;
             transform.position = Position;
         }
-       Debug.DrawRay(transform.position, Vector2.up, Color.green, wDetectRange);
+      // Debug.DrawRay(transform.position, Vector2.up, Color.green, wDetectRange);
 
         RaycastHit2D downHit = Physics2D.Raycast(transform.position, Vector2.down, wDetectRange, LayerMask.GetMask("Wall"));
         if (downHit.collider != null && downHit.collider.tag == "Wall")
@@ -347,7 +347,7 @@ public class Enemy : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDam
             Position.y = transform.position.y + 1;
             transform.position = Position;
         }
-        Debug.DrawRay(transform.position, Vector2.down, Color.green, wDetectRange);
+        //Debug.DrawRay(transform.position, Vector2.down, Color.green, wDetectRange);
         RaycastHit2D rightHit = Physics2D.Raycast(transform.position, Vector2.right, wDetectRange, LayerMask.GetMask("Wall"));
         if (rightHit.collider != null && rightHit.collider.tag == "Wall")
         {
@@ -360,7 +360,7 @@ public class Enemy : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDam
             Position.x = transform.position.x - 1;
             transform.position = Position;
         }
-        Debug.DrawRay(transform.position, Vector2.left, Color.green, 2);
+        //Debug.DrawRay(transform.position, Vector2.left, Color.green, 2);
         RaycastHit2D leftHit = Physics2D.Raycast(transform.position, Vector2.left, wDetectRange, LayerMask.GetMask("Wall"));
         if (leftHit.collider != null && leftHit.collider.tag == "Wall")
         {
@@ -373,7 +373,7 @@ public class Enemy : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDam
             Position.x = transform.position.x + 1;
             transform.position = Position;
         }
-        Debug.DrawRay(transform.position, Vector2.right, Color.green, 2);
+        //Debug.DrawRay(transform.position, Vector2.right, Color.green, 2);
     }
     //------------------attck animation------------------------
     //IEnumerator Attack()

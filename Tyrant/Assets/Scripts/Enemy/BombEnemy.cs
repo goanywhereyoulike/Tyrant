@@ -11,10 +11,13 @@ public class BombEnemy : Enemy
 
     public float Damage { get => damage; set => damage = value; }
 
+    public bool Explosion { get; set; }
+
     // Start is called before the first frame update
     protected override void Start()
     {
         base.Start();
+        Explosion = false;
         enemyUi.MaxHealthChanged(EnemyState.MaxHealth);
         enemyUi.HealthChanged(EnemyState.MaxHealth);
         bombAnimator.gameObject.SetActive(false);
@@ -24,16 +27,23 @@ public class BombEnemy : Enemy
     {
         base.ReUse();
         StartCoroutine(HealthDecay());
+        bloodEffectOnDied = true;
+        Explosion = false;
+        spriteRenderer.enabled = true;
+        enemyUi.HealthBar.gameObject.SetActive(true);
+        enemyUi.HealthChanged(EnemyState.MaxHealth);
     }
 
     // Update is called once per frame
     protected override void Update()
     {
-        if (isDead)
+        if (Explosion)
         {
+            bloodEffectOnDied = false;
             AudioManager.Instance.Play("Explosion");
-            CinemachineShaker.Instance.ShakeCamera(10f, 0.3f);
-            enemyUi.HealthChanged(EnemyState.MaxHealth);
+            CinemachineShaker.Instance.ShakeCamera(2f, 0.3f);
+            spriteRenderer.enabled = false;
+            enemyUi.HealthBar.gameObject.SetActive(false);
         }
 
         base.Update();

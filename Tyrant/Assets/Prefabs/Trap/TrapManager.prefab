@@ -572,7 +572,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c40384f6c20e924cae905bfaf7ad53a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UIParticleEffect: {fileID: 3707947088337471604, guid: be8b35459e1aa34468c50faa5bcabbf5, type: 3}
   traptemplate: {fileID: 11400000, guid: fc26c19043c33614ab8e116719d48b9f, type: 2}
   pretowerOffsets:
   - {x: 0.8, y: 0.3, z: 0}
@@ -607,7 +606,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3761790115703373839}
   - component: {fileID: 2218094182124898613}
-  - component: {fileID: 850907229776788947}
   - component: {fileID: 1911632080631018733}
   m_Layer: 0
   m_Name: UICamera2
@@ -673,14 +671,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!81 &850907229776788947
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 711338478633907641}
-  m_Enabled: 1
 --- !u!114 &1911632080631018733
 MonoBehaviour:
   m_ObjectHideFlags: 0

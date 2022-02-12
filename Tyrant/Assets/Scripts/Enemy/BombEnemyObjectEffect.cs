@@ -32,7 +32,7 @@ public class BombEnemyObjectEffect : MonoBehaviour
         }
         if (collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("Tower"))
         {
-            
+            bombEnemy.Explosion = true;
             IDamageable damagebaleObejct = collision.gameObject.GetComponent<IDamageable>();
             if (damagebaleObejct != null)
             {

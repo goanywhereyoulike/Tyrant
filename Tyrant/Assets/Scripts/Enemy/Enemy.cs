@@ -64,6 +64,8 @@ public class Enemy : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDam
     protected bool firstFramePath = false;
     protected bool canFind = false;
 
+    protected bool bloodEffectOnDied = true;
+
     private List<Vector2> debug;
 
     protected List<Player> mainTarget = null;
@@ -84,9 +86,12 @@ public class Enemy : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDam
                 gameObject.SetActive(false);
                 isSpawn = false;
                 IsSlow = false;
-                GameObject bloodEffect = Instantiate(BloodEffect, transform.position,Quaternion.identity);
-                GameObject bloodStain = Instantiate(BloodStain, transform.position, Quaternion.identity);
-                Destroy(bloodEffect, 0.5f);
+                if (bloodEffectOnDied)
+                {
+                    GameObject bloodEffect = Instantiate(BloodEffect, transform.position, Quaternion.identity);
+                    GameObject bloodStain = Instantiate(BloodStain, transform.position, Quaternion.identity);
+                    Destroy(bloodEffect, 0.5f);
+                }
                 //UnRegisterToLocator();
             }
         }
@@ -119,16 +124,20 @@ public class Enemy : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDam
     public int LightingIndex = -1;
     public int LightingTowerIndex = -1;
 
+    private void Awake()
+    {
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        anim = GetComponent<Animator>();
+        rb = GetComponent<Rigidbody2D>();
+    }
+
     protected virtual void Start()
     {
         ReUse();
         path = new Pathfinding();
         nodePath = new NodePath();
-        anim = GetComponent<Animator>();
         mMainTarget = mTarget;
         detectObject();
-        spriteRenderer = GetComponent<SpriteRenderer>();
-        rb = GetComponent<Rigidbody2D>();
         RegisterToLocator();
         oMoveSpeed = moveSpeed;
     }

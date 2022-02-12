@@ -6,17 +6,20 @@ using BehaviorDesigner.Runtime.Tasks;
 public class BossShoot : Action
 {
     public BossFindTarget findTarget;
-    public int maxAnmoCount = 3;
+    public int maxAmmoCount = 3;
 
-    private int anmoCount = 0;
+    private int ammoCount = 0;
     public float speed;
+    public float orignalSpeed;
 
     private PSC psc;
     public override void OnStart()
     {
-        ObjectPoolManager.Instance.InstantiateObjects("enemyBullet");
+        
         psc = GetComponent<PSC>();
-        anmoCount = maxAnmoCount;
+        ammoCount = maxAmmoCount;
+        orignalSpeed = speed;
+        psc.shootAnimFinished += onShootAnimatnionFinished;
     }
 
     public override TaskStatus OnUpdate()
@@ -27,35 +30,59 @@ public class BossShoot : Action
         if (!ObjectPoolManager.Instance.GetPooledObject("enemyBullet"))
             return TaskStatus.Failure;
 
-        if (anmoCount > 0)
+        if (ammoCount > 0)
         {
-            psc.Animator.SetBool("Spell", true);
-            
-            StartCoroutine(WaitFor(0.5f));
-            
-            return TaskStatus.Running;
+            if (!psc.Animator.GetBool("Spell"))
+            {
+                Debug.Log("Spell");
+                psc.Animator.SetBool("Spell", true);
+            }
 
+            //StartCoroutine(WaitFor(0.5f));
+            //yield return new WaitForSeconds(f);
+            if (psc.Animator.IsInTransition(0))
+            {
+               
+            }
 
+          
 
         }
+        else
+        {
+            ammoCount = maxAmmoCount;
 
-        anmoCount = maxAnmoCount;
-
-        return TaskStatus.Success;
+            return TaskStatus.Success;
+        }
+        return TaskStatus.Running;
     }
 
-    IEnumerator WaitFor(float f)
+    public void onShootAnimatnionFinished()
     {
-        yield return new WaitForSeconds(f);
-        var bullet = ObjectPoolManager.Instance.GetPooledObject("enemyBullet");
-        var bulletClass = bullet.GetComponent<EnemyBullet>();
-        bulletClass.Position = findTarget.TargetPos;
-        bulletClass.transform.position = transform.position;
-        bulletClass.bulletSpeed = speed;
-        speed += 5;
-        speed = speed > 30 ? speed - 10 : speed;
-        anmoCount--;
-        bullet.SetActive(true);
+        //for (int i = 0; i < maxAmmoCount; ++i)
+        while(ammoCount>0)
+        {
+            var bullet = ObjectPoolManager.Instance.GetPooledObject("enemyBullet");
+            var bulletClass = bullet.GetComponent<EnemyBullet>();
+            bulletClass.Position = findTarget.TargetPos;
+            bulletClass.transform.position = transform.position;
+            bulletClass.bulletSpeed = speed;
+            //bulletClass.Damage = 10;
+            speed += 5;
+            speed = speed > 30 ? speed-10 : speed;
+            ammoCount--;
+            bullet.SetActive(true);
+        }
+        speed = orignalSpeed;
         psc.Animator.SetBool("Spell", false);
+       
+
     }
+
+    /*IEnumerator WaitFor(float f)
+    {
+       
+
+
+    }*/
 }

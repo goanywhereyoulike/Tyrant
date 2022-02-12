@@ -1,6 +1,8 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using BehaviorDesigner.Runtime.Tasks;
+
 public class PSC : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDamageable, IPushable
 {
     public Slider healthSilder;
@@ -14,6 +16,8 @@ public class PSC : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDamag
     private float health = 0f;
 
     private bool isDead = false;
+
+    public System.Action shootAnimFinished;
     public bool IsDead
     {
         get => isDead;
@@ -36,6 +40,13 @@ public class PSC : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDamag
     private Animator animator;
     private void Start()
     {
+        ObjectPoolManager.Instance.InstantiateObjects("normalenemy");
+        ObjectPoolManager.Instance.InstantiateObjects("rangeEnemy");
+        ObjectPoolManager.Instance.InstantiateObjects("Level1Boss");
+        ObjectPoolManager.Instance.InstantiateObjects("bombenemy");
+        ObjectPoolManager.Instance.InstantiateObjects("armorenemy");
+        ObjectPoolManager.Instance.InstantiateObjects("DropItem");
+        ObjectPoolManager.Instance.InstantiateObjects("enemyBullet");
         healthSilder.maxValue = EnemyState.MaxHealth;
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
@@ -88,5 +99,10 @@ public class PSC : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDamag
             Targets.TakeDamage(EnemyState.MaxDamage);
             Debug.Log("attack");
         }
+    }
+
+    public void onAnimationFinished()
+    {
+        shootAnimFinished?.Invoke();
     }
 }

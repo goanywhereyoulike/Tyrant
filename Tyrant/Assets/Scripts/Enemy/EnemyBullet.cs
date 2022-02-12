@@ -38,6 +38,10 @@ public class EnemyBullet : MonoBehaviour
         }
         speed = bulletSpeed * Time.deltaTime;
         transform.position = Vector2.MoveTowards(transform.position, Position, speed);
+        Vector3 direction = (Vector3)targetPosition - transform.position;
+        direction.Normalize();
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
     }
 
     void OnTriggerEnter2D(Collider2D collider)

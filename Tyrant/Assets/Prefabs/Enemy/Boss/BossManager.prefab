@@ -378,7 +378,7 @@ MonoBehaviour:
         Health","Instant":true,"SingleminTargetHealth":0,"SinglemaxTargetHealth":100,"PSCTargetBoss":1},{"Type":"BehaviorDesigner.Runtime.Tasks.RandomSelector","NodeData":{"Offset":"(140.64209,128.464157)"},"ID":10,"Name":"Random
         Selector","Instant":true,"Int32seed":0,"BooleanuseSeed":false,"AbortTypeabortType":"None","Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(-440,280)"},"ID":11,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"BossFindTarget","NodeData":{"Offset":"(-110,100)"},"ID":12,"Name":"Boss
         Find Target","Instant":true},{"Type":"BossShoot","NodeData":{"Offset":"(70,100)"},"ID":13,"Name":"Boss
-        Shoot","Instant":true,"BossFindTargetfindTarget":12,"Int32maxAnmoCount":5,"Singlespeed":10}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(-110.833374,280)"},"ID":14,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"BossHold","NodeData":{"Offset":"(-120,120)"},"ID":15,"Name":"Boss
+        Shoot","Instant":true,"BossFindTargetfindTarget":12,"Int32maxAmmoCount":3,"Singlespeed":10,"SingleorignalSpeed":0}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(-110.833374,280)"},"ID":14,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"BossHold","NodeData":{"Offset":"(-120,120)"},"ID":15,"Name":"Boss
         Hold","Instant":true,"SingleholdTime":1,"SliderholdSlider":2},{"Type":"BossFindTarget","NodeData":{"Offset":"(-3.05175781E-05,120)"},"ID":16,"Name":"Boss
         Find Target","Instant":true},{"Type":"BossCharge","NodeData":{"Offset":"(120,120)"},"ID":17,"Name":"Boss
         Charge","Instant":true,"BossFindTargetfindTarget":16,"Singleacceleration":7,"SinglemaxMoveSpeed":100,"SingleminMoveSpeed":25},{"Type":"BossHold","NodeData":{"Offset":"(240,120)"},"ID":18,"Name":"Boss
@@ -392,7 +392,7 @@ MonoBehaviour:
         Health","Instant":true,"Disabled":true,"SingleminTargetHealth":50,"SinglemaxTargetHealth":100,"PSCTargetBoss":4},{"Type":"BehaviorDesigner.Runtime.Tasks.RandomSelector","NodeData":{"Offset":"(52.99369,110.224251)"},"ID":30,"Name":"Random
         Selector","Instant":true,"Int32seed":0,"BooleanuseSeed":false,"AbortTypeabortType":"None","Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(-176.666687,197.564026)"},"ID":31,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"BossFindTarget","NodeData":{"Offset":"(-112.166573,97.23794)"},"ID":32,"Name":"Boss
         Find Target","Instant":true},{"Type":"BossShoot","NodeData":{"Offset":"(71.2078247,97.23794)"},"ID":33,"Name":"Boss
-        Shoot","Instant":true,"BossFindTargetfindTarget":32,"Int32maxAnmoCount":5,"Singlespeed":10}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(153.333252,188.3974)"},"ID":34,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"BossHold","NodeData":{"Offset":"(-115.000046,115.833344)"},"ID":35,"Name":"Boss
+        Shoot","Instant":true,"BossFindTargetfindTarget":32,"Int32maxAmmoCount":3,"Singlespeed":10,"SingleorignalSpeed":0}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(153.333252,188.3974)"},"ID":34,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"BossHold","NodeData":{"Offset":"(-115.000046,115.833344)"},"ID":35,"Name":"Boss
         Hold","Instant":true,"SingleholdTime":1,"SliderholdSlider":5},{"Type":"BossFindTarget","NodeData":{"Offset":"(3.636406,117.241371)"},"ID":36,"Name":"Boss
         Find Target","Instant":true},{"Type":"BossCharge","NodeData":{"Offset":"(119.93866,123.4491)"},"ID":37,"Name":"Boss
         Charge","Instant":true,"BossFindTargetfindTarget":36,"Singleacceleration":7,"SinglemaxMoveSpeed":100,"SingleminMoveSpeed":25},{"Type":"BossHold","NodeData":{"Offset":"(237.5,124.375)"},"ID":38,"Name":"Boss
@@ -440,6 +440,7 @@ MonoBehaviour:
     attackSpeed: 0
     detectRange: 0
     maxArmor: 0
+  animator: {fileID: 0}
 --- !u!212 &399871459117369949
 SpriteRenderer:
   m_ObjectHideFlags: 0

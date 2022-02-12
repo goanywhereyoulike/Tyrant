@@ -42,22 +42,18 @@ public class BossSpawn : Action
     private GameObject enemyObject;
 
     private SpriteRenderer spr;
-
+    bool  counnt;
     public bool IsSpawn { get => isSpawn; set => isSpawn = value; }
 
     // Start is called before the first frame update
     public override void OnStart()
     {
-        ObjectPoolManager.Instance.InstantiateObjects("normalenemy");
-        ObjectPoolManager.Instance.InstantiateObjects("rangeEnemy");
-        ObjectPoolManager.Instance.InstantiateObjects("Level1Boss");
-        ObjectPoolManager.Instance.InstantiateObjects("bombenemy");
-        ObjectPoolManager.Instance.InstantiateObjects("armorenemy");
-        ObjectPoolManager.Instance.InstantiateObjects("DropItem");
+
         roomSpawns = new List<SpawnArea>();
         m_Collider = GetComponent<Collider2D>();
         psc = GetComponent<PSC>();
         spr = GetComponent<SpriteRenderer>();
+
     }
 
     // Update is called once per frame
@@ -254,20 +250,7 @@ public class BossSpawn : Action
                             enemyObject.SetActive(true);
                             roomSpawns[count].Enemies.Add(enemyObject);
                             roomSpawns[count].SpawnCount++;
-                            break;
-                        case Wave.Enemytype.Level1Boss:
-                            spawnMax = new Vector2(roomSpawns[count].SpMax.x, roomSpawns[count].SpMax.y);
-                            spawnMin = new Vector2(roomSpawns[count].SpMin.x, roomSpawns[count].SpMin.y);
-                            spawnX = Random.Range((int)roomSpawns[count].SpMin.x, (int)roomSpawns[count].SpMax.x);
-                            spawnY = Random.Range((int)roomSpawns[count].SpMin.y, (int)roomSpawns[count].SpMax.y);
-                            spawnPosition = new Vector2(spawnX, spawnY);
-
-                            enemyObject = ObjectPoolManager.Instance.GetPooledObject("Level1Boss");
-                            enemyObject.transform.position = spawnPosition;
-                            enemyObject.SetActive(true);
-                            roomSpawns[count].Enemies.Add(enemyObject);
-                            roomSpawns[count].SpawnCount++;
-                            break;
+                            break;                 
                         case Wave.Enemytype.armorenemy:
                             spawnMax = new Vector2(roomSpawns[count].SpMax.x, roomSpawns[count].SpMax.y);
                             spawnMin = new Vector2(roomSpawns[count].SpMin.x, roomSpawns[count].SpMin.y);
@@ -335,19 +318,6 @@ public class BossSpawn : Action
                             spawnPosition = new Vector2(spawnX, spawnY);
 
                             enemyObject = ObjectPoolManager.Instance.GetPooledObject("rangeEnemy");
-                            enemyObject.transform.position = spawnPosition;
-                            enemyObject.SetActive(true);
-                            roomSpawns[count].Enemies.Add(enemyObject);
-                            roomSpawns[count].SpawnCount++;
-                            break;
-                        case Wave.Enemytype.Level1Boss:
-                            spawnMax = new Vector2(roomSpawns[count].SpMax.x, roomSpawns[count].SpMax.y);
-                            spawnMin = new Vector2(roomSpawns[count].SpMin.x, roomSpawns[count].SpMin.y);
-                            spawnX = Random.Range((int)roomSpawns[count].SpMin.x, (int)roomSpawns[count].SpMax.x);
-                            spawnY = Random.Range((int)roomSpawns[count].SpMin.y, (int)roomSpawns[count].SpMax.y);
-                            spawnPosition = new Vector2(spawnX, spawnY);
-
-                            enemyObject = ObjectPoolManager.Instance.GetPooledObject("Level1Boss");
                             enemyObject.transform.position = spawnPosition;
                             enemyObject.SetActive(true);
                             roomSpawns[count].Enemies.Add(enemyObject);

@@ -20,7 +20,7 @@ public class KeyBindUI : MonoBehaviour
     }
     public void OnButtonClicked()
     {
-        keycode.GetComponentInChildren<Text>().text = "Press a a key to bind";
+        keycode.GetComponentInChildren<Text>().text = "Press a key to bind";
         StartCoroutine(DetectInput());
 
         //keycode.GetComponentInChildren<Text>().text = kCode.ToString();

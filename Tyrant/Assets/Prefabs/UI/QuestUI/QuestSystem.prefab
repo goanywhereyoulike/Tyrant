@@ -1592,6 +1592,10 @@ PrefabInstance:
       propertyPath: targetWeapon
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 703783438406140571, guid: f36bf7750f794fd40b7d8d279893eabb, type: 3}
+      propertyPath: QuestFinishedIcon
+      value: 
+      objectReference: {fileID: 21300000, guid: b91139c7a7fbae7478daada482221aa0, type: 3}
     - target: {fileID: 4270374400095824534, guid: f36bf7750f794fd40b7d8d279893eabb, type: 3}
       propertyPath: m_Name
       value: ShootQuest (2)
@@ -1680,6 +1684,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4270374401043574677, guid: f36bf7750f794fd40b7d8d279893eabb, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 7935a0298b567834e9f33be778d596da, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f36bf7750f794fd40b7d8d279893eabb, type: 3}
 --- !u!224 &7770716630289200828 stripped

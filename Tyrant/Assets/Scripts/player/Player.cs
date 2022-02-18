@@ -8,6 +8,9 @@ using UnityEngine.SceneManagement;
 public class Player : MonoBehaviour, IDamageable, GameObjectsLocator.IGameObjectRegister
 {
     [SerializeField]
+    private GameObject DamageEffect;
+
+    [SerializeField]
     private GameObject interactButton;
     [SerializeField]
     private PlayerStates playerStates;
@@ -101,8 +104,9 @@ public class Player : MonoBehaviour, IDamageable, GameObjectsLocator.IGameObject
         if (!isInvulnerbale)
         {
             Health -= damage;
+            GameObject Effect = Instantiate(DamageEffect, transform.position, Quaternion.identity);
             GetComponentInChildren<SpriteRenderer>().material.SetInt("_IsActive", 1);
-            StartCoroutine(PlayerDamaged());
+            StartCoroutine(PlayerDamaged(Effect));
             AudioManager.Instance.Play("Player_Hurt");
             if (Health < 0)
             {
@@ -121,10 +125,11 @@ public class Player : MonoBehaviour, IDamageable, GameObjectsLocator.IGameObject
         }
     }
 
-    IEnumerator PlayerDamaged()
+    IEnumerator PlayerDamaged(GameObject effect)
     {
         yield return new WaitForSeconds(0.5f);
         GetComponentInChildren<SpriteRenderer>().material.SetInt("_IsActive", 0);
+        Destroy(effect);
     }
     public void HealthRecover(float recover)
     {

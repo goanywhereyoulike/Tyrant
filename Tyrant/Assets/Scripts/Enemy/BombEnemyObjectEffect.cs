@@ -36,6 +36,7 @@ public class BombEnemyObjectEffect : MonoBehaviour
             IDamageable damagebaleObejct = collision.gameObject.GetComponent<IDamageable>();
             if (damagebaleObejct != null)
             {
+                AudioManager.Instance.Play("Explosion");
                 damagebaleObejct.TakeDamage(bombEnemy.Damage);
                 damageables.Add(damagebaleObejct);
             }

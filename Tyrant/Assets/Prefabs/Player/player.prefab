@@ -1483,6 +1483,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7543873474f4ca74b973d796ee754328, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DamageEffect: {fileID: 4785356988794644323, guid: 4c6399753db00ab46a4d1d708833da59, type: 3}
   interactButton: {fileID: 3225399919354581226}
   playerStates: {fileID: 11400000, guid: fb38b2de578a30845b20adece0381713, type: 2}
   dialogueUI: {fileID: 0}

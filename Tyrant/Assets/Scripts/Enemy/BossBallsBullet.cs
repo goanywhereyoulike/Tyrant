@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class BossBallsBullet : MonoBehaviour
 {
+    private Animator animator;
     private int damage;
     float range;
     public float stayTime;
@@ -12,6 +13,7 @@ public class BossBallsBullet : MonoBehaviour
     private void Start()
     {
         timeCheck = stayTime;
+        animator = GetComponent<Animator>();
     }
     // Update is called once per frame
     void Update()
@@ -37,8 +39,12 @@ public class BossBallsBullet : MonoBehaviour
                 Targets = collider.gameObject.GetComponentInChildren<IDamageable>();
             }
             Targets.TakeDamage(Damage);
-            gameObject.SetActive(false);
+            animator.SetTrigger("Explosion");
             Debug.Log("attack");
         }
+    }
+    void onExploded()
+    {
+        gameObject.SetActive(false);
     }
 }

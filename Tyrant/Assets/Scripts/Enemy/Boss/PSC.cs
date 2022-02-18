@@ -1,11 +1,15 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using BehaviorDesigner.Runtime.Tasks;
+
 public class PSC : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDamageable, IPushable
 {
     public Slider healthSilder;
     [SerializeField]
     private EnemyState enemyState;
+    [SerializeField]
+    private Transform firePoint;
 
     public EnemyState EnemyState { get => enemyState; set => enemyState = value; }
 
@@ -14,6 +18,9 @@ public class PSC : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDamag
     private float health = 0f;
 
     private bool isDead = false;
+
+    public System.Action shootAnimFinished;
+    public System.Action attackAnimFinished;
     public bool IsDead
     {
         get => isDead;
@@ -30,11 +37,22 @@ public class PSC : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDamag
     }
 
     public float Health { get => health; set => health = value; }
+    public Animator Animator { get => animator; private set => animator = value; }
+    public Transform FirePoint { get => firePoint; private set => firePoint = value; }
 
+    private Animator animator;
     private void Start()
     {
+        ObjectPoolManager.Instance.InstantiateObjects("normalenemy");
+        ObjectPoolManager.Instance.InstantiateObjects("rangeEnemy");
+        ObjectPoolManager.Instance.InstantiateObjects("Level1Boss");
+        ObjectPoolManager.Instance.InstantiateObjects("bombenemy");
+        ObjectPoolManager.Instance.InstantiateObjects("armorenemy");
+        ObjectPoolManager.Instance.InstantiateObjects("DropItem");
+        ObjectPoolManager.Instance.InstantiateObjects("enemyBullet");
         healthSilder.maxValue = EnemyState.MaxHealth;
         spriteRenderer = GetComponent<SpriteRenderer>();
+        animator = GetComponent<Animator>();
         Health = EnemyState.MaxHealth;
         RegisterToLocator();
     }
@@ -84,5 +102,15 @@ public class PSC : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDamag
             Targets.TakeDamage(EnemyState.MaxDamage);
             Debug.Log("attack");
         }
+    }
+
+    public void onAnimationFinished()
+    {
+        shootAnimFinished?.Invoke();
+    }
+
+    public void onAttackFinished()
+    {
+        attackAnimFinished?.Invoke();
     }
 }

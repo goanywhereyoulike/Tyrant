@@ -101,6 +101,8 @@ public class Player : MonoBehaviour, IDamageable, GameObjectsLocator.IGameObject
         if (!isInvulnerbale)
         {
             Health -= damage;
+            GetComponentInChildren<SpriteRenderer>().material.SetInt("_IsActive", 1);
+            StartCoroutine(PlayerDamaged());
             AudioManager.Instance.Play("Player_Hurt");
             if (Health < 0)
             {
@@ -117,6 +119,12 @@ public class Player : MonoBehaviour, IDamageable, GameObjectsLocator.IGameObject
                 }
             }
         }
+    }
+
+    IEnumerator PlayerDamaged()
+    {
+        yield return new WaitForSeconds(0.5f);
+        GetComponentInChildren<SpriteRenderer>().material.SetInt("_IsActive", 0);
     }
     public void HealthRecover(float recover)
     {

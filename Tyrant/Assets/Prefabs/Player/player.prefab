@@ -1490,6 +1490,7 @@ MonoBehaviour:
     maxPickUpAmount: 0
     maxInventoryAmount: 0
   playerUI: {fileID: 968221844924327873}
+  retryUI: {fileID: 0}
   bulletUI: {fileID: 0}
   coin: 40
 --- !u!114 &50471773922347163
@@ -1970,7 +1971,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: ce6b15562aedbd04fa661f46791c3923, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

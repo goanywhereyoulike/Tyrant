@@ -13,6 +13,7 @@ public class BombEnemy : Enemy
 
     public bool Explosion { get; set; }
 
+
     // Start is called before the first frame update
     protected override void Start()
     {
@@ -40,7 +41,7 @@ public class BombEnemy : Enemy
         if (Explosion)
         {
             bloodEffectOnDied = false;
-            AudioManager.Instance.Play("Explosion");
+
             CinemachineShaker.Instance.ShakeCamera(2f, 0.3f);
             spriteRenderer.enabled = false;
             enemyUi.HealthBar.gameObject.SetActive(false);

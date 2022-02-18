@@ -8,6 +8,8 @@ public class PSC : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDamag
     public Slider healthSilder;
     [SerializeField]
     private EnemyState enemyState;
+    [SerializeField]
+    private Transform firePoint;
 
     public EnemyState EnemyState { get => enemyState; set => enemyState = value; }
 
@@ -18,6 +20,7 @@ public class PSC : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDamag
     private bool isDead = false;
 
     public System.Action shootAnimFinished;
+    public System.Action attackAnimFinished;
     public bool IsDead
     {
         get => isDead;
@@ -35,8 +38,8 @@ public class PSC : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDamag
 
     public float Health { get => health; set => health = value; }
     public Animator Animator { get => animator; private set => animator = value; }
+    public Transform FirePoint { get => firePoint; private set => firePoint = value; }
 
-    [SerializeField]
     private Animator animator;
     private void Start()
     {
@@ -104,5 +107,10 @@ public class PSC : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDamag
     public void onAnimationFinished()
     {
         shootAnimFinished?.Invoke();
+    }
+
+    public void onAttackFinished()
+    {
+        attackAnimFinished?.Invoke();
     }
 }

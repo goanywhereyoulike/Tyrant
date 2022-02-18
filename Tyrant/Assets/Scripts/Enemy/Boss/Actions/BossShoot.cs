@@ -50,7 +50,7 @@ public class BossShoot : Action
         }
         else
         {
-            ammoCount = maxAmmoCount;
+            //ammoCount = maxAmmoCount;
 
             return TaskStatus.Success;
         }
@@ -65,7 +65,7 @@ public class BossShoot : Action
             var bullet = ObjectPoolManager.Instance.GetPooledObject("enemyBullet");
             var bulletClass = bullet.GetComponent<EnemyBullet>();
             bulletClass.Position = findTarget.TargetPos;
-            bulletClass.transform.position = transform.position;
+            bulletClass.transform.position = psc.FirePoint.position;
             bulletClass.bulletSpeed = speed;
             //bulletClass.Damage = 10;
             speed += 5;

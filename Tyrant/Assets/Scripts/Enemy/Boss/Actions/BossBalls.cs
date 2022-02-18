@@ -4,12 +4,12 @@ using UnityEngine;
 public class BossBalls : Action
 {
     public BossFindTarget findTarget;
-    public int maxAnmoCount = 3;
+    public int maxAmmoCount = 8;
     public int range;
     public int damage;
     public int stayTime;
 
-    private int anmoCount = 0;
+    private int ammoCount = 0;
 
     Vector2 max;
     Vector2 min;
@@ -19,8 +19,9 @@ public class BossBalls : Action
     {
         ObjectPoolManager.Instance.InstantiateObjects("BossBallBullet");
         psc = GetComponent<PSC>();
-        anmoCount = maxAnmoCount;
+        ammoCount = maxAmmoCount;
         AttackArea();
+        psc.attackAnimFinished += onAttackFinished;
     }
 
     public override TaskStatus OnUpdate()
@@ -31,11 +32,44 @@ public class BossBalls : Action
         if (!ObjectPoolManager.Instance.GetPooledObject("BossBallBullet"))
             return TaskStatus.Failure;
 
-        Debug.DrawLine(transform.position, new Vector3(transform.position.x + range, transform.position.y, transform.position.z));
-
-        if (anmoCount > 0)
+        //Debug.DrawLine(transform.position, new Vector3(transform.position.x + range, transform.position.y, transform.position.z));
+        if (!psc.Animator.GetBool("Attack") && ammoCount>0)
         {
-            switch (anmoCount)
+            psc.Animator.SetBool("Attack", true);
+            return TaskStatus.Running;
+
+        }
+        if (ammoCount > 0)
+        {
+
+            return TaskStatus.Running;
+        }
+
+        //ammoCount = maxAmmoCount;
+   
+        return TaskStatus.Success;
+
+    }
+
+    private void AttackArea()
+    {
+        max = new Vector2(transform.position.x + range, transform.position.y + range);
+        min = new Vector2(transform.position.x - range, transform.position.y - range);
+    }
+    private void spawn(Vector2 spPos)
+    {
+        var bullet = ObjectPoolManager.Instance.GetPooledObject("BossBallBullet");
+        var bulletClass = bullet.GetComponent<BossBallsBullet>();
+        bulletClass.Damage = damage;
+        bulletClass.stayTime = stayTime;
+        bulletClass.transform.position = spPos;
+        bullet.SetActive(true);
+    }
+    private void onAttackFinished()
+    {
+        while (ammoCount > 0)
+        {
+            switch (ammoCount)
             {
                 case 1:
                     spawn(max);
@@ -64,27 +98,9 @@ public class BossBalls : Action
                 default:
                     break;
             }
-            anmoCount--;
-            return TaskStatus.Running;
+            ammoCount--;
         }
+        psc.Animator.SetBool("Attack", false);
 
-        anmoCount = maxAnmoCount;
-
-        return TaskStatus.Success;
-    }
-
-    private void AttackArea()
-    {
-        max = new Vector2(transform.position.x + range, transform.position.y + range);
-        min = new Vector2(transform.position.x - range, transform.position.y - range);
-    }
-    private void spawn(Vector2 spPos)
-    {
-        var bullet = ObjectPoolManager.Instance.GetPooledObject("BossBallBullet");
-        var bulletClass = bullet.GetComponent<BossBallsBullet>();
-        bulletClass.Damage = damage;
-        bulletClass.stayTime = stayTime;
-        bulletClass.transform.position = spPos;
-        bullet.SetActive(true);
     }
 }

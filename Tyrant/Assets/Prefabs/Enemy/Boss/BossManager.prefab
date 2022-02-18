@@ -336,11 +336,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 399871459117369944}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 3, y: 3, z: 0}
   m_Children:
   - {fileID: 399871459043578872}
+  - {fileID: 5608410258841979475}
   m_Father: {fileID: 8790021529987676631}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -383,7 +384,7 @@ MonoBehaviour:
         Find Target","Instant":true},{"Type":"BossCharge","NodeData":{"Offset":"(120,120)"},"ID":17,"Name":"Boss
         Charge","Instant":true,"BossFindTargetfindTarget":16,"Singleacceleration":7,"SinglemaxMoveSpeed":100,"SingleminMoveSpeed":25},{"Type":"BossHold","NodeData":{"Offset":"(240,120)"},"ID":18,"Name":"Boss
         Hold","Instant":true,"SingleholdTime":0.5,"SliderholdSlider":3},{"Type":"BossBalls","NodeData":{"Offset":"(360,120)"},"ID":19,"Name":"Boss
-        Balls","Instant":true,"Int32maxAnmoCount":8,"Int32range":3,"Int32damage":5,"Int32stayTime":8}]},{"Type":"BehaviorDesigner.Runtime.Tasks.RandomSequence","NodeData":{"Offset":"(649.999756,120.832825)"},"ID":20,"Name":"Random
+        Balls","Instant":true,"Int32maxAmmoCount":8,"Int32range":3,"Int32damage":5,"Int32stayTime":8}]},{"Type":"BehaviorDesigner.Runtime.Tasks.RandomSequence","NodeData":{"Offset":"(649.999756,120.832825)"},"ID":20,"Name":"Random
         Sequence","Instant":true,"Int32seed":0,"BooleanuseSeed":false,"AbortTypeabortType":"None","Children":[{"Type":"BossBulletHell","NodeData":{"Offset":"(-200.833282,274.999969)"},"ID":21,"Name":"Boss
         Bullet Hell","Instant":true,"Int32bulletCount":30,"Int32bulletMoveSpeed":5,"SinglebulletDelayTime":0,"BooleaninverseAngle":false,"SinglebulletDelayTimeChange":0},{"Type":"BehaviorDesigner.Runtime.Tasks.Wait","NodeData":{"Offset":"(-80.83327,274.999969)"},"ID":22,"Name":"Wait","Instant":true,"SharedFloatwaitTime":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":0.5},"SharedBoolrandomWait":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false},"SharedFloatrandomWaitMin":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":1},"SharedFloatrandomWaitMax":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":1}},{"Type":"BossBulletHell","NodeData":{"Offset":"(49.16678,274.999969)"},"ID":23,"Name":"Boss
         Bullet Hell","Instant":true,"Int32bulletCount":100,"Int32bulletMoveSpeed":5,"SinglebulletDelayTime":0.2,"BooleaninverseAngle":true,"SinglebulletDelayTimeChange":0},{"Type":"BehaviorDesigner.Runtime.Tasks.Wait","NodeData":{"Offset":"(169.166855,274.999969)"},"ID":24,"Name":"Wait","Instant":true,"SharedFloatwaitTime":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":0.5},"SharedBoolrandomWait":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false},"SharedFloatrandomWaitMin":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":1},"SharedFloatrandomWaitMax":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":1}},{"Type":"BossBulletHell","NodeData":{"Offset":"(289.166931,274.999969)"},"ID":25,"Name":"Boss
@@ -397,7 +398,7 @@ MonoBehaviour:
         Find Target","Instant":true},{"Type":"BossCharge","NodeData":{"Offset":"(119.93866,123.4491)"},"ID":37,"Name":"Boss
         Charge","Instant":true,"BossFindTargetfindTarget":36,"Singleacceleration":7,"SinglemaxMoveSpeed":100,"SingleminMoveSpeed":25},{"Type":"BossHold","NodeData":{"Offset":"(237.5,124.375)"},"ID":38,"Name":"Boss
         Hold","Instant":true,"SingleholdTime":0.5,"SliderholdSlider":6},{"Type":"BossBalls","NodeData":{"Offset":"(363.125,124.375)"},"ID":39,"Name":"Boss
-        Balls","Instant":true,"Int32maxAnmoCount":8,"Int32range":3,"Int32damage":5,"Int32stayTime":8}]}]}]}]}]}]},"DetachedTasks":[{"Type":"BehaviorDesigner.Runtime.Tasks.RandomSelector","NodeData":{"Offset":"(1118.92761,420)"},"ID":40,"Name":"Random
+        Balls","Instant":true,"Int32maxAmmoCount":8,"Int32range":3,"Int32damage":5,"Int32stayTime":8}]}]}]}]}]}]},"DetachedTasks":[{"Type":"BehaviorDesigner.Runtime.Tasks.RandomSelector","NodeData":{"Offset":"(1118.92761,420)"},"ID":40,"Name":"Random
         Selector","Instant":true,"Int32seed":0,"BooleanuseSeed":false,"AbortTypeabortType":"None"}]}'
       fieldSerializationData:
         typeName: []
@@ -440,7 +441,7 @@ MonoBehaviour:
     attackSpeed: 0
     detectRange: 0
     maxArmor: 0
-  animator: {fileID: 0}
+  firePoint: {fileID: 5608410258841979475}
 --- !u!212 &399871459117369949
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -480,7 +481,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 3caf1c492b96cf24b9282a82b6dd7cb1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -1182,9 +1183,39 @@ Transform:
   m_GameObject: {fileID: 5018536775291339841}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children:
   - {fileID: 399871459117369950}
   m_Father: {fileID: 0}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &7898836831442109915
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5608410258841979475}
+  m_Layer: 8
+  m_Name: FirePoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5608410258841979475
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7898836831442109915}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.115, y: 0.258, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 399871459117369950}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

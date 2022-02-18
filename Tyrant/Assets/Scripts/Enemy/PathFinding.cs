@@ -8,6 +8,7 @@ public class Pathfinding
     NodePath nodePath;
     bool found = false;
     bool less = false;
+    bool isCloseWall = false;
 
     NodePath.Node lastend;
     public List<NodePath.Node> OpenList { get => openList; }
@@ -23,7 +24,7 @@ public class Pathfinding
 
     float GetGCost()
     {
-        return 1;
+        return 10;
     }
 
     bool isBlock(float row, float column)
@@ -92,6 +93,7 @@ public class Pathfinding
                 if (current.c == end.c && current.r == end.r)
                 {
                     found = true;
+                    isCloseWall = false;
                 }
                 else
                 {
@@ -107,9 +109,14 @@ public class Pathfinding
                                 current.neighbors[i].h = GetHCost(current.neighbors[i].r, current.neighbors[i].c, end.r, end.c);
                                 G += GetGCost();
                                 F = G + current.neighbors[i].h;
+                                isCloseWall = true;
                             }
                             else
                             {
+                                if(isCloseWall && i>=4)
+                                {
+                                    continue;
+                                }
                                 current.neighbors[i].h = GetHCost(current.neighbors[i].r, current.neighbors[i].c, end.r, end.c);
                                 F = G + current.neighbors[i].h;
                             }

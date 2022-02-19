@@ -12,6 +12,7 @@ public class BombEnemy : Enemy
     public float Damage { get => damage; set => damage = value; }
 
     public bool Explosion { get; set; }
+    public EnemyUI EnemyUi { get => enemyUi; set => enemyUi = value; }
 
 
     // Start is called before the first frame update
@@ -19,8 +20,8 @@ public class BombEnemy : Enemy
     {
         base.Start();
         Explosion = false;
-        enemyUi.MaxHealthChanged(EnemyState.MaxHealth);
-        enemyUi.HealthChanged(EnemyState.MaxHealth);
+        EnemyUi.MaxHealthChanged(EnemyState.MaxHealth);
+        EnemyUi.HealthChanged(EnemyState.MaxHealth);
         bombAnimator.gameObject.SetActive(false);
     }
 
@@ -31,8 +32,8 @@ public class BombEnemy : Enemy
         bloodEffectOnDied = true;
         Explosion = false;
         spriteRenderer.enabled = true;
-        enemyUi.HealthBar.gameObject.SetActive(true);
-        enemyUi.HealthChanged(EnemyState.MaxHealth);
+        EnemyUi.HealthBar.gameObject.SetActive(true);
+        EnemyUi.HealthChanged(EnemyState.MaxHealth);
     }
 
     // Update is called once per frame
@@ -44,7 +45,7 @@ public class BombEnemy : Enemy
 
             CinemachineShaker.Instance.ShakeCamera(2f, 0.3f);
             spriteRenderer.enabled = false;
-            enemyUi.HealthBar.gameObject.SetActive(false);
+            EnemyUi.HealthBar.gameObject.SetActive(false);
         }
 
         base.Update();
@@ -80,7 +81,7 @@ public class BombEnemy : Enemy
             return;
 
         Health -= damage;
-        enemyUi.HealthChanged(Health);
+        EnemyUi.HealthChanged(Health);
     }
 
     void OnDrawGizmosSelected()

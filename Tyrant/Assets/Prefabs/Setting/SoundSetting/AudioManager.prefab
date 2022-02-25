@@ -233,3 +233,31 @@ MonoBehaviour:
     loop: 0
     playOnAwake: 0
     source: {fileID: 0}
+  - name: Charge
+    clip: {fileID: 8300000, guid: e2a1568948bab1e498a40619e474f294, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+  - name: FireBall
+    clip: {fileID: 8300000, guid: 0336b29729d97154a93ec878c1b10ca8, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+  - name: DarkMagic
+    clip: {fileID: 8300000, guid: 97b4878d49a48694f9f145ef3d0d0b24, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+  - name: MagicBall
+    clip: {fileID: 8300000, guid: 287c624c6c487d74ba37d9ff2ce19135, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    playOnAwake: 0
+    source: {fileID: 0}

@@ -60,6 +60,7 @@ public class BossBulletHell : Action
             bulletClass.bulletSpeed = bulletMoveSpeed;
             //bulletClass.Direction = bulDir;
             bullet.SetActive(true);
+            AudioManager.Instance.Play("DarkMagic");
             count--;
             direction = bulDir;
            // angle = inverseAngle? angle - 10f : angle + 10f;

@@ -35,7 +35,9 @@ public class BossShoot : Action
             if (!psc.Animator.GetBool("Spell"))
             {
                 Debug.Log("Spell");
+                
                 psc.Animator.SetBool("Spell", true);
+                AudioManager.Instance.Play("FireBall");
             }
 
             //StartCoroutine(WaitFor(0.5f));
@@ -51,7 +53,7 @@ public class BossShoot : Action
         else
         {
             //ammoCount = maxAmmoCount;
-
+            AudioManager.Instance.Stop("FireBall");
             return TaskStatus.Success;
         }
         return TaskStatus.Running;
@@ -76,6 +78,7 @@ public class BossShoot : Action
         speed = orignalSpeed;
         psc.Animator.SetBool("Spell", false);
        
+
 
     }
 

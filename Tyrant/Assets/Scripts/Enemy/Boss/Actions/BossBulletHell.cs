@@ -21,6 +21,8 @@ public class BossBulletHell : Action
         ObjectPoolManager.Instance.InstantiateObjects("BossBullet");
         psc = GetComponent<PSC>();
         psc.Animator.SetBool("SpellLoop", true);
+        AudioManager.Instance.Play("DarkMagic");
+
     }
 
     public override TaskStatus OnUpdate()
@@ -60,7 +62,6 @@ public class BossBulletHell : Action
             bulletClass.bulletSpeed = bulletMoveSpeed;
             //bulletClass.Direction = bulDir;
             bullet.SetActive(true);
-            AudioManager.Instance.Play("DarkMagic");
             count--;
             direction = bulDir;
            // angle = inverseAngle? angle - 10f : angle + 10f;
@@ -71,6 +72,8 @@ public class BossBulletHell : Action
 
         count = bulletCount;
         psc.Animator.SetBool("SpellLoop", false);
+
+        AudioManager.Instance.Stop("DarkMagic");
 
         return TaskStatus.Success;
     }

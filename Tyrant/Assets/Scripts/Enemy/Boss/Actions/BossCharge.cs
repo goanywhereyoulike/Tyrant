@@ -29,6 +29,7 @@ public class BossCharge : Action
         float oldDistance = Vector3.Distance(transform.position, findTarget.TargetPos);
         if (oldDistance <= 0.01f)
         {
+            psc.Animator.SetBool("Charge", false);
             return TaskStatus.Success;
         }
 
@@ -38,6 +39,15 @@ public class BossCharge : Action
         displacement += velocity;
         float newDistance = Vector3.Distance(displacement, findTarget.TargetPos);
         transform.position = newDistance > oldDistance ? findTarget.TargetPos : displacement;
+        if((transform.position-findTarget.TargetPos).normalized.x > 0.0f)
+        {
+            transform.localRotation = Quaternion.Euler(0, 180, 0);
+        }
+        if ((transform.position - findTarget.TargetPos).normalized.x < 0.0f)
+        {
+            transform.localRotation = Quaternion.Euler(0, 0, 0);
+        }
+        psc.Animator.SetBool("Charge", true);
         //transform.position = findTarget.TargetPos;
         return TaskStatus.Running;
     }

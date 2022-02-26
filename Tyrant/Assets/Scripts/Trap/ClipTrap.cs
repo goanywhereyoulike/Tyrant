@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class ClipTrap : MonoBehaviour
 {
-    public GameObject DestroyedTower;
-    public int TrapNumber = 0;
-    public float duration = 10.0f;
+    [SerializeField]
+    TrapTemplate TrapData;
+    int TrapNumber = 0;
+    float duration = 10.0f;
     PlayerMovement player;
-    public Animator animator;
+    Animator animator;
     private bool IsCounting = false;
     private float enemyMovespeed = 0.0f;
     Enemy enemy;
@@ -18,7 +19,7 @@ public class ClipTrap : MonoBehaviour
     {
         player = FindObjectOfType<PlayerMovement>();
         animator = GetComponent<Animator>();
-
+        duration = TrapData.Duration;
     }
 
     // Update is called once per frame
@@ -37,27 +38,13 @@ public class ClipTrap : MonoBehaviour
                 enemy.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
             }
 
-        }//TowerToTarget(player.transform);
+        }
     }
 
 
     void Die()
     {
         Destroy(gameObject.transform.parent.gameObject);
-
-       // Instantiate(DestroyedTower, transform.position, transform.rotation);
-
-    }
-
-
-    private void OnMouseEnter()
-    {
-        gameObject.GetComponent<SpriteRenderer>().color = Color.gray;
-    }
-
-    private void OnMouseExit()
-    {
-        gameObject.GetComponent<SpriteRenderer>().color = Color.white;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

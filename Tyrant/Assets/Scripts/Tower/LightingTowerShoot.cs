@@ -52,7 +52,7 @@ public class LightingTowerShoot : MonoBehaviour
         ColdDown.value = float.IsNaN(Bulletnum) ? 0f : Bulletnum;
         ColdDown.fillRect.transform.GetComponent<Image>().color = Color.yellow;
         Targets = new List<GameObject>();
-        AttackedTargets= new List<GameObject>();
+        AttackedTargets = new List<GameObject>();
 
     }
 
@@ -73,24 +73,25 @@ public class LightingTowerShoot : MonoBehaviour
             Targets.RemoveAll(target => !target.activeInHierarchy);
             AttackedTargets.RemoveAll(target => !target.activeInHierarchy);
         }
-
-
-
     }
     void Attack()
     {
-        bool aimtoBoss = false;
-        if (aimtoBoss)
-        {
-            AddBossTargets(ref aimtoBoss);
-        }
-        else
-        {
-            AddEnemyToTargets(ref aimtoBoss);
-        }
+        bool aimtoBoss = true;
+        //if (aimtoBoss)
+        //{
+        AddBossTargets(ref aimtoBoss);
+        //}
+        //else
+        //{
+        AddEnemyToTargets(ref aimtoBoss);
+        //}
         AttachLightingBullet();
         CheckBullet();
         ApplyDamage();
+        if (Targets.Count <= firenumber)
+        {
+            attacknumber = Targets.Count;
+        }
 
     }
     void ApplyDamage()
@@ -240,6 +241,7 @@ public class LightingTowerShoot : MonoBehaviour
             }
         }
     }
+
     void AddEnemyToTargets(ref bool aimtoBoss)
     {
         if (GameObjectsLocator.Instance.Get<Enemy>() == null)
@@ -250,15 +252,15 @@ public class LightingTowerShoot : MonoBehaviour
         List<Enemy> enemies = GameObjectsLocator.Instance.Get<Enemy>();
         foreach (var enemy in enemies)
         {
-            if (!enemy.gameObject.activeInHierarchy || enemy == null)
+            if (enemy == null)
             {
                 continue;
             }
-            if (enemy.IsDead)
+            if (!enemy.gameObject.activeInHierarchy)
             {
+                RemoveBulletFromTarget(enemy.gameObject);
                 if (Targets.Contains(enemy.gameObject))
                 {
-                    RemoveBulletFromTarget(enemy.gameObject);
                     Targets.Remove(enemy.gameObject);
                 }
             }

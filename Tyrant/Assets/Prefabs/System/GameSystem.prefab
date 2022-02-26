@@ -43,7 +43,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20846ced7babe8b4f83c095c04711022, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isTutorial: 0
   Doors: []
+  indicators: []
+  testRooms: []
 --- !u!1 &2022734583042603807
 GameObject:
   m_ObjectHideFlags: 0

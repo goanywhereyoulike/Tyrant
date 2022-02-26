@@ -4,17 +4,23 @@ using UnityEngine;
 
 public class BlackHoleTrap : MonoBehaviour
 {
+    [SerializeField]
+    TrapTemplate TrapData;
+
+    List<Enemy> mEnemies = new List<Enemy>();
     public GameObject GravityEffect;
-    public float radius = 5.0f;
-    public float forcemagnitude = 10.0f;
-    public float duration = 10.0f;
+    private float radius = 5.0f;
+    private float forcemagnitude = 10.0f;
+    private float duration = 10.0f;
     private GameObject effect;
     bool AddForce = false;
     // Start is called before the first frame update
     void Start()
     {
         effect = Instantiate(GravityEffect, transform.position, transform.rotation);
-
+        radius = TrapData.Range;
+        duration = TrapData.Duration;
+        forcemagnitude = TrapData.TrapDamage;
     }
 
     // Update is called once per frame
@@ -23,9 +29,17 @@ public class BlackHoleTrap : MonoBehaviour
         duration -= Time.deltaTime;
         if (duration <= 0.0f)
         {
+            List<Enemy> enemies = GameObjectsLocator.Instance.Get<Enemy>();
+            foreach (var enemy in enemies)
+            {
+                if (enemy.gameObject.activeInHierarchy)
+                {
+                    enemy.gameObject.GetComponent<Rigidbody2D>().Sleep();
+                }
+
+            }
             Destroy(effect);
             Destroy(gameObject);
-
         }
         else
         {

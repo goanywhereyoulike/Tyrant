@@ -20,6 +20,7 @@ public class BossBulletHell : Action
     {
         ObjectPoolManager.Instance.InstantiateObjects("BossBullet");
         psc = GetComponent<PSC>();
+        psc.Animator.SetBool("SpellLoop", true);
     }
 
     public override TaskStatus OnUpdate()
@@ -52,9 +53,10 @@ public class BossBulletHell : Action
             //Vector3 bulMoveVector = Quaternion.AngleAxis(angle, Vector3.up) * transform.position;
             //Vector3 bulDir = (bulMoveVector - transform.position).normalized;
             Vector3 bulDir = new Vector3(x, y, 0).normalized;
-
-            bulletClass.Position = transform.position + bulDir * 100.0f;
-            bulletClass.transform.position = transform.position;
+            float bulAngle = Mathf.Atan2(bulDir.y, bulDir.x) * Mathf.Rad2Deg;
+            bulletClass.gameObject.transform.rotation = Quaternion.AngleAxis(bulAngle, Vector3.forward);
+            bulletClass.Position = psc.FirePoint.position + bulDir * 100.0f;
+            bulletClass.transform.position = psc.FirePoint.position;
             bulletClass.bulletSpeed = bulletMoveSpeed;
             //bulletClass.Direction = bulDir;
             bullet.SetActive(true);
@@ -67,6 +69,7 @@ public class BossBulletHell : Action
         }
 
         count = bulletCount;
+        psc.Animator.SetBool("SpellLoop", false);
 
         return TaskStatus.Success;
     }

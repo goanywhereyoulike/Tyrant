@@ -15,7 +15,7 @@ public class Laser : Weapon
     public LaserStates LaserStates { get => laserStates; set => laserStates = value; }
 
     private bool charged = false;
-    private bool charging = true;
+    private bool charging = false;
 
     public Slider chargingBar;
     public Slider durabilityBar;
@@ -71,6 +71,7 @@ public class Laser : Weapon
         base.UnFire();
 
         charging = false;
+        AudioManager.Instance.Stop("Laser_Charging");
         animator.SetBool("Charging", charging);
         chargingBar.value = 0f;
 
@@ -92,8 +93,8 @@ public class Laser : Weapon
                 bulletObject.transform.position = bullet.StartPosition;
                 Vector3 vecDir = InputManager.Instance.MouseWorldPosition - transform.position;
                 bulletObject.transform.eulerAngles = new Vector3(0.0f, 0.0f, 180.0f - Mathf.Atan2(-vecDir.y, vecDir.x) * Mathf.Rad2Deg);
-                AudioManager.instance.PlaySFX(1);
                 bulletObject.SetActive(true);
+                AudioManager.Instance.Play("Shoot2");
             }
             charged = false;
             laserCompleteAnimator.SetBool("charged", charged);
@@ -105,6 +106,7 @@ public class Laser : Weapon
                 animator.enabled = false;
                 laserCompleteAnimator.enabled = false;
             }
+            CinemachineShaker.Instance.ShakeCamera(5f, 0.3f);
         }
     }
 
@@ -114,6 +116,12 @@ public class Laser : Weapon
 
         chargingBar.maxValue = chargeTime;
         chargingBar.gameObject.SetActive(true);
+
+        if (!charging)
+        {
+            AudioManager.Instance.Play("Laser_Charging");
+        }
+
         if (holdingTime >= chargeTime)
         {
             charged = true;

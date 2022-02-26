@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class Invulnerable : PowerUps
 {
     private SpriteRenderer rend;
@@ -13,7 +14,7 @@ public class Invulnerable : PowerUps
         if (!player.IsInvulnerbale)
         {
             isTriggered = true;
-            gameObject.GetComponent<SpriteRenderer>().enabled = false;
+            //gameObject.GetComponent<SpriteRenderer>().enabled = false;
             rend = player.GetComponentInChildren<SpriteRenderer>();
             rend.material.color = colorEffect;
             player.IsInvulnerbale = true;

@@ -95,6 +95,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1353bab7b933ae7468852764efb86070, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  TrapData: {fileID: 11400000, guid: 9d4411c1e403ce8418564169d9d7a529, type: 2}
   explosionEffect: {fileID: 5542131774870671034, guid: 580ad9c82fab2b446bf6dca952bba155, type: 3}
   duration: 0.5
   radius: 3

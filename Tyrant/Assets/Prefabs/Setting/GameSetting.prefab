@@ -44,6 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54464918bdf90da42b1b3204c288b001, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isDemoMode: 0
 --- !u!1 &8437825403667927223
 GameObject:
   m_ObjectHideFlags: 0
@@ -136,6 +137,8 @@ MonoBehaviour:
     keyCode: 116
   - name: MiniMap
     keyCode: 109
+  - name: DefaultKeySetttings
+    keyCode: 9
   axesLibrary:
   - name: Horizontal
     positiveButton: 100

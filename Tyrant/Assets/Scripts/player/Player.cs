@@ -8,6 +8,9 @@ using UnityEngine.SceneManagement;
 public class Player : MonoBehaviour, IDamageable, GameObjectsLocator.IGameObjectRegister
 {
     [SerializeField]
+    private GameObject DamageEffect;
+
+    [SerializeField]
     private GameObject interactButton;
     [SerializeField]
     private PlayerStates playerStates;
@@ -59,7 +62,7 @@ public class Player : MonoBehaviour, IDamageable, GameObjectsLocator.IGameObject
         healthChanged.Invoke();
         playerStates.MaxHealthChanged += () => playerUI.MaxHealthChanged(playerStates.MaxHealth);
         playerStates.MaxHealthChanged.Invoke();
-        StartCoroutine(Coin());
+        //StartCoroutine(Coin());
 
         Health = playerStates.MaxHealth;
 
@@ -101,11 +104,14 @@ public class Player : MonoBehaviour, IDamageable, GameObjectsLocator.IGameObject
         if (!isInvulnerbale)
         {
             Health -= damage;
-            AudioManager.instance.PlaySFX(3);
+            GameObject Effect = Instantiate(DamageEffect, transform.position, Quaternion.identity);
+            GetComponentInChildren<SpriteRenderer>().material.SetInt("_IsActive", 1);
+            StartCoroutine(PlayerDamaged(Effect));
+            AudioManager.Instance.Play("Player_Hurt");
             if (Health < 0)
             {
                 Health = 0;
-                AudioManager.instance.PlaySFX(4);
+                AudioManager.Instance.Play("Player_Die");
                 if (GameSetting.Instance.isDemoMode)
                 {
                     retryUI.gameObject.SetActive(true);
@@ -117,6 +123,13 @@ public class Player : MonoBehaviour, IDamageable, GameObjectsLocator.IGameObject
                 }
             }
         }
+    }
+
+    IEnumerator PlayerDamaged(GameObject effect)
+    {
+        yield return new WaitForSeconds(0.5f);
+        GetComponentInChildren<SpriteRenderer>().material.SetInt("_IsActive", 0);
+        Destroy(effect);
     }
     public void HealthRecover(float recover)
     {

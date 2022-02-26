@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 [RequireComponent(typeof(BoxCollider2D))]
 public class PowerUps : MonoBehaviour
@@ -15,14 +16,15 @@ public class PowerUps : MonoBehaviour
     {
    
     }
-
     IEnumerator OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Player")
         {
+            
             player = collision.gameObject.GetComponent<Player>();
             //gameObject.GetComponent<SpriteRenderer>().enabled = false;
             activeEffect();
+            gameObject.transform.DOScale(Vector3.zero, 0.5f).OnComplete(() => { gameObject.GetComponent<SpriteRenderer>().enabled = false; });
             //Debug.Log("effect actived");
             if (isTriggered)
             {

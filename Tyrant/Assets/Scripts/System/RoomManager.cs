@@ -133,7 +133,7 @@ public class RoomManager : MonoBehaviour
 
                     if (!Isaudio)
                     {
-                        AudioManager.instance.PlaySFX(18);
+                        //AudioManager.instance.PlaySFX(18);
                         Isaudio = true;
                     }
 
@@ -174,6 +174,15 @@ public class RoomManager : MonoBehaviour
                             }
                         }
                     }
+
+                    if (Isallclear)
+                    {
+                        if (Doors[i].IsBossDoor)
+                        {
+                            //Doors[i].Animator.SetBool("IsClose", true);
+                            Doors[i].gameObject.SetActive(false);
+                        }
+                    }
                 }
                 else
                 {
@@ -192,14 +201,7 @@ public class RoomManager : MonoBehaviour
                     }
                 }
 
-                if (Isallclear)
-                {
-                    if (Doors[i].IsBossDoor)
-                    {
-                        //Doors[i].Animator.SetBool("IsClose", true);
-                        Doors[i].gameObject.SetActive(false);
-                    }
-                }
+                
             }
         }
         else // tutorial part

@@ -6,10 +6,9 @@ using UnityEngine;
 public class TrapTemplate : ScriptableObject
 {
     public string type;
-    public float distanceToShoot;
+    public float Range;
     public float TrapDamage;
-    public int price;
-    public float CoolDownSpeed;
+    public float Duration;
 
 
 }

@@ -13,33 +13,52 @@ public class Golem : MonoBehaviour
         summon
     }
 
+    #region Golem Attritube
     [Header("Property:")]
     [SerializeField]
     private float health = 0.0f;
     [SerializeField]
     private float moveSpeed = 0.0f;
 
-    [Header("Attack Attribute:")]
+    private Player targetObejct = null;
+    private SpriteRenderer golemSprite = null;
+    private Animator golemAnimator = null;
+    private bool isMoving = false;
+    private bool canMove = true;
+
+    public AttackBehaviors Behaviors { get; set; }
+    public float Health { get => health; set => health = value; }
+    public float MoveSpeed { get => moveSpeed; set => moveSpeed = value; }
+    #endregion
+
+    #region NormalAttack
+    [Header("Normal Attack Attribute:")]
     [SerializeField]
     private float normalAttackRange = 0.0f;
     [SerializeField]
     private float normalAttackCooldown = 0.0f;
 
-    public AttackBehaviors Behaviors { get; set; }
-    public float Health { get => health; set => health = value; }
-    public float MoveSpeed { get => moveSpeed; set => moveSpeed = value; }
-
-    private Player targetObejct = null;
-    private SpriteRenderer golemSprite = null;
-    private Animator golemAnimator = null;
     private float normalAttackTimer = 0.0f;
-    private bool isMoving = false;
-    private bool canMove = false;
+    #endregion
+
+    #region Heavy Attack
+    [Header("Heavy Attack Attribute:")]
+    [SerializeField]
+    private float heavyAttackRange = 0.0f;
+    [SerializeField]
+    private float heavyAttackCooldown = 0.0f;
+    [SerializeField]
+    private GameObject heavyAttackEffectObject = null;
+
+    private float heavyAttackEffectOffset = 2f;
+    private float heavyAttackTimer = 0.0f;
+    #endregion
 
     private void Start()
     {
-        Behaviors = AttackBehaviors.normal;
+        Behaviors = AttackBehaviors.heavy;
         normalAttackTimer = normalAttackCooldown;
+        heavyAttackTimer = heavyAttackCooldown;
         golemSprite = GetComponent<SpriteRenderer>();
         golemAnimator = GetComponent<Animator>();
     }
@@ -49,7 +68,8 @@ public class Golem : MonoBehaviour
         if (!targetObejct)
             targetObejct = GameObjectsLocator.Instance.Get<Player>()[0];
 
-        golemSprite.flipX = targetObejct.gameObject.transform.position.x >= transform.position.x;
+        normalAttackTimer += Time.deltaTime;
+        heavyAttackTimer += Time.deltaTime;
 
         switch (Behaviors)
         {
@@ -57,6 +77,7 @@ public class Golem : MonoBehaviour
                 NormalAttack();
                 break;
             case AttackBehaviors.heavy:
+                HeavyAttack();
                 break;
             case AttackBehaviors.rotation:
                 break;
@@ -71,13 +92,13 @@ public class Golem : MonoBehaviour
 
     void NormalAttack()
     {
-        normalAttackTimer += Time.deltaTime;
         isMoving = Vector3.Distance(targetObejct.transform.position, transform.position) > normalAttackRange;
         golemAnimator.SetBool("Moving", isMoving);
         if (canMove && isMoving)
         {
             Vector3 direction = targetObejct.transform.position - transform.position;
             transform.position += direction.normalized * moveSpeed * Time.deltaTime;
+            golemSprite.flipX = targetObejct.gameObject.transform.position.x >= transform.position.x;
             return;
         }
 
@@ -86,10 +107,33 @@ public class Golem : MonoBehaviour
             golemAnimator.SetTrigger("Attack1");
             normalAttackTimer = 0f;
         }
-
     }
 
-    void SetCanMoveToTrue(int value)
+    void HeavyAttack()
+    {
+        isMoving = Vector3.Distance(targetObejct.transform.position, transform.position) > heavyAttackRange;
+        golemAnimator.SetBool("Moving", isMoving);
+        if (canMove && isMoving)
+        {
+            Vector3 direction = targetObejct.transform.position - transform.position;
+            transform.position += direction.normalized * moveSpeed * Time.deltaTime;
+            golemSprite.flipX = targetObejct.gameObject.transform.position.x >= transform.position.x;
+            return;
+        }
+
+        if (heavyAttackTimer >= heavyAttackCooldown)
+        {
+            golemAnimator.SetTrigger("Attack2");
+            heavyAttackTimer = 0f;
+
+            // Start Effect
+            int face = targetObejct.gameObject.transform.position.x >= transform.position.x ? 1 : -1;
+            heavyAttackEffectObject.transform.localPosition = new Vector3(heavyAttackEffectOffset * face, 0f, 0f);
+            heavyAttackEffectObject.SetActive(true);
+        }
+    }
+
+    void SetCanMove(int value)
     {
         canMove = value == 1;
     }

@@ -3,6 +3,10 @@ using UnityEngine;
 
 public class NormalEnemy : Enemy
 {
+    public Material flashMaterial;
+    private Material originalMaterial;
+
+
     [SerializeField]
     private EnemyUI enemyUi = null;
 
@@ -24,6 +28,9 @@ public class NormalEnemy : Enemy
         {
             enemyUi.ShutdownArmorBar();
         }
+
+        originalMaterial = GetComponent<SpriteRenderer>().material;
+
     }
 
     // Update is called once per frame
@@ -31,6 +38,7 @@ public class NormalEnemy : Enemy
     {
         if(isDead)
         {
+            GetComponent<SpriteRenderer>().material = originalMaterial;
             enemyUi.HealthChanged(EnemyState.MaxHealth);
         }
 
@@ -43,9 +51,17 @@ public class NormalEnemy : Enemy
             return;
 
         Health -= damage;
+        StartCoroutine(Flash());
         enemyUi.HealthChanged(Health);
     }
 
+    IEnumerator Flash()
+    {
+        GetComponent<SpriteRenderer>().material = flashMaterial;
+        yield return new WaitForSeconds(0.2f);
+        GetComponent<SpriteRenderer>().material = originalMaterial;
+
+    }
     public override void BurnArmor(float buringDamge)
     {
         //burningAnimator.gameObject.SetActive(true);

@@ -42,20 +42,20 @@ public class RangeEnemy : Enemy
 
     protected override void AttackBehavior()
     {
-        base.AttackBehavior();
+       // base.AttackBehavior();
         if (mTarget != null)
         {
-            Vector3 direction = mTarget.position - transform.position;
-            direction = direction.normalized;
-            direction.Normalize();
+            //Vector3 direction = mTarget.position - transform.position;
+            ////direction = direction.normalized;
+            //direction.Normalize();
             bObject = ObjectPoolManager.Instance.GetPooledObject("enemyBullet");
             bObject.transform.position = transform.position;
             bObject.GetComponent<EnemyBullet>().Position = mTarget.position;
             bObject.GetComponent<EnemyBullet>().Damage = (int)damage;
             bObject.GetComponent<EnemyBullet>().Range = stopDistance;
-            bObject.GetComponent<EnemyBullet>().Direction = direction;
-            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-            bObject.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+            //bObject.GetComponent<EnemyBullet>().Direction = direction;
+            //float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+            //bObject.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
             bObject.SetActive(true);
         }
     }

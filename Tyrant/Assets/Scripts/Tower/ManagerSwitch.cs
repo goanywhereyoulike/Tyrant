@@ -5,20 +5,20 @@ using UnityEngine.UI;
 
 public class ManagerSwitch : MonoBehaviour
 {
-    PlayerMovement player;
+    Player player;
 
     [SerializeField]
     private Text Coinnumber;
 
     private void Start()
     {
-        player = FindObjectOfType<PlayerMovement>();
+        player = FindObjectOfType<Player>();
     }
     void Update()
     {
 
        // ChangePanel();
-        Coinnumber.text = player.GetComponent<Player>().coin.ToString();
+        Coinnumber.text = player.coin.ToString();
     }
 
     //void ChangePanel()

@@ -23,6 +23,7 @@ public class SpawnManager : MonoBehaviour
     public bool StartLevel { get => startLevel; set => startLevel = value; }
 
     GameObject enemyObject;
+    GameObject coin;
 
     Vector2 spawnPosition;
     Vector2 spawnMax;
@@ -61,6 +62,7 @@ public class SpawnManager : MonoBehaviour
         ObjectPoolManager.Instance.InstantiateObjects("xrangeenemy");
         ObjectPoolManager.Instance.InstantiateObjects("meleeenemy");
         ObjectPoolManager.Instance.InstantiateObjects("DropItem");
+        ObjectPoolManager.Instance.InstantiateObjects("Coin");
         StartLevel = false;
         enemies = new List<GameObject>();
         RoomManager.Instance.RoomChanged += RoomChange;
@@ -115,33 +117,49 @@ public class SpawnManager : MonoBehaviour
                     if (currentRoom.roomSpawns[i].Enemies[e].activeInHierarchy == false)
                     {
                         //check which enemy will drop
-                        for (int d = 0; d < currentRoom.roomSpawns[i].DropNumber.Count; ++d)
-                        {
-                            if (e == currentRoom.roomSpawns[i].DropNumber[d])
-                            {
-                                enemyObject = ObjectPoolManager.Instance.GetPooledObject("DropItem");
-                                enemyObject.transform.position = currentRoom.roomSpawns[i].Enemies[e].transform.position;
-                                enemyObject.SetActive(true);
-                                currentRoom.roomSpawns[i].DropNumber.RemoveAt(d);
-                                currentRoom.roomSpawns[i].ItemDropCount++;
-                                break;
-                            }
-                        }
+                        //for (int d = 0; d < currentRoom.roomSpawns[i].DropNumber.Count; ++d)
+                        //{
+                        //    if (e == currentRoom.roomSpawns[i].DropNumber[d])
+                        //    {
+                        //        enemyObject = ObjectPoolManager.Instance.GetPooledObject("DropItem");
+                        //        enemyObject.transform.position = currentRoom.roomSpawns[i].Enemies[e].transform.position;
+                        //        enemyObject.SetActive(true);
+                        //        coin = ObjectPoolManager.Instance.GetPooledObject("Coin");
+                        //        coin.transform.position = currentRoom.roomSpawns[i].Enemies[e].transform.position + new Vector3(1, 0, 0);
+                        //        coin.SetActive(true);
+                        //        currentRoom.roomSpawns[i].DropNumber.RemoveAt(d);
+                        //        currentRoom.roomSpawns[i].ItemDropCount++;
+                        //        break;
+                        //    }
+                        //}
 
                         //remove dead enemies
-                        if (currentRoom.roomSpawns[i].ItemDropCount == currentRoom.roomSpawns[i].ItemDropNum)
+                        //if (currentRoom.roomSpawns[i].ItemDropCount == currentRoom.roomSpawns[i].ItemDropNum)
+                        //{
+                        if (currentRoom.roomSpawns[i].DropNumber.Count != currentRoom.roomSpawns[i].ItemDropCount)
                         {
-                            currentRoom.roomSpawns[i].Enemies.RemoveAt(e);
-                            currentRoom.roomSpawns[i].TotalEnemies--;
-                            currentRoom.roomSpawns[i].TotalWaveSpawn--;
-                            Debug.Log(currentRoom.roomSpawns[i].TotalEnemies);
+                            enemyObject = ObjectPoolManager.Instance.GetPooledObject("DropItem");
+                            enemyObject.transform.position = currentRoom.roomSpawns[i].Enemies[e].transform.position;
+                            enemyObject.SetActive(true);
+                            currentRoom.roomSpawns[i].ItemDropCount++;
                         }
+                        coin = ObjectPoolManager.Instance.GetPooledObject("Coin");
+                        coin.transform.position = currentRoom.roomSpawns[i].Enemies[e].transform.position + new Vector3(1, 0, 0);
+                        coin.SetActive(true);
+                        currentRoom.roomSpawns[i].Enemies.RemoveAt(e);
+                        currentRoom.roomSpawns[i].TotalEnemies--;
+                        currentRoom.roomSpawns[i].TotalWaveSpawn--;
+                        Debug.Log(currentRoom.roomSpawns[i].TotalEnemies);
+                       // }
 
+                       
                         //check wave clear
                         if (currentRoom.roomSpawns[i].TotalWaveSpawn == 0)
                         {
                             currentRoom.roomSpawns[i].IsWaveClear = true;
                         }
+
+         
                     }
                 }
 
@@ -238,6 +256,7 @@ public class SpawnManager : MonoBehaviour
                 if (currentRoom.roomSpawns[i].CurrentWave == currentRoom.roomSpawns[i].Wave.waveData.Count && currentRoom.roomSpawns[i].TotalEnemies == 0 && !currentRoom.roomSpawns[i].SpawnClear)
                 {
                     currentRoom.roomSpawns[i].SpawnClear = true;
+                    currentRoom.roomSpawns[i].gameObject.SetActive(false);
                     checkcount++;
                 }
 

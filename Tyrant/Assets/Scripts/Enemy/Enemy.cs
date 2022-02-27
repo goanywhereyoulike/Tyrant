@@ -6,6 +6,12 @@ using UnityEngine;
 public class Enemy : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDamageable, IPushable
 {
     [SerializeField]
+    GameObject BloodEffect;
+
+    [SerializeField]
+    GameObject BloodStain;
+
+    [SerializeField]
     EnemyState enemyState = new EnemyState();
 
     [SerializeField]
@@ -24,7 +30,7 @@ public class Enemy : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDam
     protected List<NodePath.Node> mPath = new List<NodePath.Node>();
     protected List<GameObject> targets = new List<GameObject>();
     protected List<Vector3> nextNodes = new List<Vector3>();
-
+    
     public Transform mTarget;
     protected Transform mMainTarget;
 
@@ -58,6 +64,8 @@ public class Enemy : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDam
     protected bool firstFramePath = false;
     protected bool canFind = false;
 
+    protected bool bloodEffectOnDied = true;
+
     private List<Vector2> debug;
 
     protected List<Player> mainTarget = null;
@@ -74,11 +82,17 @@ public class Enemy : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDam
             isDead = value;
             if (isDead)
             {
-                AudioManager.instance.PlaySFX(6);
+                AudioManager.Instance.Play("Enemy_Death");
                 gameObject.SetActive(false);
                 isSpawn = false;
                 IsSlow = false;
-                UnRegisterToLocator();
+                if (bloodEffectOnDied)
+                {
+                    GameObject bloodEffect = Instantiate(BloodEffect, transform.position, Quaternion.identity);
+                    GameObject bloodStain = Instantiate(BloodStain, transform.position, Quaternion.identity);
+                    Destroy(bloodEffect, 0.5f);
+                }
+                //UnRegisterToLocator();
             }
         }
     }
@@ -110,17 +124,21 @@ public class Enemy : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDam
     public int LightingIndex = -1;
     public int LightingTowerIndex = -1;
 
+    private void Awake()
+    {
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        anim = GetComponent<Animator>();
+        rb = GetComponent<Rigidbody2D>();
+    }
+
     protected virtual void Start()
     {
         ReUse();
         path = new Pathfinding();
         nodePath = new NodePath();
-        anim = GetComponent<Animator>();
         mMainTarget = mTarget;
         detectObject();
-        spriteRenderer = GetComponent<SpriteRenderer>();
-        rb = GetComponent<Rigidbody2D>();
-
+        RegisterToLocator();
         oMoveSpeed = moveSpeed;
     }
 
@@ -129,19 +147,19 @@ public class Enemy : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDam
 
     protected virtual void Update()
     {
-        if (isBurning)
-        {
-            TakeDamage(selfBurningDamage);
-            BurnArmor(selfBurningArmoDamage);
-        }
-
         //GetComponent<Rigidbody2D>().Sleep();
         if (!isSpawn)
         {
             mainTarget = GameObjectsLocator.Instance.Get<Player>();
             ReUse();
-            RegisterToLocator();
+           
             isSpawn = true;
+        }
+
+        if (isBurning)
+        {
+            TakeDamage(selfBurningDamage);
+            BurnArmor(selfBurningArmoDamage);
         }
 
         if (!isGetBlock)
@@ -149,9 +167,13 @@ public class Enemy : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDam
             if (GameObjectsLocator.Instance.Get<Block>() != null)
             {
                 var tilemap = GameObjectsLocator.Instance.Get<Block>();
-                nodePath.init(tilemap[0].tilemap.cellBounds.size.x, tilemap[0].tilemap.cellBounds.size.y);
+                nodePath.init(tilemap[0].SizeX, tilemap[0].SizeY);
                 isGetBlock = true;
             }
+            //else
+            //{
+            //    return;
+            //}
         }
 
         //if(isSlow)
@@ -308,7 +330,7 @@ public class Enemy : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDam
 
     protected void CheckWall(float wDetectRange)
     {
-        RaycastHit2D upHit = Physics2D.Raycast(transform.position, Vector2.up, wDetectRange);
+        RaycastHit2D upHit = Physics2D.Raycast(transform.position, Vector2.up, wDetectRange, LayerMask.GetMask("Wall"));
         if (upHit.collider != null && upHit.collider.tag == "Wall")
         {
             if (rb)
@@ -320,9 +342,9 @@ public class Enemy : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDam
             Position.y = transform.position.y - 1;
             transform.position = Position;
         }
-       Debug.DrawRay(transform.position, Vector2.up, Color.green, wDetectRange);
+      // Debug.DrawRay(transform.position, Vector2.up, Color.green, wDetectRange);
 
-        RaycastHit2D downHit = Physics2D.Raycast(transform.position, Vector2.down, wDetectRange+1);
+        RaycastHit2D downHit = Physics2D.Raycast(transform.position, Vector2.down, wDetectRange, LayerMask.GetMask("Wall"));
         if (downHit.collider != null && downHit.collider.tag == "Wall")
         {
             if (rb)
@@ -335,7 +357,7 @@ public class Enemy : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDam
             transform.position = Position;
         }
         //Debug.DrawRay(transform.position, Vector2.down, Color.green, wDetectRange);
-        RaycastHit2D rightHit = Physics2D.Raycast(transform.position, Vector2.right, wDetectRange);
+        RaycastHit2D rightHit = Physics2D.Raycast(transform.position, Vector2.right, wDetectRange, LayerMask.GetMask("Wall"));
         if (rightHit.collider != null && rightHit.collider.tag == "Wall")
         {
             if (rb)
@@ -348,7 +370,7 @@ public class Enemy : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDam
             transform.position = Position;
         }
         //Debug.DrawRay(transform.position, Vector2.left, Color.green, 2);
-        RaycastHit2D leftHit = Physics2D.Raycast(transform.position, Vector2.left, wDetectRange);
+        RaycastHit2D leftHit = Physics2D.Raycast(transform.position, Vector2.left, wDetectRange, LayerMask.GetMask("Wall"));
         if (leftHit.collider != null && leftHit.collider.tag == "Wall")
         {
             if (rb)
@@ -360,7 +382,7 @@ public class Enemy : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDam
             Position.x = transform.position.x + 1;
             transform.position = Position;
         }
-        // Debug.DrawRay(transform.position, Vector2.right, Color.green, 2);
+        //Debug.DrawRay(transform.position, Vector2.right, Color.green, 2);
     }
     //------------------attck animation------------------------
     //IEnumerator Attack()
@@ -415,10 +437,8 @@ public class Enemy : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDam
 
     protected void detectObject()
     {
-        foreach (GameObject target in GameObject.FindGameObjectsWithTag("Player"))
-        {
-            targets.Add(target);
-        }
+        var Player = GameObjectsLocator.Instance.Get<Player>();
+        targets.Add(Player[0].gameObject);
         foreach (GameObject target in GameObject.FindGameObjectsWithTag("Tower"))
         {
             targets.Add(target);
@@ -476,6 +496,7 @@ public class Enemy : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDam
     protected virtual void ReUse()
     {
         canFind = false;
+        isBurning = false;
         mTarget = null;
         mPath.Clear();
         findPath = false;
@@ -490,6 +511,7 @@ public class Enemy : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDam
         stopDistance = enemyState.StopDistance;
         detectRange = enemyState.DetectRange;
         armor = enemyState.MaxArmor;
+        burningAnimator.gameObject.SetActive(IsBurning);
     }
     protected void IsEnemyDead()
     {
@@ -521,7 +543,7 @@ public class Enemy : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDam
     public virtual void TakeDamage(float damage)
     {
         Health -= damage;
-        AudioManager.instance.PlaySFX(5);
+        AudioManager.Instance.Play("Enemy_Hurt");
     }
 
     public virtual void BurnArmor(float buringDamge)

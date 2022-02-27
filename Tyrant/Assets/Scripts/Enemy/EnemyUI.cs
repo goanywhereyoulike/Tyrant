@@ -10,17 +10,19 @@ public class EnemyUI : MonoBehaviour
     [SerializeField]
     private Slider armorBar;
 
+    public Slider HealthBar { get => healthBar; set => healthBar = value; }
+
     public void MaxHealthChanged(float value)
     {
-        if (!healthBar)
+        if (!HealthBar)
             return;
-        healthBar.maxValue = value;
+        HealthBar.maxValue = value;
     }
     public void HealthChanged(float value)
     {
-        if (!healthBar)
+        if (!HealthBar)
             return;
-        healthBar.value = value;
+        HealthBar.value = value;
     }
     public void MaxArmorChanged(float value)
     {

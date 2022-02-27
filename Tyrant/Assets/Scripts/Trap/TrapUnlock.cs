@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class TrapUnlock : MonoBehaviour
 {
@@ -12,17 +13,24 @@ public class TrapUnlock : MonoBehaviour
 
         if (player)
         {
-           // ManagerSwitch mangerSwitch = FindObjectOfType<ManagerSwitch>();
+            // ManagerSwitch mangerSwitch = FindObjectOfType<ManagerSwitch>();
 
             //TrapManager TrapMngr = FindObjectOfType<TrapManager>();
 
             TrapManager.Instance.AddTrap(index);
 
+
             if (!isInfinite)
             {
-                gameObject.SetActive(false);
+                gameObject.transform.DOScale(Vector3.zero,0.5f).OnComplete(() => { gameObject.SetActive(false); });
+              
             }
-           // Destroy(gameObject);
+            else
+            {
+                gameObject.transform.DOShakeScale(0.8f).OnComplete(() => { transform.DORewind(); });
+
+            }
+            // Destroy(gameObject);
 
         }
     }

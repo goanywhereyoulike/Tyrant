@@ -32,12 +32,17 @@ public class BombEnemyObjectEffect : MonoBehaviour
         }
         if (collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("Tower"))
         {
-            
+            bombEnemy.Explosion = true;
             IDamageable damagebaleObejct = collision.gameObject.GetComponent<IDamageable>();
             if (damagebaleObejct != null)
             {
+                AudioManager.Instance.Play("Explosion");
                 damagebaleObejct.TakeDamage(bombEnemy.Damage);
                 damageables.Add(damagebaleObejct);
+                bombEnemy.GetComponent<SpriteRenderer>().enabled = false;
+                bombEnemy.EnemyUi.HealthBar.gameObject.SetActive(false);
+                AudioManager.Instance.Play("Explosion");
+                CinemachineShaker.Instance.ShakeCamera(10f, 0.3f);
             }
         }
 

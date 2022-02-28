@@ -36,12 +36,12 @@ public class TestEnemy : Enemy
     {
         GameObjectsLocator.Instance.Register<Enemy>(this);
         base.Start();
-        if (isChase)
-        {
-            behaviours = gameObject.GetComponent<StaticMachine>();
-            behaviours.setEnemy(this);
-            behaviours.AllBehaviour();
-        }
+        //if (isChase)
+        //{
+        //    behaviours = gameObject.GetComponent<StaticMachine>();
+        //    behaviours.setEnemy(this);
+        //    behaviours.AllBehaviour();
+        //}
         spriteRenderer = GetComponent<SpriteRenderer>();
         enemyUi.MaxHealthChanged(EnemyState.MaxHealth);
         enemyUi.HealthChanged(EnemyState.MaxHealth);
@@ -106,14 +106,14 @@ public class TestEnemy : Enemy
 
         if (IsChase)
         {
-            mainTarget = GameObjectsLocator.Instance.Get<Player>();
-            mTarget = mainTarget[0].transform;
-            behaviours.Update();
-            EnemyState.force = behaviours.ForceCalculate();
-            EnemyState.acceleration = EnemyState.force / EnemyState.Mass;
-            EnemyState.velocity += EnemyState.acceleration;
-            transform.position += EnemyState.velocity;
-           // base.Update();
+            //mainTarget = GameObjectsLocator.Instance.Get<Player>();
+            //mTarget = mainTarget[0].transform;
+            //behaviours.Update();
+            //EnemyState.force = behaviours.ForceCalculate();
+            //EnemyState.acceleration = EnemyState.force / EnemyState.Mass;
+            //EnemyState.velocity += EnemyState.acceleration;
+            //transform.position += EnemyState.velocity;
+            base.Update();
         }
 
         CheckWall(wDetectRange);

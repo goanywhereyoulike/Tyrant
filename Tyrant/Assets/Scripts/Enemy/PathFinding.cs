@@ -75,14 +75,14 @@ public class Pathfinding
 
         var end = nodePath.FindNode(Mathf.FloorToInt(endposition.x), Mathf.FloorToInt(endposition.y));
 
-        //if (isBlock(end.r, end.c))
-        //{
-        //    end = lastend;
-        //}
-        //else
-        //{
-        //    lastend = end;
-        //}
+        if (isBlock(end.r, end.c))
+        {
+            end = lastend;
+        }
+        else
+        {
+            lastend = end;
+        }
 
         while (!found && OpenList.Count != 0)
         {
@@ -106,10 +106,11 @@ public class Pathfinding
                           
                             if (isBlock(current.neighbors[i].r, current.neighbors[i].c))
                             {
-                                current.neighbors[i].h = GetHCost(current.neighbors[i].r, current.neighbors[i].c, end.r, end.c);
-                                G += GetGCost();
-                                F = G + current.neighbors[i].h;
-                                isCloseWall = true;
+                                //current.neighbors[i].h = GetHCost(current.neighbors[i].r, current.neighbors[i].c, end.r, end.c);
+                                //G += GetGCost();
+                                //F = G + current.neighbors[i].h;
+                                //isCloseWall = true;
+                                continue;
                             }
                             else
                             {

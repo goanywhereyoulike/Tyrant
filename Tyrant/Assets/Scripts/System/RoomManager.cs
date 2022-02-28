@@ -102,6 +102,21 @@ public class RoomManager : MonoBehaviour
             Doors[roomId].gameObject.SetActive(false);
         }
     }
+    public void CloseAllDoor()
+    {
+        for(int i=1;i<Doors.Count;++i)
+        {
+            Doors[i].gameObject.SetActive(true);
+        }
+    }
+
+    public void OpenAllDoor()
+    {
+        for (int i = 1; i < Doors.Count; ++i)
+        {
+            Doors[i].gameObject.SetActive(false);
+        }
+    }
     private void Update()
     {
         //for (int i = 0; i < Doors.Count; ++i)

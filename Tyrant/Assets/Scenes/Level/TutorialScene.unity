@@ -2453,6 +2453,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4488405804283684250, guid: e3065554a13e24320bd7ae7aeca6a670, type: 3}
+      propertyPath: Doors.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4488405804283684250, guid: e3065554a13e24320bd7ae7aeca6a670, type: 3}
       propertyPath: Doors.Array.data[0]
       value: 
       objectReference: {fileID: 0}
@@ -2850,11 +2854,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2974921023735034898, guid: df40cfccb2316a145ac15593c1a28626, type: 3}
       propertyPath: m_AnimatedTiles.Array.data[1].second.m_AnimationSpeed
-      value: 3
+      value: 3.0000002
       objectReference: {fileID: 0}
     - target: {fileID: 2974921023735034898, guid: df40cfccb2316a145ac15593c1a28626, type: 3}
       propertyPath: m_AnimatedTiles.Array.data[2].second.m_AnimationSpeed
-      value: 3
+      value: 3.0000002
       objectReference: {fileID: 0}
     - target: {fileID: 2974921023735034898, guid: df40cfccb2316a145ac15593c1a28626, type: 3}
       propertyPath: m_AnimatedTiles.Array.data[3].second.m_AnimationSpeed
@@ -2878,7 +2882,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2974921023735034898, guid: df40cfccb2316a145ac15593c1a28626, type: 3}
       propertyPath: m_AnimatedTiles.Array.data[8].second.m_AnimationSpeed
-      value: 3.0000002
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2974921023735034898, guid: df40cfccb2316a145ac15593c1a28626, type: 3}
       propertyPath: m_AnimatedTiles.Array.data[13].second.m_AnimationSpeed
@@ -2890,7 +2894,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2974921023735034898, guid: df40cfccb2316a145ac15593c1a28626, type: 3}
       propertyPath: m_AnimatedTiles.Array.data[15].second.m_AnimationSpeed
-      value: 3
+      value: 3.0000002
       objectReference: {fileID: 0}
     - target: {fileID: 2974921023735034898, guid: df40cfccb2316a145ac15593c1a28626, type: 3}
       propertyPath: m_AnimatedTiles.Array.data[16].second.m_AnimationSpeed

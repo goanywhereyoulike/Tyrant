@@ -41,7 +41,7 @@ public class BossBalls : Action
         }
         if (ammoCount > 0)
         {
-
+            
             return TaskStatus.Running;
         }
 
@@ -60,6 +60,7 @@ public class BossBalls : Action
     {
         var bullet = ObjectPoolManager.Instance.GetPooledObject("BossBallBullet");
         var bulletClass = bullet.GetComponent<BossBallsBullet>();
+        AudioManager.Instance.Play("MagicBall");
         bulletClass.Damage = damage;
         bulletClass.stayTime = stayTime;
         bulletClass.transform.position = spPos;

@@ -438,7 +438,10 @@ public class Enemy : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDam
     protected void detectObject()
     {
         var Player = GameObjectsLocator.Instance.Get<Player>();
-        targets.Add(Player[0].gameObject);
+        if (Player != null)
+        {
+            targets.Add(Player[0].gameObject);
+        }
         foreach (GameObject target in GameObject.FindGameObjectsWithTag("Tower"))
         {
             targets.Add(target);

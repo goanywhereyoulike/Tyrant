@@ -160,6 +160,8 @@ public class BossSpawn : Action
                 m_Collider.enabled = true;
                 IsSpawn = true;
                 spr.material.color = Color.white;
+                AudioManager.Instance.Stop("Level_1");
+                AudioManager.Instance.Play("Level1_Boss");
                 return TaskStatus.Success;
             }
             return TaskStatus.Running;

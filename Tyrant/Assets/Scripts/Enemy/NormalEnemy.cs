@@ -38,7 +38,7 @@ public class NormalEnemy : Enemy
     {
         if(isDead)
         {
-            GetComponent<SpriteRenderer>().material = originalMaterial;
+            GetComponent<SpriteRenderer>().material.color = Color.white;
             enemyUi.HealthChanged(EnemyState.MaxHealth);
         }
 
@@ -57,9 +57,9 @@ public class NormalEnemy : Enemy
 
     IEnumerator Flash()
     {
-        GetComponent<SpriteRenderer>().material = flashMaterial;
+        GetComponent<SpriteRenderer>().material.color = Color.red;
         yield return new WaitForSeconds(0.2f);
-        GetComponent<SpriteRenderer>().material = originalMaterial;
+        GetComponent<SpriteRenderer>().material.color = Color.white;
 
     }
     public override void BurnArmor(float buringDamge)

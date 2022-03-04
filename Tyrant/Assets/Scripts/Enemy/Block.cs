@@ -23,8 +23,8 @@ public class Block : MonoBehaviour, GameObjectsLocator.IGameObjectRegister
         for (int i = 0; i< tilemaps.Count;i++)
         {
             GetTiles(tilemaps[i], i);
-            GetTileSize(i);
         }
+        GetTileSize();
        
         RegisterToLocator();
     }
@@ -33,27 +33,29 @@ public class Block : MonoBehaviour, GameObjectsLocator.IGameObjectRegister
     //{
     //    drawBlock();
     //}
-    void GetTileSize(int i)
+    void GetTileSize()
     {
-        if (i + 1< tilemaps.Count)
-        {
-            if (tilemaps[i].size.x > tilemaps[i + 1].size.x)
-            {
-                sizeX = tilemaps[i].size.x;
-            }
-            else
-            {
-                sizeX = tilemaps[i + 1].size.x;
-            }
-            if (tilemaps[i].size.y > tilemaps[i + 1].size.y)
-            {
-                sizeY = tilemaps[i].size.y;
-            }
-            else
-            {
-                sizeY = tilemaps[i + 1].size.y;
-            }
-        }
+        //if (i + 1 < tilemaps.Count)
+        //{
+        //    if (tilemaps[i].size.x > tilemaps[i + 1].size.x)
+        //    {
+        //        sizeX = tilemaps[i].size.x;
+        //    }
+        //    else
+        //    {
+        //        sizeX = tilemaps[i + 1].size.x;
+        //    }
+        //    if (tilemaps[i].size.y > tilemaps[i + 1].size.y)
+        //    {
+        //        sizeY = tilemaps[i].size.y;
+        //    }
+        //    else
+        //    {
+        //        sizeY = tilemaps[i + 1].size.y;
+        //    }
+        //}
+        sizeX = tilemaps[1].size.x;
+        sizeY = tilemaps[1].size.y;
     }
 
     void GetTiles(Tilemap tileMap, int i)

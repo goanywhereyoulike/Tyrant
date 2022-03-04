@@ -22,7 +22,7 @@ public class Enemy : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDam
     protected SpriteRenderer spriteRenderer;
 
     protected NodePath nodePath;
-    
+
     protected RaycastHit2D hit;
     //public Transform target;
     //pathfinding
@@ -30,7 +30,7 @@ public class Enemy : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDam
     protected List<NodePath.Node> mPath = new List<NodePath.Node>();
     protected List<GameObject> targets = new List<GameObject>();
     protected List<Vector3> nextNodes = new List<Vector3>();
-    
+
     public Transform mTarget;
     protected Transform mMainTarget;
 
@@ -106,7 +106,7 @@ public class Enemy : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDam
         set
         {
             isSlow = value;
-            spriteRenderer.material.color = isSlow ? new Color(1.0f, 118.0f, 255.0f) : Color.white;
+            spriteRenderer.material.color = isSlow ? new Color(1.0f, 118.0f, 255.0f, 1) : Color.white;
         }
     }
 
@@ -116,7 +116,7 @@ public class Enemy : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDam
         set
         {
             isBurning = value;
-            spriteRenderer.material.color = isBurning ? new Color(255f, 0f, 0f) : Color.white;
+            spriteRenderer.material.color = isBurning ? new Color(255.0f, 0.0f, 0.0f) : Color.white;
         }
     }
 
@@ -153,7 +153,7 @@ public class Enemy : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDam
         {
             mainTarget = GameObjectsLocator.Instance.Get<Player>();
             ReUse();
-           
+
             isSpawn = true;
         }
 
@@ -288,7 +288,7 @@ public class Enemy : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDam
                         transform.position = Vector2.MoveTowards(transform.position, position, speed);
                         if ((Vector2)transform.position == position)
                         {
-                            if(rb)
+                            if (rb)
                             {
                                 rb.velocity = Vector3.zero;
                             }
@@ -339,11 +339,11 @@ public class Enemy : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDam
                 rb.velocity = Vector3.down;
                 rb.angularVelocity = 0.0f;
             }
-           Vector2 Position = transform.position;
+            Vector2 Position = transform.position;
             Position.y = transform.position.y - 1;
             transform.position = Position;
         }
-      // Debug.DrawRay(transform.position, Vector2.up, Color.green, wDetectRange);
+        // Debug.DrawRay(transform.position, Vector2.up, Color.green, wDetectRange);
 
         RaycastHit2D downHit = Physics2D.Raycast(transform.position, Vector2.down, wDetectRange, LayerMask.GetMask("Wall"));
         if (downHit.collider != null && downHit.collider.tag == "Wall")
@@ -439,7 +439,10 @@ public class Enemy : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDam
     protected void detectObject()
     {
         var Player = GameObjectsLocator.Instance.Get<Player>();
-        targets.Add(Player[0].gameObject);
+        if (Player != null)
+        {
+            targets.Add(Player[0].gameObject);
+        }
         foreach (GameObject target in GameObject.FindGameObjectsWithTag("Tower"))
         {
             targets.Add(target);

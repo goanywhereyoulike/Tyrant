@@ -18,7 +18,7 @@ MonoBehaviour:
     maxHealth: 10
     maxDamage: 0
     maxMoveSpeed: 2
-    mass: 0
+    mass: 1
     timeBetweenAttacks: 0
     stopDistance: 0
     attackSpeed: 0

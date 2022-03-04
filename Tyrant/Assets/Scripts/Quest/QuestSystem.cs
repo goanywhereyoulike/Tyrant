@@ -31,6 +31,7 @@ public class QuestSystem : MonoBehaviour
                 if(currentQuestSet == MoveQuestSet)
                 {
                     moveComplete = true;
+                    RoomManager.Instance.OpenAllDoor();
                     StartCoroutine(WaitBeforeDisable(MoveQuestSet));
                 }
                 if(currentQuestSet == ShootQuestSet)
@@ -92,7 +93,7 @@ public class QuestSystem : MonoBehaviour
         
         RoomManager.Instance.RoomChanged += this.OnRoomChanged;
         ActiveMoveQuest();
-
+        RoomManager.Instance.CloseAllDoor();
 
         
     }

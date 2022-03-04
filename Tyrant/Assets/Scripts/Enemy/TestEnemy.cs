@@ -38,9 +38,9 @@ public class TestEnemy : Enemy
         base.Start();
         //if (isChase)
         //{
-        //    //behaviours = gameObject.GetComponent<StaticMachine>();
-        //    //behaviours.setEnemy(this);
-        //    //behaviours.AllBehaviour();
+        //    behaviours = gameObject.GetComponent<StaticMachine>();
+        //    behaviours.setEnemy(this);
+        //    behaviours.AllBehaviour();
         //}
         spriteRenderer = GetComponent<SpriteRenderer>();
         enemyUi.MaxHealthChanged(EnemyState.MaxHealth);

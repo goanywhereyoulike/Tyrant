@@ -21,6 +21,8 @@ public class BossBulletHell : Action
         ObjectPoolManager.Instance.InstantiateObjects("BossBullet");
         psc = GetComponent<PSC>();
         psc.Animator.SetBool("SpellLoop", true);
+        AudioManager.Instance.Play("DarkMagic");
+
     }
 
     public override TaskStatus OnUpdate()
@@ -70,6 +72,8 @@ public class BossBulletHell : Action
 
         count = bulletCount;
         psc.Animator.SetBool("SpellLoop", false);
+
+        AudioManager.Instance.Stop("DarkMagic");
 
         return TaskStatus.Success;
     }

@@ -19,6 +19,7 @@ public class BossCharge : Action
     {
         psc = GetComponent<PSC>();
         startMoveTime = Time.time;
+        AudioManager.Instance.Play("Charge");
     }
 
     public override TaskStatus OnUpdate()

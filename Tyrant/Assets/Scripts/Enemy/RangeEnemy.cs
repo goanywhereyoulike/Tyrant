@@ -12,6 +12,7 @@ public class RangeEnemy : Enemy
     {
         ObjectPoolManager.Instance.InstantiateObjects("enemyBullet");
         base.Start();
+        isPushable = true;
         healthBar.MaxHealthChanged(EnemyState.MaxHealth);
         healthBar.HealthChanged(EnemyState.MaxHealth);
     }

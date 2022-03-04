@@ -18,6 +18,7 @@ public class BombEnemy : Enemy
     // Start is called before the first frame update
     protected override void Start()
     {
+        isPushable = true;
         base.Start();
         Explosion = false;
         EnemyUi.MaxHealthChanged(EnemyState.MaxHealth);

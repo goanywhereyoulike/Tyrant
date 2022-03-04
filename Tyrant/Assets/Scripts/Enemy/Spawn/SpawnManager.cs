@@ -11,7 +11,7 @@ public class SpawnManager : MonoBehaviour
         public List<SpawnArea> roomSpawns;
         public bool clear;
         public bool isBossRoom;
-       
+
     }
     public List<room> rooms = new List<room>();
 
@@ -83,9 +83,9 @@ public class SpawnManager : MonoBehaviour
         //if (StartLevel)
         //{
         // check all spawns in current room
-         if (currentRoom.roomSpawns.Count != 0)
+        if (currentRoom.roomSpawns.Count != 0)
         {
-            for (int i = 0; i < currentRoom.roomSpawns.Count;++i)
+            for (int i = 0; i < currentRoom.roomSpawns.Count; ++i)
             {
                 if (currentRoom.roomSpawns[i].CurrentWave == currentRoom.roomSpawns[i].Wave.waveData.Count)
                 {
@@ -150,16 +150,16 @@ public class SpawnManager : MonoBehaviour
                         currentRoom.roomSpawns[i].TotalEnemies--;
                         currentRoom.roomSpawns[i].TotalWaveSpawn--;
                         Debug.Log(currentRoom.roomSpawns[i].TotalEnemies);
-                       // }
+                        // }
 
-                       
+
                         //check wave clear
                         if (currentRoom.roomSpawns[i].TotalWaveSpawn == 0)
                         {
                             currentRoom.roomSpawns[i].IsWaveClear = true;
                         }
 
-         
+
                     }
                 }
 
@@ -191,16 +191,18 @@ public class SpawnManager : MonoBehaviour
                             currentRoom.roomSpawns[i].DelayTime = currentRoom.roomSpawns[i].WaveDelay;
                         }
                         currentRoom.roomSpawns[i].DelayTime -= Time.deltaTime;
-                    }  
+                    }
+
                 }
                 else
                 {
+
                     if (currentRoom.roomSpawns[i].IsFirstSpawn)
                     {
                         if (time <= 0.0f)
                         {
-                             SpawnWave(i);
-                             time = firstDelayTime;
+                            SpawnWave(i);
+                            time = firstDelayTime;
                         }
                         time -= Time.deltaTime;
                     }
@@ -208,6 +210,7 @@ public class SpawnManager : MonoBehaviour
                     {
                         SpawnWave(i);
                     }
+
                 }
             }
         }
@@ -281,7 +284,7 @@ public class SpawnManager : MonoBehaviour
 
     void SpawnType(int count)
     {
-       if (currentRoom.roomSpawns[count].SpawnCount < currentRoom.roomSpawns[count].Wave.waveData[currentRoom.roomSpawns[count].CurrentWave].spawnNumber)
+        if (currentRoom.roomSpawns[count].SpawnCount < currentRoom.roomSpawns[count].Wave.waveData[currentRoom.roomSpawns[count].CurrentWave].spawnNumber)
         {
             for (int c = 0; c < currentRoom.roomSpawns[count].Wave.waveData[currentRoom.roomSpawns[count].CurrentWave].spawnNumber; c++)
             {
@@ -425,7 +428,7 @@ public class SpawnManager : MonoBehaviour
             currentRoom.roomSpawns[count].CurrentWave++;
             currentRoom.roomSpawns[count].SpawnCount = 0;
             currentRoom.roomSpawns[count].IsWaveClear = false;
-            
+
         }
 
     }

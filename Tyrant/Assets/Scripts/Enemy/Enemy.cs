@@ -60,6 +60,7 @@ public class Enemy : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDam
     protected bool findTarget = false;
     protected bool search = false;
     protected bool isSpawn = false;
+    protected bool isPushable = false;
 
     protected bool firstFramePath = false;
     protected bool canFind = false;
@@ -595,7 +596,10 @@ public class Enemy : MonoBehaviour, GameObjectsLocator.IGameObjectRegister, IDam
     public void BePushed(Vector3 force)
     {
         //rb.AddForce(force);
-        transform.position += force;
+        if (isPushable)
+        {
+            transform.position += force;
+        }
     }
 
 }

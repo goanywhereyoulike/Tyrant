@@ -17,6 +17,7 @@ public class BoomerangeEnemy : Enemy
     // Start is called before the first frame update
     protected override void Start()
     {
+        isPushable = true;
         base.Start();
         ObjectPoolManager.Instance.InstantiateObjects("boomerangebullet");
         enemyUi.MaxHealthChanged(EnemyState.MaxHealth);

@@ -16,6 +16,7 @@ public class xRangeEnemy : Enemy
     // Start is called before the first frame update
     protected override void Start()
     {
+        isPushable = true;
         base.Start();
         ObjectPoolManager.Instance.InstantiateObjects("xbullet");
         enemyUi.MaxHealthChanged(EnemyState.MaxHealth);

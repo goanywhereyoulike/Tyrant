@@ -22,6 +22,7 @@ public class SpawnArea : MonoBehaviour, GameObjectsLocator.IGameObjectRegister
 
     [SerializeField]
     private bool waveDelayTurnOn;
+
     private int spawnCount;
     private int currentWave;
     private float delayTime;

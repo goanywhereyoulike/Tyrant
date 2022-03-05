@@ -1812,7 +1812,6 @@ GameObject:
   m_Component:
   - component: {fileID: 888338623}
   - component: {fileID: 888338626}
-  - component: {fileID: 888338625}
   - component: {fileID: 888338624}
   m_Layer: 0
   m_Name: Camera
@@ -1829,7 +1828,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 888338622}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10.07}
+  m_LocalPosition: {x: 0.43, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1289173397}
@@ -1867,14 +1866,6 @@ MonoBehaviour:
   m_RequiresDepthTexture: 0
   m_RequiresColorTexture: 0
   m_Version: 2
---- !u!81 &888338625
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 888338622}
-  m_Enabled: 1
 --- !u!20 &888338626
 Camera:
   m_ObjectHideFlags: 0
@@ -1902,7 +1893,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 0
-  orthographic size: 5
+  orthographic size: 6
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
@@ -2385,6 +2376,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6991651403236857314, guid: ca6a03c1d14e54040af2cd8bcf59be72, type: 3}
+      propertyPath: mCamera
+      value: 
+      objectReference: {fileID: 888338626}
     - target: {fileID: 6991651403236857315, guid: ca6a03c1d14e54040af2cd8bcf59be72, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -2805,7 +2800,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 954454008223893852, guid: df40cfccb2316a145ac15593c1a28626, type: 3}
       propertyPath: m_AnimatedTiles.Array.data[12].second.m_AnimationSpeed
-      value: 3
+      value: 3.0000002
       objectReference: {fileID: 0}
     - target: {fileID: 2297418207161895329, guid: df40cfccb2316a145ac15593c1a28626, type: 3}
       propertyPath: m_RootOrder
@@ -2865,7 +2860,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2974921023735034898, guid: df40cfccb2316a145ac15593c1a28626, type: 3}
       propertyPath: m_AnimatedTiles.Array.data[1].second.m_AnimationSpeed
-      value: 3.0000002
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2974921023735034898, guid: df40cfccb2316a145ac15593c1a28626, type: 3}
       propertyPath: m_AnimatedTiles.Array.data[2].second.m_AnimationSpeed
@@ -2877,7 +2872,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2974921023735034898, guid: df40cfccb2316a145ac15593c1a28626, type: 3}
       propertyPath: m_AnimatedTiles.Array.data[4].second.m_AnimationSpeed
-      value: 3.0000002
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2974921023735034898, guid: df40cfccb2316a145ac15593c1a28626, type: 3}
       propertyPath: m_AnimatedTiles.Array.data[5].second.m_AnimationSpeed
@@ -2889,7 +2884,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2974921023735034898, guid: df40cfccb2316a145ac15593c1a28626, type: 3}
       propertyPath: m_AnimatedTiles.Array.data[7].second.m_AnimationSpeed
-      value: 3
+      value: 3.0000002
       objectReference: {fileID: 0}
     - target: {fileID: 2974921023735034898, guid: df40cfccb2316a145ac15593c1a28626, type: 3}
       propertyPath: m_AnimatedTiles.Array.data[8].second.m_AnimationSpeed
@@ -2921,7 +2916,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2974921023735034898, guid: df40cfccb2316a145ac15593c1a28626, type: 3}
       propertyPath: m_AnimatedTiles.Array.data[19].second.m_AnimationSpeed
-      value: 3
+      value: 3.0000002
       objectReference: {fileID: 0}
     - target: {fileID: 3745724296524930268, guid: df40cfccb2316a145ac15593c1a28626, type: 3}
       propertyPath: m_CompositePaths.m_Paths.Array.data[50].Array.size

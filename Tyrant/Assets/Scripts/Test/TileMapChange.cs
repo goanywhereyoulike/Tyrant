@@ -27,7 +27,9 @@ public class TileMapChange : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector3Int pos = curtilemap.WorldToCell(camera.ScreenToWorldPoint(transform.position)) + offset;
+        Vector3 curPos = camera.ScreenToWorldPoint(transform.position);
+        curPos.z = 0.0f;
+        Vector3Int pos = curtilemap.WorldToCell(curPos) + offset;
         if (InputManager.Instance.GetKeyDown("Interact"))
         {
 

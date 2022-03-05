@@ -2698,6 +2698,10 @@ MonoBehaviour:
     objectToPool: {fileID: 7749296485119699822, guid: b451ecc373e528345bd4b107739222c7, type: 3}
     amountToPool: 5
     shouldExpand: 1
+  - tagName: Golem_AOE_Spell
+    objectToPool: {fileID: 8404092555313566947, guid: 5b015952322245b4684b77cbf430d34b, type: 3}
+    amountToPool: 1
+    shouldExpand: 1
 --- !u!1 &4925202351171300084
 GameObject:
   m_ObjectHideFlags: 0

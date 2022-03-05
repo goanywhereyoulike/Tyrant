@@ -10,7 +10,8 @@ public class Golem : MonoBehaviour
         heavy,
         rotation,
         destroy,
-        summon
+        summon,
+        AOE
     }
 
     #region Golem Attritube
@@ -54,13 +55,40 @@ public class Golem : MonoBehaviour
     private float heavyAttackTimer = 0.0f;
     #endregion
 
+    #region Summon Adds
+    private bool invincible = false;
+    private int addsCount = 0;
+    public int AddsCount
+    {
+        get => addsCount;
+        set
+        {
+            addsCount = value;
+            invincible = addsCount != 4;
+        }
+    }
+
+    #endregion
+
+    #region AOE Attack
+    [Header("AOE Attack Attribute")]
+    [SerializeField]
+    private float aoeDelayTime = 5.0f;
+    private float aoeTimer = 0f;
+    private List<GameObject> aoeSpells;
+    #endregion
+
     private void Start()
     {
-        Behaviors = AttackBehaviors.heavy;
+        ObjectPoolManager.Instance.InstantiateObjects("Golem_AOE_Spell");
+
+        Behaviors = AttackBehaviors.AOE;
         normalAttackTimer = normalAttackCooldown;
         heavyAttackTimer = heavyAttackCooldown;
+        aoeTimer = aoeDelayTime;
         golemSprite = GetComponent<SpriteRenderer>();
         golemAnimator = GetComponent<Animator>();
+        aoeSpells = new List<GameObject>();
     }
 
     private void Update()
@@ -70,6 +98,7 @@ public class Golem : MonoBehaviour
 
         normalAttackTimer += Time.deltaTime;
         heavyAttackTimer += Time.deltaTime;
+        aoeTimer += Time.deltaTime;
 
         switch (Behaviors)
         {
@@ -79,7 +108,8 @@ public class Golem : MonoBehaviour
             case AttackBehaviors.heavy:
                 HeavyAttack();
                 break;
-            case AttackBehaviors.rotation:
+            case AttackBehaviors.AOE:
+                AOEAttack();
                 break;
             case AttackBehaviors.destroy:
                 break;
@@ -131,6 +161,29 @@ public class Golem : MonoBehaviour
             heavyAttackEffectObject.transform.localPosition = new Vector3(heavyAttackEffectOffset * face, 0f, 0f);
             heavyAttackEffectObject.SetActive(true);
         }
+    }
+
+    void SummonAdds()
+    {
+        invincible = true;
+        AddsCount = 0;
+
+    }
+
+    void AOEAttack()
+    {
+        if (aoeTimer >= aoeDelayTime)
+        {
+            GameObject golemAOESpell = ObjectPoolManager.Instance.GetPooledObject("Golem_AOE_Spell");
+            if (golemAOESpell)
+            {
+                golemAOESpell.transform.position = targetObejct.transform.position;
+                golemAOESpell.SetActive(true);
+                aoeSpells.Add(golemAOESpell);
+                aoeTimer = 0.0f;
+            }
+        }
+
     }
 
     void SetCanMove(int value)

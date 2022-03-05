@@ -211,7 +211,7 @@ public class RoomManager : MonoBehaviour
                         {
                             /* PointerEnabled = false;*/
                             Doors[i].gameObject.SetActive(true);
-                            Doors[i].Animator.SetBool("IsClose", false);
+                           // Doors[i].Animator.SetBool("IsClose", false);
                         }
                     }
                 }

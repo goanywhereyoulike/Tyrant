@@ -11,7 +11,7 @@ public class SpawnManager : MonoBehaviour
         public List<SpawnArea> roomSpawns;
         public bool clear;
         public bool isBossRoom;
-
+        public bool bossSkillOver;
     }
     public List<room> rooms = new List<room>();
 
@@ -85,136 +85,201 @@ public class SpawnManager : MonoBehaviour
         // check all spawns in current room
         if (currentRoom.roomSpawns.Count != 0)
         {
-            for (int i = 0; i < currentRoom.roomSpawns.Count; ++i)
+            if (!currentRoom.isBossRoom)
             {
-                if (currentRoom.roomSpawns[i].CurrentWave == currentRoom.roomSpawns[i].Wave.waveData.Count)
+                for (int i = 0; i < currentRoom.roomSpawns.Count; ++i)
                 {
-                    //currentRoom.roomSpawns[i].gameObject.SetActive(false);
-                }
-
-                //check how many enemy can drop item
-                for (int d = currentRoom.roomSpawns[i].ChooseEnemyDrop; d < currentRoom.roomSpawns[i].ItemDropNum;)
-                {
-                    enemyDrop = Random.Range(0, currentRoom.roomSpawns[i].TotalEnemies);
-                    if (currentRoom.roomSpawns[i].ItemDropNum <= currentRoom.roomSpawns[i].TotalEnemies)
-                    {
-                        while (currentRoom.roomSpawns[i].DropNumber.Contains(enemyDrop))
-                        {
-                            enemyDrop = Random.Range(0, currentRoom.roomSpawns[i].TotalEnemies);
-                        }
-                        currentRoom.roomSpawns[i].DropNumber.Add(enemyDrop);
-                        currentRoom.roomSpawns[i].ChooseEnemyDrop++;
-                    }
-                    //else
+                    //if (currentRoom.roomSpawns[i].CurrentWave == currentRoom.roomSpawns[i].Wave.waveData.Count)
                     //{
-                    //    Debug.LogError("Drop number can not larger than enemy total number Room: " + i.ToString() + " Total Spawn Number: " + currentRoom.roomSpawns[i].TotalEnemies.ToString());
+                    //    currentRoom.roomSpawns[i].gameObject.SetActive(false);
                     //}
-                    d++;
-                }
 
-                for (int e = 0; e < currentRoom.roomSpawns[i].Enemies.Count; ++e)
-                {
-                    if (currentRoom.roomSpawns[i].Enemies[e].activeInHierarchy == false)
+                    //check how many enemy can drop item
+                    for (int d = currentRoom.roomSpawns[i].ChooseEnemyDrop; d < currentRoom.roomSpawns[i].ItemDropNum;)
                     {
-                        //check which enemy will drop
-                        //for (int d = 0; d < currentRoom.roomSpawns[i].DropNumber.Count; ++d)
+                        enemyDrop = Random.Range(0, currentRoom.roomSpawns[i].TotalEnemies);
+                        if (currentRoom.roomSpawns[i].ItemDropNum <= currentRoom.roomSpawns[i].TotalEnemies)
+                        {
+                            while (currentRoom.roomSpawns[i].DropNumber.Contains(enemyDrop))
+                            {
+                                enemyDrop = Random.Range(0, currentRoom.roomSpawns[i].TotalEnemies);
+                            }
+                            currentRoom.roomSpawns[i].DropNumber.Add(enemyDrop);
+                            currentRoom.roomSpawns[i].ChooseEnemyDrop++;
+                        }
+                        //else
                         //{
-                        //    if (e == currentRoom.roomSpawns[i].DropNumber[d])
-                        //    {
-                        //        enemyObject = ObjectPoolManager.Instance.GetPooledObject("DropItem");
-                        //        enemyObject.transform.position = currentRoom.roomSpawns[i].Enemies[e].transform.position;
-                        //        enemyObject.SetActive(true);
-                        //        coin = ObjectPoolManager.Instance.GetPooledObject("Coin");
-                        //        coin.transform.position = currentRoom.roomSpawns[i].Enemies[e].transform.position + new Vector3(1, 0, 0);
-                        //        coin.SetActive(true);
-                        //        currentRoom.roomSpawns[i].DropNumber.RemoveAt(d);
-                        //        currentRoom.roomSpawns[i].ItemDropCount++;
-                        //        break;
-                        //    }
+                        //    Debug.LogError("Drop number can not larger than enemy total number Room: " + i.ToString() + " Total Spawn Number: " + currentRoom.roomSpawns[i].TotalEnemies.ToString());
                         //}
-
-                        //remove dead enemies
-                        //if (currentRoom.roomSpawns[i].ItemDropCount == currentRoom.roomSpawns[i].ItemDropNum)
-                        //{
-                        if (currentRoom.roomSpawns[i].DropNumber.Count != currentRoom.roomSpawns[i].ItemDropCount)
-                        {
-                            enemyObject = ObjectPoolManager.Instance.GetPooledObject("DropItem");
-                            enemyObject.transform.position = currentRoom.roomSpawns[i].Enemies[e].transform.position;
-                            enemyObject.SetActive(true);
-                            currentRoom.roomSpawns[i].ItemDropCount++;
-                        }
-                        coin = ObjectPoolManager.Instance.GetPooledObject("Coin");
-                        coin.transform.position = currentRoom.roomSpawns[i].Enemies[e].transform.position + new Vector3(1, 0, 0);
-                        coin.SetActive(true);
-                        currentRoom.roomSpawns[i].Enemies.RemoveAt(e);
-                        currentRoom.roomSpawns[i].TotalEnemies--;
-                        currentRoom.roomSpawns[i].TotalWaveSpawn--;
-                        Debug.Log(currentRoom.roomSpawns[i].TotalEnemies);
-                        // }
-
-
-                        //check wave clear
-                        if (currentRoom.roomSpawns[i].TotalWaveSpawn == 0)
-                        {
-                            currentRoom.roomSpawns[i].IsWaveClear = true;
-                        }
-
-
+                        d++;
                     }
-                }
 
-                if (currentRoom.roomSpawns[i].WaveDelayTurnOn)
-                {
-                    if (firstSpawn)
+                    for (int e = 0; e < currentRoom.roomSpawns[i].Enemies.Count; ++e)
                     {
-                        if (currentRoom.roomSpawns[i].DelayTime <= 0.0f)
+                        if (currentRoom.roomSpawns[i].Enemies[e].activeInHierarchy == false)
                         {
-                            SpawnWave(i);
-                            currentRoom.roomSpawns[i].DelayTime = currentRoom.roomSpawns[i].WaveDelay;
+                            //check which enemy will drop
+                            //for (int d = 0; d < currentRoom.roomSpawns[i].DropNumber.Count; ++d)
+                            //{
+                            //    if (e == currentRoom.roomSpawns[i].DropNumber[d])
+                            //    {
+                            //        enemyObject = ObjectPoolManager.Instance.GetPooledObject("DropItem");
+                            //        enemyObject.transform.position = currentRoom.roomSpawns[i].Enemies[e].transform.position;
+                            //        enemyObject.SetActive(true);
+                            //        coin = ObjectPoolManager.Instance.GetPooledObject("Coin");
+                            //        coin.transform.position = currentRoom.roomSpawns[i].Enemies[e].transform.position + new Vector3(1, 0, 0);
+                            //        coin.SetActive(true);
+                            //        currentRoom.roomSpawns[i].DropNumber.RemoveAt(d);
+                            //        currentRoom.roomSpawns[i].ItemDropCount++;
+                            //        break;
+                            //    }
+                            //}
+
+                            //remove dead enemies
+                            //if (currentRoom.roomSpawns[i].ItemDropCount == currentRoom.roomSpawns[i].ItemDropNum)
+                            //{
+                            if (currentRoom.roomSpawns[i].DropNumber.Count != currentRoom.roomSpawns[i].ItemDropCount)
+                            {
+                                enemyObject = ObjectPoolManager.Instance.GetPooledObject("DropItem");
+                                enemyObject.transform.position = currentRoom.roomSpawns[i].Enemies[e].transform.position;
+                                enemyObject.SetActive(true);
+                                currentRoom.roomSpawns[i].ItemDropCount++;
+                            }
+                            coin = ObjectPoolManager.Instance.GetPooledObject("Coin");
+                            coin.transform.position = currentRoom.roomSpawns[i].Enemies[e].transform.position + new Vector3(1, 0, 0);
+                            coin.SetActive(true);
+                            currentRoom.roomSpawns[i].Enemies.RemoveAt(e);
+                            currentRoom.roomSpawns[i].TotalEnemies--;
+                            currentRoom.roomSpawns[i].TotalWaveSpawn--;
+                            Debug.Log(currentRoom.roomSpawns[i].TotalEnemies);
+                            // }
+
+
+                            //check wave clear
+                            if (currentRoom.roomSpawns[i].TotalWaveSpawn == 0)
+                            {
+                                currentRoom.roomSpawns[i].IsWaveClear = true;
+                            }
+
+
                         }
-                        currentRoom.roomSpawns[i].DelayTime -= Time.deltaTime;
+                    }
+                    if (currentRoom.roomSpawns[i].WaveDelayTurnOn)
+                    {
+                        if (firstSpawn)
+                        {
+                            if (currentRoom.roomSpawns[i].DelayTime <= 0.0f)
+                            {
+                                SpawnWave(i);
+                                currentRoom.roomSpawns[i].DelayTime = currentRoom.roomSpawns[i].WaveDelay;
+                            }
+                            currentRoom.roomSpawns[i].DelayTime -= Time.deltaTime;
+                        }
+                        else
+                        {
+                            if (currentRoom.roomSpawns[i].DelayTime <= 0.0f)
+                            {
+                                if (time <= 0.0f)
+                                {
+                                    SpawnWave(i);
+                                    time = firstDelayTime;
+                                    if (i == currentRoom.roomSpawns.Count)
+                                    {
+                                        firstSpawn = false;
+                                    }
+                                }
+                                time -= Time.deltaTime;
+                                currentRoom.roomSpawns[i].DelayTime = currentRoom.roomSpawns[i].WaveDelay;
+                            }
+                            currentRoom.roomSpawns[i].DelayTime -= Time.deltaTime;
+                        }
+
                     }
                     else
                     {
-                        if (currentRoom.roomSpawns[i].DelayTime <= 0.0f)
+
+                        if (currentRoom.roomSpawns[i].IsFirstSpawn)
                         {
                             if (time <= 0.0f)
                             {
                                 SpawnWave(i);
                                 time = firstDelayTime;
-                                if (i == currentRoom.roomSpawns.Count)
-                                {
-                                    firstSpawn = false;
-                                }
                             }
                             time -= Time.deltaTime;
-                            currentRoom.roomSpawns[i].DelayTime = currentRoom.roomSpawns[i].WaveDelay;
                         }
-                        currentRoom.roomSpawns[i].DelayTime -= Time.deltaTime;
-                    }
-
-                }
-                else
-                {
-
-                    if (currentRoom.roomSpawns[i].IsFirstSpawn)
-                    {
-                        if (time <= 0.0f)
+                        else
                         {
                             SpawnWave(i);
-                            time = firstDelayTime;
                         }
-                        time -= Time.deltaTime;
-                    }
-                    else
-                    {
-                        SpawnWave(i);
-                    }
 
+                    }
                 }
+                CheckRoomClear();
+            }
+            else
+            {
+                BossSpawn();
             }
         }
-        CheckRoomClear();
+    }
+
+    void Reuse()
+    {
+        currentRoom.bossSkillOver = false;
+        foreach (var spawn in currentRoom.roomSpawns)
+        {
+            spawn.gameObject.SetActive(true);
+        }
+        for (int i = 0; i < currentRoom.roomSpawns.Count; ++i)
+        {
+
+            currentRoom.roomSpawns[i].CurrentWave = 0;
+            currentRoom.roomSpawns[i].SpawnClear = false;
+            currentRoom.roomSpawns[i].gameObject.SetActive(true);
+            for (int s = 0; s < currentRoom.roomSpawns[i].Wave.waveData.Count; ++s)
+            {
+                currentRoom.roomSpawns[i].TotalEnemies += currentRoom.roomSpawns[i].Wave.waveData[s].spawnNumber;
+                currentRoom.roomSpawns[i].TotalWaveSpawn = currentRoom.roomSpawns[i].Wave.waveData[0].spawnNumber;
+            }
+        }
+    }
+
+    public void BossSpawn()
+    {
+        Reuse();
+        int spawnCount =0;
+        for (int i = 0; i < currentRoom.roomSpawns.Count; ++i)
+        {
+            if (currentRoom.roomSpawns[i].TotalWaveSpawn == 0)
+            {
+                currentRoom.roomSpawns[i].IsWaveClear = true;
+            }
+
+            if (currentRoom.roomSpawns[i].IsFirstSpawn)
+            {
+                if (time <= 0.0f)
+                {
+                    SpawnWave(i);
+                    time = firstDelayTime;
+                }
+                time -= Time.deltaTime;
+            }
+            else
+            {
+                SpawnWave(i);
+            }
+
+            if (currentRoom.roomSpawns[i].CurrentWave == currentRoom.roomSpawns[i].Wave.waveData.Count && currentRoom.roomSpawns[i].TotalEnemies == 0 && !currentRoom.roomSpawns[i].SpawnClear)
+            {
+                currentRoom.roomSpawns[i].SpawnClear = true;
+                currentRoom.roomSpawns[i].gameObject.SetActive(false);
+                spawnCount++;
+            }
+            else if (checkcount == currentRoom.roomSpawns.Count -1)
+            {
+                currentRoom.bossSkillOver= true;
+            }
+        }
     }
 
     private void RoomChange(int changeId)
@@ -233,21 +298,24 @@ public class SpawnManager : MonoBehaviour
     void CheckRoomSpawn()
     {
         currentRoom = rooms[roomNumber];
-        foreach (var spawn in currentRoom.roomSpawns)
+        if (!currentRoom.isBossRoom)
         {
-            spawn.gameObject.SetActive(true);
-        }
-
-        //count the wave total enemies
-        for (int i = 0; i < currentRoom.roomSpawns.Count; ++i)
-        {
-            for (int s = 0; s < currentRoom.roomSpawns[i].Wave.waveData.Count; ++s)
+            foreach (var spawn in currentRoom.roomSpawns)
             {
-                currentRoom.roomSpawns[i].TotalEnemies += currentRoom.roomSpawns[i].Wave.waveData[s].spawnNumber;
-                currentRoom.roomSpawns[i].TotalWaveSpawn = currentRoom.roomSpawns[i].Wave.waveData[0].spawnNumber;
+                spawn.gameObject.SetActive(true);
             }
+
+            //count the wave total enemies
+            for (int i = 0; i < currentRoom.roomSpawns.Count; ++i)
+            {
+                for (int s = 0; s < currentRoom.roomSpawns[i].Wave.waveData.Count; ++s)
+                {
+                    currentRoom.roomSpawns[i].TotalEnemies += currentRoom.roomSpawns[i].Wave.waveData[s].spawnNumber;
+                    currentRoom.roomSpawns[i].TotalWaveSpawn = currentRoom.roomSpawns[i].Wave.waveData[0].spawnNumber;
+                }
+            }
+            isRoomCheck = true;
         }
-        isRoomCheck = true;
     }
 
     void CheckRoomClear()

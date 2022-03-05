@@ -23,6 +23,9 @@ public class SpawnArea : MonoBehaviour, GameObjectsLocator.IGameObjectRegister
     [SerializeField]
     private bool waveDelayTurnOn;
 
+    [SerializeField]
+    private bool isBossSpawnSkill =false;
+
     private int spawnCount;
     private int currentWave;
     private float delayTime;
@@ -65,6 +68,7 @@ public class SpawnArea : MonoBehaviour, GameObjectsLocator.IGameObjectRegister
     public bool IsWaveClear { get => isWaveClear; set => isWaveClear = value; }
     public int TotalWaveSpawn { get => totalWaveSpawn; set => totalWaveSpawn = value; }
     public bool IsFirstSpawn { get => isFirstSpawn; set => isFirstSpawn = value; }
+    public bool IsBossSpawnSkill { get => isBossSpawnSkill;}
 
     //  public string[] enemyType = { "normalenemy", "rangeEnemy" };
     //

@@ -109,7 +109,7 @@ public class Pathfinding
                                 //current.neighbors[i].h = GetHCost(current.neighbors[i].r, current.neighbors[i].c, end.r, end.c);
                                 //G += GetGCost();
                                 //F = G + current.neighbors[i].h;
-                                //isCloseWall = true;
+                                isCloseWall = true;
                                 continue;
                             }
                             else

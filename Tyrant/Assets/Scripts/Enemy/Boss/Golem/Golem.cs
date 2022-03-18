@@ -11,7 +11,8 @@ public class Golem : MonoBehaviour
         rotation,
         destroy,
         summon,
-        AOE
+        AOE,
+        Clean
     }
 
     #region Golem Attritube
@@ -50,6 +51,7 @@ public class Golem : MonoBehaviour
     private float heavyAttackCooldown = 0.0f;
     [SerializeField]
     private GameObject heavyAttackEffectObject = null;
+    private TileMapChange mapChange = null;
 
     private float heavyAttackEffectOffset = 2f;
     private float heavyAttackTimer = 0.0f;
@@ -78,17 +80,30 @@ public class Golem : MonoBehaviour
     private List<GameObject> aoeSpells;
     #endregion
 
+    #region Clean Attack
+    [Header("Clean Attack Attribute")]
+    [SerializeField]
+    private int CleanSpellCount = 0;
+    [SerializeField]
+    private float CleanSpellMoveSpeed = 0;
+    private float angle = 0f;
+    private Vector3 direction = Vector3.up;
+    #endregion
+
     private void Start()
     {
+        ObjectPoolManager.Instance.InstantiateObjects("BossBullet");
+
         ObjectPoolManager.Instance.InstantiateObjects("Golem_AOE_Spell");
 
-        Behaviors = AttackBehaviors.AOE;
+        Behaviors = AttackBehaviors.heavy;
         normalAttackTimer = normalAttackCooldown;
         heavyAttackTimer = heavyAttackCooldown;
         aoeTimer = aoeDelayTime;
         golemSprite = GetComponent<SpriteRenderer>();
         golemAnimator = GetComponent<Animator>();
         aoeSpells = new List<GameObject>();
+        mapChange = GetComponent<TileMapChange>();
     }
 
     private void Update()
@@ -114,6 +129,9 @@ public class Golem : MonoBehaviour
             case AttackBehaviors.destroy:
                 break;
             case AttackBehaviors.summon:
+                break;
+            case AttackBehaviors.Clean:
+                CleanAttack();
                 break;
             default:
                 break;
@@ -160,6 +178,7 @@ public class Golem : MonoBehaviour
             int face = targetObejct.gameObject.transform.position.x >= transform.position.x ? 1 : -1;
             heavyAttackEffectObject.transform.localPosition = new Vector3(heavyAttackEffectOffset * face, 0f, 0f);
             heavyAttackEffectObject.SetActive(true);
+            mapChange.PlaceTile(new Vector3Int(Mathf.FloorToInt(heavyAttackEffectObject.transform.position.x), Mathf.FloorToInt(heavyAttackEffectObject.transform.position.y), Mathf.FloorToInt(heavyAttackEffectObject.transform.position.z)));
         }
     }
 
@@ -184,6 +203,35 @@ public class Golem : MonoBehaviour
             }
         }
 
+    }
+
+    void CleanAttack()
+    {
+        for (int i = 0; i < CleanSpellCount; i++)
+        {
+            var bullet = ObjectPoolManager.Instance.GetPooledObject("BossBullet");
+            var bulletClass = bullet.GetComponent<BossBullet>();
+
+            float x = Mathf.Cos(angle * Mathf.Deg2Rad) * direction.x - Mathf.Sin(angle * Mathf.Deg2Rad) * direction.y;
+            float y = Mathf.Sin(angle * Mathf.Deg2Rad) * direction.x + Mathf.Cos(angle * Mathf.Deg2Rad) * direction.y;
+            //float bulDirX = transform.position.x + Mathf.Sin((angle * Mathf.PI) / 180f);
+            //float bulDirY = transform.position.y + Mathf.Cos((angle * Mathf.PI) / 180f);
+
+            // Vector3 bulMoveVector = new Vector3(bulDirX, bulDirY, 0f);
+            //Vector3 bulMoveVector = Quaternion.AngleAxis(angle, Vector3.up) * transform.position;
+            //Vector3 bulDir = (bulMoveVector - transform.position).normalized;
+            Vector3 bulDir = new Vector3(x, y, 0).normalized;
+            float bulAngle = Mathf.Atan2(bulDir.y, bulDir.x) * Mathf.Rad2Deg;
+            bulletClass.gameObject.transform.rotation = Quaternion.AngleAxis(bulAngle, Vector3.forward);
+            bulletClass.Position = transform.position + bulDir * 100.0f;
+            bulletClass.transform.position = transform.position;
+            bulletClass.bulletSpeed = CleanSpellMoveSpeed;
+            //bulletClass.Direction = bulDir;
+            bullet.SetActive(true);
+            direction = bulDir;
+            angle += Mathf.Rad2Deg * 3f;
+        }
+        Behaviors = AttackBehaviors.normal;
     }
 
     void SetCanMove(int value)

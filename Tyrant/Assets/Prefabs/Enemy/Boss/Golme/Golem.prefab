@@ -127,6 +127,7 @@ GameObject:
   - component: {fileID: 5341033756465112491}
   - component: {fileID: 5341033756465112489}
   - component: {fileID: 5341033756465112490}
+  - component: {fileID: 6258427408240783958}
   m_Layer: 0
   m_Name: Golem
   m_TagString: Untagged
@@ -168,6 +169,7 @@ MonoBehaviour:
   heavyAttackRange: 2
   heavyAttackCooldown: 3
   heavyAttackEffectObject: {fileID: 5341033755527654039}
+  aoeDelayTime: 5
 --- !u!95 &5341033756465112489
 Animator:
   serializedVersion: 3
@@ -238,3 +240,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &6258427408240783958
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5341033756465112493}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 779013fb22817f94b92169cfd46189c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  curtilemap: {fileID: 0}
+  currentTile: {fileID: 0}
+  camera: {fileID: 0}
+  offset: {x: 0, y: 0, z: 0}

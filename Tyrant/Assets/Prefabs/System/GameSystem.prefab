@@ -218,6 +218,10 @@ MonoBehaviour:
     objectToPool: {fileID: 3777636570803404992, guid: b4461230960fd1c4cb17f892f5a7c1b6, type: 3}
     amountToPool: 1
     shouldExpand: 1
+  - tagName: slug
+    objectToPool: {fileID: 7745986033396710881, guid: 2d07191a00bef1c4f8da0e1289217a41, type: 3}
+    amountToPool: 1
+    shouldExpand: 1
 --- !u!1 &3980476720704669719
 GameObject:
   m_ObjectHideFlags: 0

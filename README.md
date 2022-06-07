@@ -22,3 +22,6 @@ The weapon system includes three different weapons: Cannon, Freeze Laser, and Fl
 ## Input Settings
 
 ![eRP9Sy](https://user-images.githubusercontent.com/36040048/172448188-81a2573c-4664-4a1a-bf5e-e319ad37914d.png)
+
+## Team Members
+The team consists of Steven Gan, William Chen, Pochun Chen, Scott Chen, Zhen Fang, Jiaxing Huang, and Kairus Lei from the Bachelor in Game Programming.

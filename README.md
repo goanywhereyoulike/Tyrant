@@ -18,3 +18,7 @@ The trap system includes three different traps: Clip, Bomb, and Blackhole.
 The weapon system includes three different weapons: Cannon, Freeze Laser, and Flamethrower.
 
 ![CNxks8](https://user-images.githubusercontent.com/36040048/172447056-dae79fa3-3868-4c7b-a565-6069805245b0.png)
+
+## Input Settings
+
+![eRP9Sy](https://user-images.githubusercontent.com/36040048/172448188-81a2573c-4664-4a1a-bf5e-e319ad37914d.png)

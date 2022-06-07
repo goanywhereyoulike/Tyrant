@@ -2,7 +2,7 @@
 
 # Tyrant
 ## Overview
-Tyrant is a 2D top-down tower defense shooter game created with Unity and C#. During the 12-month production period, eight programmers developed the project together. The game includes three main systems: the tower system, the trap system and the weapon system.
+Tyrant is a 2D top-down tower defense shooter game created with Unity and C#. During the 12-month production period, seven programmers developed the project together. The game includes three main systems: the tower system, the trap system and the weapon system.
 
 ## Tower System
 The tower system includes five different towers:  Normal Tower, Cannon Tower, Chain Tower, Lightning Tower, and Taunt Tower. 
